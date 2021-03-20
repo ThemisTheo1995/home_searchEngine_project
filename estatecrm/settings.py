@@ -119,10 +119,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+STATIC_ROOT = "static_root"
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'landing-page'
+LOGOUT_REDIRECT_URL = 'landing-page'
+
+LOGIN_URL = "/login"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
