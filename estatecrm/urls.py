@@ -5,17 +5,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 from accounts.views import LandingPageView
-# from django.contrib.auth.views import (
-#     LoginView, 
-#     LogoutView, 
-#     PasswordResetView, 
-#     PasswordResetDoneView, 
-#     PasswordResetConfirmView,
-#     PasswordResetCompleteView,
-# )
 
 urlpatterns = [
-    #path('login/', LoginView.as_view, name='login'),
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name='landing-page'),
     path('accounts/', include('accounts.urls')),

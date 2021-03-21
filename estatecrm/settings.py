@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third party apps
+    'crispy_forms',
+    'crispy_tailwind',
+        
+    # Local apps
     'accounts',
 ]
 
@@ -120,15 +126,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / 'static'
 ]
-STATIC_ROOT = "static_root"
+STATIC_ROOT = 'static_root'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_REDIRECT_URL = 'landing-page'
 LOGOUT_REDIRECT_URL = 'landing-page'
+LOGIN_URL = '/login'
 
-LOGIN_URL = "/login"
+CRISPY_TEMPLATE_PACK = 'tailwind'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

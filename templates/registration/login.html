@@ -1,15 +1,20 @@
 <!-- templates/registration/login.html -->
 {% extends 'base.html' %}
+{% load tailwind_filters %}
 
-{% block title %}Log In{% endblock %}
+
+{% block title %}Genesis | Log In{% endblock %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
+
+  <div class="max-w-lg mx-auto">
+    <h1 class = "title-font sm:text-3xl text-2xl mb-4 font-medium text-gray-900">Log In</h1>
+    <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log In</button>
-  <hr>
-  <a href="{% url 'password_reset' %}">Forgot password</a>
-</form>
+  {{ form|crispy }}
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md text-white mb-3">Log In</button>
+    </form>
+    <a href="{% url 'password_reset' %}" class="hover:text-blue-600">Forgot password</a>
+  </div>
+
 {% endblock %}
