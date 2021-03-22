@@ -14,10 +14,14 @@ class SignUpView(generic.CreateView):
     template_name = 'registration/signup.html'
     
 class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
+    
     form_class = CustomUserChangeForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('landing-page')
     template_name = 'registration/updateUser.html'
     
     # get current user object
     def get_object(self, queryset=None): 
         return self.request.user
+
+class SettingsView(LoginRequiredMixin, generic.TemplateView):
+    template_name = "settings.html"

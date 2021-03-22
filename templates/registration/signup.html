@@ -1,13 +1,18 @@
 <!-- templates/registration/signup.html -->
 {% extends 'base.html' %}
+{% load tailwind_filters %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Genesis | Sign Up{% endblock %}
 
 {% block content %}
-<h2>Sign Up</h2>
-<form method="post">
+
+<div class="max-w-lg mx-auto px-5">
+    <h1 class = "title-font sm:text-3xl text-2xl mb-4 font-medium text-gray-900">Sign Up</h1>
+    <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign Up</button>
-</form>
+  {{ form|crispy }}
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md text-white mb-3">Sign Up</button>
+    </form>
+  </div>
+
 {% endblock %}
