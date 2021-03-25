@@ -8,13 +8,20 @@
 {% block content %}
 
   <div class="max-w-lg mx-auto px-5">
-    <h1 class = "title-font sm:text-3xl text-2xl mb-4 font-medium text-gray-900">Log In</h1>
+    <h1 class = "title-font sm:text-3xl text-2xl text-center pt-10 pb-5 mb-4 font-medium text-gray-900">Log In</h1>
     <form method="post">
   {% csrf_token %}
   {{ form|crispy }}
-    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md text-white mb-3">Log In</button>
+      <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-center text-lg text-white mb-4 transition duration-300 ease-in-out">Log In</button>
     </form>
-    <a href="{% url 'password_reset' %}" class="hover:text-blue-600">Forgot password</a>
+    <div class="md:ml-auto flex justify-between">
+      <a href="{% url 'password_reset' %}" class="w-full bg-blue-500 hover:bg-blue-600 rounded-md text-white text-center px-3 py-2 mr-2 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-105">
+        Forgot password 😨
+      </a>
+      <a href="{% url 'accounts:signup' %}" class="w-full bg-blue-500 hover:bg-blue-600 rounded-md text-white text-center px-3 py-2 ml-2 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-105">
+        Sign Up
+      </a>
+    </div>
   </div>
 
 {% endblock %}
