@@ -7,10 +7,10 @@
       <span class="ml-3 text-xl">Genesis</span>
     </a> 
     <nav class="md:ml-auto inline-flex flex flex-wrap items-center text-base justify-center">
-      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110">To Rent</a>
-      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110">For Sale</a>
+      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">To Rent</a>
+      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">For Sale</a>
     {% if request.user.is_authenticated %}
-        <a href="{% url 'accounts:settings' %}" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 transform hover:-translate-y-1 hover:scale-110">Settings</a>
+        <a href="{% url 'accounts:settings' %}" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">Settings</a>
     </nav>
         <a href="{% url 'logout' %}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 mt-3 focus:outline-none hover:bg-gray-200 rounded text-base md:mt-0">
           Logout ({% if request.user.username|length <= 5 %}{{request.user.username}}{% else %}{{request.user.username|slice:"0:5"}}..{% endif %})
