@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,6 +121,25 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Setup LocaleMiddleware to enable translations using ugettext_lazy and ugettext
+# Make sure that LocaleMiddleware comes after SessionMiddleware and before CommonMiddleware
+MIDDLEWARE_CLASSES = (
+   'django.contrib.sessions.middleware.SessionMiddleware',
+   'django.middleware.locale.LocaleMiddleware',
+   'django.middleware.common.CommonMiddleware',
+)
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('el', _('Greek')),
+)
+
+LANGUAGE_CODE = 'en'
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)

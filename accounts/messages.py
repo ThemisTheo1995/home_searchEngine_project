@@ -1,3 +1,9 @@
+languages = {
+    'English'           :'English',
+    'Greek'             :'Ελληνικά',
+}
+
+
 signUp = {
     'tabTitle'          : 'Genesis | Sign Up',
     'pageTitle'         : 'Create an account',
@@ -9,6 +15,14 @@ signUp = {
 
  
 updateUser = {
+    'tabTitle'          : 'Genesis | Update details',
+    'pageTitle'         : 'Account details',
+    'updateButton'      : 'Update Details',
+    'changePassword1'   : 'Do you want to change your password?',
+    'changePassword2'   : 'Change password',
+}
+
+updateUserGR = {
     'tabTitle'          : 'Genesis | Update details',
     'pageTitle'         : 'Account details',
     'updateButton'      : 'Update Details',

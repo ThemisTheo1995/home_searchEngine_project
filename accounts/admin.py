@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
+
+@admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     
     add_form = CustomUserCreationForm
@@ -13,6 +15,6 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['email', 'username', 'is_staff']
     search_fields = ['email', 'username']
-    ordering = ['email',]
+    ordering = ['email']
 
-admin.site.register(CustomUser, CustomUserAdmin)
+    

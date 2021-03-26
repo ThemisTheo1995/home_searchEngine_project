@@ -5,10 +5,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.template.defaulttags import register
 from .messages import signUp, updateUser, settings
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
 
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+    
+    
 class LandingPageView(generic.TemplateView):
     template_name = "landing.html"
+
         
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
@@ -19,7 +22,8 @@ class SignUpView(generic.CreateView):
         context = super().get_context_data(**kwargs)
         context['msg'] = signUp
         return context
-    
+
+
 class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
     
     form_class = CustomUserChangeForm
@@ -33,6 +37,7 @@ class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
         context = super().get_context_data(**kwargs)
         context['msg'] = updateUser
         return context
+
 
 class SettingsView(LoginRequiredMixin, generic.TemplateView):
     template_name = "settings.html"

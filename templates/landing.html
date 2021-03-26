@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Genesis | Home{% endblock title %}
 
@@ -8,16 +9,16 @@
     <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" src="https://image.freepik.com/free-photo/poster-with-vertical-frames-empty-white-wall-living-room-interior-with-blue-velvet-armchair-3d-rendering_41470-2907.jpg">
     <div class="text-center lg:w-2/3 w-full">
       <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-      More than 20k+ properties to choose from.
+      {% trans 'More than 20k+ properties to choose from.'%}
       </h1>
       <p class="mb-8 leading-relaxed sm:text-xl text-lg">
-      Some people look for a beautiful place. Others make a place beautiful. Discover yours.
+      {% trans 'Some people look for a beautiful place. Others make a place beautiful. Discover yours.' %}
       </p>
       <div class="flex justify-center">
         <button class="inline-flex text-white font-semibold bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">
-        TO RENT</button>
+        {% trans 'TO RENT' %}</button>
         <button class="ml-4 inline-flex text-gray-700 font-semibold bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-        FOR SALE</button>
+        {% trans 'FOR SALE' %}</button>
       </div>
     </div>
   </div>
