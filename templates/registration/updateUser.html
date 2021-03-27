@@ -3,23 +3,23 @@
 {% load tailwind_filters %}
 {% load i18n %}
 
-{% block title %}{{msg.tabTitle}}{% endblock %}
+{% block title %}Genesis | Update details{% endblock %}
 
 {% block content %}
 <div class="max-w-lg mx-auto px-5">
   <h1 class = "title-font sm:text-3xl pt-10 text-2xl mb-1 font-medium text-gray-900">
-    {{msg.pageTitle}}
+    {% trans 'Account details' %}
   </h1>
-  <p class="text-gray-600 mb-4">{% trans msg.changePassword1%}
+  <p class="text-gray-600 mb-4">{% trans 'Do you want to change your password?' %}
       <a href="{% url 'password_change' %}" class="text-blue-500 hover:text-blue-600 text-lg">
-        {% trans msg.changePassword2%}
+        {% trans 'Change password'%}
       </a>
     </p>
   <form method="post">
     {% csrf_token %}
   {{ form|crispy }}
     <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white text-lg mb-3 mt-3">
-      {% trans msg.updateButton%}
+      {% trans 'Update details' %}
     </button>
   </form>
 </div>

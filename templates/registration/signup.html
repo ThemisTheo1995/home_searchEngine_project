@@ -3,21 +3,23 @@
 {% load tailwind_filters %}
 {% load i18n %}
 
-{% block title %}{% trans msg.tabTitle%}{% endblock %}
+{% block title %}Genesis | Sign Up{% endblock %}
 
 {% block content %}
 
 <div class="max-w-lg mx-auto px-5 mb-20">
-    <h1 class = "title-font sm:text-3xl text-2xl mb-1 font-medium text-gray-900">{% trans msg.pageTitle %}</h1>
-    <p class="text-gray-600 mb-4">{{msg.loginUrl1}}
+    <h1 class = "title-font sm:text-3xl text-2xl mb-1 font-medium text-gray-900">{% trans 'Create an account' %}</h1>
+    <p class="text-gray-600 mb-4">{% trans 'Already have an account?' %}
       <a href="{% url 'login' %}" class="text-blue-500 hover:text-blue-600 text-lg">
-        {{msg.loginUrl2}}
+        {% trans 'Login' %}
       </a>
     </p>
     <form method="post">
   {% csrf_token %}
   {{ form|crispy }}
-    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md text-white mb-3">{% trans msg.signUpButton %}</button>
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-md text-white mb-3">
+      {% trans 'Create an account' %}
+    </button>
     </form>
   </div>
 

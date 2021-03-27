@@ -7,6 +7,7 @@ from django.views.generic.base import TemplateView
 from accounts.views import LandingPageView
 
 urlpatterns = [
+    path('', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name='landing-page'),
     path('accounts/', include('accounts.urls')),
