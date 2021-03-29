@@ -1,5 +1,4 @@
 # accounts/views.py
-from django.conf import settings
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin

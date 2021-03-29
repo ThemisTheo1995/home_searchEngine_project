@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-28 15:12+0000\n"
+"POT-Creation-Date: 2021-03-29 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,23 +80,23 @@ msgstr "ΕΝΟΙΚΙΑΣΗ"
 msgid "FOR SALE"
 msgstr "ΠΩΛΗΣΗ"
 
-#: templates/navbar.html:35
+#: templates/navbar.html:32
 msgid "To Rent"
 msgstr "Ενοικίαση"
 
-#: templates/navbar.html:36
+#: templates/navbar.html:33
 msgid "For Sale"
 msgstr "Πώληση"
 
-#: templates/navbar.html:38
+#: templates/navbar.html:35
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: templates/navbar.html:41
+#: templates/navbar.html:38
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: templates/navbar.html:49 templates/registration/signup.html:14
+#: templates/navbar.html:46 templates/registration/signup.html:14
 msgid "Login"
 msgstr "Σύνδεση"
 

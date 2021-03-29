@@ -6,7 +6,7 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 from accounts.views import LandingPageView
 from django.conf.urls.i18n import i18n_patterns
-from accounts import views
+
 
 
 urlpatterns = [
@@ -18,6 +18,7 @@ urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
     path('', LandingPageView.as_view(), name='landing-page'),
     path('accounts/', include('accounts.urls')),
+    path('properties/', include('properties.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     prefix_default_language=False,
 )
