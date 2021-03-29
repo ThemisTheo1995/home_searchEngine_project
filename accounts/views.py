@@ -1,15 +1,16 @@
 # accounts/views.py
-from django.urls import reverse_lazy
+from django.conf import settings
 from django.views import generic
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.template.defaulttags import register
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-    
-    
-class LandingPageView(generic.TemplateView):
-    template_name = "landing.html"
+      
 
+class LandingPageView(generic.TemplateView):
+
+    template_name = "landing.html"
+    
         
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm

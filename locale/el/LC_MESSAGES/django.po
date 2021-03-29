@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-27 13:08+0000\n"
+"POT-Creation-Date: 2021-03-28 15:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,60 +19,107 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: accounts/templates/settings.html:12
-msgid "msg.pageTitle"
-msgstr ""
+msgid "SETTINGS"
+msgstr "ΡΥΘΜΙΣΕΙΣ"
 
-#: estatecrm/settings.py:134 templates/navbar.html:22
+#: accounts/templates/settings.html:13
+msgid "General Settings"
+msgstr "Γενικές Ρυθμίσεις"
+
+#: accounts/templates/settings.html:17
+#: templates/registration/updateUser.html:11
+msgid "Account details"
+msgstr "Πληροφορίες λογιαριασμού"
+
+#: accounts/templates/settings.html:18
+msgid ""
+"Update your account information such as username, email, first and last name "
+"etc."
+msgstr ""
+"Ενημέρωσε τα στοιχεία του λογιαριασμού σου. Όνομα χρήστη, email, όνομα, "
+"επίθετο κτλ."
+
+#: accounts/templates/settings.html:20 accounts/templates/settings.html:30
+msgid "Go"
+msgstr "Μετάβαση"
+
+#: accounts/templates/settings.html:27
+#: templates/registration/updateUser.html:15
+msgid "Change password"
+msgstr "Αλλαγή κωδικού"
+
+#: accounts/templates/settings.html:28
+msgid "Click below to change your current password."
+msgstr "Κάνε κλικ για αλλάξεις τον κωδικό σου."
+
+#: estatecrm/settings.py:135
 msgid "English"
 msgstr "Αγγλικά"
 
-#: estatecrm/settings.py:135 templates/navbar.html:21
+#: estatecrm/settings.py:136
 msgid "Greek"
 msgstr "Ελληνικά"
 
-#: templates/landing.html:12
+#: templates/landing.html:13
 msgid "More than 20k+ properties to choose from."
-msgstr "Περισσότερα από 20 χιλιάδες σπίτια για να διαλέξεις."
+msgstr "Αμέτρητες επιλογές σπιτιών για να διαλέξεις το δικό σου"
 
-#: templates/landing.html:15
+#: templates/landing.html:16
 msgid ""
 "Some people look for a beautiful place. Others make a place beautiful. "
 "Discover yours."
 msgstr ""
-"Μερικοί ψάχνουν για ένα όμορφο μέρος. Άλλοι κάνουν το μέρος όμορφο. "
-"Ανακάλυψε το δικό σου."
+"Άλλοι αναζητούν ένα όμορφο μέρος, ενώ άλλοι το δημιουργούν. Ανακάλυψε το "
+"δικό σου."
 
-#: templates/landing.html:19
+#: templates/landing.html:20
 msgid "TO RENT"
 msgstr "ΕΝΟΙΚΙΑΣΗ"
 
-#: templates/landing.html:21
+#: templates/landing.html:22
 msgid "FOR SALE"
 msgstr "ΠΩΛΗΣΗ"
 
-#: templates/navbar.html:17
-msgid "Language"
-msgstr "Γλώσσα"
+#: templates/navbar.html:35
+msgid "To Rent"
+msgstr "Ενοικίαση"
+
+#: templates/navbar.html:36
+msgid "For Sale"
+msgstr "Πώληση"
+
+#: templates/navbar.html:38
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: templates/navbar.html:41
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+#: templates/navbar.html:49 templates/registration/signup.html:14
+msgid "Login"
+msgstr "Σύνδεση"
 
 #: templates/registration/login.html:12 templates/registration/login.html:22
 msgid "Log In"
-msgstr ""
+msgstr "Σύνδεση"
 
 #: templates/registration/login.html:13
 msgid "New here?"
-msgstr ""
+msgstr "Νέος εδώ;"
 
 #: templates/registration/login.html:15 templates/registration/login.html:30
+#: templates/registration/signup.html:11 templates/registration/signup.html:21
 msgid "Create an account"
-msgstr ""
+msgstr "Δημιουργία λογαριασμού"
 
 #: templates/registration/login.html:27
 msgid "Forgot password?"
-msgstr ""
+msgstr "Ξεχάσατε τον κωδικό;"
 
 #: templates/registration/password_change_form.html:10
 msgid "Change your password"
-msgstr ""
+msgstr "Αλλάξτε τον κωδικό σας"
 
 #: templates/registration/password_change_form.html:16
 msgid "Submit"
@@ -80,19 +127,19 @@ msgstr ""
 
 #: templates/registration/password_reset_complete.html:5
 msgid "Password reset complete"
-msgstr ""
+msgstr "Η επαναφορά του κωδικού ολοκληρώθηκε"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "You have succesfully reset your password. Click "
-msgstr ""
+msgstr "Επαναφέρατε τον κωδικό σας επιτυχώς. Κάντε κλικ"
 
 #: templates/registration/password_reset_complete.html:7
 msgid "here"
-msgstr ""
+msgstr "εδώ"
 
 #: templates/registration/password_reset_complete.html:7
 msgid "to login."
-msgstr ""
+msgstr "για να συνδεθείτε."
 
 #: templates/registration/password_reset_confirm.html:8
 msgid "Enter your new password"
@@ -104,7 +151,7 @@ msgstr ""
 
 #: templates/registration/password_reset_done.html:5
 msgid "We have sent you an email to confirm your password reset."
-msgstr ""
+msgstr "Σας έχουμε στείλει ένα email για την επιβεβαίωση επαναφοράς κωδικού."
 
 #: templates/registration/password_reset_email.html:3
 msgid "Someone asked for password reset for email"
@@ -112,7 +159,7 @@ msgstr ""
 
 #: templates/registration/password_reset_email.html:3
 msgid "Follow the link below:"
-msgstr ""
+msgstr "Ακολουθήστε τον σύνδεσμο:"
 
 #: templates/registration/password_reset_form.html:8
 msgid "Enter your email"
@@ -123,5 +170,17 @@ msgid "Reset password"
 msgstr ""
 
 #: templates/registration/password_reset_form.html:16
+#: templates/registration/signup.html:12
 msgid "Already have an account?"
-msgstr ""
+msgstr "Έχετε ήδη λογιαριασμό;"
+
+#: templates/registration/updateUser.html:13
+msgid "Do you want to change your password?"
+msgstr "Θέλετε να αλλάξετε τον κωδικό σας;"
+
+#: templates/registration/updateUser.html:22
+msgid "Update details"
+msgstr "Ενημέρωση πληροφοριών"
+
+#~ msgid "Language"
+#~ msgstr "Γλώσσα"
