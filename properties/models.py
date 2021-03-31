@@ -12,6 +12,7 @@ class Properties(models.Model):
     geo_lat = models.DecimalField(decimal_places=10, default=0, max_digits=13)
     geo_lng = models.DecimalField(decimal_places=10, default=0, max_digits=13)
     description = models.TextField(max_length=2000)
+    short_description = models.TextField(max_length=120, default='')
     price = models.IntegerField()
     bedrooms = models.IntegerField()
     bathrooms = models.DecimalField(max_digits=2, decimal_places=1)

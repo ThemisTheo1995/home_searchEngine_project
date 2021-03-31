@@ -14,12 +14,12 @@
         <div class="dropdown inline-block relative">
           <form id="language" class="pt-1 text-sm items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
               <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select class="appearance-none cursor-pointer hover:text-gray-700 text-center bg-gray-100 hover:bg-gray-200 py-1 mb-2 px-1 rounded" name="language">
+                <select onchange="submitLanguage()" class="appearance-none cursor-pointer hover:text-gray-700 text-center bg-gray-100 hover:bg-gray-200 py-1 mb-2 px-1 rounded" name="language">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for language in languages %}
-                        <option class="bg-white" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %} onclick = "submitLanguage()">
+                        <option class="bg-white" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
                             {{ language.name_local }} ({{ language.code }})
                         </option>
                     {% endfor %}
@@ -29,8 +29,12 @@
       </div>
     </div>
     <nav class="md:ml-auto inline-flex flex flex-wrap items-center text-base justify-center">
-      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">{% trans 'To Rent'%}</a>
-      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">{% trans 'For Sale'%}</a>
+      <a href="{% url 'properties:rent-search' %}" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
+        {% trans 'To Rent'%}
+      </a>
+      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
+        {% trans 'For Sale'%}
+      </a>
     {% if request.user.is_authenticated %}
         <a href="{% url 'accounts:settings' %}" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">{% trans 'Settings' %}</a>
     </nav>
