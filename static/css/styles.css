@@ -1,3 +1,16 @@
 .dropdown:hover .dropdown-menu {
     display: block;
   }
+.leaflet-bottom, .leaflet-right, .leaflet-top, .leaflet-right{
+  display: none!important;
+}
+
+
+@media(max-width:1024px){
+  
+  .sidebar {display: none;}
+  
+  }
+
+
+

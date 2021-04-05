@@ -16,15 +16,18 @@ class PropertiesRentSearchView(generic.FormView):
 class PropertiesRentListView(generic.ListView):
     template_name = "properties/properties_rent.html"
     context_object_name = "rentProperties"
-    
+
     def get_queryset(self):
         title = self.request.GET.get('title')
         bathrooms = self.request.GET.get('bathrooms')
-        queryset = Properties.objects.all()
-        return queryset.filter(
+        object_all = Properties.objects.all()
+        queryset = object_all.filter(
             title__icontains=title, 
             bathrooms__icontains=bathrooms,
             for_sale=False, 
             to_rent=True, 
             is_published=True,
             )
+        return queryset
+
+    
