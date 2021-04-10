@@ -1,9 +1,14 @@
 <script>
+// Map configuration.
 var lat = parseFloat({{rent.geo_lat}}).toFixed(6);
 var lng = parseFloat({{rent.geo_lng}}).toFixed(6);
+var genesisMarker = L.icon({
+    iconUrl: '/static/images/mapMarker.png',
+    iconSize: [30, 30],
+
+});
 var map= L.map('map{{rent.id}}').setView([lat, lng], 12);
-    L.marker([lat, lng])
-        {% comment %} .bindPopup("Hello <b>Leaflet GL</b>!") {% endcomment %}
+    L.marker([lat, lng], {icon: genesisMarker})
         .addTo(map)
         .openPopup();
     var gl = L.mapboxGL({

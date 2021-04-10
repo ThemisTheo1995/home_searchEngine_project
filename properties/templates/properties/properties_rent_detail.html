@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Genesis | Details{% endblock title %}
+
+{% block content %}
+
+<section class="text-gray-600 body-font">
+
+  <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto flex flex-col">
+    <div class="w-full lg:w-5/6 mx-auto">
+      <div class="rounded-lg h-full overflow-hidden">
+        <div class="flex flex-col lg:flex-row">
+
+          <div class="lg:w-2/3 w-full lg:pr-2">
+            <div id="image-slider" class="splide">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img class="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img class="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img class="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                  </li>                
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:w-1/3 w-full lg:pl-2 h-full sidebar">
+            <div id="secondary-slider" class="splide">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row mt-4">
+        <div class="sm:w-2/3 text-center sm:pr-2 sm:py-4">
+          <div class="flex items-center flex-wrap">
+            <p class="inline-flex font-bold text-lg text-gray-800 pr-2">
+              {{rent.address}},
+            </p>
+            <p class ="inline-flex">{{rent.city}} | {{rent.postalcode}}</p>
+            <div class="inline-flex items-center  ml-auto leading-none">
+              <a href="{% url 'properties:rent-detail' rent.id %}#anchor">
+                <span class="text-sm text-gray-700 pr-4 infline-flex ">
+                  <i class="text-blue-600 fa fa-calculator"></i> Monthly costs 
+                </span>
+              </a>
+              <a href="http://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}">
+                <i class="fa fa-share-alt text-blue-600 pr-4"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-heart text-blue-600"></i>
+              </a>
+            </div>
+          </div>
+          <div class="flex flex-col text-left justify-center mt-4">
+            <p class="text-base">Raclette knausgaard hella meggs normcore williamsburg enamel pin sartorial venmo tbh hot chicken gentrify portland.</p>
+          </div>
+        </div>
+        <div class="sm:w-1/3 sm:pl-8 sm:py-4 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+          <p class="leading-relaxed text-lg mb-4">Meggings portland fingerstache lyft, post-ironic fixie man bun banh mi umami everyday carry hexagon locavore direct trade art party. Locavore small batch listicle gastropub farm-to-table lumbersexual salvia messenger bag. Coloring book flannel truffaut craft beer drinking vinegar sartorial, disrupt fashion axe normcore meh butcher. Portland 90's scenester vexillologist forage post-ironic asymmetrical, chartreuse disrupt butcher paleo intelligentsia pabst before they sold out four loko. 3 wolf moon brooklyn.</p>
+          <a class="text-blue-500 inline-flex items-center">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row mt-4">
+      </div>
+
+    </div>
+  </div>
+</section>
+{% include "properties/scripts/properties_rent_splide_script.html" %}
+{% endblock content %}

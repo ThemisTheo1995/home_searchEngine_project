@@ -18,11 +18,11 @@ class PropertiesRentListView(generic.ListView):
     context_object_name = "rentProperties"
 
     def get_queryset(self):
-        title = self.request.GET.get('title')
+        city = self.request.GET.get('city')
         bathrooms = self.request.GET.get('bathrooms')
         object_all = Properties.objects.all()
         queryset = object_all.filter(
-            title__icontains=title, 
+            city__icontains=city, 
             bathrooms__icontains=bathrooms,
             for_sale=False, 
             to_rent=True, 
@@ -30,4 +30,10 @@ class PropertiesRentListView(generic.ListView):
             )
         return queryset
 
+
+class PropertiesRentDetailView(generic.DetailView):
+    template_name = "properties/properties_rent_detail.html"
+    context_object_name = "rent"
+    queryset = Properties.objects.all()
+        
     

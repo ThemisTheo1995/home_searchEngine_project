@@ -5,6 +5,6 @@ from .models import Properties
 
 
 class FilterForm(forms.Form):
-    title = CharField(required=True, label=False, widget=forms.TextInput(attrs={'placeholder': 'Postcode, Address, City etc..'}))
+    city = CharField(required=True, label=False, widget=forms.TextInput(attrs={'placeholder': 'Postcode, Address, City etc..'}))
     
     

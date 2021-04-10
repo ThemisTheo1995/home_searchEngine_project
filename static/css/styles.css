@@ -1,16 +1,42 @@
 .dropdown:hover .dropdown-menu {
     display: block;
   }
-.leaflet-bottom, .leaflet-right, .leaflet-top, .leaflet-right{
+
+/* Leaflet */
+ 
+  .leaflet-bottom, .leaflet-right{
   display: none!important;
 }
 
+.leaflet-touch .leaflet-bar a {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+}
 
-@media(max-width:1024px){
+.leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+  border: 2px solid rgb(167, 161, 161);
+  background-clip: padding-box;
+}
+
+/* end of Leaflet */
+
+@media(max-width:1023px){
   
   .sidebar {display: none;}
-  
+  .rentlist-ribbon {display: none;} 
+
   }
 
+/* Splide */
 
+.splide__slide img {
+	width : 100%;
+	height: auto;
+}
 
+.splide__slide.is-active {
+  border-color: rgba(59, 130, 246)!important;
+}
+
+/* end of Splide */
