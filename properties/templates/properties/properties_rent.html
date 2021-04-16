@@ -12,7 +12,7 @@
   <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto">
     {% for rent in rentProperties %}
     <div class="flex flex-wrap pb-16 pt-8">
-      <div class="lg:w-3/12 w-full bg-gray-100">
+      <div class="lg:w-3/12 w-full bg-gray-50 lg:shadow-xl shadow:none">
         <div class="h-full overflow-hidden rounded-tl">
            <div class="bg-blue-500 w-full float-left py-1 text-xs pl-2 font-bold">
             {% if rent.property_category == 'STANDARD' %}
@@ -29,9 +29,9 @@
               </div> 
             {% endif %}
           </div> 
-          <div class="fotorama" data-nav="thumbs" data-thumbwidth="100" data-width="100%">
+          <div class="fotorama" data-loop="true" data-nav="thumbs" data-thumbwidth="100" data-width="100%" data-trackpad="true" data-maxheight="280">
             {% if rent.photo_main  %}
-              <img class="object-cover object-center" src="{{rent.photo_main.url}}">
+              <img data-keyboard="true" class="object-cover object-center" src="{{rent.photo_main.url}}">
             {% endif %}
             {% if rent.photo_1  %}
               <img class="object-cover object-center" src="{{rent.photo_1.url}}">
@@ -49,7 +49,7 @@
           </div> 
         </div>
       </div>
-      <div class="lg:w-6/12 bg-gray-100">
+      <div class="lg:w-6/12 bg-gray-50 shadow-xl">
         <div class="h-full overflow-hidden">
           <div class="bg-blue-500 w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon">
             {% if rent.property_category == 'STANDARD' %}
@@ -93,29 +93,29 @@
             <a href="{% url 'properties:rent-detail' rent.pk %}">
               <div class="flex flex-wrap text-sm text-blue-500 my-2">
                 <div class="flex justify-between lg:w-3/5 w-full md:pr-6 my-2 lg:my-2">
-                  <div><i class="fa fa-home"></i> TYPE<div class="text-center text-blue-500 font-bold">{{rent.property_type}}</div></div>
-                  <div><i class="fa fa-bed"></i> BEDROOMS<div class="text-center text-blue-500 font-bold">{{rent.bedrooms}}</div></div>
-                  <div><i class="fa fa-bath"></i> BATHROOMS<div class="text-center text-blue-500 font-bold">{{rent.bathrooms|floatformat:'0'}}</div></div>
-                  <div><i class="fa fa-th-large"></i> SPACE<div class="text-center text-blue-500 font-bold">{{rent.m2}}m²</div></div>
+                  <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center text-blue-500 font-bold">{{rent.property_type}}</div></div>
+                  <div><i class="fa fa-bed"></i> {% trans 'BEDROOMS'%}<div class="text-center text-blue-500 font-bold">{{rent.bedrooms}}</div></div>
+                  <div><i class="fa fa-bath"></i> {% trans 'BATHROOMS'%}<div class="text-center text-blue-500 font-bold">{{rent.bathrooms|floatformat:'0'}}</div></div>
+                  <div><i class="fa fa-th-large"></i> {% trans 'SPACE'%}<div class="text-center text-blue-500 font-bold">{{rent.m2}}m²</div></div>
                 </div>
                 <div class="flex justify-between lg:w-2/5 w-full my-2">
-                  <p class="text-xs font-bold leading-none ml-auto">Published: {{rent.list_date}}</p>
+                  <p class="text-xs font-bold leading-none ml-auto">{% trans 'Published:'%} {{rent.list_date}}</p>
                 </div>
               </div>
             </a>
-            <hr class="my-2">
-            <div class="flex items-center flex-wrap my-4">
-              <a href="#" class="py-2 px-3 rounded-l text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
+            <hr class="my-4">
+            <div class="flex items-center flex-wrap">
+              <a href="#" class="py-2 px-3 border-r border-white rounded-l text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
                 <i class="fa fa-envelope pr-2"></i>EMAIL
               </a>
-              <a href="#" class="py-2 px-3 rounded-r text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
-                <i class="fa fa-phone pr-2"></i>CALL
+              <a href="#" class="py-2 px-4 rounded-r text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
+                <i class="fa fa-phone pr-2"></i>{% trans 'CALL'%}
               </a>
               <a class="inline-flex items-center  ml-auto leading-none">
                 <img alt="blog" src="https://dummyimage.com/103x103" class="w-20 h-12 flex-shrink-0 object-cover object-center">
                 <span class="flex-grow flex flex-col pl-4">
-                  <span class="title-font font-medium text-gray-900">Alper Kamu</span>
-                  <span class="text-gray-400 text-xs tracking-widest mt-0.5">DESIGNER</span>
+                  <span class="title-font font-medium text-gray-900">{{rent.realtor}}</span>
+                  <span class="text-gray-400 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
                 </span>
               </a>
             </div>

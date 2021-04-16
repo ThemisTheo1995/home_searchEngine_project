@@ -62,27 +62,27 @@
                 <ul class="splide__list opacity-80">
                   {% if rent.photo_main  %}
                   <li class="splide__slide">
-                    <img class="object-cover object-center" src="{{rent.photo_main.url}}">
+                    <img class="object-cover object-center" data-splide-lazy="{{rent.photo_main.url}}">
                   </li>
                   {% endif %}
                   {% if rent.photo_1  %}
                   <li class="splide__slide">
-                    <img class="object-cover object-center" src="{{rent.photo_1.url}}">
+                    <img class="object-cover object-center" data-splide-lazy="{{rent.photo_1.url}}">
                   </li>
                   {% endif %}
                   {% if rent.photo_2  %}
                   <li class="splide__slide">
-                    <img class="object-cover object-center" src="{{rent.photo_2.url}}">
+                    <img class="object-cover object-center" data-splide-lazy="{{rent.photo_2.url}}">
                   </li>
                   {% endif %}
                   {% if rent.photo_3  %}
                   <li class="splide__slide">
-                    <img class="object-cover object-center" src="{{rent.photo_3.url}}">
+                    <img class="object-cover object-center" data-splide-lazy="{{rent.photo_3.url}}">
                   </li>
                   {% endif %}
                   {% if rent.photo_4  %}
                   <li class="splide__slide">
-                    <img class="object-cover object-center" src="{{rent.photo_4.url}}">
+                    <img class="object-cover object-center" data-splide-lazy="{{rent.photo_4.url}}">
                   </li>
                   {% endif %}
                 </ul>
@@ -176,8 +176,8 @@
               <a class="inline-flex items-center  ml-auto leading-none">
                 <img alt="blog" src="https://dummyimage.com/103x103" class="w-20 h-12 flex-shrink-0 object-cover object-center">
                 <span class="flex-grow flex flex-col pl-4">
-                  <span class="title-font font-medium text-gray-900">Alper Kamu</span>
-                  <span class="text-gray-400 text-xs tracking-widest mt-0.5">{% trans 'Agency'%}</span>
+                  <span class="title-font font-medium text-gray-900">{{rent.realtor}}</span>
+                  <span class="text-gray-400 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
                 </span>
               </a>
             </div>

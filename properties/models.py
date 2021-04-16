@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import CustomUser 
 from datetime import datetime
+from .validators import validate_file_size
 
 class Properties(models.Model):
     FURNITURE_CHOICES = [
@@ -37,7 +38,7 @@ class Properties(models.Model):
     garage = models.IntegerField(default=0)
     furniture = models.CharField(max_length=11,choices=FURNITURE_CHOICES, default='Furnished')
     m2 = models.IntegerField()
-    photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
+    photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/', validators=[validate_file_size])
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
