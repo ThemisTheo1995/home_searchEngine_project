@@ -4,7 +4,7 @@
 
 /* Leaflet */
  
-  .leaflet-bottom, .leaflet-right{
+.leaflet-bottom, .leaflet-right{
   display: none!important;
 }
 
@@ -19,11 +19,23 @@
   background-clip: padding-box;
 }
 
+@media(max-width:1023px){
+  .rent-detail-map {
+    height: 200px!important;
+  }
+}
+
+.rent-detail-map {
+  height: 275px;
+}
+
 /* end of Leaflet */
 
 @media(max-width:1023px){
   
-  .sidebar {display: none;}
+  .sidebar {
+    display: none;
+  }
   .rentlist-ribbon {display: none;} 
 
   }
@@ -40,3 +52,7 @@
 }
 
 /* end of Splide */
+
+/* Fotorama */
+
+/* end of Fotorama */

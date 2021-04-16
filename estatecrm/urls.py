@@ -10,8 +10,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls), 
-       
+    path('admin/', admin.site.urls),       
 ]
 
 urlpatterns += i18n_patterns(
@@ -22,6 +21,7 @@ urlpatterns += i18n_patterns(
     path('accounts/', include('django.contrib.auth.urls')),
     prefix_default_language=False,
 )
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

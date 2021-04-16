@@ -14,8 +14,15 @@ class PropertiesRentSearchView(generic.FormView):
 
 
 class PropertiesRentListView(generic.ListView):
+    paginate_by = 15
     template_name = "properties/properties_rent.html"
     context_object_name = "rentProperties"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['city'] = self.request.GET.get('city')
+        context['bathrooms'] = self.request.GET.get('bathrooms')
+        return context
 
     def get_queryset(self):
         city = self.request.GET.get('city')

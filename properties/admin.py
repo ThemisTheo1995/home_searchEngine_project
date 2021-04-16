@@ -1,11 +1,13 @@
 from django.contrib import admin
 from .models import Properties
+from .forms import PropertiesForm
 
 
 
 @admin.register(Properties)
 class PropertiesAdmin(admin.ModelAdmin):
     
+    form = PropertiesForm
     model = Properties
     list_display = ['id', 'property_type','address', 'is_published', 'price', 'list_date', 'realtor']
     list_filter = ['for_sale','to_rent']

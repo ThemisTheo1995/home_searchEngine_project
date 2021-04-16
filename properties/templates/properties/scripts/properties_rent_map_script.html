@@ -7,7 +7,7 @@ var genesisMarker = L.icon({
     iconSize: [30, 30],
 
 });
-var map= L.map('map{{rent.id}}').setView([lat, lng], 12);
+var map= L.map('map{{rent.id}}').setView([lat, lng], 14);
     L.marker([lat, lng], {icon: genesisMarker})
         .addTo(map)
         .openPopup();
@@ -15,4 +15,13 @@ var map= L.map('map{{rent.id}}').setView([lat, lng], 12);
         attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
         style: 'https://api.maptiler.com/maps/streets/style.json?key=f8KNCaKJy3aq9zRp2tSn'
 }).addTo(map); 
+
+// Share urls
+function twitterSharer(){ 
+    window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
+  } 
+
+function fbSharer(){ 
+    window.open("https://www.facebook.com/sharer/sharer.php?u=http://www.bigdaddy.com{{request.get_full_path|urlencode}}"); 
+  } 
 </script>
