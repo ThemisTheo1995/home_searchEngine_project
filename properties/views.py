@@ -34,7 +34,7 @@ class PropertiesRentListView(generic.ListView):
             for_sale=False, 
             to_rent=True, 
             is_published=True,
-            )
+            ).order_by('-list_date')
         return queryset
 
 

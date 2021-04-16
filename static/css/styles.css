@@ -51,8 +51,15 @@
   border-color: rgba(59, 130, 246)!important;
 }
 
+#div_id_is_realtor {  
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.checkboxinput {
+  margin-bottom: 6px;
+  margin-left: 15px;
+}
+
 /* end of Splide */
-
-/* Fotorama */
-
-/* end of Fotorama */

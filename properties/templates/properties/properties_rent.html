@@ -29,7 +29,7 @@
               </div> 
             {% endif %}
           </div> 
-          <div class="fotorama" data-loop="true" data-nav="thumbs" data-thumbwidth="100" data-width="100%" data-trackpad="true" data-maxheight="280">
+          <div class="fotorama" data-loop="true" data-nav="thumbs" data-thumbwidth="100" data-width="100%" data-trackpad="true" data-ratio="3/2">
             {% if rent.photo_main  %}
               <img data-keyboard="true" class="object-cover object-center" src="{{rent.photo_main.url}}">
             {% endif %}
@@ -105,10 +105,11 @@
             </a>
             <hr class="my-4">
             <div class="flex items-center flex-wrap">
-              <a href="#" class="py-2 px-3 border-r border-white rounded-l text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=themistheodoratos@gmail.com" 
+                class="py-2 px-3 border-r border-white rounded-l text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
                 <i class="fa fa-envelope pr-2"></i>EMAIL
               </a>
-              <a href="#" class="py-2 px-4 rounded-r text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
+              <a href="tel:+1123-456-7890" class="py-2 px-4 rounded-r text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
                 <i class="fa fa-phone pr-2"></i>{% trans 'CALL'%}
               </a>
               <a class="inline-flex items-center  ml-auto leading-none">
