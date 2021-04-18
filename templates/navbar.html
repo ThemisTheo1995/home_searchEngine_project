@@ -1,8 +1,8 @@
 
 {% load i18n %}
 
-<header class="text-gray-600 body-font">
-  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+<header class="text-gray-600 body-font lg:mx-24">
+  <div class="container mx-auto flex flex-wrap lg:p-5 p-3 flex-col md:flex-row items-center">
     <div class="inline-flex flex flex-wrap">
       <a href="{% url 'landing-page' %}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
@@ -28,17 +28,22 @@
         </div>
       </div>
     </div>
-    <nav class="md:ml-auto inline-flex flex flex-wrap items-center text-base justify-center">
-      <a href="{% url 'properties:rent-search' %}" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
+    <nav class="md:ml-auto inline-flex flex flex-wrap items-center text-sm lg:text-base justify-center">
+      <a href="{% url 'properties:rent-search' %}" class="py-1 px-2 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
         {% trans 'To Rent'%}
       </a>
-      <a href="#" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
+      <a href="#" class="py-1 px-2 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
         {% trans 'For Sale'%}
       </a>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'accounts:settings' %}" class="py-0.5 px-3 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">{% trans 'Settings' %}</a>
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'accounts:settings' %}" class="py-1 px-2 rounded text-center text-white mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">{% trans 'Settings' %}</a>
+      {% if request.user.is_authenticated and request.user.is_realtor %}
+      <a href="{% url 'realtors:realtor-dashboard' user.realtor.pk %}" class="py-1 px-2 rounded text-center text-white md:mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
+        <i class="fa fa-home"></i>{% trans 'Board'%}
+      </a> 
+      {% endif %}
     </nav>
-        <a href="{% url 'logout' %}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 mt-3 focus:outline-none hover:bg-gray-200 rounded text-base md:mt-0">
+        <a href="{% url 'logout' %}" class="inline-flex items-center bg-gray-200 border-0 py-1 px-2 mt-3 focus:outline-none hover:bg-gray-300 rounded text-base md:mt-0">
           {% trans 'Logout'%} ({% if request.user.username|length <= 5 %}{{request.user.username}}{% else %}{{request.user.username|slice:"0:5"}}..{% endif %})
           <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -46,7 +51,7 @@
         </a>
     {% else %}
     </nav>
-        <a href="{% url 'login' %}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 mt-3 focus:outline-none hover:bg-gray-200 rounded text-base md:mt-0">
+        <a href="{% url 'login' %}" class="inline-flex items-center bg-gray-200 border-0 py-1 px-2 mt-3 focus:outline-none hover:bg-gray-300 rounded text-base md:mt-0">
           {% trans 'Login'%}
           <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7"></path>

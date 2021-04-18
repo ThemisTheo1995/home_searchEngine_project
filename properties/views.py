@@ -4,7 +4,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import Properties
 from .forms import FilterForm
-
+from realtors.models import Realtor
+    
 
 class PropertiesRentSearchView(generic.FormView):
     template_name = 'properties/properties_rent_search.html'
@@ -31,8 +32,7 @@ class PropertiesRentListView(generic.ListView):
         queryset = object_all.filter(
             city__icontains=city, 
             bathrooms__icontains=bathrooms,
-            for_sale=False, 
-            to_rent=True, 
+            advertised = 'To_Rent',
             is_published=True,
             ).order_by('-list_date')
         return queryset
@@ -41,6 +41,9 @@ class PropertiesRentListView(generic.ListView):
 class PropertiesRentDetailView(generic.DetailView):
     template_name = "properties/properties_rent_detail.html"
     context_object_name = "rent"
-    queryset = Properties.objects.all()
+    queryset = Properties.objects.filter(
+            advertised = 'To_Rent',
+            is_published=True,
+            )
         
     

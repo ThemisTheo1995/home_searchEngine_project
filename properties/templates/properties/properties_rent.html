@@ -113,9 +113,11 @@
                 <i class="fa fa-phone pr-2"></i>{% trans 'CALL'%}
               </a>
               <a class="inline-flex items-center  ml-auto leading-none">
-                <img alt="blog" src="https://dummyimage.com/103x103" class="w-20 h-12 flex-shrink-0 object-cover object-center">
+              {% if rent.realtor.realtor_logo %}
+                <img alt="blog" src="{{rent.realtor.realtor_logo.url}}" class="w-20 h-12 flex-shrink-0 object-cover object-center">
+              {% endif %}
                 <span class="flex-grow flex flex-col pl-4">
-                  <span class="title-font font-medium text-gray-900">{{rent.realtor}}</span>
+                  <span class="title-font text-sm font-medium text-gray-900">{{rent.realtor.name}}</span>
                   <span class="text-gray-400 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
                 </span>
               </a>

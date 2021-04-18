@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import CustomUser 
 from datetime import datetime
 from .validators import validate_file_size
+from realtors.models import Realtor
 
 class Properties(models.Model):
     FURNITURE_CHOICES = [
@@ -18,10 +19,15 @@ class Properties(models.Model):
         ('OPPORTUNITY', 'OPPORTUNITY'),
         ('STANDARD', 'STANDARD'),        
     ]
-    realtor = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING)
+    ADVERTISMENT_CHOICES = [
+        ('For_Sale', 'For Sale'), 
+        ('To_Rent', 'To Rent'),
+        ]
+    realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     agency_description = models.TextField(max_length=200, default='')
     property_category = models.CharField(max_length=25,choices=PROPERTY_CATEGORY_CHOICES, default='STANDARD')
     property_type = models.CharField(max_length=100)
+    advertised = models.CharField(max_length=10, choices=ADVERTISMENT_CHOICES, default='To_Rent')
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     region = models.CharField(max_length=100)
@@ -39,13 +45,11 @@ class Properties(models.Model):
     furniture = models.CharField(max_length=11,choices=FURNITURE_CHOICES, default='Furnished')
     m2 = models.IntegerField()
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/', validators=[validate_file_size])
-    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
-    photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+    photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, validators=[validate_file_size])
+    photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, validators=[validate_file_size])
+    photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, validators=[validate_file_size])
+    photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, validators=[validate_file_size])
     is_published = models.BooleanField(default=True)
-    for_sale = models.BooleanField(default=False)
-    to_rent = models.BooleanField(default=False)
     list_date = models.DateTimeField(default=datetime.now, blank=True)  
     
     def __str__(self):
