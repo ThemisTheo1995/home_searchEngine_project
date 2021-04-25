@@ -3,7 +3,7 @@
 {% load tailwind_filters %}
 {% load i18n %}
 
-{% block title %}Genesis | Dashboard{% endblock %}
+{% block title %}Genesis | Board{% endblock %}
 
 {% block content %}
 
@@ -11,14 +11,14 @@
 <section class="text-gray-600 body-font">
   <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-      <h2 class="text-xs text-blue-500 tracking-widest font-medium title-font mb-1">{% trans 'REALTOR DASHBOARD'%}</h2>
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">{% trans 'DASHBOARD'%} ({{realtor.user.username}} - {{realtor.name}})</h1>
+      <h2 class="text-xs text-blue-500 tracking-widest font-medium title-font mb-1">{% trans "REALTOR'S BOARD"%}</h2>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">{% trans 'BOARD'%} ({{realtor.user.username}} - {{realtor.name}})</h1>
     </div>
     <div class="flex flex-wrap">
         <div class="lg:w-3/12 w-full mb-6">
             <div class="flex flex-wrap">
                 <div class="flex rounded-lg h-full lg:mx-0 mx-4 flex-col text-white">
-                    <div class="p-4 bg-blue-700 rounded-lg lg:mr-6">
+                    <div class="p-4 bg-blue-900 rounded-lg lg:mr-6">
                         <div class="flex items-center mb-3">
                             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-white text-lg text-blue-700 flex-shrink-0">
                                 <i class="fa fa-address-card"></i>
@@ -59,14 +59,14 @@
         <div class="lg:w-9/12 w-full">
             <div class="flex flex-wrap lg:-m-4">
                 <div class="p-4 lg:w-1/3">
-                    <a href="{% url 'realtors:realtor-dashboard' realtor.pk%}">
+                    <a href="{% url 'realtors:realtor-properties' realtor.pk%}">
                         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div class="flex items-center mb-3">
                                 <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
                                     <i class="fa fa-home"></i>
                                 </div>
                                 <h2 class="text-blue-600 text-lg title-font font-medium">
-                                    {% trans 'Published Properties'%}
+                                    {% trans 'FOR RENT PROPERTIES'%}
                                 </h2>
                             </div>
                             <div class="flex-grow">
@@ -88,17 +88,18 @@
                         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div class="flex items-center mb-3">
                                 <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                                <i class="fa fa-clipboard"></i>
+                                    <i class="fa fa-clipboard"></i>
                                 </div>
                                 <h2 class="text-blue-600 text-lg title-font font-medium">
-                                    {% trans 'Unpublished Properties'%}
+                                    {% trans 'FOR SALE PROPERTIES'%}
                                 </h2>
                             </div>
                             <div class="flex-grow">
                                 <ul class="pl-4">
-                                    <li><i class="fa fa-caret-right"></i> See your WIP properties</li>
-                                    <li><i class="fa fa-caret-right"></i> Delete your unpublished properties</li>
-                                    <li><i class="fa fa-caret-right"></i> Publish them again</li>
+                                    <li><i class="fa fa-caret-right"></i> See your advertised properties</li>
+                                    <li><i class="fa fa-caret-right"></i> Render your properties</li>
+                                    <li><i class="fa fa-caret-right"></i> Delete your properties</li>
+                                    <li><i class="fa fa-caret-right"></i> Feature them</li>
                                 </ul>
                                 <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
                                     This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.
@@ -112,16 +113,21 @@
                         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div class="flex items-center mb-3">
                                 <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <circle cx="6" cy="6" r="3"></circle>
-                                    <circle cx="6" cy="18" r="3"></circle>
-                                    <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                                </svg>
+                                    <i class="fa fa-database"></i>
                                 </div>
-                                <h2 class="text-blue-600 text-lg title-font font-medium">Neptune</h2>
+                                <h2 class="text-blue-600 text-lg title-font font-medium">
+                                    {% trans 'ANALYTICS'%}
+                                </h2>
                             </div>
                             <div class="flex-grow">
-                                <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                                <ul class="pl-4">
+                                    <li><i class="fa fa-caret-right"></i> Analytics overview</li>
+                                    <li><i class="fa fa-caret-right"></i> Check your most performing properties</li>
+                                    <li><i class="fa fa-caret-right"></i> Improve your properties ranking</li>
+                                </ul>
+                                <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
+                                    This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.
+                                </p>
                             </div>
                         </div>
                     </a>

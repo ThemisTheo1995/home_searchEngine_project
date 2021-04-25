@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% block title %}Genesis | Rent{% endblock title %}
+
+{% block content %}
+<section class="text-gray-600 body-font">
+    <div class="container max-w-full px-4 lg:px-20 py-10 mx-auto">
+        <div class="flex flex-col text-center w-full mb-10">
+            <h1 class="sm:text-3xl text-2xl font-bold title-font mb-10 text-gray-900">
+                {% trans 'DASHBOARD - RENT'%}
+            </h1>
+            <div class="flex flex-wrap sm:text-left text-center">
+                <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+                    <div class="rounded-lg border-2 py-4 flex items-center justify center flex-wrap bg-blue-50">
+                        <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
+                            <i class="fa fa-home text-3xl text-blue-500 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-blue-200 rounded-full sm:mr-2 sm:pt-1"></i>
+                        </div>
+                        <div class="flex-grow sm:px-4">
+                            <h2 class="title-font font-medium sm:text-xl text-sm text-blue-500">
+                                {% trans 'Total properties'%}
+                            </h2>
+                            <p class="leading-relaxed font-bold">{{properties}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+                    <div class="rounded-lg border-2 py-4 flex items-center justify center flex-wrap  bg-yellow-50">
+                        <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
+                            <i class="fa fa-star text-3xl text-yellow-500 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-yellow-200 rounded-full sm:mr-2 sm:pt-1"></i>
+                        </div>
+                        <div class="flex-grow sm:px-4">
+                            <h2 class="title-font font-medium sm:text-xl text-sm text-yellow-500">
+                                {% trans 'Total Featured'%}
+                            </h2>
+                            <p class="leading-relaxed font-bold">{{featured}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+                    <div class="rounded-lg border-2 py-4 flex items-center justify center flex-wrap bg-red-50">
+                        <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
+                            <i class="fa fa-bullhorn sm:text-3xl text-2xl text-red-500 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-red-200 rounded-full sm:mr-2 sm:pt-1 pt-1"></i>
+                        </div>
+                        <div class="flex-grow sm:px-4">
+                            <h2 class="title-font font-medium sm:text-xl text-sm text-red-500">
+                                {% trans 'Total Published'%}
+                            </h2>
+                            <p class="leading-relaxed font-bold">{{published}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+                    <div class="rounded-lg border-2 py-4 flex items-center justify center flex-wrap bg-green-50">
+                        <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
+                            <i class="fa fa-credit-card sm:text-3xl text-2xl text-green-500 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-green-200 rounded-full sm:mr-2 sm:pt-1.5 pt-1"></i>
+                        </div>
+                        <div class="flex-grow sm:px-4">
+                            <h2 class="title-font font-medium sm:text-xl text-sm text-green-500">
+                                {% trans 'Charges'%}
+                            </h2>
+                            <p class="leading-relaxed font-bold">{{charges}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lg:w-3/3 w-full mx-auto overflow-auto">
+            <table class="table-auto w-full text-left whitespace-no-wrap display" id="table_id">
+            <thead class="border-xl">
+                <tr class="tracking-widest md:text-sm text-xs text-center text-blue-600 bg-gray-100 border-t">
+                    <th class="px-4 py-4 rounded-tl">#</th>
+                    <th class="px-4 py-4">{% trans 'IMAGE'%}</th>
+                    <th class="px-4 py-4">{% trans 'TYPE'%}</th>
+                    <th class="px-4 py-4">{% trans 'ADDRESS'%}</th>
+                    <th class="px-4 py-4">{% trans 'CITY'%}</th>
+                    <th class="px-4 py-4">{% trans 'POSTCODE'%}</th>
+                    <th class="px-4 py-4">{% trans 'PUBLISHED'%}</th>
+                    <th class="px-4 py-4">{% trans 'CATEGORY'%}</th>
+                    <th class="px-4 py-4 rounded-tr">{% trans 'LISTED DATE'%}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rent in realtor_rent%}
+                    <tr class="text-xs text-center">
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">
+                        {% if rent.photo_main  %}
+                            <img alt="Main picture" src="{{rent.photo_main.url}}" class="w-12 h-7 rounded flex-shrink-0 object-cover object-center mx-auto">
+                        {% endif %}
+                        </td class="text-gray-800">
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.property_type}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.address}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.city}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.postalcode}}</td>
+                        {% if rent.is_published %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3"><i class="text-green-500 text-lg fa fa-check-circle"><span class="hidden">{{rent.is_published}}</span></i></td>
+                        {% else %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3"><i class="text-red-500 text-lg fa fa-times-circle"><span class="hidden">{{rent.is_published}}</span></i></td>
+                        {% endif %}
+                        {% if rent.property_category == 'STANDARD' %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3 text-xs">
+                            <span class="rounded-xl bg-blue-100 px-2 text-blue-500 font-bold">
+                                {{rent.property_category}}
+                            </span>
+                        </td>
+                        {% elif rent.property_category == 'FEATURED' %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3 text-xs">
+                            <span class="rounded-xl bg-yellow-100 px-2 text-yellow-500 font-bold">
+                                {{rent.property_category}}
+                            </span>
+                        </td>
+                        {% else%}
+                        <td class="border-t-2 border-gray-200 px-4 py-3 text-xs">
+                            <span class="rounded-xl bg-purple-100 px-2 text-purple-500 font-bold">
+                            {{rent.property_category}}
+                            </span>
+                        </td>
+                        {% endif %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3 text-center">{{rent.list_date|date:"d M, Y"}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+            <div class="w-full flex flex-wrap mt-4">
+                <div class="pagination w-full text-right">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
+                            href="?page=1">
+                            <i class="fa fa-angle-double-left text-white text-lg"></i>  
+                            </a>
+                            <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
+                            href="?page={{page_obj.previous_page_number}}">
+                            <i class="fa fa-angle-left text-white text-xl"></i>
+                            </a>
+                        {% endif %}
+                        <span class="current text-gray rounded p-2 text-md align-center">
+                            <span class="font-bold">{{ page_obj.number }}</span> 
+                            <span class="text-xs">of {{ page_obj.paginator.num_pages }}</span>
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
+                            href="?page={{page_obj.next_page_number}}">
+                            <i class="fa fa-angle-right text-white text-xl"></i>
+                            </a>
+                            <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
+                            href="?page={{page_obj.paginator.num_pages}}">
+                            <i class="fa fa-angle-double-right text-white text-lg"></i>
+                            </a>
+                        {% endif %}
+                    </span>
+                </div>
+            <!-- /Pagination -->
+    </div>
+</section>
+{% include "realtors/scripts/realtors_properties_script.html" %}
+
+{% endblock content %}
