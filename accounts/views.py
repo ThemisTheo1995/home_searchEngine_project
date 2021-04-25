@@ -4,13 +4,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from realtors.models import Realtor
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-      
-
-class LandingPageView(generic.TemplateView):
-
-    template_name = "landing.html"
-    
-        
+          
+  
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')

@@ -145,22 +145,25 @@ LANGUAGES = (
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    os.path.join(BASE_DIR,'estatecrm/static')
 ]
-STATIC_ROOT = 'static_root'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # Media folder
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# Auth - Login
 AUTH_USER_MODEL = 'accounts.CustomUser'
-
 LOGIN_REDIRECT_URL = 'landing-page'
 LOGOUT_REDIRECT_URL = 'landing-page'
 LOGIN_URL = '/login'
 
+# Crispy Forms
 CRISPY_TEMPLATE_PACK = 'tailwind'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

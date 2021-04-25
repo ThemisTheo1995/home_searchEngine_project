@@ -6,7 +6,17 @@ from .models import Properties
 from .forms import FilterForm
 from realtors.models import Realtor
     
+### Landing views ###
+class PropertiesLandingListView(generic.ListView):
+    paginate_by = 4
+    template_name = "landing.html"
+    context_object_name = "landingProperties"
+    
+    def get_queryset(self):
+        queryset = Properties.objects.filter(is_published= True).order_by('-list_date')[:16]
+        return queryset
 
+### Rent views ###
 class PropertiesRentSearchView(generic.FormView):
     template_name = 'properties/properties_rent_search.html'
     form_class = FilterForm

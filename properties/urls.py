@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (
     PropertiesRentListView, 
     PropertiesRentSearchView,
-    PropertiesRentDetailView,
+    PropertiesRentDetailView
     )
 
 app_name = 'properties'
