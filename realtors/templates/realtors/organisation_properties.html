@@ -83,7 +83,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for rent in realtor_rent%}
+                {% for rent in organisation%}
                     <tr class="text-xs text-center">
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">
@@ -158,6 +158,6 @@
             <!-- /Pagination -->
     </div>
 </section>
-{% include "realtors/scripts/realtors_properties_script.html" %}
+{% include "realtors/scripts/organisation_properties_script.html" %}
 
 {% endblock content %}

@@ -2,7 +2,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from realtors.models import Realtor
+from realtors.models import Organisation
 from .forms import CustomUserCreationForm, CustomUserChangeForm
           
   
@@ -15,7 +15,7 @@ class SignUpView(generic.CreateView):
         user = form.save(commit = False)
         if user.is_realtor:
             user.save()
-            Realtor.objects.create(
+            Organisation.objects.create(
                 user = user
                 )
         return super(SignUpView, self).form_valid(form)

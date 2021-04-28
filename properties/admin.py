@@ -9,7 +9,7 @@ class PropertiesAdmin(admin.ModelAdmin):
     
     form = PropertiesForm
     model = Properties
-    list_display = ['id', 'property_type','address', 'is_published', 'price', 'list_date', 'realtor']
+    list_display = ['id', 'property_type','address', 'is_published', 'price', 'list_date', 'organisation']
     list_filter = ['advertised']
     list_display_links = ['id', 'address']
     list_editable = ['is_published',]

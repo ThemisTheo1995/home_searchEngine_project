@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import Properties
 from .forms import FilterForm
-from realtors.models import Realtor
     
 ### Landing views ###
 class PropertiesLandingListView(generic.ListView):

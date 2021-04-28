@@ -9,13 +9,13 @@ class CustomUserCreationForm(UserCreationForm):
     
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email','is_realtor')
+        fields = ('username', 'first_name', 'last_name', 'email','is_realtor', 'profile_picture')
  
         
 class CustomUserChangeForm(forms.ModelForm):
     
     class Meta:
         model = CustomUser
-        fields = ('username', 'first_name', 'last_name', 'email', 'is_realtor')
+        fields = ('username', 'first_name', 'last_name', 'email', 'profile_picture')
         
 
