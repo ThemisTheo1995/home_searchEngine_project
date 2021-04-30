@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 from django.core.validators import RegexValidator
 from accounts.models import CustomUser
 from properties.validators import validate_file_size
@@ -20,6 +21,8 @@ class Organisation(models.Model):
 class Agent(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    active_agent = models.BooleanField(default=True)
+    list_date = models.DateTimeField(default=datetime.now, blank=True) 
     
     def __str__(self):
         return self.user.username

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Genesis | Agents{% endblock title %}
+
+{% block content %}
+<section class="text-gray-600 body-font">
+    <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto">
+        <div class="flex flex-col text-center w-full mb-10">
+            <h1 class="sm:text-3xl text-2xl font-bold title-font mb-10 text-gray-900">
+                {% trans 'AGENTS'%}
+            </h1>
+            <div class="flex flex-wrap sm:text-left text-center">
+                <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+                    <div class="rounded-lg border-2 py-4 flex items-center justify center flex-wrap bg-blue-50">
+                        <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
+                            <i class="fa fa-users text-2xl text-blue-500 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-blue-200 rounded-full sm:mr-2 sm:pt-2 pt-1"></i>
+                        </div>
+                        <div class="flex-grow sm:px-4">
+                            <h2 class="title-font font-semibold sm:text-xl text-sm text-blue-500">
+                                {% trans 'Total Agents'%}: <span class="font-bold">{{agentsNo}}</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+                    <a href="{% url 'organisation:agent-create' %}">
+                        <div class="rounded-lg border-2 py-4 flex items-center justify center flex-wrap  bg-yellow-50 hover:bg-yellow-100">
+                            <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
+                                <i class="fa fa-plus text-3xl text-yellow-500 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-yellow-200 rounded-full sm:mr-2 sm:pt-2 pt-1"></i>
+                            </div>
+                            <div class="flex-grow sm:px-4">
+                                <h2 class="title-font font-semibold sm:text-xl text-sm text-yellow-500">
+                                    {% trans 'Add an agent'%}
+                                </h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="lg:w-3/3 w-full mx-auto overflow-auto">
+            <table class="table-auto w-full text-left whitespace-no-wrap display" id="agents_table">
+            <thead class="border-xl">
+                <tr class="tracking-widest md:text-sm text-xs text-center text-blue-600 bg-gray-100 border-t">
+                    <th class="px-4 py-4 rounded-tl">#</th>
+                    <th class="px-4 py-4">{% trans 'IMAGE'%}</th>
+                    <th class="px-4 py-4">{% trans 'USERNAME'%}</th>
+                    <th class="px-4 py-4">{% trans 'NAME'%}</th>
+                    <th class="px-4 py-4">{% trans 'EMAIL'%}</th>
+                    <th class="px-4 py-4">{% trans 'ACTIVE'%}</th>
+                    <th class="px-4 py-4 rounded-tr">{% trans 'LISTED DATE'%}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agent in agents %}
+                    <tr class="sm:text-sm text-xs text-center">
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">
+                        {% if agent.user.photo_main  %}
+                            <img alt="Main picture" src="{{agent.user.photo_main.url}}" class="w-12 h-7 rounded flex-shrink-0 object-cover object-center mx-auto">
+                        {% endif %}
+                        </td class="text-gray-800">
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{agent.user.username}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{agent.user.first_name}}-{{agent.user.last_name}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3">{{agent.user.email}}</td>
+                        {% if agent.active_agent %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3"><a href="?agentid={{agent.pk}}"><i class="text-green-500 text-lg hover:text-green-600 fa fa-check-circle"><span class="hidden">{{agent.active_agent}}</span></i></a></td>
+                        {% else %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3"><a href="?agentid={{agent.pk}}"><i class="text-red-500 text-lg hover:text-red-600 fa fa-times-circle"><span class="hidden">{{agent.active_agent}}</span></i></a></td>
+                        {% endif %}
+                        <td class="border-t-2 border-gray-200 px-4 py-3 text-center">{{agent.list_date|date:"d M, Y"}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+            <div class="w-full flex flex-wrap mt-4">
+                <div class="pagination w-full text-right">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
+                            href="?page=1">
+                            <i class="fa fa-angle-double-left text-white text-lg"></i>  
+                            </a>
+                            <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
+                            href="?page={{page_obj.previous_page_number}}">
+                            <i class="fa fa-angle-left text-white text-xl"></i>
+                            </a>
+                        {% endif %}
+                        <span class="current text-gray rounded p-2 text-md align-center">
+                            <span class="font-bold">{{ page_obj.number }}</span> 
+                            <span class="text-xs">of {{ page_obj.paginator.num_pages }}</span>
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
+                            href="?page={{page_obj.next_page_number}}">
+                            <i class="fa fa-angle-right text-white text-xl"></i>
+                            </a>
+                            <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
+                            href="?page={{page_obj.paginator.num_pages}}">
+                            <i class="fa fa-angle-double-right text-white text-lg"></i>
+                            </a>
+                        {% endif %}
+                    </span>
+                </div>
+            <!-- /Pagination -->
+    </div>
+</section>
+{% include "realtors/scripts/agent_list_script.html" %}
+
+{% endblock content %}

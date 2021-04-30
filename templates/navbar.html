@@ -39,10 +39,15 @@
       {% if request.user.is_authenticated and request.user.is_realtor %}
       <a href="{% url 'organisation:organisation-dashboard' user.organisation.pk %}" class="py-1 px-2 rounded text-center text-white md:mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
         <i class="fa fa-home"></i>{% trans 'Board'%}
-      </a> 
+      </a>
+      {% endif %}
+      {% if request.user.is_authenticated and request.user.is_agent %}
+      <a href="{% url 'organisation:organisation-properties' %}" class="py-1 px-2 rounded text-center text-white md:mr-5 transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600">
+        <i class="fa fa-home"></i>{% trans 'Board'%}
+      </a>
       {% endif %}
     </nav>
-        <a  data-modal="modal-one" id="profile-button" class="inline-flex items-center focus:outline-none text-sm font-bold mt-3 md:mt-0 cursor-pointer">
+        <a data-modal="modal-one" id="profile-button" class="inline-flex items-center focus:outline-none text-sm font-bold mt-3 md:mt-0 cursor-pointer">
           {% if request.user.profile_picture %}
           <img src="{{request.user.profile_picture.url}}" class="w-10 h-10 flex-shrink-0 object-cover object-center rounded-full border-gray-100 border-2 hover:border-blue-600 hover:border-2 transition duration-75 ease-in-out">
           {% elif request.user.first_name or request.user.last_name %}
@@ -58,7 +63,7 @@
         <!-- Profile card pop-up -->
         <div class="modal" id="modal-one">
           <div class="modal-bg modal-exit"></div>
-          <div class="modal-container flex flex-col overflow-hidden shadow-xl bg-gray-50 rounded-lg p-4 sm:mr-8 sm:mt-20 mt-40 mx-auto">
+          <div class="modal-container flex flex-col overflow-hidden shadow-xl bg-gray-50 rounded-lg p-4 sm:mr-8 sm:mt-20 mt-40 mx-auto border border-gray-300">
             <span class="bg-blue-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
               {{request.user.username|title}}
             </span>
@@ -93,7 +98,7 @@
             <a href="{% url 'logout' %}" class="text-center font-semibold text-sm mt-auto border border-gray-300 py-3 px-2 mx-24 focus:outline-none hover:bg-gray-100 rounded">
               {% trans 'Logout'%}
             </a>
-            <hr class="mt-6 mb-4">
+            <hr class="mt-6 mb-4 border-gray-300">
             <div class="flex flex-wrap text-center text-xs text-gray-400">
               <a href="#" class="w-1/2">
               {% trans 'Terms of Policy'%}

@@ -12,7 +12,7 @@ class OrganisationUpdateForm(forms.ModelForm):
                   'country_code', 'organisation_description',
                   'organisation_logo')
 
-class AgentModelForm(forms.ModelForm):
+class AgentModelAddForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = (
@@ -20,4 +20,4 @@ class AgentModelForm(forms.ModelForm):
             'username',
             'first_name',
             'last_name',
-        )    
+        )   

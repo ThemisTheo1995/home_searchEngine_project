@@ -4,10 +4,13 @@ from django.core.mail import send_mail
 from .mixins import RealtorAndLoginRequiredMixin, OrganisationAndLoginRequiredMixin
 from .models import Organisation, Agent
 from properties.models import Properties
-from .forms import OrganisationUpdateForm, AgentModelForm
+from .forms import OrganisationUpdateForm, AgentModelAddForm
 
-### Organisation ###
-class OrganisationDashboardView(OrganisationAndLoginRequiredMixin, generic.DetailView):
+
+
+### Organisation views ###
+
+class OrganisationDashboardView(RealtorAndLoginRequiredMixin, generic.DetailView):
     template_name = "realtors/organisation_dashboard.html"
     context_object_name = 'organisation'
     
@@ -15,7 +18,7 @@ class OrganisationDashboardView(OrganisationAndLoginRequiredMixin, generic.Detai
         user = self.request.user
         if user.is_realtor:
             queryset = Organisation.objects.filter(user = user)
-            return queryset
+        return queryset
 
 
 class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
@@ -27,7 +30,7 @@ class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
         return Organisation.objects.filter(user=self.request.user)
     
     def get_success_url(self):
-        return reverse("realtors:organisation-dashboard", kwargs={'pk': self.request.user.organisation.pk})
+        return reverse("organisation:organisation-dashboard", kwargs={'pk': self.request.user.organisation.pk})
 
 
 class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView):
@@ -36,13 +39,27 @@ class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView
     context_object_name = "organisation"
     
     def get_context_data(self, **kwargs):
+        user = self.request.user
         context = super().get_context_data(**kwargs)
-        user = self.request.user.organisation
-        # Initialise query
-        q = Properties.objects.filter(organisation = user, advertised = 'To_Rent')
-        properties = q.count()
-        featured = q.filter(property_category='FEATURED').count()
-        published = q.filter(is_published=True).count
+        ###--- Logged in user is the Realtor/Organisation ---###
+        if user.is_realtor:
+            # We access directly the organisation id from user. User IS the Organisation.
+            organisation = user.organisation
+            q = Properties.objects.filter(organisation = organisation, advertised = 'To_Rent')
+            properties = q.count()
+            featured = q.filter(property_category='FEATURED').count()
+            published = q.filter(is_published=True).count
+        ###--- Logged in user is an Agent ---###
+        elif user.is_agent:
+            # We access the organisation id through the Agent model.
+            organisation = user.agent.organisation
+            q = Properties.objects.filter(organisation = organisation, advertised = 'To_Rent')
+            # Agent has access only to associated properties
+            # queryset = q.filter(agent__user = user)
+            properties = q.count()
+            featured = q.filter(property_category='FEATURED').count()
+            published = q.filter(is_published=True).count
+        
         context['properties'] = properties
         context['featured'] = featured
         context['published'] = published
@@ -50,22 +67,69 @@ class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView
         return context
 
     def get_queryset(self):
-        user = self.request.user.organisation
-        queryset = Properties.objects.filter(
-            organisation = user,
-            advertised = 'To_Rent'
-            ).order_by('-list_date')
+        user = self.request.user
+        ###--- Logged in user is the Realtor/Organisation ---###
+        if user.is_realtor:
+            organisation = user.organisation
+            queryset = Properties.objects.filter(
+                organisation = organisation,
+                advertised = 'To_Rent'
+                ).order_by('-list_date')
+        ###--- Logged in user is an Agent ---###
+        elif user.is_agent:
+            organisation = user.agent.organisation
+            queryset = Properties.objects.filter(
+                organisation = organisation,
+                advertised = 'To_Rent'
+                ).order_by('-list_date')
+            # Agent has access only to associated properties
+            # queryset = q.filter(agent__user = user)
         return queryset
 
 
-### Agents ###
+
+### Agent views ###
+
+class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
+    paginate_by = 15
+    template_name = "realtors/agent_list.html" 
+    context_object_name = "agents"
+    
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+        if user.is_realtor:
+            if self.request.GET.get('agentid', ''):
+                agentId = self.request.GET.get('agentid', '')
+                agent = Agent.objects.get(pk = agentId)
+                if  agent.active_agent:
+                    Agent.objects.filter(id = agentId).update(active_agent = False)
+                else:
+                    Agent.objects.filter(id = agentId).update(active_agent = True)
+                
+            organisation = user.organisation
+            q = Agent.objects.filter(organisation = organisation)
+            agents = q.count()
+        
+        context['agentsNo'] = agents
+        
+        return context
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_realtor:
+            organisation = user.organisation
+            queryset = Agent.objects.filter(organisation = organisation).order_by('-list_date')
+            
+        return queryset
+
 
 class AgentCreateView(RealtorAndLoginRequiredMixin, generic.CreateView):
     template_name = "realtors/agent_create.html"
-    form_class = AgentModelForm
+    form_class = AgentModelAddForm
     
     def get_success_url(self):
-        return reverse("organisation:organisation-properties", kwargs={'pk': self.request.user.organisation.pk})
+        return reverse("organisation:agent-list")
     
     def form_valid(self, form):
         user = form.save(commit = False)
@@ -84,3 +148,5 @@ class AgentCreateView(RealtorAndLoginRequiredMixin, generic.CreateView):
             recipient_list = [user.email] 
         )
         return super(AgentCreateView, self).form_valid(form)
+
+

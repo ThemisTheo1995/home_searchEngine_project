@@ -17,7 +17,7 @@ class OrganisationAdmin(admin.ModelAdmin):
 @admin.register(Agent)
 class AgentAdmin(admin.ModelAdmin):
     
-    #form = AgentModelForm
+    #form = AgentModelAddForm
     model = Agent
     list_display = ['id','user','organisation']
     list_filter = ['user']

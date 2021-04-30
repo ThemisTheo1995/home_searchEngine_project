@@ -1,4 +1,4 @@
-<!-- templates/realtors/realtors_dashboard.html -->
+<!-- templates/realtors/organisation_dashboard.html -->
 {% extends 'base.html' %}
 {% load tailwind_filters %}
 {% load i18n %}
@@ -11,12 +11,11 @@
 <section class="text-gray-600 body-font">
   <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
-      <h2 class="text-xs text-blue-500 tracking-widest font-medium title-font mb-1">{% trans "ORGANISATION'S BOARD"%}</h2>
+      <h2 class="text-xs text-blue-500 tracking-widest font-medium title-font mb-1">{% trans "ADMIN BOARD"%}</h2>
       <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">{% trans 'BOARD'%} ({{organisation.user.username}} - {{organisation.name}})</h1>
     </div>
     <div class="flex flex-wrap">
         <div class="lg:w-3/12 w-full mb-6">
-            <div class="flex flex-wrap">
                 <div class="flex rounded-lg h-full lg:mx-0 mx-4 flex-col text-white">
                     <div class="p-4 bg-blue-900 rounded-lg lg:mr-6">
                         <div class="flex items-center mb-3">
@@ -53,20 +52,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         <div class="lg:w-9/12 w-full">
             <div class="flex flex-wrap lg:-m-4">
                 <div class="p-4 lg:w-1/3">
-                    <a href="{% url 'organisation:organisation-properties' organisation.pk%}">
+                    <a href="{% url 'organisation:organisation-properties'%}">
                         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div class="flex items-center mb-3">
                                 <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
                                     <i class="fa fa-home"></i>
                                 </div>
                                 <h2 class="text-blue-600 text-lg title-font font-medium">
-                                    {% trans 'FOR RENT PROPERTIES'%}
+                                    {% trans 'MY RENT PROPERTIES'%}
                                 </h2>
                             </div>
                             <div class="flex-grow">
@@ -88,10 +86,10 @@
                         <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                             <div class="flex items-center mb-3">
                                 <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                                    <i class="fa fa-clipboard"></i>
+                                    <i class="fa fa-home"></i>
                                 </div>
                                 <h2 class="text-blue-600 text-lg title-font font-medium">
-                                    {% trans 'FOR SALE PROPERTIES'%}
+                                    {% trans 'MY SALE PROPERTIES'%}
                                 </h2>
                             </div>
                             <div class="flex-grow">
@@ -100,6 +98,30 @@
                                     <li><i class="fa fa-caret-right"></i> Render your properties</li>
                                     <li><i class="fa fa-caret-right"></i> Delete your properties</li>
                                     <li><i class="fa fa-caret-right"></i> Feature them</li>
+                                </ul>
+                                <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
+                                    This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="p-4 md:w-1/3">
+                    <a href="{% url 'organisation:agent-list'%}">
+                        <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                            <div class="flex items-center mb-3">
+                                <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <h2 class="text-blue-600 text-lg title-font font-medium">
+                                    {% trans 'MY AGENTS'%}
+                                </h2>
+                            </div>
+                            <div class="flex-grow">
+                                <ul class="pl-4">
+                                    <li><i class="fa fa-caret-right"></i> View your agents details</li>
+                                    <li><i class="fa fa-caret-right"></i> Update agents details</li>
+                                    <li><i class="fa fa-caret-right"></i> Create new agents.</li>
                                 </ul>
                                 <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
                                     This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.

@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
-            <table class="table-auto w-full text-left whitespace-no-wrap display" id="table_id">
+            <table class="table-auto w-full text-left whitespace-no-wrap display" id="properties_table">
             <thead class="border-xl">
                 <tr class="tracking-widest md:text-sm text-xs text-center text-blue-600 bg-gray-100 border-t">
                     <th class="px-4 py-4 rounded-tl">#</th>
@@ -84,7 +84,7 @@
             </thead>
             <tbody>
                 {% for rent in organisation%}
-                    <tr class="text-xs text-center">
+                    <tr class="text-xs sm:text-sm text-center">
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">
                         {% if rent.photo_main  %}

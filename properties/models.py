@@ -2,7 +2,7 @@ from django.db import models
 from accounts.models import CustomUser 
 from datetime import datetime
 from .validators import validate_file_size
-from realtors.models import Organisation
+from realtors.models import Organisation,Agent
 
 class Properties(models.Model):
     FURNITURE_CHOICES = [
@@ -24,6 +24,7 @@ class Properties(models.Model):
         ('To_Rent', 'To Rent'),
         ]
     organisation = models.ForeignKey(Organisation, on_delete=models.DO_NOTHING)
+    agent = models.ForeignKey(Agent, null=True, blank=True, on_delete=models.SET_NULL)
     agency_description = models.TextField(max_length=200, default='')
     property_category = models.CharField(max_length=25,choices=PROPERTY_CATEGORY_CHOICES, default='STANDARD')
     property_type = models.CharField(max_length=100)

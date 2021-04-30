@@ -65,7 +65,7 @@
 /* end of Splide */
 
 /* DataTable */
-#table_id_filter {
+.dataTables_filter {
   font-size: 0.9rem;
   padding-bottom: 10px;
   text-transform: uppercase;
@@ -73,7 +73,7 @@
   font-weight: bold;
 }
 
-#table_id_filter input {
+.dataTables_filter input[type="search"] {
   border-color: rgb(59, 130, 246);
   outline: none;
 }
