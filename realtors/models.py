@@ -13,6 +13,7 @@ class Organisation(models.Model):
     country_code = models.CharField(max_length=6, blank=True)
     organisation_description = models.TextField(max_length=250, blank=True)
     organisation_logo = models.ImageField(upload_to='organisation_logos/%Y/%m/%d/', blank=True, validators=[validate_file_size])
+    list_date = models.DateTimeField(default=datetime.now, blank=True) 
 
     def __str__(self):
         

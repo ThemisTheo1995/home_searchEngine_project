@@ -16,8 +16,9 @@ class AgentModelAddForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = (
-            'email',
             'username',
+            'email',
             'first_name',
             'last_name',
+            'profile_picture'
         )   

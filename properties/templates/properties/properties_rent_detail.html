@@ -92,7 +92,7 @@
         </div>
       </div>
       
-      <div class="flex flex-col sm:flex-row mt-6">
+      <div class="flex flex-col sm:flex-row mt-6 overflow-hidden">
         <div class="lg:w-2/3 text-center sm:py-4 px-2 sm:pr-4">
           <div class="flex items-center flex-wrap">
             <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
@@ -163,7 +163,7 @@
 
           <hr class="my-6">
 
-          <div class="flex flex-col text-left justify-center">
+          <div class="flex flex-col text-left justify-center overflow-hidden">
             <p class="text-base text-blue-500 text-lg">{% trans 'Description'%}</p>
             <p class="text-base text-blue-500">{{rent.description|linebreaks}}</p>
           </div>  
@@ -182,7 +182,7 @@
                 </span>
               </a>
             </div>
-            <p class="leading-relaxed text-sm mb-4">{{rent.agency_description}}</p>
+            <p class="leading-relaxed text-sm mb-4 overflow-hidden">{{rent.organisation.organisation_description}}</p>
             <a class="text-blue-500 inline-flex items-center">{% trans 'Learn More'%}
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>

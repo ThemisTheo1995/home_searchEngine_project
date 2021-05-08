@@ -17,7 +17,7 @@ urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
     path('', PropertiesLandingListView.as_view(), name='landing-page'),
     path('accounts/', include('accounts.urls')),
-    path('properties/', include('properties.urls')),
+    path('properties/', include('properties.urls', namespace='properties')),
     path('organisation/', include('realtors.urls', namespace='organisation')),
     path('accounts/', include('django.contrib.auth.urls')),
     prefix_default_language=False,

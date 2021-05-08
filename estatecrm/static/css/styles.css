@@ -28,8 +28,8 @@
 .rent-detail-map {
   height: 275px;
 }
-
 /* end of Leaflet */
+
 
 @media(max-width:1023px){
   
@@ -61,8 +61,8 @@
   margin-bottom: 6px;
   margin-left: 15px;
 }
-
 /* end of Splide */
+
 
 /* DataTable */
 .dataTables_filter {
@@ -86,8 +86,8 @@ table.dataTable thead th, table.dataTable thead td {
   padding: 10px 18px;
   border-bottom: 2px solid rgb(59, 130, 246);
 }
-
 /* end of DataTable */
+
 
 /* Landing */
 
@@ -110,8 +110,8 @@ table.dataTable thead th, table.dataTable thead td {
     background-size: cover; /* Resize the background image to cover the entire container */
   }
 }
-
 /* end Landing */
+
 
 /* Profile card */
 
@@ -160,5 +160,12 @@ table.dataTable thead th, table.dataTable thead td {
   width: 350px;
   height: 400px;
 }
-
 /* End of profile-card */
+
+
+/* MapBox location search bar */
+
+.hdpi.pac-logo:after{
+  background-image: none;
+}
+/* end of MapBox location search bar */

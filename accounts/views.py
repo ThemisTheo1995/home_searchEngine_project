@@ -30,5 +30,6 @@ class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
     def get_object(self, queryset=None): 
         return self.request.user
 
+
 class SettingsView(LoginRequiredMixin, generic.TemplateView):
     template_name = "settings.html"

@@ -144,3 +144,6 @@ cython_debug/
 
 # Static
 /static
+
+#Keys
+/estatecrm/keys.py
