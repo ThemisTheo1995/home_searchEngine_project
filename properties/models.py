@@ -62,10 +62,10 @@ class Properties(models.Model):
     administrative_area_level_5 = models.CharField(max_length=200, blank=True)  
     country = models.CharField(max_length=100)
     postalcode = models.CharField(max_length=20)
-    geo_lat = models.CharField(max_length=10)
-    geo_lng = models.CharField(max_length=10)
+    geo_lat = models.CharField(max_length=15)
+    geo_lng = models.CharField(max_length=15)
     main_type = models.CharField(blank=True,max_length=200)
     
     def __str__(self):
         
-        return self.formatted_address
+        return self.country

@@ -1,0 +1,29 @@
+<script>
+ $("#landing_autocomplete").on('input', function(){
+     // remove the old lists
+     $('.autocomplete-suggestions').remove();
+    let value = $(this).val();
+    $.ajax({
+        url: "{% url 'ajax_landing_autocomplete' %}",
+        data: {
+            'q': value 
+        },
+        async: false,
+        dataType: 'json',
+        success: function (data) {
+            let address = data.country;
+            $('input[name="landing_autocomplete"]').autoComplete({
+                minChars: 1,
+                source: function(term, suggest){
+                    term = term.toLowerCase();
+                    var choices = address
+                    var matches = [];
+                    for (i=0; i<choices.length; i++)
+                        if (~choices[i].toLowerCase().indexOf(term)) matches.push(choices[i]);
+                    suggest(matches);
+                }
+            });      
+        }
+    });        
+}); 
+</script>

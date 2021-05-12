@@ -39,18 +39,17 @@ class PropertiesCreationForm(forms.ModelForm):
             'administrative_area_level_3',
             'administrative_area_level_4',
             'administrative_area_level_5',
-            'postalcode',
             'geo_lat',
             'geo_lng',
             'list_date',
             'country',
-            'main_type' 
+            'main_type',
+            'agent',
         )
     def __init__(self, *args, **kwargs):
         super(PropertiesCreationForm, self).__init__(*args, **kwargs)
         self.fields['location'].widget.attrs.update({
-                'id': 'location_search',
-                'placeholder': 'Enter address, neighborhood, city, or postal code... 🏡'
+                'id': 'result',
             })
             
-    field_order = ['location']
+    field_order = ['location', 'postalcode']

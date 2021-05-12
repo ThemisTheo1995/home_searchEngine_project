@@ -91,23 +91,13 @@ table.dataTable thead th, table.dataTable thead td {
 
 /* Landing */
 
-.landing {
-  background-image: url("../images/landpage_desktop.jpg"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 500px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+.wave-container{
+  background-image: linear-gradient(-180deg,rgba(249, 250, 251) 0%, rgb(59, 130, 246) 60%);
 }
 
 @media(max-width:640px){
-  .landing {
-    background-image: url("../images/landing-mobile.jpg"); /* The image used */
-    background-color: #cccccc; /* Used if the image is unavailable */
-    height: 600px; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+  .wave-container{
+    background-image: none;
   }
 }
 /* end Landing */
@@ -169,3 +159,44 @@ table.dataTable thead th, table.dataTable thead td {
   background-image: none;
 }
 /* end of MapBox location search bar */
+
+.autocomplete-suggestions {
+  text-align: left; 
+  cursor: pointer; 
+  border: 1px solid #ccc; 
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 0; 
+  background: #fff; 
+  box-shadow: -1px 1px 3px rgba(0,0,0,.1);
+
+  /* core styles should not be changed */
+  position: absolute; 
+  display: none; 
+  z-index: 9999; 
+  max-height: 254px; 
+  overflow: hidden; 
+  overflow-y: auto; 
+  box-sizing: border-box;
+}
+.autocomplete-suggestion {
+   position: relative; 
+   padding: 8px; 
+   border-bottom: 1px solid rgb(218, 218, 218);
+   line-height: 15px; 
+   white-space: nowrap; 
+   overflow: hidden; 
+   text-overflow: ellipsis; 
+   font-size: 0.9em; 
+   color: #333; }
+
+.autocomplete-suggestion b { 
+  font-weight: 600; 
+  color: rgb(59, 130, 246); 
+}
+
+.autocomplete-suggestion.selected { 
+  background: #f0f0f0; 
+}
+
+

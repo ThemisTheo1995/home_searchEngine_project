@@ -1,13 +1,13 @@
 <script>
 // Map configuration.
-var lat = parseFloat({{rent.geo_lat}}).toFixed(6);
-var lng = parseFloat({{rent.geo_lng}}).toFixed(6);
+var lat = parseFloat({{rent.geo_lat}}).toFixed(10);
+var lng = parseFloat({{rent.geo_lng}}).toFixed(10);
 var genesisMarker = L.icon({
     iconUrl: '/static/images/mapMarker.png',
     iconSize: [30, 30],
 
 });
-var map= L.map('map{{rent.id}}').setView([lat, lng], 14);
+var map= L.map('map{{rent.id}}').setView([lat, lng], 12);
     L.marker([lat, lng], {icon: genesisMarker})
         .addTo(map)
         .openPopup();
