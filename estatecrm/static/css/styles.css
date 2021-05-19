@@ -159,7 +159,7 @@ table.dataTable thead th, table.dataTable thead td {
   background-image: none;
 }
 /* end of MapBox location search bar */
-
+/* 
 .autocomplete-suggestions {
   text-align: left; 
   cursor: pointer; 
@@ -170,7 +170,6 @@ table.dataTable thead th, table.dataTable thead td {
   background: #fff; 
   box-shadow: -1px 1px 3px rgba(0,0,0,.1);
 
-  /* core styles should not be changed */
   position: absolute; 
   display: none; 
   z-index: 9999; 
@@ -182,7 +181,7 @@ table.dataTable thead th, table.dataTable thead td {
 .autocomplete-suggestion {
    position: relative; 
    padding: 8px; 
-   border-bottom: 1px solid rgb(218, 218, 218);
+   border-top: 1px solid rgb(218, 218, 218);
    line-height: 15px; 
    white-space: nowrap; 
    overflow: hidden; 
@@ -199,4 +198,353 @@ table.dataTable thead th, table.dataTable thead td {
   background: #f0f0f0; 
 }
 
+ */
 
+/* Auto complete Tarek Raafat */
+
+ :root {
+	--transition-1: all 0.3s ease-in-out;
+	--transition-2: all 0.2s ease-in-out;
+}
+
+.no_result {
+	margin: 0.3rem;
+	padding: 0.3rem 0.5rem;
+	list-style: none;
+	text-align: left;
+	font-size: 1rem;
+	color: #212121;
+	transition: all 0.1s ease-in-out;
+	border-radius: 0.35rem;
+	background-color: rgba(255, 255, 255, 1);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: all 0.2s ease;
+	outline: none;
+}
+
+h1.title {
+	transition: var(--transition-1);
+}
+
+.toggle {
+	display: flex;
+	border: 1px solid rgb(125, 170, 243);
+	height: 35px;
+	width: 120px;
+	border-radius: 50px;
+	justify-content: flex-start;
+	align-content: center;
+	transition: var(--transition-2);
+}
+
+.toggler {
+	display: grid;
+	cursor: pointer;
+	background-color: rgb(125, 170, 243);
+	color: #fff;
+	height: 25px;
+	width: 60px;
+	border-radius: 50px;
+	margin: 5px;
+	text-align: center;
+	align-content: center;
+	align-self: flex-start;
+	transition: var(--transition-2);
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-webkit-touch-callout: none;
+}
+
+.toggler:hover {
+	width: 65px;
+	background-color: rgba(59, 130, 246);
+}
+
+.toggler::selection {
+	color: #fff;
+}
+
+.strict {
+	display: inline;
+}
+
+.loose {
+	display: inline;
+}
+
+@media only screen and (max-width: 600px) {
+	.selection {
+		margin-top: 2vh;
+	}
+}
+
+/* .container {
+  width: 100vw;
+  height: 100vh;
+} */
+
+.no_result {
+  margin: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  list-style: none;
+  text-align: left;
+  font-size: 1rem;
+  color: #212121;
+  transition: all 0.1s ease-in-out;
+  border-radius: 0.35rem;
+  background-color: rgba(255, 255, 255, 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.github-corner {
+  transition: var(--transition-1);
+}
+
+.toggle {
+  display: flex;
+  /* position: absolute; */
+  border: 2px solid rgba(59, 130, 246);
+  height: 35px;
+  width: 120px;
+  border-radius: 2rem;
+  justify-content: flex-start;
+  align-content: center;
+  transition: var(--transition-2);
+}
+
+.toggler {
+  display: grid;
+  cursor: pointer;
+  background-color: rgba(59, 130, 246, 1);
+  color: #fff;
+  height: 25px;
+  width: 60px;
+  border-radius: 1rem;
+  margin: 3px 4px 3px 4px;
+  padding-bottom: 3px;
+  text-align: center;
+  align-content: center;
+  align-self: flex-start;
+  transition: var(--transition-2);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.toggler:hover {
+  width: 65px;
+  background-color: rgba(59, 130, 246, 0.7);
+}
+
+.toggler::selection {
+  color: #fff;
+}
+
+.strict {
+  display: inline;
+}
+
+.loose {
+  display: inline;
+}
+
+.selection {
+  margin-top: 4vh;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(59, 130, 246, 0.7);
+  transition: var(--transition-1);
+}
+
+.selection::selection {
+  color: rgba(59, 130, 246);
+}
+
+.copyrights {
+  font-size: 0.8rem;
+}
+
+.copyrights::selection {
+  color: rgb(147, 147, 147);
+}
+
+@media only screen and (max-width: 600px) {
+  .selection {
+    margin-top: 3vh;
+  }
+
+  .footer {
+    bottom: 1.5rem;
+    transition: var(--transition-1);
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  .footer {
+    display: none;
+  }
+}
+
+.autoComplete_wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+#autoComplete {
+  height: 3rem;
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem 0 3.2rem;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  color: rgba(59, 130, 246, 1);
+  outline: none;
+  border-radius: 0.5rem;
+  border: 0;
+  border: 0.4rem solid rgba(59, 130, 246, 0.9);
+  background-image: url(../images/mapMarker.png);
+  background-size: 1.4rem;
+  background-position: left 1.05rem top 0.8rem;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-color: #fff;
+  transition: all 0.0s ease;
+  -webkit-transition: all -webkit-transform 0.0s ease;
+}
+
+#autoComplete::placeholder {
+  color: rgba(59, 130, 246, 0.5);
+  transition: all 0.3s ease;
+  -webkit-transition: all -webkit-transform 0.3s ease;
+}
+
+#autoComplete:hover::placeholder {
+  color: rgba(59, 130, 246, 0.6);
+  transition: all 0.3s ease;
+  -webkit-transition: all -webkit-transform 0.3s ease;
+}
+
+#autoComplete:focus::placeholder {
+  padding: 0.1rem 0.6rem;
+  font-size: 0.95rem;
+  color: rgba(59, 130, 246, 0.4);
+}
+
+#autoComplete:focus::selection {
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+#autoComplete::selection {
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+#autoComplete:hover {
+  color: rgba(59, 130, 246,1);
+  transition: all 0.3s ease;
+  -webkit-transition: all -webkit-transform 0.3s ease;
+}
+
+#autoComplete:focus {
+  color: rgba(59, 130, 246, 1);
+  border: 0.1rem solid rgba(59, 130, 246, 0.8);
+}
+
+#autoComplete_list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin-top: 0.5rem;
+  border-radius: 0.6rem;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(149, 157, 165, 0.15);
+  border: 1px solid rgba(33, 33, 33, 0.07);
+  z-index: 1000;
+  outline: none;
+}
+
+.autoComplete_result {
+  margin: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  list-style: none;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #212121;
+  transition: all 0.1s ease-in-out;
+  border-radius: 0.35rem;
+  background-color: rgba(255, 255, 255, 1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+}
+
+.autoComplete_result::selection {
+  color: rgba(#ffffff, 0);
+  background-color: rgba(#ffffff, 0);
+}
+
+.autoComplete_result:hover {
+  cursor: pointer;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+.autoComplete_highlighted {
+  color: rgba(59, 130, 246, 1);
+  font-weight: bold;
+}
+
+.autoComplete_highlighted::selection {
+  color: rgba(#ffffff, 0);
+  background-color: rgba(#ffffff, 0);
+}
+
+.autoComplete_selected {
+  cursor: pointer;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+@media only screen and (max-width: 600px) {
+  .autoComplete_wrapper {
+    width: 320px;
+  }
+
+  #autoComplete {
+    width: 18rem;
+    background-size: 1.6rem;
+    background-position: left 1.1rem top 0.75rem;
+  }
+
+  #autoComplete_list {
+    margin: 10px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  #autoComplete {
+    border-width: 0.1rem;
+  }
+}
+
+@-moz-document url-prefix() {
+  #autoComplete {
+    background-size: 1.2rem;
+    background-origin: border-box;
+    background-position: left 1.1rem top 0.8rem;
+  }
+}
+
+
+/* End Auto complete Tarek Raafat */

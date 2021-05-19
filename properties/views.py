@@ -4,23 +4,24 @@ from django.http import JsonResponse
 from estatecrm.keys import googleKey, mapBoxKey
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
+from django.db.models import Q
+from django.core import serializers
+from django.core.serializers.json import Serializer as DjangoSerializer
 from django.shortcuts import render,reverse, redirect
-from .models import Properties
+from .models import Properties, geoSearch, geoData
 from .forms import FilterForm, PropertiesCreationForm
 from urllib.parse import urlencode
 from realtors import mixins
 import requests, json
-
+    
 ### Landing view ###
 def landing_autocomplete(request):
-    if request.is_ajax():
-        q = request.GET.get('q', '')
-        country = list(Properties.objects.filter(country__startswith = q).values_list('country', flat=True))
-        print(country)
-        data = {
-            'country': country,
-        }
-        return JsonResponse(data)
+    if request:
+        location_data = geoSearch.objects.all().order_by('-identifier','-location')
+        raw_data = serializers.serialize("python", location_data)
+        actual_data = [data['fields'] for data in raw_data]
+        
+        return JsonResponse(actual_data, safe=False)
 
 class PropertiesLandingListView(generic.ListView):
     paginate_by = 4
@@ -32,7 +33,6 @@ class PropertiesLandingListView(generic.ListView):
         return queryset
 
 ### Rent List view ###
-
 class PropertiesRentListView(generic.ListView):
     paginate_by = 15
     template_name = "properties/properties_rent.html"
@@ -48,52 +48,22 @@ class PropertiesRentListView(generic.ListView):
         if 'location' in self.request.GET:
             location = self.request.GET.get('location','')
             if len(location)>0: 
-                #Geocoding API
-                addressText = {"address": location + '.json'}
-                endpoint = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{urlencode(addressText)}"
-                params = {"access_token": 'pk.eyJ1IjoidGhlbWlzdGhlbzE5OTUiLCJhIjoiY2tidGlyZ2xrMGE1aDJ6bWkzZnlwM2t4aiJ9.QZXJ0ujvaC2sScu_VmT9zg'}
-                
-                #Parameters
-                url_params = urlencode(params)
-                url = f"{endpoint}?{url_params}"
-                r = requests.get(url)
-                if r.status_code not in range(200, 299): 
-                    return Properties.objects.none()
-                #JSON results
-                results = r.json()
-                country = results['features'][0]['context'][-1]['short_code']
-                address = results['features'][0]['text']
-                print(url)
-                if results['features'][0]['place_type'] == 'postcode':
-                    main_type = 'postcode'
-                else: main_type = ''
-                
-            else:
-                return Properties.objects.none()
-        
-        if country and main_type == 'postcode':  
-            queryset = Properties.objects.filter(
-                advertised = 'To_Rent',
-                is_published=True,
-                country = country,
-                postalcode__icontains= address
-                ).order_by('-list_date')
-            return queryset
-        elif country:
-            queryset = Properties.objects.filter(
-                advertised = 'To_Rent',
-                is_published=True,
-                country= country,
-                search_address__icontains=address, 
-                ).order_by('-list_date')
-            return queryset
-        else:
-            queryset = Properties.objects.filter(
-                advertised = 'To_Rent',
-                is_published=True,
-                search_address__icontains=address, 
-                ).order_by('-list_date')
-            return queryset
+                # Check if the identifier exists
+                try:
+                    identifier = geoSearch.objects.get(location=location).identifier
+                    contains_digit = False
+                    for char in identifier:
+                        if char.isdigit():
+                            contains_digit = True
+                    if contains_digit:
+                        queryset = Properties.objects.filter(identifier_2=identifier)
+                    else:
+                        queryset = Properties.objects.filter(Q(identifier_1=identifier) | Q(identifier_2__icontains = identifier))
+                except geoSearch.DoesNotExist:
+                    identifier = None
+                    queryset = Properties.objects.none()
+
+        return queryset
 
 ### Rent Detail view ###
 class PropertiesRentDetailView(generic.DetailView):
@@ -114,63 +84,80 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
     
     def form_valid(self, form):
         properties = form.save(commit = False)
-        if 'location' in self.request.POST:
+        if 'location' and 'address' in self.request.POST:
             location = self.request.POST.get('location','')
-            print(location)
-            if len(location)>0: 
+            address_search = self.request.POST.get('address', '')
+            if len(location)>0 and len(address_search)>0: 
                 
-                # ### Google Geo endpoint ###
-                # endpoint = f"https://maps.googleapis.com/maps/api/geocode/json"
-                # params = {"address": location, "key": googleKey['GOOGLE_API_KEY']}
-                
-                # #Parameters
-                # url_params = urlencode(params)
-                # url = f"{endpoint}?{url_params}"
-                # r = requests.get(url)
-                # print(url)
-                # if r.status_code not in range(200, 299): 
-                #     return reverse_lazy("properties:create")
-                
-                # #Returned google JSON
-                # results = r.json()['results']
-                
-                ### MapBox Geo endpoint ###
-                print(location)
-                geo = location.split(",")
-                endpointMapBox = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{geo[0]},{geo[1]}.json"
-                paramsMapBox = {"access_token": mapBoxKey['MAPBOX_API_KEY']}
+                ### Google Geo endpoint ###
+                endpoint = f"https://maps.googleapis.com/maps/api/geocode/json"
+                params = {"address": address_search, "key": googleKey['GOOGLE_API_KEY']}
                 
                 #Parameters
-                url_paramsMapBox = urlencode(paramsMapBox)
-                urlMapBox = f"{endpointMapBox}?{url_paramsMapBox}"
-                rMapBox = requests.get(urlMapBox)
-                print(urlMapBox)
-                if rMapBox.status_code not in range(200, 299): 
+                url_params = urlencode(params)
+                url = f"{endpoint}?{url_params}"
+                r = requests.get(url)
+                if r.status_code not in range(200, 299): 
                     return reverse_lazy("properties:create")
                 
-                #Returned mapbox JSON
-                resultsMapBox = rMapBox.json()
+                #Returned google JSON - lat long
+                latlng = r.json()['results'][0]['geometry']['location']
+                # Lat long
+                geo_lat = latlng.get("lat")
+                geo_lng = latlng.get("lng")
                 
-                #Search address
-                search_address = ''
+                #Main location query
+                location_search_identifier = geoSearch.objects.get(location=location).identifier
+                location_info = geoData.objects.get(identifier=location_search_identifier)
                 
-                #Country (mandatory field)
-                if resultsMapBox['features'][0]['context'][-1]['text']:
-                    country = resultsMapBox['features'][0]['context'][-1]['short_code']
-                else: 
+                #Country
+                country = location_info.country
+                country_en = location_info.country_en
+                
+                #Admin areas
+                admin_1 = location_info.admin_1
+                admin_1_en = location_info.admin_1_en
+                admin_2 = location_info.admin_2
+                admin_2_en = location_info.admin_2_en
+                admin_3 = location_info.admin_3
+                admin_3_en = location_info.admin_3_en
+                admin_4 = location_info.admin_4
+                admin_4_en = location_info.admin_4_en
+                
+                #Identifiers
+                try:
+                    contains_digit = False
+                    for char in location_info.identifier:
+                        if char.isdigit():
+                            contains_digit = True
+                    if contains_digit:
+                        identifier_1 = location_info.identifier[5:]
+                        identifier_2 = location_info.identifier
+                    else:
+                        identifier_1 = location_info.identifier
+                        identifier_2 = ''
+                except location_info.identifier is None:
                     return reverse_lazy("properties:create")
-                
-                if resultsMapBox['features'][0]['place_name'] or resultsMapBox['features'][0]['place_name'] :
-                    search_address += resultsMapBox['features'][0]['place_name'] +  ", "
 
-                print(f"{search_address}")
-        
         # Excluded form fields, manually saved
         properties.organisation = self.request.user.organisation
-        properties.search_address = search_address
-        properties.geo_lat = geo[1]
-        properties.geo_lng = geo[0]
+        properties.street_number = '64'
+        properties.geo_lat = geo_lat
+        properties.geo_lng = geo_lng
+        properties.address = 'Agiou Gerasimou'
         properties.country = country
+        properties.country_en = country_en
+        properties.admin_1 = admin_1,
+        properties.admin_1_en = admin_1_en,
+        properties.admin_2 = admin_2,
+        properties.admin_2_en = admin_2_en,
+        properties.admin_3 = admin_3,
+        properties.admin_3_en = admin_3_en,
+        properties.admin_4 = admin_4,
+        properties.admin_4_en = admin_4_en,
+        properties.identifier_1 = identifier_1
+        properties.identifier_2 = identifier_2
+    
         properties.save()
         
         return super(PropertiesCreateView, self).form_valid(form)

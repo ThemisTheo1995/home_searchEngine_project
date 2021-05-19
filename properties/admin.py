@@ -1,9 +1,29 @@
 from django.contrib import admin
-from .models import Properties
+from .models import Properties, geoData, geoSearch
 from .forms import PropertiesForm
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
+# GeoData admin
+class geoDataResource(resources.ModelResource):
+    class Meta:
+        model = geoData
 
+@admin.register(geoData)
+class geoDataAdmin(ImportExportModelAdmin):
+    resource_class = geoDataResource
+    list_display = ['id', 'admin_1', 'admin_2','admin_3', 'admin_4', 'identifier']
+    
+# GeoSearch admin
+class geoSearchResource(resources.ModelResource):
+    class Meta:
+        model = geoSearch
 
+@admin.register(geoSearch)
+class geoSearchAdmin(ImportExportModelAdmin):
+    resource_class = geoSearchResource
+
+# Properties admin
 @admin.register(Properties)
 class PropertiesAdmin(admin.ModelAdmin):
     

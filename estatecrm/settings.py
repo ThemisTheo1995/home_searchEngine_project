@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_tailwind',
     'django_cleanup',
+    'import_export',
         
     # Local apps
     'accounts',
@@ -168,3 +169,5 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
+
