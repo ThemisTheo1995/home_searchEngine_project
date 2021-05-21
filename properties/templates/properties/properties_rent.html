@@ -9,11 +9,11 @@
 
 
 <section class="text-gray-600 body-font">
-  <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto">
+  <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto">
     {% for rent in rentProperties %}
     <div class="flex flex-wrap pb-16 pt-8">
-      <div class="lg:w-3/12 w-full bg-gray-50 lg:shadow-xl shadow:none">
-        <div class="h-full overflow-hidden rounded-tl">
+      <div class="lg:w-3/12 w-full bg-gray-100">
+        <div class="h-full overflow-hidden rounded-tl rounded-tr sm:rounded-tr-none ">
            <div class="bg-blue-500 w-full float-left py-1 text-xs pl-2 font-bold">
             {% if rent.property_category == 'STANDARD' %}
               <div class="text-white">
@@ -29,7 +29,7 @@
               </div> 
             {% endif %}
           </div> 
-          <div class="fotorama" data-loop="true" data-nav="thumbs" data-thumbwidth="100" data-width="100%" data-trackpad="true" data-ratio="3/2">
+          <div class="fotorama" data-loop="true" data-nav="thumbs" data-thumbwidth="100" data-width="100%" data-trackpad="true" data-ratio="1200/720">
             {% if rent.photo_main  %}
               <img data-keyboard="true" class="object-cover object-center" src="{{rent.photo_main.url}}">
             {% endif %}
@@ -49,7 +49,7 @@
           </div> 
         </div>
       </div>
-      <div class="lg:w-6/12 bg-gray-50 shadow-xl overflow-hidden">
+      <div class="lg:w-6/12 bg-gray-100 overflow-hidden rounded-tr-none sm:rounded-tr">
         <div class="h-full overflow-hidden">
           <div class="bg-blue-500 w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon">
             {% if rent.property_category == 'STANDARD' %}
@@ -142,11 +142,11 @@
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-                  href="?page=1&city={{city}}&bathrooms={{bathrooms}}">
+                  href="?page=1&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
                   <i class="fa fa-angle-double-left text-white text-lg"></i>  
                 </a>
                 <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-                  href="?page={{page_obj.previous_page_number}}&city={{city}}&bathrooms={{bathrooms}}">
+                  href="?page={{page_obj.previous_page_number}}&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
                   <i class="fa fa-angle-left text-white text-xl"></i>
                 </a>
             {% endif %}
@@ -158,11 +158,11 @@
 
             {% if page_obj.has_next %}
                 <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-                  href="?page={{page_obj.next_page_number}}&city={{city}}&bathrooms={{bathrooms}}">
+                  href="?page={{page_obj.next_page_number}}&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
                   <i class="fa fa-angle-right text-white text-xl"></i>
                 </a>
                 <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-                  href="?page={{page_obj.paginator.num_pages}}&city={{city}}&bathrooms={{bathrooms}}">
+                  href="?page={{page_obj.paginator.num_pages}}&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
                   <i class="fa fa-angle-double-right text-white text-lg"></i>
                 </a>
             {% endif %}

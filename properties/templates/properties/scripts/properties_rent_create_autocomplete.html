@@ -9,7 +9,7 @@ const autoCompleteJS = new autoComplete({
 				.setAttribute("placeholder", "Loading...");
 			// Fetch External Data Source
 			const source = await fetch(
-				"{% url 'ajax_landing_autocomplete' %}"
+				"{% url 'ajax_create_autocomplete' %}"
 			);
 			const data = await source.json();
 			// Post loading placeholder text

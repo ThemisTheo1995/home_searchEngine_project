@@ -1,29 +1,43 @@
 from django.db import models
+from io import BytesIO
+import sys
 from accounts.models import CustomUser 
 from datetime import datetime
+from PIL import Image
 from .validators import validate_file_size, validate_postcode
 from realtors.models import Organisation,Agent
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 class geoData(models.Model):
-    country = models.CharField(max_length=100, blank=True, default='')
-    country_en = models.CharField(max_length=100, blank=True, default='')
+    country = models.CharField(max_length=100, blank=True)
+    country_en = models.CharField(max_length=100, blank=True)
     admin_1 = models.CharField(max_length=100, blank=True, default='')
     admin_1_en = models.CharField(max_length=100, blank=True, default='')
-    admin_2 = models.CharField(max_length=100, blank=True, default='')
-    admin_2_en = models.CharField(max_length=100, blank=True, default='')
-    admin_3 = models.CharField(max_length=100, blank=True, default='')
-    admin_3_en = models.CharField(max_length=100, blank=True, default='')
-    admin_4 = models.CharField(max_length=100, blank=True, default='')
-    admin_4_en = models.CharField(max_length=100, blank=True, default='')
+    admin_2 = models.CharField(max_length=100, blank=True)
+    admin_2_en = models.CharField(max_length=100, blank=True)
+    admin_3 = models.CharField(max_length=100, blank=True)
+    admin_3_en = models.CharField(max_length=100, blank=True)
+    admin_4 = models.CharField(max_length=100, blank=True)
+    admin_4_en = models.CharField(max_length=100, blank=True)
     identifier = models.CharField(max_length=100, blank=True, default='')
+    location = models.CharField(max_length=250, blank=True)
+    location_en = models.CharField(max_length=250, blank=True)
+    
+    def save(self, *args, **kwargs):
+        if not self.admin_1:  
+            self.location = self.admin_2 + ', ' + self.admin_3 + ', ' + self.country 
+        else: 
+            self.location = self.admin_1 + ', ' + self.admin_2 + ', ' + self.admin_3 + ', ' + self.country
+        
+        if not self.admin_1_en:
+            self.location_en = self.admin_2_en + ', ' + self.admin_3_en + ', ' + self.country_en
+        else:
+            self.location_en = self.admin_1_en + ', ' + self.admin_2_en + ', ' + self.admin_3_en + ', ' + self.country_en
+        super(geoData, self).save(*args, **kwargs)
+        
     def __str__(self):
         return f"{self.admin_1}, {self.admin_2}, {self.admin_3}"
 
-class geoSearch(models.Model):
-    location = models.CharField(max_length=150)
-    identifier = models.CharField(max_length=12)
-    def __str__(self):
-        return f"{self.location}, {self.identifier}"
 
 class Properties(models.Model):
     FURNITURE_CHOICES = [
@@ -84,6 +98,29 @@ class Properties(models.Model):
     geo_lng = models.CharField(max_length=15)
     identifier_1 = models.CharField(max_length=12)
     identifier_2 = models.CharField(max_length=12, blank=True)
+    
+    def save(self, *args, **kwargs):
+        if self.photo_main:
+            self.photo_main = self.compressImage(self.photo_main)
+        if self.photo_1:
+            self.photo_1 = self.compressImage(self.photo_1)
+        if self.photo_2:
+            self.photo_2 = self.compressImage(self.photo_2)
+        if self.photo_3:
+            self.photo_3 = self.compressImage(self.photo_3)
+        if self.photo_4:
+            self.photo_4 = self.compressImage(self.photo_4)
+        super(Properties, self).save(*args, **kwargs)
+    
+    
+    def compressImage(self,photo):
+        imageTemporary = Image.open(photo)
+        outputIoStream = BytesIO()
+        imageTemporaryResized = imageTemporary.resize( (1200,720) ) 
+        imageTemporaryResized.save(outputIoStream , format='JPEG', quality=80)
+        outputIoStream.seek(0)
+        photo = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % photo.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
+        return photo
     
     def __str__(self):
         

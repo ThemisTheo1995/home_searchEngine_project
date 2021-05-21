@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Properties, geoData, geoSearch
+from .models import Properties, geoData
 from .forms import PropertiesForm
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
@@ -12,16 +12,8 @@ class geoDataResource(resources.ModelResource):
 @admin.register(geoData)
 class geoDataAdmin(ImportExportModelAdmin):
     resource_class = geoDataResource
-    list_display = ['id', 'admin_1', 'admin_2','admin_3', 'admin_4', 'identifier']
-    
-# GeoSearch admin
-class geoSearchResource(resources.ModelResource):
-    class Meta:
-        model = geoSearch
-
-@admin.register(geoSearch)
-class geoSearchAdmin(ImportExportModelAdmin):
-    resource_class = geoSearchResource
+    list_display = ['id', 'location', 'location_en', 'identifier']
+    search_fields = ['location_en', 'location', 'identifier']
 
 # Properties admin
 @admin.register(Properties)

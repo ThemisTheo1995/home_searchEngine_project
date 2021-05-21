@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic.base import TemplateView
-from properties.views import PropertiesLandingListView, landing_autocomplete
+from properties.views import PropertiesLandingListView, landing_autocomplete, create_autocomplete
 from django.conf.urls.i18n import i18n_patterns
 
 
@@ -21,7 +21,8 @@ urlpatterns += i18n_patterns(
     path('organisation/', include('realtors.urls', namespace='organisation')),
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^ajax/landing_autocomplete/$', landing_autocomplete, name = 'ajax_landing_autocomplete'),
-    prefix_default_language=False,
+    re_path(r'^ajax/create_autocomplete/$', create_autocomplete, name = 'ajax_create_autocomplete'),
+    prefix_default_language=True,
 )
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

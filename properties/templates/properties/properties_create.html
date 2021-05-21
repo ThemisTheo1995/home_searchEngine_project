@@ -14,7 +14,7 @@
         <div class="mb-3">
             <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Location'%}</label>
             <div class="autoComplete_wrapper w-full">
-                <input required type="text" tabindex="1" name="location" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
+                <input required type="text" tabindex="1" name="location-create" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
             </div>
             <div class="mode flex w-full justify-center items-center mt-4">
                 <div class="toggle">
@@ -34,7 +34,7 @@
     </button>
     </form>
 </div>
-{% include "properties/scripts/properties_rent_autocomplete.html" %}
+{% include "properties/scripts/properties_rent_create_autocomplete.html" %}
 {% include "properties/scripts/properties_rent_google_places.html" %}
 
 {% endblock content %}
