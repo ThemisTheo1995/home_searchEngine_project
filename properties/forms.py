@@ -29,8 +29,7 @@ class PropertiesCreationForm(forms.ModelForm):
             'geo_lng',
             'list_date',
             'address',
-            'identifier_1',
-            'identifier_2',
+            'identifier',
             'country',
             'country_en',
             'admin_1',
@@ -51,3 +50,25 @@ class PropertiesCreationForm(forms.ModelForm):
     #         })
             
     field_order = ['postalcode']
+    
+
+# Properties update form  
+class PropertiesUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model = Properties
+        exclude = (
+            'organisation',
+            'list_date',
+            'country',
+            'country_en',
+            'admin_1',
+            'admin_1_en',
+            'admin_2',
+            'admin_2_en',
+            'admin_3',
+            'admin_3_en',
+            'admin_4',
+            'admin_4_en',
+            'identifier',
+        )

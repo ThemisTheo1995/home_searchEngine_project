@@ -1,3 +1,4 @@
+
 .dropdown:hover .dropdown-menu {
     display: block;
   }
@@ -21,12 +22,12 @@
 
 @media(max-width:1023px){
   .rent-detail-map {
-    height: 200px!important;
+    height: 300px!important;
   }
 }
 
 .rent-detail-map {
-  height: 275px;
+  height: 300px;
 }
 /* end of Leaflet */
 
@@ -73,9 +74,24 @@
   font-weight: bold;
 }
 
+@media(max-width:640px){
+  #properties_table_paginate{
+    font-size: small;
+    float: left;
+    padding: 10px;
+  }
+}
+
+#properties_table_paginate{
+  padding: 10px;
+}
+
 .dataTables_filter input[type="search"] {
-  border-color: rgb(59, 130, 246);
+  border-color: #4B5563;
   outline: none;
+}
+table.dataTable.display tbody td {
+  border-top: 2px solid #4B5563;
 }
 
 table.dataTable.no-footer {
@@ -85,6 +101,10 @@ table.dataTable.no-footer {
 table.dataTable thead th, table.dataTable thead td {
   padding: 10px 18px;
   border-bottom: 2px solid rgb(59, 130, 246);
+}
+
+.properties-table {
+   cursor: pointer; 
 }
 /* end of DataTable */
 
@@ -153,52 +173,12 @@ table.dataTable thead th, table.dataTable thead td {
 /* End of profile-card */
 
 
-/* MapBox location search bar */
+/* Google location search bar */
 
 .hdpi.pac-logo:after{
   background-image: none;
 }
-/* end of MapBox location search bar */
-/* 
-.autocomplete-suggestions {
-  text-align: left; 
-  cursor: pointer; 
-  border: 1px solid #ccc; 
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top: 0; 
-  background: #fff; 
-  box-shadow: -1px 1px 3px rgba(0,0,0,.1);
-
-  position: absolute; 
-  display: none; 
-  z-index: 9999; 
-  max-height: 254px; 
-  overflow: hidden; 
-  overflow-y: auto; 
-  box-sizing: border-box;
-}
-.autocomplete-suggestion {
-   position: relative; 
-   padding: 8px; 
-   border-top: 1px solid rgb(218, 218, 218);
-   line-height: 15px; 
-   white-space: nowrap; 
-   overflow: hidden; 
-   text-overflow: ellipsis; 
-   font-size: 0.9em; 
-   color: #333; }
-
-.autocomplete-suggestion b { 
-  font-weight: 600; 
-  color: rgb(59, 130, 246); 
-}
-
-.autocomplete-suggestion.selected { 
-  background: #f0f0f0; 
-}
-
- */
+/* end of Google location search bar */
 
 /* Auto complete Tarek Raafat */
 
@@ -518,17 +498,17 @@ h1.title {
 
 @media only screen and (max-width: 600px) {
   .autoComplete_wrapper {
-    width: 320px;
+    width: 100%;
   }
 
   #autoComplete {
-    width: 18rem;
+    width: 100%;
     background-size: 1.6rem;
     background-position: left 1.1rem top 0.75rem;
   }
 
   #autoComplete_list {
-    margin: 10px;
+    margin: 5px;
   }
 }
 
@@ -547,3 +527,10 @@ h1.title {
 }
 
 /* End Auto complete Tarek Raafat */
+
+
+/* Fotorama */
+
+
+/* End of Fotorama*/
+

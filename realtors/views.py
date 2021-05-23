@@ -9,7 +9,6 @@ from .forms import OrganisationUpdateForm, AgentModelAddForm
 
 
 ### Organisation views ###
-
 class OrganisationDashboardView(RealtorAndLoginRequiredMixin, generic.DetailView):
     template_name = "realtors/organisation_dashboard.html"
     context_object_name = 'organisation'
@@ -34,7 +33,6 @@ class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
 
 
 class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView):
-    paginate_by = 15
     template_name = "realtors/organisation_properties.html" 
     context_object_name = "organisation"
     
@@ -87,9 +85,7 @@ class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView
         return queryset
 
 
-
 ### Agent views ###
-
 class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
     paginate_by = 15
     template_name = "realtors/agent_list.html" 
@@ -112,6 +108,7 @@ class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
             agents = q.count()
         
         context['agentsNo'] = agents
+        context['organisation'] = organisation
         
         return context
 

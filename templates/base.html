@@ -7,17 +7,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Real Estate App{% endblock %}</title>
+  {% if LANGUAGE_CODE == 'en'  %}
+      <meta name="description" content = "Fast, lightweight and multi-feature real-estate search platform for homes, offices and properties in Greece and the UK.">
+  {% else %}
+    <meta name="description" content = "Ιστοσελίδα αναζήτης ακινήτων προς πώληση ή ενοικίαση. Εξυπηρέτηση χρηστών για αναζήτηση ακινήτων αλλά και προσθήκη αυτών από μεσιτικά γραφεία και ανεξάρτητων ιδιοκτητών">
+  {% endif %}
+  <title>{% block title %}Genesis Real Estate{% endblock %}</title>
 
   <!-- autoComplete Tarek Raafat-->
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
 
   <!-- jQuery 1.8 or later, 33 KB -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- Fotorama from CDNJS, 19 KB -->
   <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+  <script src="{% static 'js/fotorama.js' %}"></script>
 
   <!-- Splide -->
   <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" rel="stylesheet">

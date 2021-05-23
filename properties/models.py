@@ -1,6 +1,7 @@
 from django.db import models
 from io import BytesIO
 import sys
+from django.db.models.signals import post_save
 from accounts.models import CustomUser 
 from datetime import datetime
 from PIL import Image
@@ -8,7 +9,10 @@ from .validators import validate_file_size, validate_postcode
 from realtors.models import Organisation,Agent
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
+
+#geoData model
 class geoData(models.Model):
+    
     country = models.CharField(max_length=100, blank=True)
     country_en = models.CharField(max_length=100, blank=True)
     admin_1 = models.CharField(max_length=100, blank=True, default='')
@@ -24,6 +28,7 @@ class geoData(models.Model):
     location_en = models.CharField(max_length=250, blank=True)
     
     def save(self, *args, **kwargs):
+        
         if not self.admin_1:  
             self.location = self.admin_2 + ', ' + self.admin_3 + ', ' + self.country 
         else: 
@@ -36,9 +41,34 @@ class geoData(models.Model):
         super(geoData, self).save(*args, **kwargs)
         
     def __str__(self):
-        return f"{self.admin_1}, {self.admin_2}, {self.admin_3}"
+        return f"{self.identifier}"
 
+#Signal to generate the identifier
+def update_identifier(sender, instance, **kwargs):
+    if instance.admin_2_en or instance.admin_2:
+        try:
+            parent_pk = geoData.objects.get(country=instance.country,
+                                            admin_4=instance.admin_4,
+                                            admin_3=instance.admin_3,
+                                            admin_2=instance.admin_2,
+                                            admin_1 = '').pk
+            parent_pk = str(parent_pk)
+        except geoData.DoesNotExist:
+            parent_pk = None
+        
+        if instance.admin_1 == '' and instance.admin_1_en == '' and parent_pk == str(instance.pk):
+            new_identifier = instance.pk
+            print(new_identifier)
+        elif parent_pk is not None and (instance.admin_1 or instance.admin_1_en):
+            new_identifier = parent_pk+'-'+str(instance.pk)
+        else:
+            new_identifier =''
+            
+    geoData.objects.filter(pk=instance.pk).update(identifier=new_identifier)
 
+post_save.connect(update_identifier, sender=geoData)
+
+#Properties model
 class Properties(models.Model):
     FURNITURE_CHOICES = [
         ('Furnished', 'Furnished'),
@@ -96,8 +126,7 @@ class Properties(models.Model):
     country_en = models.CharField(max_length=100)
     geo_lat = models.CharField(max_length=15)
     geo_lng = models.CharField(max_length=15)
-    identifier_1 = models.CharField(max_length=12)
-    identifier_2 = models.CharField(max_length=12, blank=True)
+    identifier = models.ForeignKey(geoData, models.DO_NOTHING)
     
     def save(self, *args, **kwargs):
         if self.photo_main:

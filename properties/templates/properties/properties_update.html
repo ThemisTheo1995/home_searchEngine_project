@@ -1,0 +1,87 @@
+<!-- templates/realtors/agent_update.html -->
+{% extends 'base.html' %}
+{% load tailwind_filters %}
+{% load i18n %}
+
+{% block title %}Genesis | Update property{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto px-5">
+  <h1 class = "title-font sm:text-3xl pt-10 text-2xl mb-1 font-medium text-gray-900 mb-8">
+    {% trans 'Property details' %}
+  </h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="block text-gray-700 text-sm font-bold mb-2 w-full">{% trans 'Location'%}</label>
+        <div class="autoComplete_wrapper w-full">
+            <input required type="text" value="{{location}}" tabindex="1" name="location-update" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
+        </div>
+        <div class="mode flex w-full justify-center items-center mt-4">
+            <div class="toggle">
+                <div class="toggler">Strict</div>
+            </div>
+        </div>
+    </div>
+    <div class="selection"></div>
+    {% for field in form %}
+      {{ field|as_crispy_field }}
+      <!--Photo main-->
+      {% if field.label == 'Photo main'  %}
+        <div class="flex flex-wrap w-full h-20">
+          <div class="w-24 h-12">
+          {% if property.photo_main  %}
+            <img src="{{property.photo_main.url}}" alt="{{property.admin_1_en}}">
+          {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      <!--Photo 1-->
+      {% if field.label == 'Photo 1'  %}
+        <div class="flex flex-wrap w-full h-20">
+          <div class="w-24 h-12">
+          {% if property.photo_1  %}
+            <img src="{{property.photo_1.url}}" alt="{{property.admin_1_en}}">
+          {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      <!--Photo 2-->
+      {% if field.label == 'Photo 2'  %}
+        <div class="flex flex-wrap w-full h-20">
+          <div class="w-24 h-12">
+          {% if property.photo_2  %}
+            <img src="{{property.photo_2.url}}" alt="{{property.admin_1_en}}">
+          {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      <!--Photo 3-->
+      {% if field.label == 'Photo 3'  %}
+        <div class="flex flex-wrap w-full h-20">
+          <div class="w-24 h-12">
+          {% if property.photo_3  %}
+            <img src="{{property.photo_3.url}}" alt="{{property.admin_1_en}}">
+          {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      <!--Photo 4-->
+      {% if field.label == 'Photo 4'  %}
+        <div class="flex flex-wrap w-full h-20">
+          <div class="w-24 h-12">
+          {% if property.photo_4  %}
+            <img src="{{property.photo_4.url}}" alt="{{property.admin_1_en}}">
+          {% endif %}
+          </div>
+        </div>
+      {% endif %}
+        {{ field.errors }}
+    {% endfor %}
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white text-lg mb-3 mt-3">
+      {% trans 'Update details' %}
+    </button>
+  </form>
+</div>
+{% include "properties/scripts/properties_rent_update_autocomplete.html" %}
+{% endblock content %}

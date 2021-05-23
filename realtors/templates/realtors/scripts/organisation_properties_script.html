@@ -1,9 +1,18 @@
 <script>
 $(document).ready( function () {
     $('#properties_table').DataTable({
-        paging:false,
+        paging:true,
+        pagingType: "full_numbers",
         select: true,
         info: false,
+        //language: {
+        //    "decimal": ",",
+        //    "thousands": "."
+        //},
+        //scrollY: "500px",
+        //scrollY:  "500px",
+        //scrollCollapse: true,
+        order: [[ 8, "desc" ]],
         stateSave: false,
     });
 } );

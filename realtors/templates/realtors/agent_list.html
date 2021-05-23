@@ -9,7 +9,7 @@
     <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto">
         <div class="flex flex-col text-center w-full mb-10">
             <h1 class="sm:text-3xl text-2xl font-bold title-font mb-10 text-gray-900">
-                {% trans 'AGENTS'%}
+                {% trans 'AGENTS'%} - {{organisation}}
             </h1>
             <div class="flex flex-wrap sm:text-left text-center">
                 <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
@@ -43,7 +43,7 @@
         <div class="lg:w-3/3 w-full mx-auto overflow-auto">
             <table class="table-auto w-full text-left whitespace-no-wrap display" id="agents_table">
             <thead class="border-xl">
-                <tr class="tracking-widest md:text-sm text-xs text-center text-blue-600 bg-gray-100 border-t">
+                <tr class="tracking-widest md:text-sm text-left text-xs text-white bg-gray-800 ">
                     <th class="px-4 py-4 rounded-tl">#</th>
                     <th class="px-4 py-4">{% trans 'IMAGE'%}</th>
                     <th class="px-4 py-4">{% trans 'USERNAME'%}</th>
@@ -55,7 +55,7 @@
             </thead>
             <tbody>
                 {% for agent in agents %}
-                    <tr class="sm:text-sm text-xs text-center">
+                    <tr class="sm:text-sm text-xs text-left">
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
                         <td class="border-t-2 border-gray-200 px-4 py-3">
                         {% if agent.user.photo_main  %}
@@ -70,7 +70,7 @@
                         {% else %}
                         <td class="border-t-2 border-gray-200 px-4 py-3"><a href="?agentid={{agent.pk}}"><i class="text-red-500 text-lg hover:text-red-600 fa fa-times-circle"><span class="hidden">{{agent.active_agent}}</span></i></a></td>
                         {% endif %}
-                        <td class="border-t-2 border-gray-200 px-4 py-3 text-center">{{agent.list_date|date:"d M, Y"}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3 ">{{agent.list_date|date:"d M, Y"}}</td>
                     </tr>
                 {% endfor %}
             </tbody>

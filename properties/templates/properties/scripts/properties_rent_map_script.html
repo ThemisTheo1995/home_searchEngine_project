@@ -7,7 +7,7 @@ var genesisMarker = L.icon({
     iconSize: [30, 30],
 
 });
-var map= L.map('map{{rent.id}}').setView([lat, lng], 12);
+var map= L.map('map{{rent.id}}').setView([lat, lng], 14);
     L.marker([lat, lng], {icon: genesisMarker})
         .addTo(map)
         .openPopup();

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_tailwind',
     'django_cleanup',
     'import_export',
+    'sorl.thumbnail',
         
     # Local apps
     'accounts',

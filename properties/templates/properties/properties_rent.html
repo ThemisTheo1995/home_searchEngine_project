@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load thumbnail %}
 {% load i18n %}
 {% load humanize %}
 
@@ -14,36 +15,46 @@
     <div class="flex flex-wrap pb-16 pt-8">
       <div class="lg:w-3/12 w-full bg-gray-100">
         <div class="h-full overflow-hidden rounded-tl rounded-tr sm:rounded-tr-none ">
-           <div class="bg-blue-500 w-full float-left py-1 text-xs pl-2 font-bold">
+           <div class="bg-blue-600 w-full float-left py-1 text-xs pl-2 font-bold">
             {% if rent.property_category == 'STANDARD' %}
               <div class="text-white">
                 {{rent.property_category}}
               </div>
             {% elif rent.property_category == 'FEATURED' %}
-              <div class="text-white text-lg">
+              <div class="text-white text-lg tracking-widest">
                 {{rent.property_category}} <i class="text-red-600 fa fa-star"></i>
               </div> 
             {% else %}
-              <div class="text-white text-lg">
+              <div class="text-white text-lg tracking-widest">
                 {{rent.property_category}} <i class="text-yellow-400 fa fa-bolt"></i>
               </div> 
             {% endif %}
           </div> 
-          <div class="fotorama" data-loop="true" data-nav="thumbs" data-thumbwidth="100" data-width="100%" data-trackpad="true" data-ratio="1200/720">
+          <div class="fotorama" data-loop="true" data-fit="cover" data-nav="thumbs" data-width="100%" data-trackpad="true" data-ratio="476/317">
             {% if rent.photo_main  %}
-              <img data-keyboard="true" class="object-cover object-center" src="{{rent.photo_main.url}}">
+              {% thumbnail rent.photo_main "476x317" as im %}
+                  <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
+              {% endthumbnail %}
             {% endif %}
             {% if rent.photo_1  %}
-              <img class="object-cover object-center" src="{{rent.photo_1.url}}">
+              {% thumbnail rent.photo_1 "476x317" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo1{{rent.admin_2_en}}">
+              {% endthumbnail %}
             {% endif %}
             {% if rent.photo_2  %}
-              <img class="object-cover object-center" src="{{rent.photo_2.url}}">
+              {% thumbnail rent.photo_2 "476x317" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo2{{rent.admin_2_en}}">
+              {% endthumbnail %}
             {% endif %}          
             {% if rent.photo_3 %}
-              <img class="object-cover object-center" src="{{rent.photo_3.url}}">
+              {% thumbnail rent.photo_3 "476x317" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo3{{rent.admin_2_en}}">
+              {% endthumbnail %}
             {% endif %}  
             {% if rent.photo_4  %}
-              <img class="object-cover object-center" src="{{rent.photo_4.url}}">                              
+              {% thumbnail rent.photo_4 "476x317" as im %}
+                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo4{{rent.admin_2_en}}">
+              {% endthumbnail %}                         
             {% endif %}
 
           </div> 
@@ -51,22 +62,22 @@
       </div>
       <div class="lg:w-6/12 bg-gray-100 overflow-hidden rounded-tr-none sm:rounded-tr">
         <div class="h-full overflow-hidden">
-          <div class="bg-blue-500 w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon">
+          <div class="bg-blue-600 w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon">
             {% if rent.property_category == 'STANDARD' %}
-              <div class="text-blue-500">.</div>
+              <div class="text-blue-600">.</div>
             {% elif rent.property_category == 'FEATURED' %}
-              <div class="text-blue-500 text-lg">.</div> 
+              <div class="text-blue-600 text-lg">.</div> 
             {% else %}
-              <div class="text-blue-500 text-lg">.</div> 
+              <div class="text-blue-600 text-lg">.</div> 
             {% endif %}
           </div>
           <div class="p-4">
-            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank">
-              <div class="flex items-center flex-wrap w-full">
-                <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-gray-400">
-                  {{rent.city}} | {{rent.postalcode}} | {{rent.region}}
+            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
+              <div class="flex items-center flex-wrap w-full pt-4">
+                <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
+                  {{rent.admin_2}} | {{rent.postalcode}} | {{rent.admin_3}} | {{rent.country}}
                 </h2>
-                <h1 class="inline-flex items-center title-font font-bold text-2xl ml-auto mt-2 leading-none text-gray-900">
+                <h1 class="inline-flex items-center title-font font-bold text-2xl ml-auto leading-none text-gray-900">
                     {% ifequal rent.currency '€' %}
                       {{rent.price | intcomma}}{{rent.currency}}
                     {% else %}
@@ -75,14 +86,17 @@
                 </h1>
               </div>
             </a>
-            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank">
+            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
               <h1 class="title-font text-md font-bold text-gray-700 mb-2">
-                {{rent.address}}
+                {{rent.address}} {{rent.street_number}} 
+                {% if rent.admin_1 != '' %} 
+                , {{rent.admin_1}}
+                {% endif %}
               </h1>
             </a>
             <div class="flex flex-wrap my-2">
               <div class="lg:w-3/5 md:w-1/2 md:pr-6">
-                <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank">
+                <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
                   <p class="text-gray-900 text-sm mb-4 lg:mb-2 overflow-hidden">
                     {{rent.short_description}}
                   </p>
@@ -90,13 +104,13 @@
               </div>
               <div class="lg:w-2/5 md:w-1/2 w-full rounded border-2 border-blue-100 lg:mb-0 mb-4" id="map{{rent.id}}" style="height: 100px;"></div> 
             </div> 
-            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank">
-              <div class="flex flex-wrap text-sm text-blue-500 my-2">
+            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
+              <div class="flex flex-wrap text-sm text-gray-800 my-2">
                 <div class="flex justify-between lg:w-3/5 w-full md:pr-6 my-2 lg:my-2">
-                  <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center text-blue-500 font-bold">{{rent.property_type}}</div></div>
-                  <div><i class="fa fa-bed"></i> {% trans 'BEDROOMS'%}<div class="text-center text-blue-500 font-bold">{{rent.bedrooms}}</div></div>
-                  <div><i class="fa fa-bath"></i> {% trans 'BATHROOMS'%}<div class="text-center text-blue-500 font-bold">{{rent.bathrooms|floatformat:'0'}}</div></div>
-                  <div><i class="fa fa-th-large"></i> {% trans 'SPACE'%}<div class="text-center text-blue-500 font-bold">{{rent.m2}}m²</div></div>
+                  <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center font-bold">{{rent.property_type}}</div></div>
+                  <div><i class="fa fa-bed"></i> {% trans 'BEDROOMS'%}<div class="text-center font-bold">{{rent.bedrooms}}</div></div>
+                  <div><i class="fa fa-bath"></i> {% trans 'BATHROOMS'%}<div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div></div>
+                  <div><i class="fa fa-th-large"></i> {% trans 'SPACE'%}<div class="text-center font-bold">{{rent.m2}}m²</div></div>
                 </div>
                 <div class="flex justify-between lg:w-2/5 w-full my-2">
                   <p class="text-xs font-bold leading-none ml-auto">{% trans 'Published:'%} {{rent.list_date}}</p>
@@ -108,10 +122,10 @@
               <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{rent.organisation.email}}" 
                  target="popup" 
                  onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{rent.organisation.email}}','popup','width=600,height=600'); return false;"
-                 class="py-2 px-3 border-r border-white rounded-l text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
+                 class="py-2 px-3 border-r border-white rounded-l text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
                 <i class="fa fa-envelope pr-2"></i>EMAIL
               </a>
-              <a href="tel:{{rent.organisation.phone}}" class="py-2 px-4 rounded-r text-center text-white transition duration-75 ease-in-out bg-blue-500 hover:bg-blue-600 inline-flex items-center md:mb-2 lg:mb-0">
+              <a href="tel:{{rent.organisation.phone}}" class="py-2 px-4 rounded-r text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
                 <i class="fa fa-phone pr-2"></i>{% trans 'CALL'%}
               </a>
               <a class="inline-flex items-center  ml-auto leading-none">
