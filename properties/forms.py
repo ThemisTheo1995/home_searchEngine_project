@@ -1,4 +1,4 @@
-# properties/forms
+# properties/forms.py
 from django import forms
 from django.forms import CharField
 from .models import Properties
@@ -26,6 +26,7 @@ class PropertiesCreationForm(forms.ModelForm):
             'property_category',
             'street_number',
             'geo_lat',
+            'property_features',
             'geo_lng',
             'list_date',
             'address',

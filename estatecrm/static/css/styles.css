@@ -187,84 +187,9 @@ table.dataTable thead th, table.dataTable thead td {
 	--transition-2: all 0.2s ease-in-out;
 }
 
-.no_result {
-	margin: 0.3rem;
-	padding: 0.3rem 0.5rem;
-	list-style: none;
-	text-align: left;
-	font-size: 1rem;
-	color: #212121;
-	transition: all 0.1s ease-in-out;
-	border-radius: 0.35rem;
-	background-color: rgba(255, 255, 255, 1);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	transition: all 0.2s ease;
-	outline: none;
-}
-
 h1.title {
 	transition: var(--transition-1);
 }
-
-.toggle {
-	display: flex;
-	border: 1px solid rgb(125, 170, 243);
-	height: 35px;
-	width: 120px;
-	border-radius: 50px;
-	justify-content: flex-start;
-	align-content: center;
-	transition: var(--transition-2);
-}
-
-.toggler {
-	display: grid;
-	cursor: pointer;
-	background-color: rgb(125, 170, 243);
-	color: #fff;
-	height: 25px;
-	width: 60px;
-	border-radius: 50px;
-	margin: 5px;
-	text-align: center;
-	align-content: center;
-	align-self: flex-start;
-	transition: var(--transition-2);
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-webkit-touch-callout: none;
-}
-
-.toggler:hover {
-	width: 65px;
-	background-color: rgba(59, 130, 246);
-}
-
-.toggler::selection {
-	color: #fff;
-}
-
-.strict {
-	display: inline;
-}
-
-.loose {
-	display: inline;
-}
-
-@media only screen and (max-width: 600px) {
-	.selection {
-		margin-top: 2vh;
-	}
-}
-
-/* .container {
-  width: 100vw;
-  height: 100vh;
-} */
 
 .no_result {
   margin: 0.3rem;
@@ -302,7 +227,7 @@ h1.title {
 .toggler {
   display: grid;
   cursor: pointer;
-  background-color: rgba(59, 130, 246, 1);
+  background-color: rgba(37, 99, 235);
   color: #fff;
   height: 25px;
   width: 60px;
@@ -528,7 +453,23 @@ h1.title {
 
 /* End Auto complete Tarek Raafat */
 
+.ms-choice{
+  height: 40px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: .5rem;
+  border-color: rgba(209,213,219,1);
+  outline: none;
+}
+.ms-choice:focus{
+  outline: none;
+}
 
+.ms-choice .placeholder {
+  margin-top:5px;
+}
 /* Fotorama */
 
 

@@ -1,4 +1,4 @@
-# properties/urls.py
+# properties/views.py
 from django.views import generic
 from django.http import JsonResponse
 from estatecrm.keys import googleKey
@@ -79,6 +79,23 @@ class PropertiesRentDetailView(generic.DetailView):
             advertised = 'To_Rent',
             is_published=True,
             )
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs.get('pk')
+        try:
+            prop_features_json = Properties.objects.get(pk=pk).property_features
+            if prop_features_json:
+                jsonDec = json.decoder.JSONDecoder()
+                prop_features = jsonDec.decode(prop_features_json)
+                if prop_features:
+                    for value in prop_features:
+                        context[value] = value
+        except Properties.DoesNotExist:
+            context[''] = ''
+        
+        return context
+    
 
 ### Create view - Auto complete ###
 def create_autocomplete(request):
@@ -101,6 +118,7 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
         if 'location-create' and 'address' in self.request.POST:
             location = self.request.POST.get('location-create','')
             address_search = self.request.POST.get('address', '')
+            property_features = self.request.POST.getlist('property-features','')
             if len(location)>0 and len(address_search)>0: 
                 
                 ### Google Geo endpoint ###
@@ -156,10 +174,13 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
                     identifier = location_info.identifier
                 else:
                     identifier =''
+                
+                if property_features:
+                    property_features = json.dumps(property_features)
                     
-                print(identifier)
         # Excluded form fields, manually saved
         properties.organisation = self.request.user.organisation
+        properties.property_features = property_features
         properties.street_number = street_number
         properties.geo_lat = geo_lat
         properties.geo_lng = geo_lng

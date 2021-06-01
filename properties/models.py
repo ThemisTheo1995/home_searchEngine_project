@@ -1,6 +1,8 @@
+# properties/models.py
 from django.db import models
 from io import BytesIO
 import sys
+from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from accounts.models import CustomUser 
 from datetime import datetime
@@ -70,6 +72,18 @@ post_save.connect(update_identifier, sender=geoData)
 
 #Properties model
 class Properties(models.Model):
+    TYPE_CHOICES = [
+        ('Flat/Apartment', _('Flat/Apartment')),
+        ('Cottage', _('Cottage')),
+        ('Detached', _('Detached')),
+        ('Semi-Detached', _('Semi-Detached')),
+        ('Terraced', _('Terraced')),
+        ('Studio', _('Studio')),
+        ('Bungalow', _('Bungalow')),
+        ('Penthouse', _('Penthouse')),
+        ('Land', _('Land')),
+        ('Shared', _('Shared')),
+    ]
     FURNITURE_CHOICES = [
         ('Furnished', 'Furnished'),
         ('Unfurnished', 'Unfurnished'),
@@ -91,7 +105,8 @@ class Properties(models.Model):
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     agent = models.ForeignKey(Agent, null=True, blank=True, on_delete=models.SET_NULL)
     property_category = models.CharField(max_length=25,choices=PROPERTY_CATEGORY_CHOICES, default='STANDARD')
-    property_type = models.CharField(max_length=100)
+    property_type = models.CharField(max_length=100, choices=TYPE_CHOICES, default='Flat/Apartment')
+    property_features = models.CharField(max_length=300, blank=True, default='')
     advertised = models.CharField(max_length=10, choices=ADVERTISMENT_CHOICES, default='To_Rent')
     description = models.TextField(max_length=2000)
     short_description = models.TextField(max_length=150, default='')

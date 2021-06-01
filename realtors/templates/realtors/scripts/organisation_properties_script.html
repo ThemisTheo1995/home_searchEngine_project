@@ -1,6 +1,6 @@
 <script>
-$(document).ready( function () {
-    $('#properties_table').DataTable({
+$(function(){
+    $('#org_properties_table').DataTable({
         paging:true,
         pagingType: "full_numbers",
         select: true,
@@ -9,11 +9,45 @@ $(document).ready( function () {
         //    "decimal": ",",
         //    "thousands": "."
         //},
-        //scrollY: "500px",
-        //scrollY:  "500px",
-        //scrollCollapse: true,
+        scrollY: "500px",
+        scrollCollapse: true,
         order: [[ 8, "desc" ]],
         stateSave: false,
     });
-} );
+});
+function previewMode (pk){
+    if (pk != ''){
+        // GET AJAX request
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'organisation:ajax_realtors_org_rent_preview' %}",
+            async: true,
+            data: {"pk": pk},
+            success: function (rent) {
+                // Populate the fields if response is valid
+                if(rent){
+                    $('.property_type').html(rent.property_type);
+                    $('.bedrooms').html(rent.bedrooms);
+                    $('.bathrooms').html(rent.bathrooms);
+                    $('.m2').html(rent.m2);
+                    $('.short_description').html(rent.short_description);
+                    $('.admin_1').html(rent.admin_1);
+                    $('.address').html(rent.address);
+                    $('.street_number').html(rent.street_number);
+                    $('.currency').html(rent.currency);
+                    $('.admin_2').html(rent.admin_2);
+                    $('.admin_3').html(rent.admin_3);
+                    $('.country').html(rent.country);
+                    $('.postalcode').html(rent.postalcode);
+
+
+                }
+            },
+            error: function (rent) {
+                // Else log the issue
+                console.log(rent)
+            }
+        });
+    }
+}
 </script>

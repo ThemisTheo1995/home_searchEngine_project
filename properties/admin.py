@@ -1,3 +1,4 @@
+# properties/admin.py
 from django.contrib import admin
 from .models import Properties, geoData
 from .forms import PropertiesForm

@@ -7,8 +7,6 @@
 {% block title %}Genesis | Rent{% endblock title %}
 
 {% block content %}
-
-
 <section class="text-gray-600 body-font">
   <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto">
     {% for rent in rentProperties %}
@@ -134,7 +132,7 @@
                 {% endif %}
                 <span class="flex-grow flex flex-col pl-4">
                   <span class="title-font text-sm font-medium text-gray-900">{{rent.organisation.name}}</span>
-                  <span class="text-gray-400 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
+                  <span class="text-gray-700 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
                 </span>
               </a>
             </div>

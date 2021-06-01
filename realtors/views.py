@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse
 from django.views import generic
+from django.http import JsonResponse
 from django.core.mail import send_mail
 from .mixins import RealtorAndLoginRequiredMixin, OrganisationAndLoginRequiredMixin
 from .models import Organisation, Agent
@@ -84,7 +85,45 @@ class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView
             # queryset = q.filter(agent__user = user)
         return queryset
 
-
+def realtors_org_rent_preview(request):
+    if  request.is_ajax and request.method == 'GET':
+        try:
+            rent = Properties.objects.get(pk=request.GET.get('pk', ''))
+            data = {
+                "rent": rent.bathrooms,
+                "list_date": rent.list_date,
+                "address": rent.address,
+                # "photo_main": rent.photo_main,
+                # "photo_1": rent.photo_1,
+                # "photo_2": rent.photo_2,
+                # "photo_3": rent.photo_3,
+                # "photo_4": rent.photo_4, 
+                "street_number": rent.street_number,
+                "price": rent.price,
+                "property_type": rent.property_type,
+                "currency": rent.currency,
+                "bedrooms": rent.bedrooms,
+                "bathrooms": rent.bathrooms,
+                "postalcode": rent.postalcode,
+                "m2":rent.m2,
+                "short_description":rent.short_description,
+                "admin_1":rent.admin_1,
+                "admin_2":rent.admin_2,
+                "admin_3":rent.admin_3,
+                "admin_4":rent.admin_4,
+                "country":rent.country,
+                "admin_1_en":rent.admin_1_en,
+                "admin_2_en":rent.admin_2_en,
+                "admin_3_en":rent.admin_3_en,
+                "admin_4_en":rent.admin_4_en,
+                "country_en":rent.country_en,
+            }
+        except:
+            data = {
+                "pk": "notFound"
+            }
+        return JsonResponse(data, status=200)
+    
 ### Agent views ###
 class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
     paginate_by = 15

@@ -1,22 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <themistheodoratos@gmail.com>, 2021.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-29 13:01+0000\n"
+"POT-Creation-Date: 2021-05-26 15:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: FULL NAME <themistheodoratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/admin.py:17
+msgid "Personal info"
+msgstr "Πληροφορίες χρήστη"
+
+#: accounts/admin.py:18
+msgid "Permissions"
+msgstr ""
+
+#: accounts/admin.py:21
+msgid "Important dates"
+msgstr "Κύριες ημερομηνίες"
 
 #: accounts/templates/settings.html:12
 msgid "SETTINGS"
@@ -52,51 +64,475 @@ msgstr "Αλλαγή κωδικού"
 msgid "Click below to change your current password."
 msgstr "Κάνε κλικ για αλλάξεις τον κωδικό σου."
 
-#: estatecrm/settings.py:135
-msgid "English"
-msgstr "Αγγλικά"
-
-#: estatecrm/settings.py:136
+#: estatecrm/settings.py:140
 msgid "Greek"
 msgstr "Ελληνικά"
 
-#: templates/landing.html:13
-msgid "More than 20k+ properties to choose from."
-msgstr "Αμέτρητες επιλογές σπιτιών για να διαλέξεις το δικό σου"
+#: estatecrm/settings.py:141
+msgid "English"
+msgstr "Αγγλικά"
 
-#: templates/landing.html:16
-msgid ""
-"Some people look for a beautiful place. Others make a place beautiful. "
-"Discover yours."
+#: properties/models.py:76
+msgid "Flat/Apartment"
+msgstr "Διαμέρισμα"
+
+#: properties/models.py:77
+msgid "Cottage"
+msgstr "Εξοχικό"
+
+#: properties/models.py:78
+msgid "Detached"
+msgstr "Μονοκατοικία"
+
+#: properties/models.py:79
+msgid "Semi-Detached"
+msgstr "Ημιανεξάρτητο"
+
+#: properties/models.py:80
+msgid "Terraced"
+msgstr "Συγκρότημα"
+
+#: properties/models.py:81
+msgid "Studio"
+msgstr "Στούντιο"
+
+#: properties/models.py:82
+msgid "Bungalow"
+msgstr "Bungalow"
+
+#: properties/models.py:83
+msgid "Penthouse"
+msgstr "Ρετιρέ"
+
+#: properties/models.py:84
+msgid "Land"
+msgstr "Οικόπεδο"
+
+#: properties/models.py:85
+msgid "Shared"
+msgstr "Κοινόχρηστο"
+
+#: properties/templates/properties/properties_create.html:10
+msgid "Create a new property"
+msgstr "Δημιουργία νέας καταχώρησης οικήματος"
+
+#: properties/templates/properties/properties_create.html:16
+#: properties/templates/properties/properties_update.html:16
+msgid "Location"
+msgstr "Tοποθεσία"
+
+#: properties/templates/properties/properties_create.html:29
+msgid "Address"
+msgstr "Διεύθυνση"
+
+#: properties/templates/properties/properties_create.html:31
+msgid "Search for your exact address..."
+msgstr "Ψάξτε την ακριβή διεύθυνση του οικοδομήματος"
+
+#: properties/templates/properties/properties_create.html:35
+msgid "Features"
+msgstr "Διάφορα Χαρακτηριστικά"
+
+#: properties/templates/properties/properties_create.html:37
+msgid "Select property's features..."
+msgstr "Επιλέξτε διάφορα χαρακτηριστικά"
+
+#: properties/templates/properties/properties_create.html:39
+#: properties/templates/properties/properties_rent_detail.html:143
+msgid "Bills included"
+msgstr "Τιμή με λογαριασμούς"
+
+#: properties/templates/properties/properties_create.html:40
+#: properties/templates/properties/properties_rent_detail.html:144
+msgid "Cleaning services"
+msgstr "Παροχές καθαρισμού"
+
+#: properties/templates/properties/properties_create.html:41
+#: properties/templates/properties/properties_rent_detail.html:145
+msgid "Refurbished"
+msgstr "Ανακαινισμένο"
+
+#: properties/templates/properties/properties_create.html:42
+#: properties/templates/properties/properties_rent_detail.html:146
+msgid "Gas"
+msgstr "Αέριο"
+
+#: properties/templates/properties/properties_create.html:43
+#: properties/templates/properties/properties_rent_detail.html:147
+msgid "Electricity"
+msgstr "Ηλεκτρική θέρμανση"
+
+#: properties/templates/properties/properties_create.html:44
+#: properties/templates/properties/properties_rent_detail.html:148
+msgid "Central heating"
+msgstr "Κεντρική θέρμανση"
+
+#: properties/templates/properties/properties_create.html:47
+#: properties/templates/properties/properties_rent_detail.html:149
+msgid "Laundry room"
+msgstr "Κοινόχρηστα πλυντήρια"
+
+#: properties/templates/properties/properties_create.html:48
+#: properties/templates/properties/properties_rent_detail.html:150
+msgid "En-suite"
+msgstr "Ενσωματομένο μπάνιο"
+
+#: properties/templates/properties/properties_create.html:49
+#: properties/templates/properties/properties_rent_detail.html:151
+msgid "Playroom"
 msgstr ""
-"Άλλοι αναζητούν ένα όμορφο μέρος, ενώ άλλοι το δημιουργούν. Ανακάλυψε το "
-"δικό σου."
 
-#: templates/landing.html:20
+#: properties/templates/properties/properties_create.html:50
+#: properties/templates/properties/properties_rent_detail.html:159
+msgid "Elevator"
+msgstr "Ανελκυστήρας"
+
+#: properties/templates/properties/properties_create.html:51
+#: properties/templates/properties/properties_rent_detail.html:152
+msgid "Garden"
+msgstr "Κήπος"
+
+#: properties/templates/properties/properties_create.html:52
+#: properties/templates/properties/properties_rent_detail.html:153
+msgid "Shared kitchen"
+msgstr "Κοινόχρηστη κουζίνα"
+
+#: properties/templates/properties/properties_create.html:55
+#: properties/templates/properties/properties_rent_detail.html:154
+msgid "Swimming-pool"
+msgstr "Πισίνα"
+
+#: properties/templates/properties/properties_create.html:56
+#: properties/templates/properties/properties_rent_detail.html:155
+msgid "Student-accommodation"
+msgstr "Για φοιτητές"
+
+#: properties/templates/properties/properties_create.html:57
+#: properties/templates/properties/properties_rent_detail.html:156
+msgid "No deposit"
+msgstr ""
+
+#: properties/templates/properties/properties_create.html:58
+#: properties/templates/properties/properties_rent_detail.html:157
+msgid "Fireplace"
+msgstr "Τζάκι"
+
+#: properties/templates/properties/properties_create.html:59
+#: properties/templates/properties/properties_rent_detail.html:158
+msgid "Scenery/View"
+msgstr "Θέα"
+
+#: properties/templates/properties/properties_create.html:64
+#: realtors/templates/realtors/agent_create.html:17
+#: templates/registration/password_change_form.html:16
+msgid "Submit"
+msgstr "Μετάβαση"
+
+#: properties/templates/properties/properties_rent.html:110
+#: realtors/templates/realtors/organisation_properties.html:94
+msgid "TYPE"
+msgstr "ΤΥΠΟΣ"
+
+#: properties/templates/properties/properties_rent.html:111
+msgid "BEDROOMS"
+msgstr "ΔΩΜΑΤΙΑ"
+
+#: properties/templates/properties/properties_rent.html:112
+msgid "BATHROOMS"
+msgstr "ΜΠΑΝΙΑ"
+
+#: properties/templates/properties/properties_rent.html:113
+msgid "SPACE"
+msgstr "ΤΕΤΡΑΓΩΝΙΚΑ"
+
+#: properties/templates/properties/properties_rent.html:116
+msgid "Published:"
+msgstr "Ενεργό:"
+
+#: properties/templates/properties/properties_rent.html:129
+msgid "CALL"
+msgstr "ΚΛΗΣΗ"
+
+#: properties/templates/properties/properties_rent.html:137
+#: properties/templates/properties/properties_rent_detail.html:186
+#: properties/templates/properties/properties_rent_detail.html:194
+msgid "AGENCY"
+msgstr "ΜΕΣΙΤΙΚΟ"
+
+#: properties/templates/properties/properties_rent_detail.html:134
+msgid "LETTING DETAILS"
+msgstr "ΠΛΗΡΟΦΟΡΙΕΣ ΕΝΟΙΚΙΑΣΗΣ"
+
+#: properties/templates/properties/properties_rent_detail.html:136
+msgid "Available to let after:"
+msgstr "Διαθέσιμο μετά από:"
+
+#: properties/templates/properties/properties_rent_detail.html:137
+msgid "Furnished Type:"
+msgstr "Έπιπλα:"
+
+#: properties/templates/properties/properties_rent_detail.html:141
+msgid "MAIN FEATURES"
+msgstr "ΣΤΟΙΧΕΙΑ"
+
+#: properties/templates/properties/properties_rent_detail.html:164
+msgid "SPECIFICATIONS"
+msgstr "ΚΥΡΙΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ"
+
+#: properties/templates/properties/properties_rent_detail.html:166
+msgid "Type"
+msgstr ""
+
+#: properties/templates/properties/properties_rent_detail.html:171
+msgid "Bedrooms"
+msgstr ""
+
+#: properties/templates/properties/properties_rent_detail.html:172
+msgid "Bathrooms"
+msgstr ""
+
+#: properties/templates/properties/properties_rent_detail.html:173
+msgid "Space"
+msgstr ""
+
+#: properties/templates/properties/properties_rent_detail.html:178
+msgid "DESCRIPTION"
+msgstr "ΠΕΡΙΓΡΑΦΗ"
+
+#: properties/templates/properties/properties_rent_detail.html:183
+msgid "MAP"
+msgstr "ΧΑΡΤΗΣ"
+
+#: properties/templates/properties/properties_rent_detail.html:199
+msgid "Learn More"
+msgstr "Περισσότερα"
+
+#: properties/templates/properties/properties_update.html:11
+msgid "Property details"
+msgstr "Πληροφορίες ακινήτου"
+
+#: properties/templates/properties/properties_update.html:82
+#: realtors/templates/realtors/agent_update.html:17
+#: realtors/templates/realtors/organisation_update.html:17
+#: templates/registration/updateUser.html:22
+msgid "Update details"
+msgstr "Ενημέρωση πληροφοριών"
+
+#: realtors/templates/realtors/agent_create.html:11
+msgid "Create an agent"
+msgstr "Καταχώρηση νέου υπαλλήλου"
+
+#: realtors/templates/realtors/agent_list.html:12
+msgid "AGENTS"
+msgstr "ΥΠΑΛΛΗΛΟΙ"
+
+#: realtors/templates/realtors/agent_list.html:22
+msgid "Total Agents"
+msgstr "Σύνολο Υπαλλήλων"
+
+#: realtors/templates/realtors/agent_list.html:35
+msgid "Add an agent"
+msgstr "Καταχώρηση Υπαλλήλου"
+
+#: realtors/templates/realtors/agent_list.html:48
+#: realtors/templates/realtors/organisation_properties.html:93
+msgid "IMAGE"
+msgstr "ΕΙΚΟΝΑ"
+
+#: realtors/templates/realtors/agent_list.html:49
+msgid "USERNAME"
+msgstr ""
+
+#: realtors/templates/realtors/agent_list.html:50
+msgid "NAME"
+msgstr "ΟΝΟΜΑ"
+
+#: realtors/templates/realtors/agent_list.html:51
+msgid "EMAIL"
+msgstr ""
+
+#: realtors/templates/realtors/agent_list.html:52
+msgid "ACTIVE"
+msgstr "ΕΝΕΡΓΟΣ"
+
+#: realtors/templates/realtors/agent_list.html:53
+msgid "LISTED DATE"
+msgstr "ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΗΣΗΣ"
+
+#: realtors/templates/realtors/agent_update.html:11
+msgid "Agent details"
+msgstr "Πληροφορίες υπαλλήλου"
+
+#: realtors/templates/realtors/organisation_dashboard.html:13
+msgid "ADMIN BOARD"
+msgstr "ΠΙΝΑΚΑΣ ΔΙΑΧΕΙΡΙΣΤΗ"
+
+#: realtors/templates/realtors/organisation_dashboard.html:14
+msgid "BOARD"
+msgstr "ΠΙΝΑΚΑΣ"
+
+#: realtors/templates/realtors/organisation_dashboard.html:25
+msgid "ORGANISATION INFO"
+msgstr "ΠΛΗΡΟΦΟΡΙΕΣ ΕΤΑΙΡΕΙΑΣ"
+
+#: realtors/templates/realtors/organisation_dashboard.html:31
+msgid "Name: "
+msgstr "Όνομα: "
+
+#: realtors/templates/realtors/organisation_dashboard.html:32
+msgid "Email: "
+msgstr ""
+
+#: realtors/templates/realtors/organisation_dashboard.html:33
+msgid "Phone: "
+msgstr "Τηλέφωνο: "
+
+#: realtors/templates/realtors/organisation_dashboard.html:34
+msgid "Phone extension: "
+msgstr "Κωδικός χώρας (τηλεφώνου): "
+
+#: realtors/templates/realtors/organisation_dashboard.html:35
+msgid "Short Description: "
+msgstr "Μικρή περιγραφή ακινήτου: "
+
+#: realtors/templates/realtors/organisation_dashboard.html:37
+msgid "Logo: "
+msgstr ""
+
+#: realtors/templates/realtors/organisation_dashboard.html:46
+msgid "Update info"
+msgstr "Ενημέρωση πληροφοριών"
+
+#: realtors/templates/realtors/organisation_dashboard.html:66
+msgid "MY RENT PROPERTIES"
+msgstr "ΟΙ ΚΑΤΑΧΩΡΗΣΕΙΣ ΜΟΥ ΠΡΟΣ ΕΝΟΙΚΙΑΣΗ"
+
+#: realtors/templates/realtors/organisation_dashboard.html:91
+msgid "MY SALE PROPERTIES"
+msgstr "ΟΙ ΚΑΤΑΧΩΡΗΣΕΙΣ ΜΟΥ ΠΡΟΣ ΠΩΛΗΣΗ"
+
+#: realtors/templates/realtors/organisation_dashboard.html:116
+msgid "MY AGENTS"
+msgstr "ΟΙ ΥΠΑΛΛΗΛΟΙ ΜΟΥ"
+
+#: realtors/templates/realtors/organisation_dashboard.html:140
+msgid "ANALYTICS"
+msgstr "ΑΝΑΛΥΤΙΚΕΣ"
+
+#: realtors/templates/realtors/organisation_properties.html:13
+msgid "DASHBOARD - RENT"
+msgstr "ΠΙΝΑΚΑΣ - ΠΡΟΣ ΕΝΟΙΚΙΑΣΗ"
+
+#: realtors/templates/realtors/organisation_properties.html:23
+msgid "Total properties"
+msgstr "Σύνολο ακινήτων"
+
+#: realtors/templates/realtors/organisation_properties.html:36
+msgid "Total Featured"
+msgstr "Σύνολο προωθημένων"
+
+#: realtors/templates/realtors/organisation_properties.html:49
+msgid "Total Published"
+msgstr "Σύνολο δημοσιευμένων"
+
+#: realtors/templates/realtors/organisation_properties.html:62
+msgid "Charges"
+msgstr "Χρεώσεις"
+
+#: realtors/templates/realtors/organisation_properties.html:74
+msgid "ADD A PROPERTY"
+msgstr "ΚΑΤΑΧΩΡΗΣΗ ΑΚΙΝΗΤΟΥ"
+
+#: realtors/templates/realtors/organisation_properties.html:81
+msgid "ADD AN AGENT"
+msgstr "ΚΑΤΑΧΩΡΗΣΗ ΥΠΑΛΛΗΛΟΥ"
+
+#: realtors/templates/realtors/organisation_properties.html:95
+msgid "ADDRESS"
+msgstr "ΔΙΕΥΘΥΝΣΗ"
+
+#: realtors/templates/realtors/organisation_properties.html:96
+msgid "POSTCODE"
+msgstr "ΤΑΧ. ΚΩΔΙΚΑΣ"
+
+#: realtors/templates/realtors/organisation_properties.html:97
+msgid "PRICE"
+msgstr "ΤΙΜΗ"
+
+#: realtors/templates/realtors/organisation_properties.html:98
+msgid "PUBLISHED"
+msgstr "ΔΗΜΟΣΙΕΥΜΕΝΗ"
+
+#: realtors/templates/realtors/organisation_properties.html:99
+msgid "CATEGORY"
+msgstr "ΚΑΤΗΓΟΡΙΑ"
+
+#: realtors/templates/realtors/organisation_properties.html:100
+msgid "AVAILABILITY"
+msgstr "ΔΙΑΘΕΣΙΜΟΤΗΤΑ"
+
+#: realtors/templates/realtors/organisation_update.html:11
+msgid "Organisation details"
+msgstr "Πληροφορίες Εταιρείας"
+
+#: templates/footer.html:81
+msgid "Been developed with Love and Dedication"
+msgstr "Δημιουργήθηκε με Αγάπη και Αφοσίωση"
+
+#: templates/landing.html:15
+msgid "There is more world than you imagine"
+msgstr "Υπάρχει περισσότερος κόσμος από αυτόν που φαντάζεσαι"
+
+#: templates/landing.html:18
+msgid "Explore homes, properties and offices in Greece and the UK"
+msgstr ""
+"Βρες το δικό σου σπίτι, οικία και γραφείο στην Ελλάδα και το Ηνωμένο Βασίλειο"
+
+#: templates/landing.html:23
+msgid "Search for a location..."
+msgstr "Ψάξτε την τοποθεσία..."
+
+#: templates/landing.html:27
+msgid "Strict"
+msgstr ""
+
+#: templates/landing.html:34
 msgid "TO RENT"
 msgstr "ΕΝΟΙΚΙΑΣΗ"
 
-#: templates/landing.html:22
+#: templates/landing.html:37
 msgid "FOR SALE"
 msgstr "ΠΩΛΗΣΗ"
 
+#: templates/landing.html:46
+msgid "LATEST PUBLISHED PROPERTIES"
+msgstr "ΤΕΛΕΥΤΑΙΕΣ ΔΗΜΟΣΙΕΥΣΕΙΣ"
+
 #: templates/navbar.html:32
-msgid "To Rent"
-msgstr "Ενοικίαση"
-
-#: templates/navbar.html:33
-msgid "For Sale"
-msgstr "Πώληση"
-
-#: templates/navbar.html:35
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: templates/navbar.html:38
+#: templates/navbar.html:35 templates/navbar.html:40
+msgid "Board"
+msgstr "Πίνακας"
+
+#: templates/navbar.html:95
+msgid "Manage your account"
+msgstr "Ρυθμίσεις λογαριασμού"
+
+#: templates/navbar.html:98
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: templates/navbar.html:46 templates/registration/signup.html:14
+#: templates/navbar.html:103
+msgid "Terms of Policy"
+msgstr "Όροι και Πολιτική"
+
+#: templates/navbar.html:106
+msgid "GDPR"
+msgstr ""
+
+#: templates/navbar.html:114 templates/registration/signup.html:14
 msgid "Login"
 msgstr "Σύνδεση"
 
@@ -117,13 +553,17 @@ msgstr "Δημιουργία λογαριασμού"
 msgid "Forgot password?"
 msgstr "Ξεχάσατε τον κωδικό;"
 
+#: templates/registration/password_change_done.html:5
+msgid "You have succesfully changed your password"
+msgstr "Αλλάξατε τον κωδικό σας επιτυχώς. Κάντε κλικ"
+
+#: templates/registration/password_change_done.html:7
+msgid "Click to get redirected to the main page."
+msgstr "Πατήστε εδώ για να πάτε στην αρχική σελίδα."
+
 #: templates/registration/password_change_form.html:10
 msgid "Change your password"
 msgstr "Αλλάξτε τον κωδικό σας"
-
-#: templates/registration/password_change_form.html:16
-msgid "Submit"
-msgstr ""
 
 #: templates/registration/password_reset_complete.html:5
 msgid "Password reset complete"
@@ -143,11 +583,11 @@ msgstr "για να συνδεθείτε."
 
 #: templates/registration/password_reset_confirm.html:8
 msgid "Enter your new password"
-msgstr ""
+msgstr "Πληκτρολογήστε τον κωδικό σας"
 
 #: templates/registration/password_reset_confirm.html:12
 msgid "Confirm new password"
-msgstr ""
+msgstr "Πατήστε για επικύρωση"
 
 #: templates/registration/password_reset_done.html:5
 msgid "We have sent you an email to confirm your password reset."
@@ -178,9 +618,21 @@ msgstr "Έχετε ήδη λογιαριασμό;"
 msgid "Do you want to change your password?"
 msgstr "Θέλετε να αλλάξετε τον κωδικό σας;"
 
-#: templates/registration/updateUser.html:22
-msgid "Update details"
-msgstr "Ενημέρωση πληροφοριών"
+#~ msgid "More than 20k+ properties to choose from."
+#~ msgstr "Αμέτρητες επιλογές σπιτιών για να διαλέξεις το δικό σου"
+
+#~ msgid ""
+#~ "Some people look for a beautiful place. Others make a place beautiful. "
+#~ "Discover yours."
+#~ msgstr ""
+#~ "Άλλοι αναζητούν ένα όμορφο μέρος, ενώ άλλοι το δημιουργούν. Ανακάλυψε το "
+#~ "δικό σου."
+
+#~ msgid "To Rent"
+#~ msgstr "Ενοικίαση"
+
+#~ msgid "For Sale"
+#~ msgstr "Πώληση"
 
 #~ msgid "Language"
 #~ msgstr "Γλώσσα"
