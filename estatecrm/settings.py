@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django_cleanup',
     'import_export',
     'sorl.thumbnail',
+    'pwa',
+    'tailwind',
         
     # Local apps
     'accounts',
@@ -165,10 +167,45 @@ LOGIN_URL = '/login'
 CRISPY_TEMPLATE_PACK = 'tailwind'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
+# PWA
+PWA_APP_NAME = 'Genesis'
+PWA_APP_DESCRIPTION = "Property search engine"
+PWA_APP_THEME_COLOR = '#3b82f6'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/genesis.png',
+        'sizes': '160x160',
+        "purpose": "any maskable"
+    },
+    {
+        'src': '/static/images/icons/genesis_splash.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
+        'sizes': '512x512'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/images/genesis.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/images/icons/splash-640x1136.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en'
 

@@ -1,8 +1,8 @@
 {% load static %}
-
 <!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="{{LANGUAGE_CODE}}">
+{% load pwa %}
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,42 +12,51 @@
   {% else %}
     <meta name="description" content = "Ιστοσελίδα αναζήτης ακινήτων προς πώληση ή ενοικίαση. Εξυπηρέτηση χρηστών για αναζήτηση ακινήτων αλλά και προσθήκη αυτών από μεσιτικά γραφεία και ανεξάρτητων ιδιοκτητών">
   {% endif %}
+  {% progressive_web_app_meta %}
   <title>{% block title %}Genesis Real Estate{% endblock %}</title>
 
   <!-- autoComplete Tarek Raafat-->
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
-
-  <!-- Multiple Select -->
-  <link defer rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
+  <link rel="stylesheet" href="{% static 'css/autoComplete.css' %}"> 
+  {% comment %} <script defer src="{% static 'js/splide.js' %}"></script>{% endcomment %}
 
   <!-- jQuery 1.8 or later, 33 KB -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+  <!-- Multiple Select -->
+  <link defer rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
+  <script defer src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+
   <!-- Fotorama from CDNJS, 19 KB -->
-  <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-  <script src="{% static 'js/fotorama.js' %}"></script>
-
+  <link  defer href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <script defer src="{% static 'js/fotorama.js' %}"></script>
+  {% comment %}<link defer rel="stylesheet" href="{% static 'css/fotorama.css' %}">{% endcomment %}
+  
   <!-- Splide -->
-  <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+  <link defer href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+  {% comment %} <script defer src="{% static 'js/splide.js' %}"></script>
+  <link defer rel="stylesheet" href="{% static 'css/splide.css' %}"> {% endcomment %}
 
-    <!-- Leaflet library -->
-  <link  rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- Leaflet library --> 
+  <link defer rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> 
+  {% comment %} <script defer src="{% static 'js/leaflet.js' %}"></script>
+  <link defer rel="stylesheet" href="{% static 'css/leaflet.css' %}"> {% endcomment %}
   
   <!-- Mapbox tiles API integrated with Leaflet -->
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+  <link defer href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+  <script defer src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
   
   <!-- Leaflet/Mapbox gl -->
-  <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
+  <script defer src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
 
   <!-- Data tables-->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+  <link defer rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
   <script defer type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
   
   <!-- Font-awesome-->
-  <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  {% comment %} <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}
   
   <!-- Tailwind -->
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">

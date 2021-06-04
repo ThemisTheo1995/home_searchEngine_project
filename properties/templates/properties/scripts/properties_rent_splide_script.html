@@ -1,5 +1,5 @@
 <script>
-
+$(function(){
 var secondarySlider = new Splide('#secondary-slider', {
     direction   : 'ttb',
     perPage     : 3,
@@ -35,5 +35,5 @@ var primarySlider = new Splide('#image-slider', {
 });
 
 primarySlider.sync(secondarySlider).mount();
-
+});
 </script>

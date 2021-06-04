@@ -70,7 +70,7 @@
             {% endif %}
           </div>
           <div class="p-4">
-            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
+            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
               <div class="flex items-center flex-wrap w-full pt-4">
                 <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                   {{rent.admin_2}} | {{rent.postalcode}} | {{rent.admin_3}} | {{rent.country}}
@@ -84,7 +84,7 @@
                 </h1>
               </div>
             </a>
-            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
+            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
               <h1 class="title-font text-md font-bold text-gray-700 mb-2">
                 {{rent.address}} {{rent.street_number}} 
                 {% if rent.admin_1 != '' %} 
@@ -94,7 +94,7 @@
             </a>
             <div class="flex flex-wrap my-2">
               <div class="lg:w-3/5 md:w-1/2 md:pr-6">
-                <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
+                <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
                   <p class="text-gray-900 text-sm mb-4 lg:mb-2 overflow-hidden">
                     {{rent.short_description}}
                   </p>
@@ -102,7 +102,7 @@
               </div>
               <div class="lg:w-2/5 md:w-1/2 w-full rounded border-2 border-blue-100 lg:mb-0 mb-4" id="map{{rent.id}}" style="height: 100px;"></div> 
             </div> 
-            <a href="{% url 'properties:rent-detail' rent.pk %}" target="_blank" rel="noopener">
+            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
               <div class="flex flex-wrap text-sm text-gray-800 my-2">
                 <div class="flex justify-between lg:w-3/5 w-full md:pr-6 my-2 lg:my-2">
                   <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center font-bold">{{rent.property_type}}</div></div>

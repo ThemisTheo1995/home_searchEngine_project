@@ -6,13 +6,23 @@ from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.core import serializers
-from django.shortcuts import reverse, get_object_or_404
+from django.shortcuts import reverse, get_object_or_404, render
 from .models import Properties, geoData
 from .forms import FilterForm, PropertiesCreationForm, PropertiesUpdateForm
 from urllib.parse import urlencode
 from realtors import mixins
-import requests, json, re
-    
+import requests, json, re 
+
+### Offline view ###
+def offline(request):
+    template='offline.html'
+    return render(request,template) 
+
+### Base view ###
+def base_layout(request):
+    template='base.html'
+    return render(request,template)   
+
 ### Landing view - Auto complete ###
 def landing_autocomplete(request):
     if  request.method == 'GET':
