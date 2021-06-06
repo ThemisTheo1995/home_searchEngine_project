@@ -7,13 +7,13 @@
 {% block title %}Genesis | Rent{% endblock title %}
 
 {% block content %}
-<section class="text-gray-600 body-font">
+<section class="text-gray-600 body-font bg-gray-200">
   <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto">
     {% for rent in rentProperties %}
     <div class="flex flex-wrap pb-16 pt-8">
-      <div class="lg:w-3/12 w-full bg-gray-100">
+      <div class="lg:w-3/12 w-full bg-white sm:shadow-lg">
         <div class="h-full overflow-hidden rounded-tl rounded-tr sm:rounded-tr-none ">
-           <div class="bg-blue-600 w-full float-left py-1 text-xs pl-2 font-bold">
+           <div class="w-full float-left py-1 text-sm pl-2 font-bold tracking-widest bg-gradient-to-r from-blue-600 to-blue-500">
             {% if rent.property_category == 'STANDARD' %}
               <div class="text-white">
                 {{rent.property_category}}
@@ -58,16 +58,12 @@
           </div> 
         </div>
       </div>
-      <div class="lg:w-6/12 bg-gray-100 overflow-hidden rounded-tr-none sm:rounded-tr">
+      <div class="lg:w-6/12 bg-white overflow-hidden rounded-tr-none sm:rounded-tr shadow-lg">
         <div class="h-full overflow-hidden">
-          <div class="bg-blue-600 w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon">
-            {% if rent.property_category == 'STANDARD' %}
-              <div class="text-blue-600">.</div>
-            {% elif rent.property_category == 'FEATURED' %}
-              <div class="text-blue-600 text-lg">.</div> 
-            {% else %}
-              <div class="text-blue-600 text-lg">.</div> 
-            {% endif %}
+          <div class="w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon bg-gradient-to-r from-blue-500 to-blue-400">
+            <a href="#">
+              <i class="float-right fa fa-heart text-sm text-pink-600 px-2 transition duration-150 ease-in-out transform hover:scale-125"></i>
+            </a>
           </div>
           <div class="p-4">
             <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
@@ -104,14 +100,14 @@
             </div> 
             <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
               <div class="flex flex-wrap text-sm text-gray-800 my-2">
-                <div class="flex justify-between lg:w-3/5 w-full md:pr-6 my-2 lg:my-2">
-                  <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center font-bold">{{rent.property_type}}</div></div>
+                <div class="flex justify-between lg:w-3/5 w-full md:pr-6 my-2 lg:my-2 tracking-wider text-xs">
+                  <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center font-bold">{% trans rent.property_type %}</div></div>
                   <div><i class="fa fa-bed"></i> {% trans 'BEDROOMS'%}<div class="text-center font-bold">{{rent.bedrooms}}</div></div>
                   <div><i class="fa fa-bath"></i> {% trans 'BATHROOMS'%}<div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div></div>
                   <div><i class="fa fa-th-large"></i> {% trans 'SPACE'%}<div class="text-center font-bold">{{rent.m2}}m²</div></div>
                 </div>
                 <div class="flex justify-between lg:w-2/5 w-full my-2">
-                  <p class="text-xs font-bold leading-none ml-auto">{% trans 'Published:'%} {{rent.list_date}}</p>
+                  <p class="text-xs font-bold leading-none ml-auto">{% trans 'Published:'%} {{rent.list_date|date:"d/m/Y"}}</p>
                 </div>
               </div>
             </a>
@@ -146,7 +142,7 @@
         </div>
       </div>
     </div>
-    {% include "properties/scripts/properties_rent_map_script.html" %}
+    {% include "properties/scripts/properties_map_script.html" %}
     {% endfor %}
     <!-- Pagination -->
     <div class="w-full flex flex-wrap">

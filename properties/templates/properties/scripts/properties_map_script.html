@@ -1,6 +1,6 @@
 <script>
 $(function(){
-  // Map configuration.
+  // Map configuration
   var lat = parseFloat({{rent.geo_lat}}).toFixed(10);
   var lng = parseFloat({{rent.geo_lng}}).toFixed(10);
   var genesisMarker = L.icon({
@@ -8,7 +8,7 @@ $(function(){
       iconSize: [30, 30],
 
   });
-  var map= L.map('map{{rent.id}}').setView([lat, lng], 14);
+  var map= L.map('map{{rent.id}}').setView([lat, lng], 13);
       L.marker([lat, lng], {icon: genesisMarker})
           .addTo(map)
           .openPopup();
@@ -17,13 +17,12 @@ $(function(){
           style: 'https://api.maptiler.com/maps/streets/style.json?key=f8KNCaKJy3aq9zRp2tSn'
   }).addTo(map); 
 
-  // Share urls
+  // Social
   function twitterSharer(){ 
       window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
     } 
-
   function fbSharer(){ 
-      window.open("https://www.facebook.com/sharer/sharer.php?u=http://www.bigdaddy.com{{request.get_full_path|urlencode}}"); 
+      window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
     } 
 });
 </script>

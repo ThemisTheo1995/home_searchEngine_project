@@ -20,7 +20,6 @@ class SignUpView(generic.CreateView):
                 )
         return super(SignUpView, self).form_valid(form)
 
-
 class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
     
     form_class = CustomUserChangeForm
@@ -30,6 +29,5 @@ class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
     def get_object(self, queryset=None): 
         return self.request.user
 
-
 class SettingsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "settings.html"
+    template_name = "accounts/settings.html"

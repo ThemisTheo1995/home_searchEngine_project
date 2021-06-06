@@ -1,0 +1,39 @@
+<script>
+$(function(){
+    var secondarySlider = new Splide('#secondary-slider', {
+        direction   : 'ttb',
+        perPage     : 3,
+        heightRatio : 1.11,
+        gap         : 10,
+        cover       : true,
+        lazyLoad    : true,
+        isNavigation: true,
+        arrows: false,
+        focus       : 'center',
+        breakpoints : {
+            '1023': {
+                fixedWidth: 70,
+                height    : 40,
+                direction : 'ltr',
+                pagination: false,
+            }
+        },
+        }).mount();
+
+    var primarySlider = new Splide('#image-slider', {
+        type: 'fade',
+        cover: true,
+        heightRatio: 0.55,
+        rewind: true,
+        pagination: false,
+        breakpoints : {
+            '1024': {
+                heightRatio: 0.6,
+                pagination: true,
+            }
+        },
+    });
+
+    primarySlider.sync(secondarySlider).mount();
+});
+</script>

@@ -85,8 +85,8 @@ class Properties(models.Model):
         ('Shared', _('Shared')),
     ]
     FURNITURE_CHOICES = [
-        ('Furnished', 'Furnished'),
-        ('Unfurnished', 'Unfurnished'),
+        ('Furnished', _('Furnished')),
+        ('Unfurnished', _('Unfurnished')),
     ]
     CURRENCY_CHOICES = [
         ('€', 'EUR(€)'),
@@ -94,13 +94,13 @@ class Properties(models.Model):
         ('$', 'USD($)'),
     ]
     PROPERTY_CATEGORY_CHOICES = [
-        ('FEATURED', 'FEATURED'),
-        ('OPPORTUNITY', 'OPPORTUNITY'),
-        ('STANDARD', 'STANDARD'),        
+        ('FEATURED', _('FEATURED')),
+        ('OPPORTUNITY', _('OPPORTUNITY')),
+        ('STANDARD', _('STANDARD')),        
     ]
     ADVERTISMENT_CHOICES = [
-        ('For_Sale', 'For Sale'), 
-        ('To_Rent', 'To Rent'),
+        ('For_Sale', _('For Sale')), 
+        ('To_Rent', _('To Rent')),
         ]
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     agent = models.ForeignKey(Agent, null=True, blank=True, on_delete=models.SET_NULL)
@@ -109,7 +109,7 @@ class Properties(models.Model):
     property_features = models.CharField(max_length=300, blank=True, default='')
     advertised = models.CharField(max_length=10, choices=ADVERTISMENT_CHOICES, default='To_Rent')
     description = models.TextField(max_length=2000)
-    short_description = models.TextField(max_length=150, default='')
+    short_description = models.TextField(max_length=230, default='')
     available_after = models.DateField(default=datetime.now)
     currency = models.CharField(max_length=10,choices=CURRENCY_CHOICES, default='€')
     price = models.IntegerField()

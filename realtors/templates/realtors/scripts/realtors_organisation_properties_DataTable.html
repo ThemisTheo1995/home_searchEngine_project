@@ -1,0 +1,18 @@
+<script>
+$(function(){
+    $('#org_properties_table').DataTable({
+        paging:true,
+        pagingType: "full_numbers",
+        select: true,
+        info: false,
+        //language: {
+        //    "decimal": ",",
+        //    "thousands": "."
+        //},
+        scrollY: "500px",
+        scrollCollapse: true,
+        order: [[ 8, "desc" ]],
+        stateSave: false,
+    });
+});
+</script>

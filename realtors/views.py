@@ -8,10 +8,9 @@ from properties.models import Properties
 from .forms import OrganisationUpdateForm, AgentModelAddForm
 
 
-
-### Organisation views ###
+### Organisation dashboard ###
 class OrganisationDashboardView(RealtorAndLoginRequiredMixin, generic.DetailView):
-    template_name = "realtors/organisation_dashboard.html"
+    template_name = "realtors/realtors_organisation_dashboard.html"
     context_object_name = 'organisation'
     
     def get_queryset(self):
@@ -20,9 +19,9 @@ class OrganisationDashboardView(RealtorAndLoginRequiredMixin, generic.DetailView
             queryset = Organisation.objects.filter(user = user)
         return queryset
 
-
+### Organisation update ###
 class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
-    template_name = "realtors/organisation_update.html"
+    template_name = "realtors/realtors_organisation_rent_update.html"
     form_class = OrganisationUpdateForm
     context_object_name = 'organisation'
     
@@ -32,9 +31,9 @@ class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return reverse("organisation:organisation-dashboard", kwargs={'pk': self.request.user.organisation.pk})
 
-
+### Organisation list ###
 class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView):
-    template_name = "realtors/organisation_properties.html" 
+    template_name = "realtors/realtors_organisation_rent_properties.html" 
     context_object_name = "organisation"
     
     def get_context_data(self, **kwargs):
@@ -124,10 +123,10 @@ def realtors_org_rent_preview(request):
             }
         return JsonResponse(data, status=200)
     
-### Agent views ###
+### Agents list ###
 class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
     paginate_by = 15
-    template_name = "realtors/agent_list.html" 
+    template_name = "realtors/realtors_agents.html" 
     context_object_name = "agents"
     
     def get_context_data(self, **kwargs):
@@ -159,9 +158,9 @@ class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
             
         return queryset
 
-
+### Agents update ###
 class AgentCreateView(RealtorAndLoginRequiredMixin, generic.CreateView):
-    template_name = "realtors/agent_create.html"
+    template_name = "realtors/realtors_agent_create.html"
     form_class = AgentModelAddForm
     
     def get_success_url(self):

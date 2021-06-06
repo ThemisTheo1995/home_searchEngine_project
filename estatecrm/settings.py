@@ -170,6 +170,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
+DATETIME_INPUT_FORMATS = ['%d-%m-%Y %H:%M:%S']
 
 # PWA
 PWA_APP_NAME = 'Genesis'
@@ -207,5 +208,5 @@ PWA_APP_SPLASH_SCREEN = [
     }
 ]
 PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en'
+PWA_APP_LANG = 'en-gb'
 

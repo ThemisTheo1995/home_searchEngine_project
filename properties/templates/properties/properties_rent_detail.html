@@ -126,7 +126,7 @@
             {% endifequal %}
             </p>
             <div class="inline-flex items-center  ml-auto leading-none">
-              <p class="text-xs font-bold leading-none ml-auto">Published: {{rent.list_date}}</p>
+              <p class="text-xs font-bold leading-none ml-auto">Published: {{rent.list_date|date:"d/m/Y"}}</p>
             </div>
           </div>
 
@@ -134,7 +134,7 @@
             <p class="text-base tracking-widest text-blue-700 py-2">{% trans 'LETTING DETAILS'%}</p>
             <div class="flex justify-between text-xs font-bold">
               <p>{% trans 'Available to let after:'%} {{rent.available_after}}</p>
-              <p>{% trans 'Furnished Type:'%} {{rent.furniture}}</p>
+              <p>{% trans 'Furnished Type:'%} {% trans rent.furniture%}</p>
             </div>
           </div>
           <div class="flex flex-col text-left justify-center py-2">
@@ -207,6 +207,6 @@
     </div>
   </div>
 </section>
-{% include "properties/scripts/properties_rent_splide_script.html" %}
-{% include "properties/scripts/properties_rent_map_script.html" %}
+{% include "properties/scripts/properties_splide_script.html" %}
+{% include "properties/scripts/properties_map_script.html" %}
 {% endblock content %}

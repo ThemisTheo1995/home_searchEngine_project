@@ -105,7 +105,6 @@ class PropertiesRentDetailView(generic.DetailView):
             context[''] = ''
         
         return context
-    
 
 ### Create view - Auto complete ###
 def create_autocomplete(request):
