@@ -61,6 +61,7 @@ class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView
         context['properties'] = properties
         context['featured'] = featured
         context['published'] = published
+        context['org'] = self.request.user.organisation
         context['charges'] = "15€"
         return context
 
@@ -90,13 +91,9 @@ def realtors_org_rent_preview(request):
             rent = Properties.objects.get(pk=request.GET.get('pk', ''))
             data = {
                 "rent": rent.bathrooms,
-                "list_date": rent.list_date,
+                "list_date": rent.list_date.strftime("%d/%m/%Y"),
                 "address": rent.address,
-                # "photo_main": rent.photo_main,
-                # "photo_1": rent.photo_1,
-                # "photo_2": rent.photo_2,
-                # "photo_3": rent.photo_3,
-                # "photo_4": rent.photo_4, 
+                "photo_main": request.build_absolute_uri(rent.photo_main.url),
                 "street_number": rent.street_number,
                 "price": rent.price,
                 "property_type": rent.property_type,

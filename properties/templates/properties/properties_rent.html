@@ -8,12 +8,15 @@
 
 {% block content %}
 <section class="text-gray-600 body-font bg-gray-200">
+  <!--Search bar -->
+  {% include "properties/properties_rent_searchBar.html" %}
+  <!--end of search bar-->
   <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto">
     {% for rent in rentProperties %}
-    <div class="flex flex-wrap pb-16 pt-8">
+    <div class="flex flex-wrap pb-8">
       <div class="lg:w-3/12 w-full bg-white sm:shadow-lg">
         <div class="h-full overflow-hidden rounded-tl rounded-tr sm:rounded-tr-none ">
-           <div class="w-full float-left py-1 text-sm pl-2 font-bold tracking-widest bg-gradient-to-r from-blue-600 to-blue-500">
+           <div class="w-full float-left py-1 text-sm pl-2 font-bold tracking-widest bg-gradient-to-r from-blue-600 to-blue-500 h-8">
             {% if rent.property_category == 'STANDARD' %}
               <div class="text-white">
                 {{rent.property_category}}
@@ -60,9 +63,12 @@
       </div>
       <div class="lg:w-6/12 bg-white overflow-hidden rounded-tr-none sm:rounded-tr shadow-lg">
         <div class="h-full overflow-hidden">
-          <div class="w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon bg-gradient-to-r from-blue-500 to-blue-400">
+          <div class="w-full h-8 float-left py-1 text-xs pl-2 font-bold rentlist-ribbon bg-gradient-to-r from-blue-500 to-blue-400">
             <a href="#">
-              <i class="float-right fa fa-heart text-sm text-pink-600 px-2 transition duration-150 ease-in-out transform hover:scale-125"></i>
+              <i title="{% trans 'Hide this advertisment'%}" class="fa fa-times float-right text-base text-white px-2 transition duration-150 ease-in-out transform hover:scale-125"></i>
+            </a>
+            <a href="#">
+              <i title="{% trans 'Save the property'%}" class="float-right fa fa-heart text-base text-pink-600 px-2 mr-2 transition duration-150 ease-in-out transform hover:scale-125"></i>
             </a>
           </div>
           <div class="p-4">
@@ -96,7 +102,7 @@
                   </p>
                 </a>
               </div>
-              <div class="lg:w-2/5 md:w-1/2 w-full rounded border-2 border-blue-100 lg:mb-0 mb-4" id="map{{rent.id}}" style="height: 100px;"></div> 
+              <div class="lg:w-2/5 md:w-1/2 w-full rounded border-2 border-blue-100 lg:mb-0 mb-4 rent_map" id="map{{rent.id}}" style="height: 100px;"></div> 
             </div> 
             <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
               <div class="flex flex-wrap text-sm text-gray-800 my-2">
@@ -124,7 +130,7 @@
               </a>
               <a class="inline-flex items-center  ml-auto leading-none">
                 {% if rent.organisation.organisation_logo %}
-                  <img alt="blog" src="{{rent.organisation.organisation_logo.url}}" class="w-20 h-12 flex-shrink-0 object-cover object-center sidebar">
+                  <img alt="blog" width="20" height="12" src="{{rent.organisation.organisation_logo.url}}" class="w-20 h-12 flex-shrink-0 object-cover object-center sidebar">
                 {% endif %}
                 <span class="flex-grow flex flex-col pl-4">
                   <span class="title-font text-sm font-medium text-gray-900">{{rent.organisation.name}}</span>
@@ -137,49 +143,16 @@
       </div>
       <div class="lg:w-3/12 md:pl-4 sidebar">
         <div class="h-full overflow-hidden">
-          <div class="p-6">
-          </div>
+          <div class="p-6"></div>
         </div>
       </div>
     </div>
     {% include "properties/scripts/properties_map_script.html" %}
     {% endfor %}
     <!-- Pagination -->
-    <div class="w-full flex flex-wrap">
-      <div class="pagination w-full lg:w-9/12 text-right">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-                  href="?page=1&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
-                  <i class="fa fa-angle-double-left text-white text-lg"></i>  
-                </a>
-                <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-                  href="?page={{page_obj.previous_page_number}}&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
-                  <i class="fa fa-angle-left text-white text-xl"></i>
-                </a>
-            {% endif %}
-
-            <span class="current text-gray rounded p-2 text-md align-center">
-                <span class="font-bold">{{ page_obj.number }}</span> 
-                <span class="text-xs">of {{ page_obj.paginator.num_pages }}</span>
-            </span>
-
-            {% if page_obj.has_next %}
-                <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-                  href="?page={{page_obj.next_page_number}}&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
-                  <i class="fa fa-angle-right text-white text-xl"></i>
-                </a>
-                <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-                  href="?page={{page_obj.paginator.num_pages}}&location={{location}}&city={{city}}&bathrooms={{bathrooms}}">
-                  <i class="fa fa-angle-double-right text-white text-lg"></i>
-                </a>
-            {% endif %}
-        </span>
-      </div>
-      <div class="pagination w-3/12 sidebar">
-      </div>
-    </div>
-    <!-- /Pagination -->
+    {% include "properties/properties_rent_pagination.html" %}
+    <!-- end of pagination -->
   </div>
 </section>
+{% include "properties/scripts/properties_landing_autocomplete.html" %}
 {% endblock content %}

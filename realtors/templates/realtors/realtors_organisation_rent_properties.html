@@ -5,7 +5,7 @@
 {% load humanize %}
 
 
-{% block title %}{{user.request.organisation}} | Rent{% endblock title %}
+{% block title %}{{org}} | Rent{% endblock title %}
 
 {% block content %}
 <section class="text-gray-600 body-font">
@@ -23,7 +23,7 @@
                         </div>
                         <div class="flex-grow sm:px-4 text-white">
                             <h2 class="title-font font-medium sm:text-base text-sm">
-                                {% trans 'Total properties'%}
+                                {% trans 'Properties'%}
                             </h2>
                             <p class="leading-relaxed font-bold">{{properties}}</p>
                         </div>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="flex-grow sm:px-4 text-gray-800">
                             <h2 class="title-font font-medium sm:text-base text-sm">
-                                {% trans 'Total Featured'%}
+                                {% trans 'Featured'%}
                             </h2>
                             <p class="leading-relaxed font-bold">{{featured}}</p>
                         </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex-grow sm:px-4 text-white">
                             <h2 class="title-font font-medium sm:text-base text-sm">
-                                {% trans 'Total Published'%}
+                                {% trans 'Published'%}
                             </h2>
                             <p class="leading-relaxed font-bold">{{published}}</p>
                         </div>
@@ -69,18 +69,18 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-wrap sm:text-left text-center text-sm">
+            <div class="flex flex-wrap sm:text-left text-left sm:text-center text-sm">
                 <div class="sm:p-4 p-2 sm:w-1/4 w-1/2 flex flex-wrap">
-                    <div class="sm:w-1/2 w-full pr-2 pb-2">
+                    <div class="sm:w-1/2 w-full sm:pr-2 pb-2">
                         <div class="rounded-lg flex items-center justify center flex-wrap">
-                            <a href="{% url 'properties:create' %}" class="p-2 rounded text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700">
+                            <a href="{% url 'properties:create' %}" class="w-full p-2 rounded text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700">
                                 <i class="fa fa-plus-square mr-2"></i>{% trans 'ADD A PROPERTY' %}
                             </a>
                         </div>
                     </div>
                     <div class="sm:w-1/2 w-full pb-2">
                         <div class="rounded-lg flex items-center justify center flex-wrap sm:float-right">
-                            <a href="{% url 'realtors:agent-create' %}" class="p-2 rounded text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700">
+                            <a href="{% url 'realtors:agent-create' %}" class="w-full p-2 rounded text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700">
                                 <i class="fa fa-plus-square mr-2"></i>{% trans 'ADD AN AGENT' %}
                             </a>
                         </div>
@@ -89,63 +89,20 @@
             </div>
         </div>
         <!-- Property on click preview section -->
-        <div class="flex flex-wrap pb-16 pt-8">
-            <div class="lg:w-3/12 w-full bg-gray-100">
+        <input class="hidden preview_pk" value=""></input>
+        <div class="flex flex-wrap pb-10 pt-8 rent_preview hidden">
+            <div class="lg:w-3/12 w-full bg-gray-100 sm:shadow-md">
                 <div class="h-full overflow-hidden rounded-tl rounded-tr sm:rounded-tr-none ">
-                    <div class="bg-blue-600 w-full float-left py-1 text-xs pl-2 font-bold">
-                        {% if rent.property_category == 'STANDARD' %}
-                        <div class="text-white">
-                            {{rent.property_category}}
-                        </div>
-                        {% elif rent.property_category == 'FEATURED' %}
-                        <div class="text-white text-lg tracking-widest">
-                            {{rent.property_category}} <i class="text-red-600 fa fa-star"></i>
-                        </div> 
-                        {% else %}
-                        <div class="text-white text-lg tracking-widest">
-                            {{rent.property_category}} <i class="text-yellow-400 fa fa-bolt"></i>
-                        </div> 
-                        {% endif %}
-                    </div> 
-                    <div class="fotorama" data-loop="true" data-fit="cover" data-nav="thumbs" data-width="100%" data-trackpad="true" data-ratio="476/317">
-                        {% if rent.photo_main  %}
-                        {% thumbnail rent.photo_main "476x317" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
-                        {% endthumbnail %}
-                        {% endif %}
-                        {% if rent.photo_1  %}
-                        {% thumbnail rent.photo_1 "476x317" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo1{{rent.admin_2_en}}">
-                        {% endthumbnail %}
-                        {% endif %}
-                        {% if rent.photo_2  %}
-                        {% thumbnail rent.photo_2 "476x317" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo2{{rent.admin_2_en}}">
-                        {% endthumbnail %}
-                        {% endif %}          
-                        {% if rent.photo_3 %}
-                        {% thumbnail rent.photo_3 "476x317" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo3{{rent.admin_2_en}}">
-                        {% endthumbnail %}
-                        {% endif %}  
-                        {% if rent.photo_4  %}
-                        {% thumbnail rent.photo_4 "476x317" as im %}
-                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo4{{rent.admin_2_en}}">
-                        {% endthumbnail %}                         
-                        {% endif %}
-                    </div> 
+                    <div class="bg-blue-600 w-full float-left py-4 text-xs pl-2 font-bold"></div> 
+                    <img class="photo_main object-contain" width="100%" height="400" alt="main_photo">
+                    <div class="tracking wider text-center p-8">{% trans 'All the other images on a scollbar' %}</div>
                 </div>
             </div>
-            <div class="lg:w-6/12 bg-gray-100 overflow-hidden rounded-tr-none sm:rounded-tr">
+            <div class="lg:w-6/12 bg-gray-100 overflow-hidden rounded-tr-none sm:rounded-tr shadow-md">
                 <div class="h-full overflow-hidden">
-                    <div class="bg-blue-600 w-full float-left py-1 text-xs pl-2 font-bold rentlist-ribbon">
-                        {% if rent.property_category == 'STANDARD' %}
-                        <div class="text-blue-600">.</div>
-                        {% elif rent.property_category == 'FEATURED' %}
-                        <div class="text-blue-600 text-lg">.</div> 
-                        {% else %}
-                        <div class="text-blue-600 text-lg">.</div> 
-                        {% endif %}
+                    <div class="bg-blue-600 w-full float-left py-2 text-xs pl-2 rentlist-ribbon text-white">
+                        {% trans 'This is a preview. In order to actually see how it looks like in live click '%}
+                        <a href="" class="font-bold">{% trans 'here'%}</a>
                     </div>
                     <div class="p-4">
                         <div class="flex items-center flex-wrap w-full pt-4">
@@ -155,7 +112,9 @@
                             <span class="admin_3 pr-2"></span>
                             <span class="country"></span>
                             </h2>
-                            <h1 class="inline-flex items-center title-font font-bold text-2xl ml-auto leading-none text-gray-900 currency">
+                            <h1 class="inline-flex items-center title-font font-bold text-2xl ml-auto leading-none text-gray-900">
+                                <span class="price"></span>
+                                <span class="currency"></span>
                             </h1>
                         </div>
                         <h1 class="title-font text-md font-bold text-gray-700 mb-2">
@@ -168,9 +127,13 @@
                                 <p class="text-gray-900 text-sm mb-4 lg:mb-2 overflow-hidden short_description">
                                 </p>
                             </div>
-                            <div class="lg:w-2/5 md:w-1/2 w-full rounded border-2 border-blue-100 lg:mb-0 mb-4" id="map{{rent.id}}" style="height: 100px;"></div> 
+                            <div class="lg:w-2/5 md:w-1/2 w-full rounded border-2 border-blue-100 lg:mb-0 mb-4 text-center" id="map" style="height: 100px;">
+                                <div class="pt-6">
+                                    Map area <img class="mx-auto" src="{% static 'images/mapMarker.png' %}" width='20px' height='20px' alt="map">
+                                </div>
+                            </div> 
                         </div> 
-                            <div class="flex flex-wrap text-sm text-gray-800 my-2">
+                            <div class="flex flex-wrap text-xs text-gray-800 my-2 tracking-wider">
                                 <div class="flex justify-between lg:w-3/5 w-full md:pr-6 my-2 lg:my-2">
                                 <div><i class="fa fa-home"></i> {% trans 'TYPE'%}<div class="text-center font-bold property_type"></div></div>
                                 <div><i class="fa fa-bed"></i> {% trans 'BEDROOMS'%}<div class="text-center font-bold bedrooms"></div></div>
@@ -178,7 +141,7 @@
                                 <div><i class="fa fa-th-large"></i> {% trans 'SPACE'%}<div class="text-center font-bold m2">m²</div></div>
                                 </div>
                                 <div class="flex justify-between lg:w-2/5 w-full my-2">
-                                <p class="text-xs font-bold leading-none ml-auto">{% trans 'Published:'%} {{rent.list_date|date:"d/m/Y"}}</p>
+                                <p class="text-xs font-bold leading-none ml-auto">{% trans 'Published:'%} <span class="list_date"></span></p>
                                 </div>
                             </div>
                         <hr class="my-4">
@@ -226,21 +189,24 @@
                         <th class="px-4 py-4">{% trans 'PUBLISHED'%}</th>
                         <th class="px-4 py-4">{% trans 'CATEGORY'%}</th>
                         <th class="px-4 py-4">{% trans 'AVAILABILITY'%}</th>
+                        <th class="px-4 py-4">{% trans 'DETAILS'%}</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for rent in organisation%}
-                    <tr class="text-xs sm:text-sm text-left properties-table" id="org_property_row" onclick="previewMode({{rent.pk}})" ondblclick = "window.location = '{% url 'properties:update' pk=rent.pk %}'">
-                        <td class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
-                        <td class="border-t-2 border-gray-200 px-4 py-3">
-                        {% if rent.photo_main  %}
-                            <img alt="Main picture" src="{{rent.photo_main.url}}" class="sm:w-20 sm:h-12 w-12 h-7 float-left rounded flex-shrink-0 object-cover object-center mx-auto">
-                        {% endif %}
-                        </td class="text-gray-800">
-                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.property_type}}</td>
-                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.address}} {{rent.street_number}}, {{rent.admin_1}}, {{rent.admin_2}}</td>
-                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.postalcode}}</td>
-                        <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.price}} ({{rent.currency}})</td>
+                    <tr class="text-xs sm:text-sm text-left properties-table" id="org_property_row" ondblclick = "window.location = '{% url 'properties:update' pk=rent.pk %}'">
+                        <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{{forloop.counter}}</td>
+                        <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">
+                            {% if rent.photo_main  %}
+                                {% thumbnail rent.photo_main "119x80" as im %}
+                                    <img alt="Main picture" src="{{ im.url }}" class="w-16 h-10 float-left rounded flex-shrink-0 object-cover object-center mx-auto">
+                                {% endthumbnail %}
+                            {% endif %}
+                        </td>
+                        <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{% trans rent.property_type %}</td>
+                        <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{{rent.address}} {{rent.street_number}}, {{rent.admin_1}}, {{rent.admin_2}}</td>
+                        <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{{rent.postalcode}}</td>
+                        <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{{rent.price}} ({{rent.currency}})</td>
                         {% if rent.is_published %}
                         <td class="border-t-2 border-gray-200 px-4 py-3"><i class="text-green-500 text-lg fa fa-check-circle"><span class="hidden">{{rent.is_published}}</span></i></td>
                         {% else %}
@@ -266,6 +232,7 @@
                         </td>
                         {% endif %}
                         <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.available_after|date:"d M, Y"}}</td>
+                        <td class="border-t-2 border-gray-200 px-4 py-3 text-center text-xl"><a href="{% url 'properties:update' rent.pk %}"><i class="text-blue-600 hover:text-blue-700 fa fa-share-square"></i></a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

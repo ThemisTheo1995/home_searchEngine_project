@@ -1,3 +1,27 @@
+/* custom scrolling bar */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b7bcbe;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9da8aa;
+}
+
+/* end of custom scrolling bar */
+
 .dropdown:hover .dropdown-menu {
     display: block;
   }
@@ -15,7 +39,7 @@
 }
 
 .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
-  border: 2px solid rgb(167, 161, 161);
+  border: 1px solid rgb(68, 68, 68);
   background-clip: padding-box;
 }
 
@@ -196,8 +220,14 @@ table.dataTable thead th, table.dataTable thead td {
 .ms-choice .placeholder {
   margin-top:5px;
 }
-/* Fotorama */
 
+/* rent search bar */
+.rent_map{
+  z-index: 1;
+}
 
-/* End of Fotorama*/
-
+#filterModal{
+  z-index: 999;
+  top: -1px;
+}
+/* end of rent search bar */

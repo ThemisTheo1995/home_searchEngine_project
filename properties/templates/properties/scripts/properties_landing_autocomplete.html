@@ -1,4 +1,22 @@
 <script>
+function resetFilter(){
+	$('.form_group').val("");
+	document.getElementById("search_bar").submit(); 
+}
+
+function sortFilter(){
+	document.getElementById("search_bar").submit(); 
+}
+
+function searchBarClose(){
+	const searchBar = document.getElementById('search_bar');
+	if (searchBar.classList.contains('hidden')){
+		searchBar.classList.remove('hidden');
+	}else{
+		searchBar.classList.add('hidden');
+	}
+}
+
 // The autoComplete.js Engine instance creator
 const autoCompleteJS = new autoComplete({
 	data: {

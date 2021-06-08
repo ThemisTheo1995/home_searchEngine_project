@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-05 14:32+0000\n"
+"POT-Creation-Date: 2021-06-06 14:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <themistheodoratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,41 +351,41 @@ msgstr "Θέα"
 msgid "Submit"
 msgstr "Μετάβαση"
 
-#: properties/templates/properties/properties_rent.html:108
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:175
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:222
+#: properties/templates/properties/properties_rent.html:104
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:130
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:177
 msgid "TYPE"
 msgstr "ΤΥΠΟΣ"
 
-#: properties/templates/properties/properties_rent.html:109
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:176
+#: properties/templates/properties/properties_rent.html:105
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:131
 msgid "BEDROOMS"
 msgstr "ΔΩΜΑΤΙΑ"
 
-#: properties/templates/properties/properties_rent.html:110
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:177
+#: properties/templates/properties/properties_rent.html:106
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:132
 msgid "BATHROOMS"
 msgstr "ΜΠΑΝΙΑ"
 
-#: properties/templates/properties/properties_rent.html:111
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:178
+#: properties/templates/properties/properties_rent.html:107
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:133
 msgid "SPACE"
 msgstr "ΤΕΤΡΑΓΩΝΙΚΑ"
 
-#: properties/templates/properties/properties_rent.html:114
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:181
+#: properties/templates/properties/properties_rent.html:110
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:136
 msgid "Published:"
 msgstr "Δημοσιεύτηκε:"
 
-#: properties/templates/properties/properties_rent.html:127
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:193
+#: properties/templates/properties/properties_rent.html:123
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:148
 msgid "CALL"
 msgstr "ΚΛΗΣΗ"
 
-#: properties/templates/properties/properties_rent.html:135
+#: properties/templates/properties/properties_rent.html:131
 #: properties/templates/properties/properties_rent_detail.html:186
 #: properties/templates/properties/properties_rent_detail.html:194
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:201
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:156
 msgid "AGENCY"
 msgstr "ΜΕΣΙΤΙΚΟ"
 
@@ -461,7 +461,7 @@ msgid "Add an agent"
 msgstr "Καταχώρηση Υπαλλήλου"
 
 #: realtors/templates/realtors/realtors_agents.html:48
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:221
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:176
 msgid "IMAGE"
 msgstr "ΕΙΚΟΝΑ"
 
@@ -546,16 +546,16 @@ msgid "DASHBOARD - RENT"
 msgstr "ΠΙΝΑΚΑΣ - ΠΡΟΣ ΕΝΟΙΚΙΑΣΗ"
 
 #: realtors/templates/realtors/realtors_organisation_rent_properties.html:26
-msgid "Total properties"
-msgstr "Σύνολο ακινήτων"
+msgid "Properties"
+msgstr "Ακίνητα"
 
 #: realtors/templates/realtors/realtors_organisation_rent_properties.html:39
-msgid "Total Featured"
-msgstr "Σύνολο προωθημένων"
+msgid "Featured"
+msgstr "Προμοταρισμένα"
 
 #: realtors/templates/realtors/realtors_organisation_rent_properties.html:52
-msgid "Total Published"
-msgstr "Σύνολο δημοσιευμένων"
+msgid "Published"
+msgstr "Δημοσιευμένα"
 
 #: realtors/templates/realtors/realtors_organisation_rent_properties.html:65
 msgid "Charges"
@@ -569,27 +569,31 @@ msgstr "ΚΑΤΑΧΩΡΗΣΗ ΑΚΙΝΗΤΟΥ"
 msgid "ADD AN AGENT"
 msgstr "ΚΑΤΑΧΩΡΗΣΗ ΥΠΑΛΛΗΛΟΥ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:223
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:97
+msgid "All the other images on a scollbar"
+msgstr ""
+
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:178
 msgid "ADDRESS"
 msgstr "ΔΙΕΥΘΥΝΣΗ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:224
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:179
 msgid "POSTCODE"
 msgstr "ΤΑΧ. ΚΩΔΙΚΑΣ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:225
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:180
 msgid "PRICE"
 msgstr "ΤΙΜΗ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:226
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:181
 msgid "PUBLISHED"
 msgstr "ΔΗΜΟΣΙΕΥΜΕΝΗ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:227
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:182
 msgid "CATEGORY"
 msgstr "ΚΑΤΗΓΟΡΙΑ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:228
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:183
 msgid "AVAILABILITY"
 msgstr "ΔΙΑΘΕΣΙΜΟΤΗΤΑ"
 
@@ -724,15 +728,3 @@ msgstr "Έχετε ήδη λογιαριασμό;"
 msgid "Do you want to change your password?"
 msgstr "Θέλετε να αλλάξετε τον κωδικό σας;"
 
-#~ msgid "More than 20k+ properties to choose from."
-#~ msgstr "Αμέτρητες επιλογές σπιτιών για να διαλέξεις το δικό σου"
-
-#~ msgid ""
-#~ "Some people look for a beautiful place. Others make a place beautiful. "
-#~ "Discover yours."
-#~ msgstr ""
-#~ "Άλλοι αναζητούν ένα όμορφο μέρος, ενώ άλλοι το δημιουργούν. Ανακάλυψε το "
-#~ "δικό σου."
-
-#~ msgid "Language"
-#~ msgstr "Γλώσσα"

@@ -12,6 +12,11 @@ from .forms import FilterForm, PropertiesCreationForm, PropertiesUpdateForm
 from urllib.parse import urlencode
 from realtors import mixins
 import requests, json, re 
+from .choices import (price_rent_choices,
+                      type_rent_choices, 
+                      furniture_choices, 
+                      order_list_date_choices, 
+                      order_price_choices)
 
 ### Offline view ###
 def offline(request):
@@ -43,23 +48,45 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
-    paginate_by =22
+    paginate_by =5
     template_name = "properties/properties_rent.html"
     context_object_name = "rentProperties"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['address'] = self.request.GET.get('address','')
-        context['bathrooms'] = self.request.GET.get('bathrooms','')
-        context['location'] = self.request.GET.get('location','')
+        context['location'] = self.request.GET.get('location', '')
+        context['minbathrooms'] = self.request.GET.get('minbaths','')
+        context['minbedrooms'] = self.request.GET.get('minbeds','')
+        context['maxbathrooms'] = self.request.GET.get('maxbaths','')
+        context['maxbedrooms'] = self.request.GET.get('maxbeds','')
+        context['minprice'] = self.request.GET.get('minprice','')
+        context['maxprice'] = self.request.GET.get('maxprice','')
+        context['type'] = self.request.GET.get('type','')
+        context['furniture'] = self.request.GET.get('furniture','')
+        context['price'] = price_rent_choices
+        context['type_choices'] = type_rent_choices
+        context['furniture_choices'] = furniture_choices
+        context['order_list_date_choices'] = order_list_date_choices
+        context['orderlist'] = self.request.GET.get('orderlist','')
+        context['order_price_choices'] = order_price_choices
+        context['orderprice'] = self.request.GET.get('orderprice','')
         
         return context
 
     def get_queryset(self):
         if 'location' in self.request.GET:
             location = self.request.GET.get('location','')
-            address = self.request.GET.get('address','')
-            bathrooms = self.request.GET.get('bathrooms','')
+            minbedrooms = self.request.GET.get('minbeds','')
+            minbathrooms = self.request.GET.get('minbaths','')
+            maxbedrooms = self.request.GET.get('maxbeds','')
+            maxbathrooms = self.request.GET.get('maxbaths','')
+            maxprice = self.request.GET.get('maxprice','')
+            minprice = self.request.GET.get('minprice','')
+            prop_type = self.request.GET.get('type','')
+            furniture = self.request.GET.get('furniture','')
+            orderlist = self.request.GET.get('orderlist','')
+            orderprice = self.request.GET.get('orderprice','')
+            # Location filter
             if len(location)>0: 
                 # Check if the identifier exists
                 try:
@@ -78,7 +105,41 @@ class PropertiesRentListView(generic.ListView):
                     identifier = None
                     queryset = Properties.objects.none()
             else: queryset = Properties.objects.none()
-            
+            # Bathrooms filter
+            if minbathrooms or maxbathrooms:
+                if minbathrooms != '' and maxbathrooms != '':
+                    try:
+                        queryset = queryset.filter(bathrooms__gte = minbathrooms, bathrooms__lte = maxbathrooms)
+                    except:
+                        queryset = Properties.objects.none()
+                elif minbathrooms != '':
+                    try:
+                        queryset = queryset.filter(bathrooms__gte = minbathrooms)
+                    except:
+                        queryset = Properties.objects.none()
+                else:
+                    try:
+                        queryset = queryset.filter(bathrooms__lte = maxbathrooms)
+                    except:
+                        queryset = Properties.objects.none() 
+            # Bedrooms filter
+            if minbedrooms or maxbedrooms:
+                if minbedrooms != '' and maxbedrooms != '':
+                    try:
+                        queryset = queryset.filter(bathrooms__gte = minbedrooms, bathrooms__lte = maxbedrooms)
+                    except:
+                        queryset = Properties.objects.none()
+                elif minbedrooms != '':
+                    try:
+                        queryset = queryset.filter(bathrooms__gte = minbedrooms)
+                    except:
+                        queryset = Properties.objects.none()
+                else:
+                    try:
+                        queryset = queryset.filter(bathrooms__lte = maxbedrooms)
+                    except:
+                        queryset = Properties.objects.none()
+                    
         return queryset
 
 ### Rent Detail view ###
