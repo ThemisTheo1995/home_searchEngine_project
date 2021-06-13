@@ -1,12 +1,12 @@
 <div class="w-full flex flex-wrap">
-      <div class="pagination w-full lg:w-9/12 text-right">
+      <div class="pagination w-full xl:w-8/12 lg:w-9/12 text-right">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
+                <a class="pr-1 mr-1 pl-2 py-1 rounded transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
                   href="?page=1&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}">
                   <i class="fa fa-angle-double-left text-white text-lg"></i>  
                 </a>
-                <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
+                <a class="pl-3 pr-2 py-1 rounded transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
                   href="?page={{page_obj.previous_page_number}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}">
                   <i class="fa fa-angle-left text-white text-xl"></i>
                 </a>
@@ -18,11 +18,11 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
+                <a class="pl-3 pr-2 py-1 rounded transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
                   href="?page={{page_obj.next_page_number}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}">
                   <i class="fa fa-angle-right text-white text-xl"></i>
                 </a>
-                <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
+                <a class="px-2 py-1 ml-1 rounded transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
                   href="?page={{page_obj.paginator.num_pages}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}">
                   <i class="fa fa-angle-double-right text-white text-lg"></i>
                 </a>

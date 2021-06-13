@@ -48,7 +48,7 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
-    paginate_by =5
+    paginate_by =2
     template_name = "properties/properties_rent.html"
     context_object_name = "rentProperties"
     
@@ -70,16 +70,23 @@ class PropertiesRentListView(generic.ListView):
         context['orderlist'] = self.request.GET.get('orderlist','')
         context['order_price_choices'] = order_price_choices
         context['orderprice'] = self.request.GET.get('orderprice','')
+        context['views'] = self.request.GET.get('views','')
+        if len(context['rentProperties'])>0:
+            markerSet = []
+            for M in context['rentProperties']:
+                markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk])
+        context['markerSet'] = markerSet
         
         return context
 
     def get_queryset(self):
         if 'location' in self.request.GET:
+            # Parameters
             location = self.request.GET.get('location','')
-            minbedrooms = self.request.GET.get('minbeds','')
-            minbathrooms = self.request.GET.get('minbaths','')
-            maxbedrooms = self.request.GET.get('maxbeds','')
-            maxbathrooms = self.request.GET.get('maxbaths','')
+            minbeds = self.request.GET.get('minbeds','')
+            minbaths = self.request.GET.get('minbaths','')
+            maxbeds = self.request.GET.get('maxbeds','')
+            maxbaths = self.request.GET.get('maxbaths','')
             maxprice = self.request.GET.get('maxprice','')
             minprice = self.request.GET.get('minprice','')
             prop_type = self.request.GET.get('type','')
@@ -106,39 +113,55 @@ class PropertiesRentListView(generic.ListView):
                     queryset = Properties.objects.none()
             else: queryset = Properties.objects.none()
             # Bathrooms filter
-            if minbathrooms or maxbathrooms:
-                if minbathrooms != '' and maxbathrooms != '':
-                    try:
-                        queryset = queryset.filter(bathrooms__gte = minbathrooms, bathrooms__lte = maxbathrooms)
-                    except:
-                        queryset = Properties.objects.none()
-                elif minbathrooms != '':
-                    try:
-                        queryset = queryset.filter(bathrooms__gte = minbathrooms)
-                    except:
-                        queryset = Properties.objects.none()
-                else:
-                    try:
-                        queryset = queryset.filter(bathrooms__lte = maxbathrooms)
-                    except:
-                        queryset = Properties.objects.none() 
+            minbaths = int(minprice) if minbaths != '' else ''
+            maxbaths = int(maxprice) if maxbaths != '' else ''
+            if minbaths != '' and maxbaths != '' and (minbaths > -1 and minbaths < 99) and (maxbaths > -1 and maxbaths < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbaths, bathrooms__lte = maxbaths)
+                except:pass
+            elif minbaths != '' and (minbaths > -1 and minbaths < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbaths)
+                except:pass
+            elif maxbaths != '' and (maxbaths > -1 and maxbaths < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__lte = maxbaths)
+                except:pass
             # Bedrooms filter
-            if minbedrooms or maxbedrooms:
-                if minbedrooms != '' and maxbedrooms != '':
-                    try:
-                        queryset = queryset.filter(bathrooms__gte = minbedrooms, bathrooms__lte = maxbedrooms)
-                    except:
-                        queryset = Properties.objects.none()
-                elif minbedrooms != '':
-                    try:
-                        queryset = queryset.filter(bathrooms__gte = minbedrooms)
-                    except:
-                        queryset = Properties.objects.none()
-                else:
-                    try:
-                        queryset = queryset.filter(bathrooms__lte = maxbedrooms)
-                    except:
-                        queryset = Properties.objects.none()
+            minbeds = int(minbeds) if minbeds != '' else ''
+            maxbeds = int(maxbeds) if maxbeds != '' else ''
+            if minbeds != '' and maxbeds != '' and (minbeds > -1 and minbeds < 99) and (maxbeds > -1 and maxbeds < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbeds, bathrooms__lte = maxbeds)
+                except:pass
+            elif minbeds != '' and (minbeds > -1 and minbeds < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbeds)
+                except:pass
+            elif maxbeds !='' and (maxbeds > -1 and maxbeds < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__lte = maxbeds)
+                except:pass
+            # Price filter
+            minprice = int(minprice) if minprice != '' else ''
+            maxprice = int(maxprice) if maxprice != '' else ''
+            if minprice != '' and maxprice != '' and (minprice > 49 and minprice < 10001) and (maxprice > 49 and maxprice < 10001):
+                try:
+                    queryset = queryset.filter(price__gte = minprice, price__lte = maxprice)
+                except:pass
+            elif minprice != '' and (minprice > 49 and minprice < 10001):
+                try:
+                    queryset = queryset.filter(price__gte = minprice)
+                except:pass
+            elif maxprice !='' and (maxprice > 49 and maxprice < 10001):
+                try:
+                    queryset = queryset.filter(price__lte = maxprice)
+                except:pass
+            # Property type filter
+            if prop_type != '' and type(prop_type)==str:
+                try:
+                    queryset = queryset.filter(property_type__icontains = prop_type)
+                except:pass
                     
         return queryset
 

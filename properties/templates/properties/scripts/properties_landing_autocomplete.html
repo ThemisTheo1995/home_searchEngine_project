@@ -8,12 +8,20 @@ function sortFilter(){
 	document.getElementById("search_bar").submit(); 
 }
 
+function featuresFilter(feature){
+	console.log(feature);
+	document.querySelector('.view').value = feature;
+	console.log(document.querySelector('.view').value);
+}
+
 function searchBarClose(){
 	const searchBar = document.getElementById('search_bar');
 	if (searchBar.classList.contains('hidden')){
 		searchBar.classList.remove('hidden');
+		document.getElementById("close_searchbar").style.opacity = '100%';
 	}else{
 		searchBar.classList.add('hidden');
+		document.getElementById("close_searchbar").style.opacity = '40%';
 	}
 }
 

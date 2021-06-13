@@ -1,10 +1,13 @@
 {% load i18n %}
-<div id="filterModal" class="sticky text-gray-50">
-  <div class="text-xs sm:text-base text-center bg-blue-500 sm:bg-blue-900 lg:px-10 px-4 py-2 border-b sm:border-white grid grid-cols-3 divide-x divide-white text-white">
+
+<div id="filterModal" class="sticky text-gray-50 w-full">
+  <!--Active filters bar-->
+  <div class="text-xs sm:text-sm text-center bg-blue-500 sm:bg-blue-900 lg:px-10 px-4 py-2 border-b sm:border-white grid grid-cols-3 divide-x divide-white text-white">
       <div><span class="text-gray-100 font-semibold">{% trans 'Rent to: '%}</span>{% trans location %}</div>
       <div><span class="text-gray-100 font-semibold">{% trans 'Furniture: '%}</span>{% trans furniture %}</div>
       <div><span class="text-gray-100 font-semibold">{% trans 'Type: '%}</span>{% trans type %}</div>
   </div>
+  <!--Expandable search bar-->
   <form id="search_bar" class="lg:h-24 h-72 w-full bg-blue-500 sm:bg-blue-900 lg:px-10 px-4 lg:pt-0 pt-4 shadow-md hidden" method="get" autocomplete="off" action="{% url 'properties:rent-list'%}">
     <div class="flex flex-wrap h-full items-center text-sm">
       <!--Location search-->
@@ -96,40 +99,15 @@
         </div>
       </div>
     </div>
+    <input type="text" class="hidden feature view" name="views" value="{{views}}">
+                <input type="text" class="hidden feature" name="garden" id="garden" value="{{garden}}">
+                <input type="text" class="hidden feature" name="fireplace" id="fireplace" value="{{fireplace}}">
+                <input type="text" class="hidden feature" name="elevator" id="elevator" value="{{elevator}}">
   </form>
-  <div id="close_searchbar" onclick="searchBarClose()" class="w-full flex sm:justify-end justify-center text-white">
-      <div title="{% trans 'Close search bar' %}" class="text-center text-lg px-4 bg-gray-600 hover:bg-gray-500 cursor-pointer rounded-b-lg">
+  <!--Hide/Show arrow button-->
+  <div id="close_searchbar" onclick="searchBarClose()" class="w-full flex sm:justify-end justify-center text-white opacity-40">
+      <div title="{% trans 'Close search bar' %}" class="text-center text-lg px-4 sm:bg-blue-900 bg-blue-500 cursor-pointer rounded-b-lg">
         ⮝
       </div>
   </div>
-</div>
-
-<!--Ordering-->
-<div class="container max-w-full px-4 lg:px-10 pt-4 -mb-6 mx-auto text-left text-sm">
-    <div class="flex flex-wrap">
-        <div class="flex flex-wrap lg:w-9/12 w-full">
-            <div class="w-2/6">
-            <span>Garage: </span>
-            </div>
-            <div class="w-4/6 text-right">
-                <span>Sort: </span>
-                <select form="search_bar" onchange="sortFilter()" name="orderlist" class="bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
-                    <option selected="true" value="">{% trans 'Random date'%}</option>
-                    {% for key,value in order_list_date_choices.items %}
-                    <option value="{{ key }}" {% if key == orderlist %} selected {% endif %}>
-                    {{ value }}
-                    </option>
-                    {% endfor %}
-                </select>
-                <select form="search_bar" onchange="sortFilter()" name="orderprice" class="bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
-                    <option selected="true" value="">{% trans 'Random price'%}</option>
-                    {% for key,value in order_price_choices.items %}
-                    <option value="{{ key }}" {% if key == orderprice %} selected {% endif %}>
-                    {{ value }}
-                    </option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-    </div>
 </div>
