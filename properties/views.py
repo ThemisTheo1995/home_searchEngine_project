@@ -48,7 +48,7 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
-    paginate_by =2
+    paginate_by =20
     template_name = "properties/properties_rent.html"
     context_object_name = "rentProperties"
     
@@ -74,7 +74,7 @@ class PropertiesRentListView(generic.ListView):
         if len(context['rentProperties'])>0:
             markerSet = []
             for M in context['rentProperties']:
-                markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk])
+                markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.organisation.name])
         context['markerSet'] = markerSet
         
         return context

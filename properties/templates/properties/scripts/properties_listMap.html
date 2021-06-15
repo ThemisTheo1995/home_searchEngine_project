@@ -243,7 +243,7 @@ L.Control.SleepMapControl = L.Control.extend({
 
 $(document).scroll(function(e) {
   var map = $("#rentMap");
-    if($(this).scrollTop() > 200) {
+    if($(this).scrollTop() > 100) {
         map.removeClass( "rentMapTop" ).addClass( "rentMapBottom");
     } else {
         map.removeClass( "rentMapBottom" ).addClass("rentMapTop");
@@ -252,50 +252,52 @@ $(document).scroll(function(e) {
 
 
 
-    // Anchor
-    function markerClick(e){
-        const markerPk = this._icon.dataset.pk;
-        document.getElementById(markerPk).scrollIntoView({
-            behavior: 'smooth'
-        });
-    }
+  // Smooth transition on anchor click.
+  function markerClick(e){
+      const markerPk = this._icon.dataset.pk;
+      document.getElementById(markerPk).scrollIntoView({
+          behavior: 'smooth'
+      });
+  }
 
-    // Fetch the geo data.
-    var markerSet = {{markerSet|safe}};
-    // SetView
-    var map = L.map('map').setView([markerSet[0][1], markerSet[0][2]], 13);
+  // Fetch the geo data.
+  var markerSet = {{markerSet|safe}};
+  // SetView
+  var map = L.map('map').setView([markerSet[0][1], markerSet[0][2]], 13);
 
-    // Map init
-    var gl = L.mapboxGL({
-        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
-        style: 'https://api.maptiler.com/maps/77c1d067-7f6c-43c7-81ca-46de586f5de3/style.json?key=f8KNCaKJy3aq9zRp2tSn'
-    }).addTo(map); 
+  // Map init
+  var gl = L.mapboxGL({
+      attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+      style: 'https://api.maptiler.com/maps/77c1d067-7f6c-43c7-81ca-46de586f5de3/style.json?key=f8KNCaKJy3aq9zRp2tSn'
+  }).addTo(map); 
 
-    // Markers
-    for (var i = 0; i < markerSet.length; i++) {
-            // Map configuration
-            var genesisMarker = L.icon({
-                iconUrl: '/static/images/mapMarker_rentlist.png',
-                iconSize: [20, 20],
+  // Markers
+  for (var i = 0; i < markerSet.length; i++) {
+          // Map configuration
+          var genesisMarker = L.icon({
+              iconUrl: '/static/images/mapMarker_rentlist.png',
+              iconSize: [20, 20],
 
-            });
-            marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: genesisMarker}).
-            bindTooltip(markerSet[i][0]).
-            on('click',markerClick).
-            addTo(map);
-            $(marker._icon).attr("data-pk",markerSet[i][3]);
-        }
+          });
+          marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: genesisMarker}).
+          bindTooltip(markerSet[i][0]+"<br>"+markerSet[i][4]).
+          on('click',markerClick).
+          addTo(map);
+          $(marker._icon).attr("data-pk",markerSet[i][3]);
+      }
 
-  // Social Media
-  function twitterSharer(){ 
-      window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
-    } 
-  function fbSharer(){ 
-      window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
-    } 
+// Social Media
+function twitterSharer(){ 
+    window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
+  } 
+function fbSharer(){ 
+    window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
+  } 
 
     
 });
+
+// Hover on map icon
 function markerOnMap(key){
     const marker = document.querySelector('img[data-pk="'+key+'"]');
     if (marker.classList.contains("markerActive")){

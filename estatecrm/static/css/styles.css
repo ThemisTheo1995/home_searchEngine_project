@@ -1,9 +1,5 @@
 /* custom scrolling bar */
 
-body{
-  height: 100%;
-}
-
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -241,19 +237,17 @@ table.dataTable thead th, table.dataTable thead td {
 /* Rent list map */
 .rentMapBottom{
   z-index: 50;
-  right:2%; 
-  height:48vh;
+  height:60vh;
   transition: top 0.3s ease 0s;
   top: calc(20% - 100px);
 }
 
 .rentMapTop{
   z-index: 50;
-  right:2%; 
-  height:48vh;
+  height:60vh;
   top: calc(100% - 100px);
   transition: top 0.3s ease 0s;
-  top: 235px;
+  top: 195px;
 }
 
 .markerActive{
@@ -267,4 +261,8 @@ table.dataTable thead th, table.dataTable thead td {
   opacity: 0.65;
 }
 
+
+.cardAnchor{
+  scroll-margin-top: 50px;
+}
 /* end of rent list map */
