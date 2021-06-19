@@ -5,8 +5,9 @@ from estatecrm.keys import googleKey
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.db.models import Q
+from django.contrib import messages
 from django.core import serializers
-from django.shortcuts import reverse, get_object_or_404, render
+from django.shortcuts import reverse, get_object_or_404, render, redirect
 from .models import Properties, geoData
 from .forms import FilterForm, PropertiesCreationForm, PropertiesUpdateForm
 from urllib.parse import urlencode
@@ -17,7 +18,10 @@ from .choices import (price_rent_choices,
                       furniture_choices, 
                       order_list_date_choices, 
                       order_price_choices,
-                      pagination_choices)
+                      pagination_choices,
+                      features_utilities_choices,
+                      features_extras_choices,
+                      features_spaces_choices)
 
 ### Offline view ###
 def offline(request):
@@ -90,7 +94,9 @@ class PropertiesRentListView(generic.ListView):
         """
         Paginate by specified value in querystring, or use default class property value.
         """
-        return self.request.GET.get('paginate_by', self.paginate_by)
+        paginate_by = self.request.GET.get('paginate_by', self.paginate_by)
+        cardsPerPage = '50' if int(paginate_by) > 50 else paginate_by
+        return cardsPerPage
 
     def get_queryset(self):
         if 'location' in self.request.GET:
@@ -236,31 +242,51 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
                 url = f"{endpoint}?{url_params}"
                 r = requests.get(url)
                 if r.status_code not in range(200, 299): 
-                    return reverse_lazy("properties:create")
+                    messages.error(self.request, 'Address lookup has failed')
+                    return redirect("properties:create")
                 
-                #Returned google JSON - lat long
-                latlng = r.json()['results'][0]['geometry']['location']
-                #Lat long
-                geo_lat = latlng.get("lat")
-                geo_lng = latlng.get("lng")
-                
-                results = r.json()['results'][0]["address_components"]
-                #Number
-                if  results[0]['types'][0] == "street_number":
-                    street_number = results[0].get("long_name")
-                else:
-                    return reverse_lazy("properties:create")
-                #Address
-                if  results[1]['types'][0] == "route":
-                    address = results[1].get("long_name")
-                else:
-                    return reverse_lazy("properties:create")
-                
-                #Main location query
                 try:
-                    location_info = geoData.objects.get(Q(location=location) | Q(location_en = location))
+                    errors = False
+                    
+                    #Location
+                    if r.json()['results'][0]['geometry']['location']:
+                        latlng = r.json()['results'][0]['geometry']['location']
+                    else:
+                        errors = True
+                        messages.error(self.request, 'No location lat/lng instance has been found')
+                    
+                    #Lat long
+                    if round(latlng.get("lat"),10) and round(latlng.get("lng"),10):
+                        geo_lat = round(latlng.get("lat"),10)
+                        geo_lng = round(latlng.get("lng"),10)
+                    else:
+                        errors = True
+                        messages.error(self.request, 'No location lat/lng has been found')
+                        
+                    results = r.json()['results'][0]["address_components"]
+                    #Number
+                    if  results[0]['types'][0] == "street_number":
+                        street_number = results[0].get("long_name")
+                    else: 
+                        errors = True
+                        messages.error(self.request, 'No street number found')
+                    #Address
+                    if  results[1]['types'][0] == "route":
+                        address = results[1].get("long_name")
+                    else: 
+                        messages.error(self.request, 'No address found')
+                        errors = True
+                        
+                    if errors == True:
+                        return redirect('properties:create')
+                    #Main location query
+                    try:
+                        location_info = geoData.objects.get(Q(location=location) | Q(location_en = location))
+                    except:
+                        messages.error(self.request, 'Please select a location from the dropdown box')
+                        return redirect("properties:create")
                 except:
-                    return reverse_lazy("properties:create")
+                    redirect('properties:create')
                 
                 #Country
                 country = location_info.country
@@ -281,6 +307,7 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
                 else:
                     identifier =''
                 
+                #Property features
                 if property_features:
                     property_features = json.dumps(property_features)
                     
@@ -323,13 +350,20 @@ class PropertiesUpdateView(mixins.OrganisationAndLoginRequiredMixin, generic.Upd
 
     def get_context_data(self, **kwargs):
         context = super(PropertiesUpdateView,self).get_context_data(**kwargs)
+        #Show location + property features
         pk = self.kwargs.get('pk')
         try:
             proper = Properties.objects.get(id=pk)
         except Properties.DoesNotExist:
             proper = None
+        
+        features = proper.property_features
+        context['features'] = features
+        context['features_utilities_choices'] = features_utilities_choices
+        context['features_spaces_choices'] = features_spaces_choices
+        context['features_extras_choices'] = features_extras_choices
+        
         location = proper.identifier.location
-
         context['location'] = location
         
         return context
@@ -338,6 +372,7 @@ class PropertiesUpdateView(mixins.OrganisationAndLoginRequiredMixin, generic.Upd
         properties = form.save(commit = False)
         if 'location-update' in self.request.POST:
             location = self.request.POST.get('location-update','')
+            property_features = self.request.POST.getlist('property-features','')
             if len(location)>0: 
 
                 #Main location query
@@ -365,9 +400,14 @@ class PropertiesUpdateView(mixins.OrganisationAndLoginRequiredMixin, generic.Upd
                     identifier = location_info.identifier
                 else:
                     identifier =''
+                
+                #Property features
+                if property_features:
+                    property_features = json.dumps(property_features)
 
         # Excluded form fields => manually saved
         properties.organisation = self.request.user.organisation
+        properties.property_features = property_features
         properties.country = country
         properties.country_en = country_en
         properties.admin_1 = admin_1

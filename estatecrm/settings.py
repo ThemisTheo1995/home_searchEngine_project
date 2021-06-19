@@ -153,6 +153,16 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert_debug',
+    messages.INFO: 'alert_info',
+    messages.SUCCESS: 'alert_success',
+    messages.WARNING: 'alert_warning',
+    messages.ERROR: 'alert_danger',
+}
+
 # Media folder
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

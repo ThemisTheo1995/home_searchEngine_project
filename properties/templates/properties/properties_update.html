@@ -76,6 +76,33 @@
       {% endif %}
       {{ field.errors }}
       {% endfor %}
+      <div class="mb-3">
+         <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Features'%}</label>
+         <!-- Property Features -->
+         <select multiple="multiple" name="property-features" id="property_features" class="w-full focus:outline-none" placeholder="{% trans "Select property's features..."%}">
+         <optgroup label="Utilities">
+            {% for key,value in features_utilities_choices.items %}
+               <option value="{{ key }}" {% if key in features %} selected {% endif %}>
+               {% trans value %}
+               </option>
+            {% endfor %}
+         </optgroup>
+         <optgroup label="Spaces">
+            {% for key,value in features_spaces_choices.items %}
+               <option value="{{ key }}" {% if key in features %} selected {% endif %}>
+               {% trans value %}
+               </option>
+            {% endfor %}
+         </optgroup>
+         <optgroup label="Extras">
+            {% for key,value in features_extras_choices.items %}
+               <option value="{{ key }}" {% if key in features %} selected {% endif %}>
+                {% trans value %}
+               </option>
+            {% endfor %}
+         </optgroup>
+         </select>
+      </div>
       <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white text-lg mb-3 mt-3">
       {% trans 'Update details' %}
       </button>

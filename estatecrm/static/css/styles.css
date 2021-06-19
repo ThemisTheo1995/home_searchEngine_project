@@ -266,3 +266,49 @@ table.dataTable thead th, table.dataTable thead td {
   scroll-margin-top: 50px;
 }
 /* end of rent list map */
+
+
+/* Alerts */
+.alert_danger{
+  text-align:center; 
+  padding:10px 0px 10px 0px; 
+  background-color:#F4C2C2; 
+  color:#AB3030; 
+  font-weight:bold; 
+  border-radius:3px;
+}
+.alert_info{
+  text-align:center; 
+  padding:10px 0px 10px 0px; 
+  background-color:#F4C2C2; 
+  color:#AB3030; 
+  font-weight:bold; 
+  border-radius:3px;
+}
+.alert_success{
+  text-align:center; 
+  padding:10px 0px 10px 0px; 
+  background-color:#a2d396; 
+  color:#1b7c18; 
+  font-weight:bold; 
+  border-radius:3px;
+}
+.alert_warning{
+  text-align:center; 
+  padding:10px 0px 10px 0px; 
+  background-color:#F4C2C2; 
+  color:#AB3030; 
+  font-weight:bold; 
+  border-radius:3px;
+}
+.alert_debug{
+  text-align:center; 
+  padding:10px 0px 10px 0px; 
+  background-color:#F4C2C2; 
+  color:#AB3030; 
+  font-weight:bold; 
+  border-radius:3px;
+}
+/* end of alerts */
+
+

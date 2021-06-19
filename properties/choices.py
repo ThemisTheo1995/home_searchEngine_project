@@ -66,3 +66,29 @@ pagination_choices = {
   '30':'30',
   '50':'50',
 }
+
+features_utilities_choices = {
+'billsinc':'Bills included',
+'cleanserv':'Cleaning services',
+'refurb':'Refurbished',
+'gas':'Gas',
+'electr':'Electricity',
+'central':'Central heating',
+}
+
+features_spaces_choices = {
+  'launroom':'Launroom',
+  'ensuite':'Ensuite',
+  'playroom':'Playroom',
+  'elevator':'Elevator',
+  'garden':'Garden',
+  'sharedkit':'Shared kitchen',
+}
+
+features_extras_choices = {
+  'pool':'Swimming Pool',
+  'studcom':'Student-accomodation',
+  'nodepo':'No deposit',
+  'fireplace':'Fireplace',
+  'view':'Scenery/View',
+}

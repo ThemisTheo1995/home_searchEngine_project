@@ -94,4 +94,5 @@ class PropertiesUpdateForm(forms.ModelForm):
             'admin_4',
             'admin_4_en',
             'identifier',
+            'property_features',
         )

@@ -1,9 +1,9 @@
 <script>
-// The autoComplete.js Engine instance creator
 $(function(){
 	// Multiple select
-	$('#property_features').multipleSelect()
-	// Location auto complete
+	$('#property_features').multipleSelect();
+
+	// The autoComplete.js Engine instance creator
 	const autoCompleteJS = new autoComplete({
 		data: {
 			src: async () => {

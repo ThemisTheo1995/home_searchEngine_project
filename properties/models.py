@@ -126,8 +126,8 @@ class Properties(models.Model):
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
     # Geocode
-    street_number = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
+    street_number = models.CharField(max_length=200, blank=True)
+    address = models.CharField(max_length=200, blank=True)
     postalcode = models.CharField(max_length=6, validators=[validate_postcode])
     admin_1 = models.CharField(max_length=100, blank=True)
     admin_1_en = models.CharField(max_length=100, blank= True)
