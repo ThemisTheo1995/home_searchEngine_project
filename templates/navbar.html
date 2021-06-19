@@ -1,78 +1,77 @@
 {% load i18n %}
-
 <header class="text-gray-600 body-font px-2 lg:px-5 sm:bg-gray-50 bg-blue-500">
-  <div class="container mx-auto flex flex-wrap sm:px-5 px-2 py-2 flex-row sm:items-center items-start">
-  <!--Logo, language-->
-    <div class="inline-flex flex flex-wrap w-1/2 justify-start">
-      <a href="{% url 'landing-page' %}" class="flex title-font font-medium items-center text-gray-900">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl pb-1 font-bold text-white sm:text-gray-900">Genesis</span>
-      </a> 
-      <div class="pl-4 pt-1 flex">
-        <div class="dropdown inline-block relative">
-          <form id="language" class="pt-1 text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-              <input name="next" type="hidden" value="{{ redirect_to }}">
-                <select onchange="submitLanguage()" class="appearance-none outline none cursor-pointer text-gray-700 bg-gray-300 sm:hover:bg-gray-300 py-1 mb-2 px-1 rounded" name="language">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
+    <div class="container mx-auto flex flex-wrap sm:px-5 px-2 py-2 flex-row sm:items-center items-start">
+        <!--Logo, language-->
+        <div class="inline-flex flex flex-wrap w-1/2 justify-start">
+            <a href="{% url 'landing-page' %}" class="flex title-font font-medium items-center text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl pb-1 font-bold text-white sm:text-gray-900">Genesis</span>
+            </a>
+            <div class="pl-4 pt-1 flex">
+                <div class="dropdown inline-block relative">
+                    <form id="language" class="pt-1 text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select onchange="submitLanguage()" class="appearance-none outline none cursor-pointer text-gray-700 bg-gray-300 sm:hover:bg-gray-300 py-1 mb-2 px-1 rounded" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
                         <option class="text-center bg-white" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                            {{ language.name_local }} ({{ language.code }})
+                        {{ language.name_local }} ({{ language.code }})
                         </option>
-                    {% endfor %}
-                </select>
-          </form>
+                        {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!--Menu buttons-->
-    <nav class="w-1/2 md:ml-auto inline-flex flex items-center text-xs font-semibold md:text-base justify-end mt-0.5">
-      <!--User has account+ -->
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'accounts:settings' %}" class="sm:py-1 py-2 px-2 rounded text-center sm:text-white mr-3 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
-          {% trans 'Settings' %}
-        </a>
-        <!-- +user is realtor -->
-        {% if request.user.is_authenticated and request.user.is_realtor %}
-          <a href="{% url 'organisation:organisation-dashboard' user.organisation.pk %}" class="sm:py-1 py-2 px-2 rounded text-center sm:text-white md:mr-5 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
+        <!--Menu buttons-->
+        <nav class="w-1/2 md:ml-auto inline-flex flex items-center text-xs font-semibold md:text-base justify-end mt-0.5">
+            <!--User has account+ -->
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'accounts:settings' %}" class="sm:py-1 py-2 px-2 rounded text-center sm:text-white mr-3 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
+            {% trans 'Settings' %}
+            </a>
+            <!-- +user is realtor -->
+            {% if request.user.is_authenticated and request.user.is_realtor %}
+            <a href="{% url 'organisation:organisation-dashboard' user.organisation.pk %}" class="sm:py-1 py-2 px-2 rounded text-center sm:text-white md:mr-5 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
             <i class="fa fa-home"></i>{% trans 'Board'%}
-          </a>
-        {% endif %}
-        <!-- +user is agent -->
-        {% if request.user.is_authenticated and request.user.is_agent %}
-          <a href="{% url 'organisation:organisation-properties' %}" class="sm:py-1 py-2 px-2 rounded text-center sm:text-white md:mr-5 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
+            </a>
+            {% endif %}
+            <!-- +user is agent -->
+            {% if request.user.is_authenticated and request.user.is_agent %}
+            <a href="{% url 'organisation:organisation-properties' %}" class="sm:py-1 py-2 px-2 rounded text-center sm:text-white md:mr-5 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
             <i class="fa fa-home"></i>{% trans 'Board'%}
-          </a>
-        {% endif %}
-        <!-- User icon -->
-        <a data-modal="modal-one" id="profile-button" class="inline-flex items-center focus:outline-none text-sm font-bold cursor-pointer md:ml-0 ml-3">
-          {% if request.user.profile_picture %}
-              <img height="10" width="10" src="{{request.user.profile_picture.url}}" alt="Access your account" class="w-10 h-10 flex-shrink-0 object-cover object-center rounded-full border-white border-4 hover:border-blue-500 hover:border-4 transition duration-225 ease-in-out">
+            </a>
+            {% endif %}
+            <!-- User icon -->
+            <a data-modal="modal-one" id="profile-button" class="inline-flex items-center focus:outline-none text-sm font-bold cursor-pointer md:ml-0 ml-3">
+            {% if request.user.profile_picture %}
+            <img height="10" width="10" src="{{request.user.profile_picture.url}}" alt="Access your account" class="w-10 h-10 flex-shrink-0 object-cover object-center rounded-full border-white border-4 hover:border-blue-500 hover:border-4 transition duration-225 ease-in-out">
             {% elif request.user.first_name or request.user.last_name %}
-              <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-2 px-3 shadow text-center text-white">
-              {{request.user.first_name|slice:"0:1"}}{{request.user.last_name|slice:"0:1"}}
-              </span>
+            <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-2 px-3 shadow text-center text-white">
+            {{request.user.first_name|slice:"0:1"}}{{request.user.last_name|slice:"0:1"}}
+            </span>
             {% else %}
-              <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-2 px-3 shadow text-center text-white">
-              {{request.user.username|slice:"0:2"}}
-              </span>
-          {% endif %}
+            <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-2 px-3 shadow text-center text-white">
+            {{request.user.username|slice:"0:2"}}
+            </span>
+            {% endif %}
+            </a>
+        </nav>
+        <!-- User profile card -->
+        {% include "accounts/accounts_profileCard.html" %}
+        <!-- User no account -->
+        {% else %}
+        <a href="{% url 'login' %}" class="inline-flex items-center text-center sm:text-white font-bold sm:bg-gray-700 bg-white border-0 py-1 px-2 focus:outline-none sm:hover:bg-gray-800 hover:bg-gray-200 rounded text-base mt-0.5">
+            {% trans 'Login'%}
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
         </a>
-    </nav>
-      <!-- User profile card -->
-      {% include "accounts/accounts_profileCard.html" %}
-    <!-- User no account -->
-    {% else %}
-      <a href="{% url 'login' %}" class="inline-flex items-center text-center sm:text-white font-bold sm:bg-gray-700 bg-white border-0 py-1 px-2 focus:outline-none sm:hover:bg-gray-800 hover:bg-gray-200 rounded text-base mt-0.5">
-        {% trans 'Login'%}
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
-      </a>
-    </nav>
-    {% endif %}
-  </div>
+        </nav>
+        {% endif %}
+    </div>
 </header>

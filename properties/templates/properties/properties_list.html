@@ -6,13 +6,13 @@
 {% block title %}Genesis | Rent{% endblock title %}
 {% block content %}
 <section class="text-gray-600 body-font bg-gray-100">
-   <div class="flex flex-wrap">
       <!--Search bar -->
-      {% include "properties/properties_rent_mainFilters.html" %}
+      {% include "properties/properties_mainFilters.html" %}
       <!--end of search bar-->
-      <div class="xl:w-2/3 lg:w-3/4 w-full bg-gray-300 shadow-inner">
-         {% include "properties/properties_rent_orderFilters.html" %}
-         <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto">
+   <div class="container mx-auto flex flex-wrap">
+      <div class="xl:w-2/3 lg:w-3/4 w-full bg-gray-200 shadow-inner p-4 pt-4">
+         {% include "properties/properties_orderFilters.html" %}
+         {% if rentProperties %}
             {% for rent in rentProperties %}
             <a href="#{{rent.pk}}" id="{{rent.pk}}" class="cardAnchor"></a>
             <div class="flex flex-wrap shadow">
@@ -33,7 +33,7 @@
                         </div>
                         {% endif %}
                      </div>
-                     <div class="fotorama" data-loop="true" data-fit="cover" data-nav="thumbs" data-width="100%" data-trackpad="true" data-ratio="476/290">
+                        <div class="fotorama" data-loop="true" data-fit="cover" data-nav="thumbs" data-width="100%" data-trackpad="true" data-ratio="476/290">
                         {% if rent.photo_main  %}
                         {% thumbnail rent.photo_main "476x317" as im %}
                         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
@@ -59,7 +59,7 @@
                         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo4{{rent.admin_2_en}}">
                         {% endthumbnail %}                         
                         {% endif %}
-                     </div>
+                     </div>    
                   </div>
                </div>
                <div class="lg:w-7/12 bg-white overflow-hidden rounded-tr-none sm:rounded-tr">
@@ -157,24 +157,27 @@
             </div>
             <div class="pb-8"></div>
       {% endfor %}
-         </div>
+      {% else %}
+         {% trans 'Seems there are no properties on the place you are looking on :('%}
+      {% endif %}
          <!-- Pagination -->
-         {% include "properties/properties_rent_pagination.html" %}
+         {% include "properties/properties_pagination.html" %}
          <!-- end of pagination -->
       </div>
       <div class="xl:w-1/3 lg:w-1/4 sidebar">
-         <div class="fixed rentMapTop lg:w-3/12 xl:w-4/12 p-2" id="rentMap">
-            <div class="rounded rent_map shadow" id="map" style="height:100%; width:100%;"></div>
-            <div class="text-xs text-gray-600 float-right font-semibold">
-               <a href="https://leafletjs.com" rel="noopener"`>Leaflet | </a>
-               <a href="https://www.maptiler.com/copyright/" rel="noopener">&copy;MapTiler </a>
-               <a href="https://www.openstreetmap.org/copyright" rel="noopener">&copy;OpenStreetMap</a>
-               contributors
+            <div class="sticky rentMapTop p-2 pt-0" id="rentMap" style="">
+               <div class="rounded rent_map shadow relative" id="map" style="height:100%; width:100%;"></div>
+               <div class="text-xs text-gray-600 float-right font-semibold">
+                  <a href="https://leafletjs.com" rel="noopener"`>Leaflet | </a>
+                  <a href="https://www.maptiler.com/copyright/" rel="noopener">&copy;MapTiler </a>
+                  <a href="https://www.openstreetmap.org/copyright" rel="noopener">&copy;OpenStreetMap</a>
+                  contributors
             </div>
-         </div>
+            </div>
       </div>
    </div>
 </section>
-{% include "properties/scripts/properties_listMap.html" %}
-{% include "properties/scripts/properties_landing_autocomplete.html" %}
+{% include "properties/scripts/properties_list_map_script.html" %}
+{% include "properties/scripts/properties_landing_autocomplete_script.html" %}
+{% include "properties/scripts/properties_list_filters_script.html" %}
 {% endblock content %}

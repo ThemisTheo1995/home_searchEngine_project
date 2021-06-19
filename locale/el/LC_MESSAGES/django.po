@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-06 14:27+0000\n"
+"POT-Creation-Date: 2021-06-16 22:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <themistheodoratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,6 +89,22 @@ msgstr "Ελληνικά"
 msgid "English"
 msgstr "Αγγλικά"
 
+#: properties/choices.py:54
+msgid "Oldest listed"
+msgstr "Παλαιότερα"
+
+#: properties/choices.py:55
+msgid "Newest listed"
+msgstr "Καινούρια"
+
+#: properties/choices.py:59
+msgid "Highest price 🠗"
+msgstr "Μεγαλύτερη τιμή 🠗"
+
+#: properties/choices.py:60
+msgid "Lowest price 🠕"
+msgstr "Μικρότερη τιμή 🠕"
+
 #: properties/forms.py:55
 msgid "Postcode"
 msgstr "Τ.Κώδικας"
@@ -123,11 +139,13 @@ msgstr "Τιμή"
 
 #: properties/forms.py:63
 #: properties/templates/properties/properties_rent_detail.html:171
+#: properties/templates/properties/properties_rent_mainFilters.html:53
 msgid "Bedrooms"
 msgstr "Δωμάτια"
 
 #: properties/forms.py:64
 #: properties/templates/properties/properties_rent_detail.html:172
+#: properties/templates/properties/properties_rent_mainFilters.html:58
 msgid "Bathrooms"
 msgstr "Μπάνια"
 
@@ -136,6 +154,7 @@ msgid "Garage"
 msgstr "Γκαράζ"
 
 #: properties/forms.py:66
+#: properties/templates/properties/properties_rent_mainFilters.html:39
 msgid "Furniture"
 msgstr "Έπιπλα"
 
@@ -307,11 +326,13 @@ msgstr ""
 
 #: properties/templates/properties/properties_create.html:50
 #: properties/templates/properties/properties_rent_detail.html:159
+#: properties/templates/properties/properties_rent_orderFilters.html:18
 msgid "Elevator"
-msgstr "Ανελκυστήρας"
+msgstr "Ασανσέρ"
 
 #: properties/templates/properties/properties_create.html:51
 #: properties/templates/properties/properties_rent_detail.html:152
+#: properties/templates/properties/properties_rent_orderFilters.html:12
 msgid "Garden"
 msgstr "Κήπος"
 
@@ -333,10 +354,11 @@ msgstr "Για φοιτητές"
 #: properties/templates/properties/properties_create.html:57
 #: properties/templates/properties/properties_rent_detail.html:156
 msgid "No deposit"
-msgstr ""
+msgstr "Προκαταβολή"
 
 #: properties/templates/properties/properties_create.html:58
 #: properties/templates/properties/properties_rent_detail.html:157
+#: properties/templates/properties/properties_rent_orderFilters.html:15
 msgid "Fireplace"
 msgstr "Τζάκι"
 
@@ -351,43 +373,57 @@ msgstr "Θέα"
 msgid "Submit"
 msgstr "Μετάβαση"
 
-#: properties/templates/properties/properties_rent.html:104
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:130
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:177
+#: properties/templates/properties/properties_rent.html:69
+msgid "Hide this advertisment"
+msgstr "Κρύψε αυτή την καρτέλα"
+
+#: properties/templates/properties/properties_rent.html:72
+#, fuzzy
+#| msgid "Create a new property"
+msgid "Save the property"
+msgstr "Δημιουργία νέας καταχώρησης οικήματος"
+
+#: properties/templates/properties/properties_rent.html:112
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:138
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:185
 msgid "TYPE"
 msgstr "ΤΥΠΟΣ"
 
-#: properties/templates/properties/properties_rent.html:105
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:131
+#: properties/templates/properties/properties_rent.html:116
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:139
 msgid "BEDROOMS"
 msgstr "ΔΩΜΑΤΙΑ"
 
-#: properties/templates/properties/properties_rent.html:106
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:132
+#: properties/templates/properties/properties_rent.html:120
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:140
 msgid "BATHROOMS"
 msgstr "ΜΠΑΝΙΑ"
 
-#: properties/templates/properties/properties_rent.html:107
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:133
+#: properties/templates/properties/properties_rent.html:124
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:141
 msgid "SPACE"
 msgstr "ΤΕΤΡΑΓΩΝΙΚΑ"
 
-#: properties/templates/properties/properties_rent.html:110
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:136
+#: properties/templates/properties/properties_rent.html:129
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:144
 msgid "Published:"
 msgstr "Δημοσιεύτηκε:"
 
-#: properties/templates/properties/properties_rent.html:123
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:148
+#: properties/templates/properties/properties_rent.html:142
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:156
 msgid "CALL"
 msgstr "ΚΛΗΣΗ"
 
-#: properties/templates/properties/properties_rent.html:131
+#: properties/templates/properties/properties_rent.html:150
 #: properties/templates/properties/properties_rent_detail.html:186
 #: properties/templates/properties/properties_rent_detail.html:194
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:156
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:164
 msgid "AGENCY"
 msgstr "ΜΕΣΙΤΙΚΟ"
+
+#: properties/templates/properties/properties_rent.html:161
+msgid "Seems there are no properties on the place you are looking on :("
+msgstr ""
 
 #: properties/templates/properties/properties_rent_detail.html:134
 msgid "LETTING DETAILS"
@@ -410,6 +446,7 @@ msgid "SPECIFICATIONS"
 msgstr "ΚΥΡΙΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ"
 
 #: properties/templates/properties/properties_rent_detail.html:166
+#: properties/templates/properties/properties_rent_mainFilters.html:28
 msgid "Type"
 msgstr "Τύπος"
 
@@ -428,6 +465,70 @@ msgstr "ΧΑΡΤΗΣ"
 #: properties/templates/properties/properties_rent_detail.html:199
 msgid "Learn More"
 msgstr "Περισσότερα"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:6
+msgid "Rent to: "
+msgstr "Για ενοικίαση:"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:7
+msgid "Furniture: "
+msgstr "Έπιπλα:"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:8
+msgid "Type: "
+msgstr "Τύπος κατοικίας:"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:16
+msgid "Search for a location..."
+msgstr "π.χ. 'Περιστέρι', 'Θεσσαλονίκη', '121 36'"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:20
+#: templates/landing.html:27
+msgid "Strict"
+msgstr ""
+
+#: properties/templates/properties/properties_rent_mainFilters.html:30
+#: properties/templates/properties/properties_rent_mainFilters.html:41
+#: properties/templates/properties/properties_rent_mainFilters.html:68
+#: properties/templates/properties/properties_rent_mainFilters.html:79
+msgid "any"
+msgstr "όλα"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:66
+msgid "Min price"
+msgstr "Ελάχιστη τιμή"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:77
+msgid "Max price"
+msgstr "Μέγιστη τιμή"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:92
+msgid "SEARCH"
+msgstr "ΨΑΞΕ"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:97
+msgid "CLEAR"
+msgstr "ΚΑΘΑΡΙΣΜΟΣ"
+
+#: properties/templates/properties/properties_rent_mainFilters.html:109
+msgid "Close search bar"
+msgstr "Κλείσε τα φίλτρα"
+
+#: properties/templates/properties/properties_rent_orderFilters.html:9
+msgid "View/Scenery"
+msgstr "Θέα"
+
+#: properties/templates/properties/properties_rent_orderFilters.html:22
+msgid "Sort: "
+msgstr "Ταξινόμηση:"
+
+#: properties/templates/properties/properties_rent_orderFilters.html:24
+msgid "Random date"
+msgstr "Τυχαία ημερομηνία"
+
+#: properties/templates/properties/properties_rent_orderFilters.html:32
+msgid "Random price"
+msgstr "Τυχαία τιμή"
 
 #: properties/templates/properties/properties_update.html:11
 msgid "Property details"
@@ -461,7 +562,7 @@ msgid "Add an agent"
 msgstr "Καταχώρηση Υπαλλήλου"
 
 #: realtors/templates/realtors/realtors_agents.html:48
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:176
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:184
 msgid "IMAGE"
 msgstr "ΕΙΚΟΝΑ"
 
@@ -569,33 +670,49 @@ msgstr "ΚΑΤΑΧΩΡΗΣΗ ΑΚΙΝΗΤΟΥ"
 msgid "ADD AN AGENT"
 msgstr "ΚΑΤΑΧΩΡΗΣΗ ΥΠΑΛΛΗΛΟΥ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:97
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:98
 msgid "All the other images on a scollbar"
 msgstr ""
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:178
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:104
+msgid ""
+"This is a preview. In order to actually see how it looks like in live click "
+msgstr ""
+
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:105
+#: templates/registration/password_reset_complete.html:7
+msgid "here"
+msgstr "εδώ"
+
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:186
 msgid "ADDRESS"
 msgstr "ΔΙΕΥΘΥΝΣΗ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:179
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:187
 msgid "POSTCODE"
 msgstr "ΤΑΧ. ΚΩΔΙΚΑΣ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:180
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:188
 msgid "PRICE"
 msgstr "ΤΙΜΗ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:181
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:189
 msgid "PUBLISHED"
 msgstr "ΔΗΜΟΣΙΕΥΜΕΝΗ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:182
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:190
 msgid "CATEGORY"
 msgstr "ΚΑΤΗΓΟΡΙΑ"
 
-#: realtors/templates/realtors/realtors_organisation_rent_properties.html:183
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:191
 msgid "AVAILABILITY"
 msgstr "ΔΙΑΘΕΣΙΜΟΤΗΤΑ"
+
+#: realtors/templates/realtors/realtors_organisation_rent_properties.html:192
+#, fuzzy
+#| msgid "LETTING DETAILS"
+msgid "DETAILS"
+msgstr "ΠΛΗΡΟΦΟΡΙΕΣ ΕΝΟΙΚΙΑΣΗΣ"
 
 #: realtors/templates/realtors/realtors_organisation_rent_update.html:11
 msgid "Organisation details"
@@ -615,12 +732,8 @@ msgstr ""
 "Βρες το δικό σου σπίτι, οικία και γραφείο στην Ελλάδα και το Ηνωμένο Βασίλειο"
 
 #: templates/landing.html:23
-msgid "Search for a location..."
-msgstr "Ψάξτε την τοποθεσία..."
-
-#: templates/landing.html:27
-msgid "Strict"
-msgstr ""
+msgid "e.g. 'CH1 3DA', 'Chester' "
+msgstr "π.χ. 'Περιστέρι', 'Θεσσαλονίκη', '121 36'"
 
 #: templates/landing.html:34
 msgid "TO RENT"
@@ -684,10 +797,6 @@ msgid "You have succesfully reset your password. Click "
 msgstr "Επαναφέρατε τον κωδικό σας επιτυχώς. Κάντε κλικ"
 
 #: templates/registration/password_reset_complete.html:7
-msgid "here"
-msgstr "εδώ"
-
-#: templates/registration/password_reset_complete.html:7
 msgid "to login."
 msgstr "για να συνδεθείτε."
 
@@ -728,3 +837,5 @@ msgstr "Έχετε ήδη λογιαριασμό;"
 msgid "Do you want to change your password?"
 msgstr "Θέλετε να αλλάξετε τον κωδικό σας;"
 
+#~ msgid "e.g. "
+#~ msgstr "π.χ. 'Περιστέρι', 'Θεσσαλονίκη', '121 36'"

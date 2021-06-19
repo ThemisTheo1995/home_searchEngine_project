@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 
 price_sale_choices = {
   '100000':'$100,000',
@@ -50,11 +51,11 @@ furniture_choices = {
 }
 
 order_list_date_choices = {
-  'old':'Oldest listed',
-  'new':'Newest listed',
+  'old':_('Oldest listed'),
+  'new':_('Newest listed'),
 }
 
 order_price_choices = {
-  'high':'Highest price 🠗',
-  'low':'Lowest price 🠕',
+  'high':_('Highest price 🠗'),
+  'low':_('Lowest price 🠕'),
 }

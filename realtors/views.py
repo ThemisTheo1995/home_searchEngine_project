@@ -21,7 +21,7 @@ class OrganisationDashboardView(RealtorAndLoginRequiredMixin, generic.DetailView
 
 ### Organisation update ###
 class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
-    template_name = "realtors/realtors_organisation_rent_update.html"
+    template_name = "realtors/realtors_organisation_update.html"
     form_class = OrganisationUpdateForm
     context_object_name = 'organisation'
     
@@ -33,7 +33,7 @@ class OrganisationUpdateView(RealtorAndLoginRequiredMixin, generic.UpdateView):
 
 ### Organisation list ###
 class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView):
-    template_name = "realtors/realtors_organisation_rent_properties.html" 
+    template_name = "realtors/realtors_organisation_list_properties.html" 
     context_object_name = "organisation"
     
     def get_context_data(self, **kwargs):
@@ -123,7 +123,7 @@ def realtors_org_rent_preview(request):
 ### Agents list ###
 class AgentListView(RealtorAndLoginRequiredMixin, generic.ListView):
     paginate_by = 15
-    template_name = "realtors/realtors_agents.html" 
+    template_name = "realtors/realtors_agent_list.html" 
     context_object_name = "agents"
     
     def get_context_data(self, **kwargs):

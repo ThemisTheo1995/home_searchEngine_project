@@ -20,7 +20,7 @@
         <form method="get" autocomplete="off">
           <div class="flex flex-wrap w-full justify-center items-center">
             <div class="autoComplete_wrapper flex sm:w-1/2 w-full">
-              <input id="autoComplete" type="text" name="location" placeholder="{% trans 'Search for a location...'%}" required>
+              <input id="autoComplete" type="text" name="location" placeholder="{% trans "e.g. 'CH1 3DA', 'Chester' "%}" required>
             </div>
             <div class="mode flex w-full justify-center items-center mt-4">
                 <div class="toggle">
@@ -30,10 +30,10 @@
               <div class="selection"></div>
           </div>
           <div class="flex justify-center py-6 mt-4">
-            <button formaction="{% url 'properties:rent-list'%}"  class="inline-flex text-white font-semibold bg-blue-600 border-0 py-3 px-6 hover:bg-blue-700 rounded text-lg">
+            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="inline-flex text-white font-semibold bg-blue-600 border-0 py-3 px-6 hover:bg-blue-700 rounded text-lg">
               {% trans 'TO RENT' %}
             </button>
-            <button class="ml-4 inline-flex text-white font-semibold bg-gray-700 py-3 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
+            <button id="saleButton" type="submit" class="ml-4 inline-flex text-white font-semibold bg-gray-700 py-3 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
               {% trans 'FOR SALE' %}
             </button>
           </div>
@@ -45,7 +45,7 @@
     <h1 id ="genslide" class= "tracking-wider font-bold text-center sm:px-10 sm:pt-2 pt-10 px-4 text-2xl">
       {% trans 'LATEST PUBLISHED PROPERTIES'%}
     </h1>
-      <div class="flex flex-wrap sm:mt-8 mt-6">
+      <div class="flex flex-wrap sm:mt-8 mt-6 container mx-auto">
         {% for property in landingProperties %}
         <div class="xl:w-1/4 md:w-1/2 p-4">
           {% if property.advertised == "To_Rent" %}
@@ -118,7 +118,7 @@
       <div class="pagination w-3/12 sidebar">
       </div>
     </div>
-    {% include "properties/scripts/properties_landing_autocomplete.html" %}
+    {% include "properties/scripts/properties_landing_autocomplete_script.html" %}
 </section>
 {% endblock content %}
 

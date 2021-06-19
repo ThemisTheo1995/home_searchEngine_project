@@ -48,8 +48,8 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
-    paginate_by =20
-    template_name = "properties/properties_rent.html"
+    paginate_by =22
+    template_name = "properties/properties_list.html"
     context_object_name = "rentProperties"
     
     def get_context_data(self, **kwargs):
@@ -71,11 +71,14 @@ class PropertiesRentListView(generic.ListView):
         context['order_price_choices'] = order_price_choices
         context['orderprice'] = self.request.GET.get('orderprice','')
         context['views'] = self.request.GET.get('views','')
-        if len(context['rentProperties'])>0:
-            markerSet = []
-            for M in context['rentProperties']:
-                markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.organisation.name])
-        context['markerSet'] = markerSet
+        try:
+            if len(context['rentProperties'])>0:
+                markerSet = []
+                for M in context['rentProperties']:
+                    markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.organisation.name])
+            context['markerSet'] = markerSet
+        except:
+            context['markerSet'] = "undefined"
         
         return context
 
@@ -160,14 +163,14 @@ class PropertiesRentListView(generic.ListView):
             # Property type filter
             if prop_type != '' and type(prop_type)==str:
                 try:
-                    queryset = queryset.filter(property_type__icontains = prop_type)
+                    queryset = queryset.filter(property_type = prop_type)
                 except:pass
                     
         return queryset
 
 ### Rent Detail view ###
 class PropertiesRentDetailView(generic.DetailView):
-    template_name = "properties/properties_rent_detail.html"
+    template_name = "properties/properties_detail.html"
     context_object_name = "rent"
     queryset = Properties.objects.filter(
             advertised = 'To_Rent',

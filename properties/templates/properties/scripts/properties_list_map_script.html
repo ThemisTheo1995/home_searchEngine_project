@@ -250,8 +250,6 @@ $(document).scroll(function(e) {
     }
 });
 
-
-
   // Smooth transition on anchor click.
   function markerClick(e){
       const markerPk = this._icon.dataset.pk;
@@ -262,6 +260,10 @@ $(document).scroll(function(e) {
 
   // Fetch the geo data.
   var markerSet = {{markerSet|safe}};
+
+  if (typeof markerSet != 'undefined'){
+
+
   // SetView
   var map = L.map('map').setView([markerSet[0][1], markerSet[0][2]], 13);
 
@@ -285,6 +287,7 @@ $(document).scroll(function(e) {
           addTo(map);
           $(marker._icon).attr("data-pk",markerSet[i][3]);
       }
+}
 
 // Social Media
 function twitterSharer(){ 
@@ -296,17 +299,16 @@ function fbSharer(){
 
     
 });
-
 // Hover on map icon
-function markerOnMap(key){
-    const marker = document.querySelector('img[data-pk="'+key+'"]');
-    if (marker.classList.contains("markerActive")){
-      marker.classList.remove("markerActive");
-    }else{
-      marker.classList.add("markerActive");
-      setTimeout(function(){
-          marker.classList.remove('markerActive');
-      },5000);
-    }
-}
+  function markerOnMap(key){
+      const marker = document.querySelector('img[data-pk="'+key+'"]');
+      if (marker.classList.contains("markerActive")){
+        marker.classList.remove("markerActive");
+      }else{
+        marker.classList.add("markerActive");
+        setTimeout(function(){
+            marker.classList.remove('markerActive');
+        },5000);
+      }
+  }
 </script>

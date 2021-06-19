@@ -1,31 +1,4 @@
 <script>
-function resetFilter(){
-	$('.form_group').val("");
-	document.getElementById("search_bar").submit(); 
-}
-
-function sortFilter(){
-	document.getElementById("search_bar").submit(); 
-}
-
-function featuresFilter(feature){
-	document.querySelector('.view').value = feature;
-}
-
-function searchBarClose(){
-	const searchBar = document.getElementById('search_bar');
-	const map = document.getElementById('rentMap');
-
-	if (searchBar.classList.contains('hidden')){
-		searchBar.classList.remove('hidden');
-		document.getElementById("close_searchbar").style.opacity = '100%';
-		map.style.marginTop = '6%';
-	}else{
-		searchBar.classList.add('hidden');
-		document.getElementById("close_searchbar").style.opacity = '40%';
-		map.style.marginTop = '0%';
-	}
-}
 
 // The autoComplete.js Engine instance creator
 const autoCompleteJS = new autoComplete({
@@ -89,7 +62,7 @@ const autoCompleteJS = new autoComplete({
 		}
 	},
 	onSelection: (feedback) => {
-		document.querySelector("#autoComplete").blur();
+		//document.querySelector("#autoComplete").blur();
 		// Prepare User's Selected Value
 		const selection = feedback.selection.value[feedback.selection.key];
 		// Render selected choice to selection div

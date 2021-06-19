@@ -30,4 +30,4 @@ class UpdateUserView(LoginRequiredMixin, generic.UpdateView):
         return self.request.user
 
 class SettingsView(LoginRequiredMixin, generic.TemplateView):
-    template_name = "accounts/settings.html"
+    template_name = "accounts/accounts_settings.html"

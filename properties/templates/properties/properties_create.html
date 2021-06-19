@@ -1,69 +1,67 @@
 {% extends "base.html" %}
 {% load tailwind_filters %}
 {% load i18n %}
-
 {% block title %} Genesis | Create property {% endblock title %}
-
 {% block content %}
 <div class="max-w-lg mx-auto px-5">
-    <h1 class = "title-font sm:text-3xl pt-10 text-2xl mb-1 font-medium text-gray-900 mb-8">
-        {% trans 'Create a new property'%}
-    </h1>
-    <form method="post" class="text-sm" enctype="multipart/form-data" autocomplete="off">
-        {% csrf_token %}
-        <!-- Property Location -->
-        <div class="mb-3">
-            <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Location'%}</label>
-            <div class="autoComplete_wrapper w-full">
-                <input required type="text" name="location-create" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
+   <h1 class = "title-font sm:text-3xl pt-10 text-2xl mb-1 font-medium text-gray-900 mb-8">
+      {% trans 'Create a new property'%}
+   </h1>
+   <form method="post" class="text-sm" enctype="multipart/form-data" autocomplete="off">
+      {% csrf_token %}
+      <!-- Property Location -->
+      <div class="mb-3">
+         <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Location'%}</label>
+         <div class="autoComplete_wrapper w-full">
+            <input required type="text" name="location-create" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
+         </div>
+         <div class="mode flex w-full justify-center items-center mt-4">
+            <div class="toggle">
+               <div class="toggler">Strict</div>
             </div>
-            <div class="mode flex w-full justify-center items-center mt-4">
-                <div class="toggle">
-                  <div class="toggler">Strict</div>
-                </div>
-            </div>
-            <div class="selection"></div>
-        </div>
-        <!-- Property Address -->
-        <div class="mb-3">
-            <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Address'%}</label>
-            <input required type="text" name="address" id="address_search" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700" 
-                placeholder="{% trans 'Search for your exact address...'%}">
-        </div>
-        {{form|crispy}}
-        <div class="mb-3">
-            <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Features'%}</label>
-            <!-- Property Features -->
-            <select multiple="multiple" name="property-features" id="property_features" class="w-full focus:outline-none" placeholder="{% trans "Select property's features..."%}">
-                <optgroup label="Utilities">
-                    <option value="billsinc">{% trans 'Bills included'%}</option>
-                    <option value="cleanserv">{% trans 'Cleaning services'%}</option>
-                    <option value="refurb">{% trans 'Refurbished'%}</option>
-                    <option value="gas">{% trans 'Gas'%}</option>
-                    <option value="electr">{% trans 'Electricity'%}</option>
-                    <option value="central">{% trans 'Central heating'%}</option>
-                </optgroup>
-                <optgroup label="Spaces">
-                    <option value="launroom">{% trans 'Laundry room'%}</option>
-                    <option value="ensuite">{% trans 'En-suite'%}</option>
-                    <option value="playroom">{% trans 'Playroom'%}</option>
-                    <option value="elevator">{% trans 'Elevator'%}</option>
-                    <option value="garden">{% trans 'Garden'%}</option>
-                    <option value="sharedkit">{% trans 'Shared kitchen'%}</option>
-                </optgroup>
-                <optgroup label="Extras">
-                    <option value="pool">{% trans 'Swimming-pool'%}</option>
-                    <option value="studcom">{% trans 'Student-accommodation'%}</option>
-                    <option value="nodepo">{% trans 'No deposit'%}</option>
-                    <option value="fireplace">{% trans 'Fireplace'%}</option>
-                    <option value="view">{% trans 'Scenery/View'%}</option>
-                </optgroup>
-            </select>
-        </div>
-        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white text-lg mb-3 mt-3">
+         </div>
+         <div class="selection"></div>
+      </div>
+      <!-- Property Address -->
+      <div class="mb-3">
+         <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Address'%}</label>
+         <input required type="text" name="address" id="address_search" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700" 
+            placeholder="{% trans 'Search for your exact address...'%}">
+      </div>
+      {{form|crispy}}
+      <div class="mb-3">
+         <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Features'%}</label>
+         <!-- Property Features -->
+         <select multiple="multiple" name="property-features" id="property_features" class="w-full focus:outline-none" placeholder="{% trans "Select property's features..."%}">
+         <optgroup label="Utilities">
+            <option value="billsinc">{% trans 'Bills included'%}</option>
+            <option value="cleanserv">{% trans 'Cleaning services'%}</option>
+            <option value="refurb">{% trans 'Refurbished'%}</option>
+            <option value="gas">{% trans 'Gas'%}</option>
+            <option value="electr">{% trans 'Electricity'%}</option>
+            <option value="central">{% trans 'Central heating'%}</option>
+         </optgroup>
+         <optgroup label="Spaces">
+            <option value="launroom">{% trans 'Laundry room'%}</option>
+            <option value="ensuite">{% trans 'En-suite'%}</option>
+            <option value="playroom">{% trans 'Playroom'%}</option>
+            <option value="elevator">{% trans 'Elevator'%}</option>
+            <option value="garden">{% trans 'Garden'%}</option>
+            <option value="sharedkit">{% trans 'Shared kitchen'%}</option>
+         </optgroup>
+         <optgroup label="Extras">
+            <option value="pool">{% trans 'Swimming-pool'%}</option>
+            <option value="studcom">{% trans 'Student-accommodation'%}</option>
+            <option value="nodepo">{% trans 'No deposit'%}</option>
+            <option value="fireplace">{% trans 'Fireplace'%}</option>
+            <option value="view">{% trans 'Scenery/View'%}</option>
+         </optgroup>
+         </select>
+      </div>
+      <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white text-lg mb-3 mt-3">
       {% trans 'Submit' %}
-    </button>
-    </form>
+      </button>
+   </form>
 </div>
 {% include "properties/scripts/properties_create_autocomplete.html" %}
 {% include "properties/scripts/properties_create_googlePlaces.html" %}

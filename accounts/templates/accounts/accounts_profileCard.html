@@ -1,56 +1,56 @@
 {% load i18n %}
 <!-- Profile card pop-up -->
 <div class="modal" id="modal-one">
-    <div class="modal-bg modal-exit"></div>
-    <div class="modal-container flex flex-col justify-end overflow-hidden shadow-xl bg-gray-50 rounded-lg p-4 sm:mr-8 sm:mt-20 mt-20 mx-auto border border-gray-300">
-        <span class="bg-blue-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
-        {{request.user.username|title}}
-        </span>
-        <div class="mt-6 flex justify-center text-center">
-        {% if request.user.profile_picture %}
-        <a href="{% url 'accounts:update-user'%}">
-            <img height="20" width ="20" src="{{request.user.profile_picture.url}}" class="w-20 h-20 flex-shrink-0 object-cover object-center rounded-full border-gray-50 border-4 hover:border-blue-500 transition duration-75 ease-in-out">
-        </a>
-        {% elif request.user.first_name or request.user.last_name %}
-        <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-4 px-6 shadow text-center text-white text-lg font-bold cursor-pointer">
-            <a href="{% url 'accounts:update-user'%}"> 
-            {{request.user.first_name|slice:"0:1"}}{{request.user.last_name|slice:"0:1"}}
-            </a>
-        </span>
-        {% else %}
-        <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-4 px-6 shadow text-center text-white text-lg font-bold cursor-pointer">
-            <a href="{% url 'accounts:update-user'%}"> 
-            {{request.user.username|slice:"0:2"}}
-            </a>
-        </span>
-        {% endif %}
-        </div>
-        <div class="text-center mt-4 text-gray-900">
-        <p class="font-semibold">
-        {% if request.user.first_name %}
-        {{request.user.first_name}}
-        {% endif %}
-        {% if request.user.last_name %}
-        {{request.user.last_name}}
-        {% endif %}
-        </p>
-        <p class="text-xs font-semibold text-gray-500">{{request.user.email}}</p>
-        </div>
-        <a href="{% url 'accounts:settings' %}" class="text-center text-sm mt-4 py-1 px-2 mx-10 focus:outline-none bg-blue-500 hover:bg-blue-600 text-white rounded-full">
-        {% trans 'Manage your account'%}
-        </a>
-        <a href="{% url 'logout' %}" class="text-center font-semibold text-sm mt-auto border border-gray-300 py-3 px-2 mx-24 focus:outline-none hover:bg-gray-100 rounded">
-        {% trans 'Logout'%}
-        </a>
-        <hr class="mt-6 mb-4 border-gray-300">
-        <div class="flex flex-wrap text-center text-xs text-gray-400">
-        <a href="#" class="w-1/2">
-        {% trans 'Terms of Policy'%}
-        </a>
-        <a href="#" class="w-1/2">
-        {% trans 'GDPR'%}
-        </a>
-        </div>
-    </div>
+   <div class="modal-bg modal-exit"></div>
+   <div class="modal-container flex flex-col justify-end overflow-hidden shadow-xl bg-gray-50 rounded-lg p-4 sm:mr-8 sm:mt-20 mt-20 mx-auto border border-gray-300">
+      <span class="bg-blue-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
+      {{request.user.username|title}}
+      </span>
+      <div class="mt-6 flex justify-center text-center">
+         {% if request.user.profile_picture %}
+         <a href="{% url 'accounts:update-user'%}">
+         <img height="20" width ="20" src="{{request.user.profile_picture.url}}" class="w-20 h-20 flex-shrink-0 object-cover object-center rounded-full border-gray-50 border-4 hover:border-blue-500 transition duration-75 ease-in-out">
+         </a>
+         {% elif request.user.first_name or request.user.last_name %}
+         <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-4 px-6 shadow text-center text-white text-lg font-bold cursor-pointer">
+         <a href="{% url 'accounts:update-user'%}"> 
+         {{request.user.first_name|slice:"0:1"}}{{request.user.last_name|slice:"0:1"}}
+         </a>
+         </span>
+         {% else %}
+         <span class="bg-gray-700 hover:bg-gray-800 rounded-full py-4 px-6 shadow text-center text-white text-lg font-bold cursor-pointer">
+         <a href="{% url 'accounts:update-user'%}"> 
+         {{request.user.username|slice:"0:2"}}
+         </a>
+         </span>
+         {% endif %}
+      </div>
+      <div class="text-center mt-4 text-gray-900">
+         <p class="font-semibold">
+            {% if request.user.first_name %}
+            {{request.user.first_name}}
+            {% endif %}
+            {% if request.user.last_name %}
+            {{request.user.last_name}}
+            {% endif %}
+         </p>
+         <p class="text-xs font-semibold text-gray-500">{{request.user.email}}</p>
+      </div>
+      <a href="{% url 'accounts:settings' %}" class="text-center text-sm mt-4 py-1 px-2 mx-10 focus:outline-none bg-blue-500 hover:bg-blue-600 text-white rounded-full">
+      {% trans 'Manage your account'%}
+      </a>
+      <a href="{% url 'logout' %}" class="text-center font-semibold text-sm mt-auto border border-gray-300 py-3 px-2 mx-24 focus:outline-none hover:bg-gray-100 rounded">
+      {% trans 'Logout'%}
+      </a>
+      <hr class="mt-6 mb-4 border-gray-300">
+      <div class="flex flex-wrap text-center text-xs text-gray-400">
+         <a href="#" class="w-1/2">
+         {% trans 'Terms of Policy'%}
+         </a>
+         <a href="#" class="w-1/2">
+         {% trans 'GDPR'%}
+         </a>
+      </div>
+   </div>
 </div>
 <!-- end of Profile card pop-up -->

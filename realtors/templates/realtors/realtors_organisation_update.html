@@ -1,17 +1,18 @@
-{% extends "base.html" %}
+<!-- templates/realtors/organisation_update.html -->
+{% extends 'base.html' %}
 {% load tailwind_filters %}
 {% load i18n %}
-{% block title %} Genesis | Create agent {% endblock title %}
+{% block title %}Genesis | Update realtor details{% endblock %}
 {% block content %}
 <div class="max-w-lg mx-auto px-5">
    <h1 class = "title-font sm:text-3xl pt-10 text-2xl mb-1 font-medium text-gray-900 mb-8">
-      {% trans 'Create an agent' %}
+      {% trans 'Organisation details' %}
    </h1>
-   <form method="post">
+   <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{form|crispy}}
+      {{ form|crispy }}
       <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md text-white text-lg mb-3 mt-3">
-      {% trans 'Submit' %}
+      {% trans 'Update details' %}
       </button>
    </form>
 </div>
