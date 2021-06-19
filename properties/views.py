@@ -16,7 +16,8 @@ from .choices import (price_rent_choices,
                       type_rent_choices, 
                       furniture_choices, 
                       order_list_date_choices, 
-                      order_price_choices)
+                      order_price_choices,
+                      pagination_choices)
 
 ### Offline view ###
 def offline(request):
@@ -48,29 +49,32 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
-    paginate_by =22
+    paginate_by =15
     template_name = "properties/properties_list.html"
     context_object_name = "rentProperties"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['location'] = self.request.GET.get('location', '')
-        context['minbathrooms'] = self.request.GET.get('minbaths','')
-        context['minbedrooms'] = self.request.GET.get('minbeds','')
-        context['maxbathrooms'] = self.request.GET.get('maxbaths','')
-        context['maxbedrooms'] = self.request.GET.get('maxbeds','')
-        context['minprice'] = self.request.GET.get('minprice','')
-        context['maxprice'] = self.request.GET.get('maxprice','')
-        context['type'] = self.request.GET.get('type','')
-        context['furniture'] = self.request.GET.get('furniture','')
+        pre = self.request.GET.get
+        context['location'] = pre('location', '')
+        context['minbathrooms'] = pre('minbaths','')
+        context['minbedrooms'] = pre('minbeds','')
+        context['maxbathrooms'] = pre('maxbaths','')
+        context['maxbedrooms'] = pre('maxbeds','')
+        context['minprice'] = pre('minprice','')
+        context['maxprice'] = pre('maxprice','')
+        context['type'] = pre('type','')
+        context['furniture'] = pre('furniture','')
         context['price'] = price_rent_choices
         context['type_choices'] = type_rent_choices
         context['furniture_choices'] = furniture_choices
         context['order_list_date_choices'] = order_list_date_choices
-        context['orderlist'] = self.request.GET.get('orderlist','')
+        context['orderlist'] = pre('orderlist','')
         context['order_price_choices'] = order_price_choices
-        context['orderprice'] = self.request.GET.get('orderprice','')
-        context['views'] = self.request.GET.get('views','')
+        context['orderprice'] = pre('orderprice','')
+        context['views'] = pre('views','')
+        context['pagination_choices'] = pagination_choices
+        context['paginate_by'] = pre('paginate_by', 15) or 15
         try:
             if len(context['rentProperties'])>0:
                 markerSet = []
@@ -82,20 +86,27 @@ class PropertiesRentListView(generic.ListView):
         
         return context
 
+    def get_paginate_by(self, queryset):
+        """
+        Paginate by specified value in querystring, or use default class property value.
+        """
+        return self.request.GET.get('paginate_by', self.paginate_by)
+
     def get_queryset(self):
         if 'location' in self.request.GET:
+            pre = self.request.GET.get
             # Parameters
-            location = self.request.GET.get('location','')
-            minbeds = self.request.GET.get('minbeds','')
-            minbaths = self.request.GET.get('minbaths','')
-            maxbeds = self.request.GET.get('maxbeds','')
-            maxbaths = self.request.GET.get('maxbaths','')
-            maxprice = self.request.GET.get('maxprice','')
-            minprice = self.request.GET.get('minprice','')
-            prop_type = self.request.GET.get('type','')
-            furniture = self.request.GET.get('furniture','')
-            orderlist = self.request.GET.get('orderlist','')
-            orderprice = self.request.GET.get('orderprice','')
+            location = pre('location','')
+            minbeds = pre('minbeds','')
+            minbaths = pre('minbaths','')
+            maxbeds = pre('maxbeds','')
+            maxbaths = pre('maxbaths','')
+            maxprice = pre('maxprice','')
+            minprice = pre('minprice','')
+            prop_type = pre('type','')
+            furniture = pre('furniture','')
+            orderlist = pre('orderlist','')
+            orderprice = pre('orderprice','')
             # Location filter
             if len(location)>0: 
                 # Check if the identifier exists
@@ -165,7 +176,6 @@ class PropertiesRentListView(generic.ListView):
                 try:
                     queryset = queryset.filter(property_type = prop_type)
                 except:pass
-                    
         return queryset
 
 ### Rent Detail view ###

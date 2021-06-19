@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load humanize %}
+{% load thumbnail %}
 
 {% block title %}Genesis | Home{% endblock title %}
 
@@ -52,7 +53,9 @@
           <a href="{% url 'properties:rent-detail' property.pk%}" target="_blank"> {% else %} <a href="#" target="_blank"> {% endif %}
             <div class="bg-gray-100 p-6 rounded-lg shadow">
               {% if property.photo_main  %}
-                <img class="h-50 rounded w-full object-cover object-center mb-6" height="250" width="400" src="{{property.photo_main.url}}" alt="{{admin_1_en}}main_photo">
+              {% thumbnail property.photo_main "320x170" as im %}
+              <img class="rounded mb-4 w-full" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
+              {% endthumbnail %}
               {% endif %}
                 <div class="flex items-center flex-wrap w-full">
                   <h2 class="tracking-wider text-blue-600 text-xs font-medium title-font inline-flex items-center">

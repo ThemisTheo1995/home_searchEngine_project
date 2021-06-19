@@ -18,8 +18,18 @@
             </button>
          </div>
          <div class="w-3/6 text-right">
+         <div class="mb-2">
+               <span>{% trans 'Show:'%}</span>
+               <select name="paginate_by" form="search_bar" onchange="sortFilter()" class="bg-blue-600 rounded py-1 px-1 outline-none items-center text-gray-50">
+                  {% for key,value in pagination_choices.items %}
+                  <option value="{{ key }}" {% if key == paginate_by %} selected {% endif %}>
+                  {{ value }}
+                  </option>
+                  {% endfor %}
+               </select>
+            </div>
             <span>{% trans 'Sort: '%}</span>
-            <select form="search_bar" onchange="sortFilter()" name="orderlist" class="mb-2 bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
+            <select form="search_bar" onchange="sortFilter()" name="orderlist" class="rounded mb-2 bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
                <option selected="true" value="">{% trans 'Random date'%}</option>
                {% for key,value in order_list_date_choices.items %}
                <option value="{{ key }}" {% if key == orderlist %} selected {% endif %}>
@@ -27,7 +37,7 @@
                </option>
                {% endfor %}
             </select>
-            <select form="search_bar" onchange="sortFilter()" name="orderprice" class="mb-2 bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
+            <select form="search_bar" onchange="sortFilter()" name="orderprice" class="rounded mb-2 bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
                <option selected="true" value="">{% trans 'Random price'%}</option>
                {% for key,value in order_price_choices.items %}
                <option value="{{ key }}" {% if key == orderprice %} selected {% endif %}>

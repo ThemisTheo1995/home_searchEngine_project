@@ -7,12 +7,13 @@ const appShell = [
   '/base',
   '/static/css/styles.css',
   '/static/js/main.js',
+  '/static/js/fotorama.js',
   '/static/images/icons/genesis_splash.png',
   '/manifest.json',
   '/offline',
 ];
 
-const maxNumberItemsDynamicCache = 50;
+const maxNumberItemsDynamicCache = 100;
 const urlsToCacheTimes = new Map();
 // In milliseconds.
 const networkWaitTime = 2000;

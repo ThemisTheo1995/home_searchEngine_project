@@ -59,3 +59,10 @@ order_price_choices = {
   'high':_('Highest price 🠗'),
   'low':_('Lowest price 🠕'),
 }
+
+pagination_choices = {
+  '15':'15',
+  '20':'20',
+  '30':'30',
+  '50':'50',
+}

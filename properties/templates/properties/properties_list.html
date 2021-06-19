@@ -33,30 +33,30 @@
                         </div>
                         {% endif %}
                      </div>
-                        <div class="fotorama" data-loop="true" data-fit="cover" data-nav="thumbs" data-width="100%" data-trackpad="true" data-ratio="476/290">
+                        <div class="fotorama" data-loop="true" data-fit="cover" data-nav="thumbs" data-width="100%" data-trackpad="true" data-ratio="476/270">
                         {% if rent.photo_main  %}
-                        {% thumbnail rent.photo_main "476x317" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
+                        {% thumbnail rent.photo_main "350x270" as im %}
+                        <a href="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}"></a>
                         {% endthumbnail %}
                         {% endif %}
                         {% if rent.photo_1  %}
-                        {% thumbnail rent.photo_1 "476x317" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo1{{rent.admin_2_en}}">
+                        {% thumbnail rent.photo_1 "350x270" as im %}
+                        <a href="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo1{{rent.admin_2_en}}"></a>
                         {% endthumbnail %}
                         {% endif %}
                         {% if rent.photo_2  %}
-                        {% thumbnail rent.photo_2 "476x317" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo2{{rent.admin_2_en}}">
+                        {% thumbnail rent.photo_2 "350x270" as im %}
+                        <a href="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo2{{rent.admin_2_en}}"></a>
                         {% endthumbnail %}
                         {% endif %}          
                         {% if rent.photo_3 %}
-                        {% thumbnail rent.photo_3 "476x317" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo3{{rent.admin_2_en}}">
+                        {% thumbnail rent.photo_3 "350x270" as im %}
+                        <a href="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"  alt="photo3{{rent.admin_2_en}}"></a>
                         {% endthumbnail %}
                         {% endif %}  
                         {% if rent.photo_4  %}
-                        {% thumbnail rent.photo_4 "476x317" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo4{{rent.admin_2_en}}">
+                        {% thumbnail rent.photo_4 "350x270" as im %}
+                        <a href="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo4{{rent.admin_2_en}}"></a>
                         {% endthumbnail %}                         
                         {% endif %}
                      </div>    
