@@ -1,0 +1,32 @@
+<script>
+$(function(){
+    var spliders = document.querySelectorAll('.splide');
+
+    for(var i = 0; i < spliders.length; i++){
+        var primarySlider = new Splide(spliders[i], {
+            type        : 'loop',
+            cover       : true,
+            perPage     : 2,
+            perMove     : 2,
+            heightRatio : 0.33,
+            gap         : '0.2rem',
+            rewind      : true,
+            lazyLoad    : 'nearby',
+            pagination  : true,
+            keyboard    : false,
+            breakpoints : {
+                '1024'  : {
+                    heightRatio: 0.3,
+                    pagination: true,
+                },
+                '640'  : {
+                    heightRatio: 0.55,
+                    type        : 'fade',
+                    perPage     : 1,
+                    pagination: true,
+                }
+            },
+        }).mount();
+    }
+});
+</script>
