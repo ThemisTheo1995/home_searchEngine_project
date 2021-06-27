@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from accounts.models import CustomUser 
 from datetime import datetime
-from PIL import Image
+from PIL import Image, ImageOps
 from .validators import validate_file_size, validate_postcode
 from realtors.models import Organisation,Agent
 from django.core.files.uploadedfile import InMemoryUploadedFile
@@ -109,7 +109,7 @@ class Properties(models.Model):
     property_features = models.CharField(max_length=300, blank=True, default='')
     advertised = models.CharField(max_length=10, choices=ADVERTISMENT_CHOICES, default='To_Rent')
     description = models.TextField(max_length=2000)
-    short_description = models.TextField(max_length=230, default='')
+    short_description = models.TextField(max_length=180, default='')
     available_after = models.DateField(default=datetime.now)
     currency = models.CharField(max_length=10,choices=CURRENCY_CHOICES, default='€')
     price = models.IntegerField()
@@ -160,7 +160,11 @@ class Properties(models.Model):
     def compressImage(self,photo):
         imageTemporary = Image.open(photo)
         outputIoStream = BytesIO()
-        imageTemporaryResized = imageTemporary.resize( (1200,720) ) 
+        imageTemporaryResized = ImageOps.exif_transpose(imageTemporary) 
+        if imageTemporaryResized.height/imageTemporaryResized.width>1:
+            imageTemporaryResized = imageTemporaryResized.resize( (720,1000) )
+        else:
+            imageTemporaryResized = imageTemporaryResized.resize( (1200,720) )  
         imageTemporaryResized.save(outputIoStream , format='JPEG', quality=80)
         outputIoStream.seek(0)
         photo = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % photo.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)

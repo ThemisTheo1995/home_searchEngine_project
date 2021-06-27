@@ -311,4 +311,8 @@ table.dataTable thead th, table.dataTable thead td {
 }
 /* end of alerts */
 
+.splide__slide img {
+	width : 100%;
+	height: auto;
+}
 

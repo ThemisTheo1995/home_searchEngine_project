@@ -6,7 +6,7 @@ $(function(){
         heightRatio : 1.11,
         gap         : 10,
         cover       : true,
-        lazyLoad    : true,
+        lazyLoad    : 'nearby',
         isNavigation: true,
         arrows: false,
         focus       : 'center',
@@ -21,14 +21,16 @@ $(function(){
         }).mount();
 
     var primarySlider = new Splide('#image-slider', {
-        type: 'fade',
-        cover: true,
-        heightRatio: 0.55,
-        rewind: true,
-        pagination: false,
+        type        : 'fade',
+        cover       : true ,
+        heightRatio : 0.55,
+        rewind      : true,
+	    focus    : 'center',
+        lazyLoad    : 'nearby',
+        pagination  : false,
         breakpoints : {
-            '1024': {
-                heightRatio: 0.6,
+            '1024'  : {
+                heightRatio: 0.61,
                 pagination: true,
             }
         },

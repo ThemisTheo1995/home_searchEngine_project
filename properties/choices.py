@@ -64,7 +64,6 @@ pagination_choices = {
   '15':'15',
   '20':'20',
   '30':'30',
-  '50':'50',
 }
 
 features_utilities_choices = {
@@ -91,4 +90,9 @@ features_extras_choices = {
   'nodepo':'No deposit',
   'fireplace':'Fireplace',
   'view':'Scenery/View',
+}
+
+page_view_choices = {
+  'list': _('List view'),
+  'cards': _('Cards view'),
 }

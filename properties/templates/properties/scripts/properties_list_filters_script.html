@@ -10,7 +10,12 @@ function sortFilter(){
 }
 
 function featuresFilter(feature){
-	document.querySelector('.view').value = feature;
+	const featInput = document.getElementById(feature);
+	if(featInput.value == '1'){
+		featInput.value = '';
+	}else{
+		featInput.value = '1';
+	}
 }
 
 function searchBarClose(){

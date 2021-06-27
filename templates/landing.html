@@ -23,12 +23,12 @@
             <div class="autoComplete_wrapper flex sm:w-1/2 w-full">
               <input id="autoComplete" type="text" name="location" placeholder="{% trans "e.g. 'CH1 3DA', 'Chester' "%}" required>
             </div>
-            <div class="mode flex w-full justify-center items-center mt-4">
+            <div class="mode flex w-full justify-center items-center mt-4 hidden">
                 <div class="toggle">
                   <div class="toggler text-sm">{% trans 'Strict'%}</div>
                 </div>
             </div>
-              <div class="selection"></div>
+              <div class="selection hidden"></div>
           </div>
           <div class="flex justify-center py-6 mt-4">
             <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="inline-flex text-white font-semibold bg-blue-600 border-0 py-3 px-6 hover:bg-blue-700 rounded text-lg">

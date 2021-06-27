@@ -4,31 +4,64 @@
    <div class="flex flex-wrap">
       <div class="flex flex-wrap w-full">
          <div class="w-3/6">
-            <button type="submit" id="view" onclick="featuresFilter(this.id)" form="search_bar" class="focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
-            {% trans 'View/Scenery'%}
-            </button>
-            <button type="submit" onclick="featuresFilter('garden')" form="search_bar" class="focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
-            {% trans 'Garden'%}
-            </button>
-            <button type="submit" onclick="featuresFilter('fireplace')" form="search_bar" class="focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
-            {% trans 'Fireplace'%}
-            </button>
-            <button type="submit" onclick="featuresFilter('elevator')" form="search_bar" class="focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
-            {% trans 'Elevator'%}
-            </button>
+            <span>{% trans 'Show:'%}</span>
+            <select name="paginate_by" form="search_bar" onchange="sortFilter()" class="bg-blue-600 rounded py-1 px-1 outline-none items-center text-gray-50">
+               {% for key,value in pagination_choices.items %}
+               <option value="{{ key }}" {% if key == paginate_by %} selected {% endif %}>
+               {{ value }}
+               </option>
+               {% endfor %}
+            </select>
+            <select form="search_bar" onchange="sortFilter()" name="mode" class="rounded mb-2 bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
+               {% for key,value in page_view_choices.items %}
+               <option value="{{ key }}" {% if key == mode %} selected {% endif %}>
+               {{ value }}
+               </option>
+               {% endfor %}
+            </select>
+            <div>
+               {% if views == '1' %}
+               <button type="submit" onclick="featuresFilter('views')" form="search_bar" class="views focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-white transition duration-75 ease-in-out hover:bg-blue-800 bg-blue-700">
+               {% trans 'View/Scenery'%}
+               </button>
+               {% else %}
+               <button type="submit" onclick="featuresFilter('views')" form="search_bar" class="views focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
+               {% trans 'View/Scenery'%}
+               </button>
+               {% endif %}
+
+               {% if garden == '1' %}
+               <button type="submit" onclick="featuresFilter('garden')" form="search_bar" class="garden focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-white transition duration-75 ease-in-out hover:bg-blue-800 bg-blue-700">
+               {% trans 'Garden'%}
+               </button>
+               {% else %}
+               <button type="submit" onclick="featuresFilter('garden')" form="search_bar" class="garden focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
+               {% trans 'Garden'%}
+               </button>
+               {% endif %}
+
+               {% if fireplace == '1' %}
+               <button type="submit" onclick="featuresFilter('fireplace')" form="search_bar" class="fireplace focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-white transition duration-75 ease-in-out hover:bg-blue-800 bg-blue-700">
+               {% trans 'Fireplace'%}
+               </button>
+               {% else %}
+               <button type="submit" onclick="featuresFilter('fireplace')" form="search_bar" class="fireplace focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
+               {% trans 'Fireplace'%}
+               </button>
+               {% endif %}
+
+               {% if elevator == '1' %}
+               <button type="submit" onclick="featuresFilter('elevator')" form="search_bar" class="elevator focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-white transition duration-75 ease-in-out hover:bg-blue-800 bg-blue-700">
+               {% trans 'Elevator'%}
+               </button>
+               {% else %}
+               <button type="submit" onclick="featuresFilter('elevator')" form="search_bar" class="elevator focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2 rounded-md border-2 border-blue-700 text-center text-blue-700 hover:text-white transition duration-75 ease-in-out hover:bg-blue-700">
+               {% trans 'Elevator'%}
+               </button>
+               {% endif %}
+            </div>
          </div>
          <div class="w-3/6 text-right">
-         <div class="mb-2">
-               <span>{% trans 'Show:'%}</span>
-               <select name="paginate_by" form="search_bar" onchange="sortFilter()" class="bg-blue-600 rounded py-1 px-1 outline-none items-center text-gray-50">
-                  {% for key,value in pagination_choices.items %}
-                  <option value="{{ key }}" {% if key == paginate_by %} selected {% endif %}>
-                  {{ value }}
-                  </option>
-                  {% endfor %}
-               </select>
-            </div>
-            <span>{% trans 'Sort: '%}</span>
             <select form="search_bar" onchange="sortFilter()" name="orderlist" class="rounded mb-2 bg-blue-600 py-1 px-1 outline-none items-center text-gray-50">
                <option selected="true" value="">{% trans 'Random date'%}</option>
                {% for key,value in order_list_date_choices.items %}

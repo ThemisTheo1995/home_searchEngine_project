@@ -137,8 +137,6 @@ function fetchAndSaveInCache(event, cacheName) {
 
 function trimCache(cache, maxItems, cacheTimeInfos) {
   if (cacheTimeInfos.size <= maxItems) {
-    console.log(cacheTimeInfos.size);
-    console.log(maxItems);
       console.log('[SW] Nothing to trim from the cache.');
       return Promise.resolve();
   }

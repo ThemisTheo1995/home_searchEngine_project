@@ -287,17 +287,7 @@ $(document).scroll(function(e) {
           addTo(map);
           $(marker._icon).attr("data-pk",markerSet[i][3]);
       }
-}
-
-// Social Media
-function twitterSharer(){ 
-    window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
-  } 
-function fbSharer(){ 
-    window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
-  } 
-
-    
+}   
 });
 // Hover on map icon
   function markerOnMap(key){
@@ -311,4 +301,22 @@ function fbSharer(){
         },5000);
       }
   }
+
+// Social Media
+function twitterSharer(){ 
+    window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
+  } 
+function fbSharer(){ 
+    window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
+  } 
+
+function saveProperty(pk){
+    const detailsSave = document.getElementById('detailsSave'+pk);
+    if (detailsSave.getAttribute("fill") == 'LightCoral'){
+        detailsSave.setAttribute("fill", "Crimson");
+    }
+    else{
+        detailsSave.setAttribute("fill", "LightCoral");
+    }
+}
 </script>
