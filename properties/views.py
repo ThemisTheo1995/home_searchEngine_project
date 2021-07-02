@@ -148,8 +148,8 @@ class PropertiesRentListView(generic.ListView):
             # Template mode filter
             
             # Bathrooms filter
-            minbaths = int(minprice) if minbaths != '' else ''
-            maxbaths = int(maxprice) if maxbaths != '' else ''
+            minbaths = int(minbaths) if minbaths != '' else ''
+            maxbaths = int(maxbaths) if maxbaths != '' else ''
             if minbaths != '' and maxbaths != '' and (minbaths > -1 and minbaths < 99) and (maxbaths > -1 and maxbaths < 99):
                 try:
                     queryset = queryset.filter(bathrooms__gte = minbaths, bathrooms__lte = maxbaths)

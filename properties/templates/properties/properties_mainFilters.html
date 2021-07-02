@@ -1,13 +1,13 @@
 {% load i18n %}
 <div id="filterModal" class="sticky text-gray-50 w-full">
    <!--Active filters bar-->
-   <div class="text-xs sm:text-sm text-center bg-blue-500 sm:bg-gray-600 lg:px-10 px-4 py-2 border-b sm:border-white grid grid-cols-3 divide-x divide-white text-white">
+   <div class="text-xs sm:text-sm text-center bg-blue-500 sm:from-blue-400 sm:to-blue-500 sm:bg-gradient-to-b sm:bg-blu lg:px-10 px-4 py-2 border-b sm:border-white grid grid-cols-3 divide-x divide-white text-white">
       <div>{% trans location %}</div>
       <div>{% trans furniture %}</div>
       <div>{% trans type %}</div>
    </div>
    <!--Expandable search bar-->
-   <form id="search_bar" class="h-full w-full bg-blue-500 sm:bg-gray-800 lg:px-10 px-4 pt-4 shadow-md hidden" method="get" autocomplete="off" action="{% url 'properties:rent-list'%}">
+   <form id="search_bar" class="h-full w-full bg-blue-500 sm:from-blue-500 sm:to-blue-800 sm:bg-gradient-to-b lg:px-10 px-4 pt-4 shadow-md hidden" method="get" autocomplete="off" action="{% url 'properties:rent-list'%}">
       <div class="flex flex-wrap h-full items-center text-sm">
          <!--Location search-->
          <div class="md:w-3/12 w-full md:pr-4 pb-4">
@@ -25,7 +25,7 @@
          <div class="md:w-3/12 w-1/2 pb-4">
             <div class="flex flex-inline justify-end">
                <label for="type" class="pr-2">{% trans 'Type' %}</label>
-               <select name="type" class="w-full lg:w-1/2 font-bold bg-gray-200 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
+               <select name="type" class="w-full lg:w-1/2 font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
                   <option selected="true" value="">{% trans 'any'%}</option>
                   {% for key,value in type_choices.items %}
                   <option value="{{ key }}" {% if key == type %} selected {% endif %}>
@@ -36,7 +36,7 @@
             </div>
             <div class="flex flex-inline mt-2 justify-end w-full">
                <label for="furniture" class="pr-2">{% trans 'Furniture' %}</label>
-               <select name="furniture" class="w-full lg:w-1/2 font-bold bg-gray-200 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
+               <select name="furniture" class="w-full lg:w-1/2 font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
                   <option selected="true" value="">{% trans 'any'%}</option>
                   {% for key,value in furniture_choices.items %}
                   <option value="{{ key }}" {% if key == furniture %} selected {% endif %}>
@@ -50,20 +50,20 @@
          <div class="md:w-3/12 w-1/2 pb-4">
             <div class="flex flex-inline justify-end">
                <label class="pr-2">{% trans 'Bedrooms' %}</label>
-               <input type="number" min="0" max="99" id="minbeds" value="{{minbedrooms}}" name="minbeds" class="form_group font-bold w-14 text-center bg-gray-200 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
-               <input type="number" min="0" max="99" id="maxbeds" value="{{maxbedrooms}}" name="maxbeds" class="form_group font-bold w-14 text-center bg-gray-200 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
+               <input type="number" min="0" max="99" id="minbeds" value="{{minbedrooms}}" name="minbeds" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
+               <input type="number" min="0" max="99" id="maxbeds" value="{{maxbedrooms}}" name="maxbeds" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
             </div>
             <div class="flex flex-inline mt-2 justify-end">
                <label class="pr-2">{% trans 'Bathrooms' %}</label>
-               <input type="number" min="0" max="99" id="minbaths" value="{{minbathrooms}}" name="minbaths" class="form_group font-bold w-14 text-center bg-gray-200 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
-               <input type="number" min="0" max="99" id="maxbaths" value="{{maxbathrooms}}" name="maxbaths" class="form_group font-bold w-14 text-center bg-gray-200 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
+               <input type="number" min="0" max="99" id="minbaths" value="{{minbathrooms}}" name="minbaths" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
+               <input type="number" min="0" max="99" id="maxbaths" value="{{maxbathrooms}}" name="maxbaths" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
             </div>
          </div>
          <!--Price-->
          <div class="md:w-3/12 w-1/2 pb-4">
             <div class="flex flex-inline justify-end">
                <label for="minprice" class="pr-2">{% trans 'Min price' %}</label>
-               <select name="minprice" class="font-bold bg-gray-200 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
+               <select name="minprice" class="font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
                   <option selected="true" value="">{% trans 'any'%}</option>
                   {% for key,value in price.items %}
                   <option value="{{ key }}" {% if key == minprice %} selected {% endif %}>
@@ -74,7 +74,7 @@
             </div>
             <div class="flex flex-inline mt-2 justify-end">
                <label for="maxprice" class="pr-2">{% trans 'Max price' %}</label>
-               <select name="maxprice" class="font-bold bg-gray-200 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
+               <select name="maxprice" class="font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
                   <option selected="true" value="">{% trans 'any'%}</option>
                   {% for key,value in price.items %}
                   <option value="{{ key }}" {% if key == maxprice %} selected {% endif %}>
@@ -88,10 +88,10 @@
       <!--Actions-->
       <div class="w-full py-3">
          <div class="flex justify-end md:justify-start lg:justify-end">
-            <button onclick="resetFilter()" id="rent_clear" class="w-1/2 inline-block p-2 mr-2 items-center text-gray-600 font-bold bg-gray-300 hover:bg-gray-400 rounded">
+            <button id="rent_clear_button" type="button" onclick="resetFilter()" id="rent_clear" class="w-1/2 inline-block p-2 mr-2 items-center text-gray-600 font-bold bg-gray-300 hover:bg-gray-400 rounded">
             {% trans 'CLEAR'%}
             </button>
-            <button type="submit" formaction="{% url 'properties:rent-list'%}"  class="inline-block p-2 ml-2 w-1/2 items-center text-blue-600 font-bold bg-white hover:bg-gray-200 rounded">
+            <button id="rent_search_button" type="submit" class="inline-block p-2 ml-2 w-1/2 items-center text-blue-600 font-bold bg-white hover:bg-gray-200 rounded">
             {% trans 'SEARCH'%}
             </button>
          </div>
@@ -103,7 +103,7 @@
    </form>
    <!--Hide/Show arrow button-->
    <div id="close_searchbar" onclick="searchBarClose()" class="w-full flex sm:justify-end justify-center text-white opacity-40">
-      <div title="{% trans 'Close search bar' %}" class="text-center text-lg px-4 sm:bg-gray-800 bg-blue-500 cursor-pointer rounded-b-lg">
+      <div title="{% trans 'Close search bar' %}" class="text-center text-lg px-4 sm:bg-blue-800 bg-blue-500 cursor-pointer rounded-b-lg">
          ⮝
       </div>
    </div>

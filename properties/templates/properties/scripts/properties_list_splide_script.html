@@ -13,18 +13,18 @@ $(function(){
             rewind      : true,
             lazyLoad    : 'nearby',
             pagination  : true,
-            keyboard    : false,
+            keyboard: "focused",
             breakpoints : {
                 '1024'  : {
-                    heightRatio: 0.3,
-                    pagination: true,
+                    heightRatio : 0.30,
+                    perPage     : 2,
+                    perMove     : 2,
                 },
                 '640'  : {
-                    heightRatio: 0.55,
-                    type        : 'fade',
+                    heightRatio : 0.55,
                     perPage     : 1,
-                    pagination: true,
-                }
+                    perMove     : 1,
+                },
             },
         }).mount();
     }
