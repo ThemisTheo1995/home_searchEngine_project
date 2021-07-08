@@ -54,7 +54,7 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
-    paginate_by =15
+    paginate_by = 15
     context_object_name = "rentProperties"
     
     def get_template_names(self):

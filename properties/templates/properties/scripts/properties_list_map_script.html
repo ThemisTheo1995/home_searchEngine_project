@@ -277,19 +277,20 @@ $(document).scroll(function(e) {
   for (var i = 0; i < markerSet.length; i++) {
           // Map configuration
           var genesisMarker = L.icon({
-              iconUrl: '/static/images/mapMarker_rentlist.png',
+              iconUrl: '/static/images/rec.svg',
               iconSize: [20, 20],
 
           });
           marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: genesisMarker}).
-          bindTooltip(markerSet[i][0]+"<br>"+markerSet[i][4]).
+          //bindTooltip(markerSet[i][0]+"<br>"+markerSet[i][4]).
           on('click',markerClick).
+          bindPopup('<a href=http://127.0.0.1:8000/properties/'+markerSet[i][3]+'/><b>'+markerSet[i][0]+'</b></a>'+'<br>'+markerSet[i][4]).openPopup().
           addTo(map);
           $(marker._icon).attr("data-pk",markerSet[i][3]);
       }
 }   
 });
-// Hover on map icon
+// Click on map icon
   function markerOnMap(key){
       const marker = document.querySelector('img[data-pk="'+key+'"]');
       if (marker.classList.contains("markerActive")){
@@ -310,6 +311,7 @@ function fbSharer(){
     window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
   } 
 
+// Save function
 function saveProperty(pk){
     const detailsSave = document.getElementById('detailsSave'+pk);
     if (detailsSave.getAttribute("fill") == 'LightCoral'){
@@ -318,5 +320,11 @@ function saveProperty(pk){
     else{
         detailsSave.setAttribute("fill", "LightCoral");
     }
+}
+
+// Hide function
+function hideProperty(pk){
+  const propertyContainer = document.getElementById('property_container'+pk);
+  propertyContainer.setAttribute("class", "hidden");
 }
 </script>

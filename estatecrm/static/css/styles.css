@@ -28,10 +28,10 @@
 
 /* Leaflet */
  
-.leaflet-bottom, .leaflet-right{
+/* .leaflet-bottom, .leaflet-right{
   display: none!important;
   visibility: hidden!important;
-}
+} */
 
 .leaflet-touch .leaflet-bar a {
   width: 25px;
@@ -237,18 +237,25 @@ table.dataTable thead th, table.dataTable thead td {
 
 /* Rent list map */
 .rentMapBottom{
-  z-index: 50;
   height:90vh;
   transition: top 0.3s ease 0s;
   top: calc(20% - 100px);
 }
 
 .rentMapTop{
-  z-index: 50;
   height:90vh;
   top: calc(100% - 100px);
   transition: top 0.3s ease 0s;
   top: 115px;
+}
+
+@media(max-width:1024px){
+  .rentMapTop{
+    height:30vh;
+  }
+  .rentMapBottom{
+    height:30vh;
+  }
 }
 
 .markerActive{
@@ -257,14 +264,35 @@ table.dataTable thead th, table.dataTable thead td {
   height: 25px!important;
   transition: width 0.2s ease-out, height 0.2s ease-out;
   opacity: 1!important;
+  animation: bounce 0.5s infinite alternate;
+  -webkit-animation: bounce 0.5s infinite alternate;
 }
-#rentMap .leaflet-marker-icon {
-  opacity: 0.65;
+@keyframes bounce {
+  from {
+    margin-top: -10px;
+  }
+  to {
+    margin-top: -20px;
+  }
 }
+@-webkit-keyframes bounce {
+  from {
+    margin-top: -10px;
+  }
+  to {
+    margin-top: -20px;
+  }
+}
+
+
+
+/* #rentMap .leaflet-marker-icon {
+  opacity: 1;
+} */
 
 
 .cardAnchor{
-  scroll-margin-top: 50px;
+  scroll-margin-top: 70px;
 }
 /* end of rent list map */
 
