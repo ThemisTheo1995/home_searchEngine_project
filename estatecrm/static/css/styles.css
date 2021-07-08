@@ -30,6 +30,7 @@
  
 .leaflet-bottom, .leaflet-right{
   display: none!important;
+  visibility: hidden!important;
 }
 
 .leaflet-touch .leaflet-bar a {
@@ -123,8 +124,8 @@ table.dataTable.no-footer {
 }
 
 table.dataTable thead th, table.dataTable thead td {
-  padding: 10px 18px;
-  border-bottom: 2px solid rgb(59, 130, 246);
+  padding: 10px 10px;
+  border-bottom: 1px solid rgb(143, 143, 143);
 }
 
 .properties-table {

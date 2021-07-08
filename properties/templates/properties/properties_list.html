@@ -14,7 +14,14 @@
          {% include "properties/properties_orderFilters.html" %}
          {% if rentProperties %}
          {% for rent in rentProperties %}
-         <a href="#{{rent.pk}}" id="{{rent.pk}}" class="cardAnchor"></a>
+         <a href="#{{rent.pk}}" id="{{rent.pk}}" class="pl-2 cardAnchor text-sm">
+            {% trans 'Show on map:'%}
+            <a href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}" class="px-2">
+               <svg width="20" height="20" fill="DarkSlateGray" class="mb-2 bi bi-geo-alt-fill inline-block transition duration-150 ease-in-out transform hover:scale-125" viewBox="0 0 16 16">
+                  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+               </svg>
+            </a>
+         </a>
          <div class="flex flex-wrap shadow">
             <div class="w-full rounded-t float-left text-sm pl-2 font-bold tracking-widest bg-gradient-to-r from-blue-700 to-blue-400 h-6">
                {% if rent.property_category == 'STANDARD' %}
@@ -45,11 +52,6 @@
                   <a href="#/" onclick="saveProperty({{rent.pk}})" title="{% trans 'Save the property'%}" class="float-right fa fa-heart text-base px-2 transition duration-150 ease-in-out transform hover:scale-125">
                      <svg id="detailsSave{{rent.pk}}" width="14" height="14" fill="LightCoral" class="bi bi-heart-fill mb-1 inline-block" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                     </svg>
-                  </a>
-                  <a href="#/" onmouseenter="markerOnMap({{rent.pk}})" title="{% trans 'Hover to show on map'%}" class="float-right px-2 transition duration-150 ease-in-out transform hover:scale-125 px-2">
-                     <svg width="14" height="14" fill="DarkSlateGray" class="bi bi-geo-alt-fill inline-block" viewBox="0 0 16 16">
-                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                      </svg>
                   </a>
                </span>
@@ -177,8 +179,7 @@
                      <hr class="xl:my-2 lg:my-1">
                      <div class="flex items-center flex-wrap text-xs font-semibold py-2">
                         <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{rent.organisation.email}}" 
-                           target="popup" 
-                           onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{rent.organisation.email}}','popup','width=600,height=600'); return false;"
+                           target="_blank" rel="noopener noreferrer"
                            class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
                            <svg width="12" height="12" fill="currentColor" class="inline-block bi bi-envelope-fill" viewBox="0 0 16 16">
                               <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>

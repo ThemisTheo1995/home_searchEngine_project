@@ -13,12 +13,15 @@
          </h1>
          <!-- Main properties info -->
          <div class="flex flex-wrap sm:text-left text-center">
-            <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+            <div class="sm:p-4 p-2 lg:w-1/4 md:w-1/3 w-1/2">
                <div class="rounded-lg py-4 flex items-center justify center flex-wrap bg-gray-800">
-                  <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
-                     <i class="fa fa-home text-3xl text-gray-800 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-white rounded-full sm:mr-2 sm:pt-1"></i>
+                  <div class="flex-shrink-0 px-6">
+                    <svg width="30" height="30" fill="white" class="bi bi-house-fill" viewBox="0 0 16 16">
+                     <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                     <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                  </svg>
                   </div>
-                  <div class="flex-grow sm:px-4 text-white">
+                  <div class="flex-grow text-white">
                      <h2 class="title-font font-medium sm:text-base text-sm">
                         {% trans 'Properties'%}
                      </h2>
@@ -26,12 +29,14 @@
                   </div>
                </div>
             </div>
-            <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
-               <div class="rounded-lg py-4 flex items-center justify center flex-wrap  bg-gray-200">
-                  <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
-                     <i class="fa fa-star text-3xl text-white text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-gray-800 rounded-full sm:mr-2 sm:pt-1"></i>
+            <div class="sm:p-4 p-2 md:w-1/3 lg:w-1/4 w-1/2">
+               <div class="rounded-lg py-4 flex items-center justify center flex-wrap bg-gray-200">
+                  <div class="flex-shrink-0 px-6">
+                     <svg width="30" height="30" fill="black" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                     </svg>
                   </div>
-                  <div class="flex-grow sm:px-4 text-gray-800">
+                  <div class="flex-grow text-gray-800">
                      <h2 class="title-font font-medium sm:text-base text-sm">
                         {% trans 'Featured'%}
                      </h2>
@@ -39,10 +44,12 @@
                   </div>
                </div>
             </div>
-            <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+            <div class="sm:p-4 p-2 md:w-1/3 lg:w-1/4 w-1/2">
                <div class="rounded-lg py-4 flex items-center justify center flex-wrap bg-gray-800">
-                  <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
-                     <i class="fa fa-bullhorn sm:text-3xl text-2xl text-gray-800 text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-white rounded-full sm:mr-2 sm:pt-1 pt-1"></i>
+                  <div class="flex-shrink-0 px-6">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list-check" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                     </svg>
                   </div>
                   <div class="flex-grow sm:px-4 text-white">
                      <h2 class="title-font font-medium sm:text-base text-sm">
@@ -52,10 +59,12 @@
                   </div>
                </div>
             </div>
-            <div class="sm:p-4 p-2 sm:w-1/4 w-1/2">
+            <div class="sm:p-4 p-2 md:w-1/3 lg:w-1/4 w-1/2">
                <div class="rounded-lg py-4 flex items-center justify center flex-wrap bg-gray-200">
-                  <div class="flex-shrink-0 flex-shrink-0 object-cover object-center sm:px-6 px-2">
-                     <i class="fa fa-credit-card sm:text-3xl text-2xl text-white text-center sm:w-12 sm:h-12 w-10 h-10 object-center bg-gray-800 rounded-full sm:mr-2 sm:pt-1.5 pt-1"></i>
+                  <div class="flex-shrink-0 px-6">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-wallet2" viewBox="0 0 16 16">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                     </svg>
                   </div>
                   <div class="flex-grow sm:px-4 text-gray-800">
                      <h2 class="title-font font-medium sm:text-base text-sm">
@@ -67,18 +76,25 @@
             </div>
          </div>
          <div class="flex flex-wrap sm:text-left text-left sm:text-center text-sm">
-            <div class="sm:p-4 p-2 sm:w-1/4 w-1/2 flex flex-wrap">
-               <div class="sm:w-1/2 w-full sm:pr-2 pb-2">
+            <div class="sm:p-4 p-2 w-full flex flex-wrap">
+               <div class="w-1/2 pr-2">
                   <div class="rounded-lg flex items-center justify center flex-wrap">
                      <a href="{% url 'properties:create' %}" class="w-full p-2 rounded text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700">
-                     <i class="fa fa-plus-square mr-2"></i>{% trans 'ADD A PROPERTY' %}
+                     <svg width="25" height="25" fill="white" class="bi bi-plus-square-fill mr-2 inline-block" viewBox="0 0 16 16">
+                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                     </svg>
+                     {% trans 'ADD A PROPERTY' %}
                      </a>
                   </div>
                </div>
-               <div class="sm:w-1/2 w-full pb-2">
-                  <div class="rounded-lg flex items-center justify center flex-wrap sm:float-right">
+               <div class="w-1/2 pl-2">
+                  <div class="rounded-lg flex items-center justify center flex-wrap">
                      <a href="{% url 'realtors:agent-create' %}" class="w-full p-2 rounded text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700">
-                     <i class="fa fa-plus-square mr-2"></i>{% trans 'ADD AN AGENT' %}
+                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-plus-fill inline-block mr-2" viewBox="0 0 16 16">
+                        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                     </svg>
+                     {% trans 'ADD AN AGENT' %}
                      </a>
                   </div>
                </div>
@@ -188,8 +204,8 @@
       <div class="lg:w-3/3 w-full mx-auto overflow-auto mb-20">
          <table class="table-auto w-full text-left whitespace-no-wrap display rounded-xl" id="org_properties_table">
             <thead id="properties_head" class="">
-               <tr class="tracking-widest md:text-sm text-xs text-white bg-gray-800">
-                  <th class="px-4 py-4">#</th>
+               <tr class="tracking-widest md:text-sm text-xs text-white bg-gray-600 rounded-lg">
+                  <th class="px-4 py-4 rounded-tl">#</th>
                   <th class="px-4 py-4">{% trans 'IMAGE'%}</th>
                   <th class="px-4 py-4">{% trans 'TYPE'%}</th>
                   <th class="px-4 py-4">{% trans 'ADDRESS'%}</th>
@@ -198,7 +214,7 @@
                   <th class="px-4 py-4">{% trans 'PUBLISHED'%}</th>
                   <th class="px-4 py-4">{% trans 'CATEGORY'%}</th>
                   <th class="px-4 py-4">{% trans 'AVAILABILITY'%}</th>
-                  <th class="px-4 py-4">{% trans 'DETAILS'%}</th>
+                  <th class="px-4 py-4 rounded-tr">{% trans 'DETAILS'%}</th>
                </tr>
             </thead>
             <tbody>
@@ -217,9 +233,13 @@
                   <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{{rent.postalcode}}</td>
                   <td onclick="previewMode({{rent.pk}},'{% trans rent.property_type %}')" class="border-t-2 border-gray-200 px-4 py-3">{{rent.price}} ({{rent.currency}})</td>
                   {% if rent.is_published %}
-                  <td class="border-t-2 border-gray-200 px-4 py-3"><i class="text-green-500 text-lg fa fa-check-circle"><span class="hidden">{{rent.is_published}}</span></i></td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3"><svg width="16" height="16" fill="green" class="bi bi-check-square-fill mx-auto" viewBox="0 0 16 16"><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                     <span class="hidden">{{rent.is_published}}</span></svg>
+                  </td>
                   {% else %}
-                  <td class="border-t-2 border-gray-200 px-4 py-3"><i class="text-red-500 text-lg fa fa-times-circle"><span class="hidden">{{rent.is_published}}</span></i></td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3"><svg width="16" height="16" fill="red" class="bi bi-check-square-fill mx-auto" viewBox="0 0 16 16"><path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                     <span class="hidden">{{rent.is_published}}</span></svg>
+                  </td>
                   {% endif %}
                   {% if rent.property_category == 'STANDARD' %}
                   <td class="border-t-2 border-gray-200 px-4 py-3 text-xs">
@@ -241,44 +261,18 @@
                   </td>
                   {% endif %}
                   <td class="border-t-2 border-gray-200 px-4 py-3">{{rent.available_after|date:"d M, Y"}}</td>
-                  <td class="border-t-2 border-gray-200 px-4 py-3 text-center text-xl"><a href="{% url 'properties:update' rent.pk %}"><i class="text-blue-600 hover:text-blue-700 fa fa-share-square"></i></a></td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3 text-center text-xl">
+                     <a href="{% url 'properties:update' rent.pk %}">
+                        <svg width="16" height="16" fill="gray" class="bi bi-arrow-up-right-square-fill mx-auto" viewBox="0 0 16 16">
+                           <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z"/>
+                        </svg>
+                     </a>
+                  </td>
                </tr>
                {% endfor %}
             </tbody>
          </table>
       </div>
-      <!-- Pagination -->
-      <div class="w-full flex flex-wrap mt-4">
-         <div class="pagination w-full text-right">
-            <span class="step-links">
-            {% if page_obj.has_previous %}
-            <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-               href="?page=1">
-            <i class="fa fa-angle-double-left text-white text-lg"></i>  
-            </a>
-            <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-               href="?page={{page_obj.previous_page_number}}">
-            <i class="fa fa-angle-left text-white text-xl"></i>
-            </a>
-            {% endif %}
-            <span class="current text-gray rounded p-2 text-md align-center">
-            <span class="font-bold">{{ page_obj.number }}</span> 
-            <span class="text-xs"> {{ page_obj.paginator.num_pages }}</span>
-            </span>
-            {% if page_obj.has_next %}
-            <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-               href="?page={{page_obj.next_page_number}}">
-            <i class="fa fa-angle-right text-white text-xl"></i>
-            </a>
-            <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-               href="?page={{page_obj.paginator.num_pages}}">
-            <i class="fa fa-angle-double-right text-white text-lg"></i>
-            </a>
-            {% endif %}
-            </span>
-         </div>
-      </div>
-      <!-- /Pagination -->
    </div>
 </section>
 {% include "realtors/scripts/realtors_organisation_properties_list_DataTable.html" %}
