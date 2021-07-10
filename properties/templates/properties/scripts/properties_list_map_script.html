@@ -1,5 +1,5 @@
 <script>
-$(function(){
+$(document).ready(function(){
     
     /*
     * Leaflet.Sleep
@@ -302,29 +302,4 @@ $(document).scroll(function(e) {
         },5000);
       }
   }
-
-// Social Media
-function twitterSharer(){ 
-    window.open("https://twitter.com/share?text={{user.username}}&url=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
-  } 
-function fbSharer(){ 
-    window.open("https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000{{request.get_full_path|urlencode}}"); 
-  } 
-
-// Save function
-function saveProperty(pk){
-    const detailsSave = document.getElementById('detailsSave'+pk);
-    if (detailsSave.getAttribute("fill") == 'LightCoral'){
-        detailsSave.setAttribute("fill", "Crimson");
-    }
-    else{
-        detailsSave.setAttribute("fill", "LightCoral");
-    }
-}
-
-// Hide function
-function hideProperty(pk){
-  const propertyContainer = document.getElementById('property_container'+pk);
-  propertyContainer.setAttribute("class", "hidden");
-}
 </script>

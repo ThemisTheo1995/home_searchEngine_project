@@ -3,7 +3,6 @@ $(function(){
     var spliders = document.querySelectorAll('.splide');
     if (spliders){
         for(var i = 0; i < spliders.length; i++){
-            console.log(spliders[i].dataset.pages);
             var primarySlider = new Splide(spliders[i], {
                 type        : 'loop',
                 cover       : true,

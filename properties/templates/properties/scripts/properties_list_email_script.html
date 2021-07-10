@@ -1,0 +1,51 @@
+<script>
+$(document).ready(function() {
+
+    
+
+});
+
+function sendRentEmail(pk){
+    $('#emailForm'+pk).one('submit', function(e) {
+        e.preventDefault();
+        const emailForm = $('#emailForm'+pk);
+        formData = emailForm.serializeArray();
+        formData = JSON.stringify(formData);
+        $.ajax({
+            type: "POST",
+            url: "{% url 'properties:ajax_rent_email_listview' %}",
+            data: {
+                formData: formData,
+                dataType: "json",
+                csrfmiddlewaretoken: "{{csrf_token}}",
+
+            },
+
+            success: function(data) {
+                emailForm[0].reset();
+                $('#output'+pk).attr("class", "alert_success").html(data.msg).fadeIn('slow');
+                setTimeout(function(){$('#output'+pk).html('').removeAttr("class", "alert_success").fadeOut();}, 3000);
+            },
+
+            failure: function() {
+                $('#output'+pk).attr("class", "alert_danger").html(data.msg);
+            }
+
+
+        });
+        
+
+
+    });
+}
+
+
+function rentEmail(pk) {
+    const map = document.getElementById('emailForm'+pk);
+    if (map.classList.contains('hidden')) {
+        map.classList.remove('hidden');
+    } else {
+        map.classList.add('hidden');
+    }
+}
+</script>

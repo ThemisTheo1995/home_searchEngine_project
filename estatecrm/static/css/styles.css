@@ -28,10 +28,10 @@
 
 /* Leaflet */
  
-/* .leaflet-bottom, .leaflet-right{
+ .leaflet-bottom, .leaflet-right{
   display: none!important;
   visibility: hidden!important;
-} */
+}
 
 .leaflet-touch .leaflet-bar a {
   width: 25px;
@@ -237,14 +237,13 @@ table.dataTable thead th, table.dataTable thead td {
 
 /* Rent list map */
 .rentMapBottom{
-  height:90vh;
+  height:80vh;
   transition: top 0.3s ease 0s;
   top: calc(20% - 100px);
 }
 
 .rentMapTop{
-  height:90vh;
-  top: calc(100% - 100px);
+  height:80vh;
   transition: top 0.3s ease 0s;
   top: 115px;
 }

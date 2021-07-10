@@ -1,18 +1,20 @@
 # properties/views.py
 from django.views import generic
+from realtors import mixins
+from .models import Properties, geoData
 from django.http import JsonResponse
 from estatecrm.keys import googleKey
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
 from django.db.models import Q
 from django.contrib import messages
 from django.core import serializers
-from django.shortcuts import reverse, get_object_or_404, render, redirect
-from .models import Properties, geoData
+from django.shortcuts import reverse, render, redirect
 from .forms import FilterForm, PropertiesCreationForm, PropertiesUpdateForm
 from urllib.parse import urlencode
-from realtors import mixins
-import requests, json, re 
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+import requests, json
 from .choices import (price_rent_choices,
                       type_rent_choices, 
                       furniture_choices, 
@@ -52,6 +54,59 @@ class PropertiesLandingListView(generic.ListView):
         queryset = Properties.objects.filter(is_published= True).order_by('-list_date')[:4]
         return queryset
 
+
+### Rent List view - Send email ###
+def rent_email_listview(request):
+    if  request.method == 'POST' and request.is_ajax():
+        data = request.POST.get('formData', None)
+        
+        # deserialize
+        form_data_dict = {}
+        form_data_list = json.loads(data)
+        for field in form_data_list:
+            form_data_dict[field["name"]] = field["value"]
+    
+        # email fields
+        name = form_data_dict['name']
+        email = form_data_dict['email']
+        phone = form_data_dict['phone']
+        message = form_data_dict['rentText']
+        recipient = form_data_dict['recipient']
+        # email template
+        html_message = render_to_string('properties/properties_list_email.html', 
+                                        {'name': name,
+                                        'email':email,
+                                        'phone':phone,
+                                        'message':message,
+                                        })
+        # email plain text
+        plain_message = strip_tags(html_message)
+        
+        if name and email and phone and message:
+            try:
+                send_mail(
+                        subject = 'Genesis property interest',
+                        message = plain_message,
+                        from_email = 'themistheodoratos@outlook.com', 
+                        recipient_list = [recipient, 'themistheodoratos@outlook.com'],
+                        html_message=html_message,
+                        fail_silently=False)
+                response = {
+                            'msg':'Your form has been submitted successfully'
+                }
+                return JsonResponse(response)
+            except BadHeaderError:
+                response = {
+                         'msg':'An error occurred, please try again.'
+                }
+                return JsonResponse(response)
+        else:
+            response = {
+                         'msg':'Please fill all the required sections.'
+            }
+            return JsonResponse(response)
+        return
+
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
     paginate_by = 15
@@ -80,9 +135,14 @@ class PropertiesRentListView(generic.ListView):
         context['orderprice'] = pre('orderprice','')
         context['paginate_by'] = pre('paginate_by', 15) or 15
         context['features'] = pre('features','')
-        # Feature list
+        context['map'] = pre('map','')
+        print(context['map'])
+        # Features list
         context['views'] = pre('views','')
         context['garden'] = pre('garden','')
+        context['fireplace'] = pre('fireplace','')
+        context['elevator'] = pre('elevator','')
+        # Choices
         context['price'] = price_rent_choices
         context['type_choices'] = type_rent_choices
         context['furniture_choices'] = furniture_choices

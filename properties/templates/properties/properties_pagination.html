@@ -3,7 +3,7 @@
       <span class="step-links">
       {% if page_obj.has_previous %}
       <a class="p-1 mr-1 rounded transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-         href="?page=1&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}">
+         href="?page=1&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}&map={{map}}&views={{views}}&garden={{garden}}&fireplace={{fireplace}}&elevator={{elevator}}">
          <svg width="10" height="10" fill="White" class="mb-1 -mr-1 inline-block bi bi-caret-left-fill" viewBox="0 0 16 16">
             <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
          </svg>
@@ -12,7 +12,7 @@
          </svg>
       </a>
       <a class="p-1 rounded transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-         href="?page={{page_obj.previous_page_number}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}">
+         href="?page={{page_obj.previous_page_number}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}&map={{map}}&views={{views}}&garden={{garden}}&fireplace={{fireplace}}&elevator={{elevator}}">
          <svg width="20" height="20" fill="White" class="mb-1 -mr-1 inline-block bi bi-caret-left-fill" viewBox="0 0 16 16">
             <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
          </svg>
@@ -24,13 +24,13 @@
       </span>
       {% if page_obj.has_next %}
       <a class="p-1 rounded transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-         href="?page={{page_obj.next_page_number}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}">
+         href="?page={{page_obj.next_page_number}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}&map={{map}}&views={{views}}&garden={{garden}}&fireplace={{fireplace}}&elevator={{elevator}}">
          <svg width="20" height="20" fill="White" class="mb-1 -mr-1 inline-block bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
          </svg>
       </a>
       <a class="p-1 ml-1 rounded transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-         href="?page={{page_obj.paginator.num_pages}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}">
+         href="?page={{page_obj.paginator.num_pages}}&location={{location}}&minbeds={{minbedrooms}}&maxbeds={{maxbedrooms}}&minbaths={{minbathrooms}}&maxbaths={{maxbathrooms}}&minprice={{minprice}}&maxprice={{maxprice}}&type={{type}}&furniture={{furniture}}&orderlist={{orderlist}}&orderprice={{orderprice}}&paginate_by={{paginate_by}}&mode={{mode}}&map={{map}}&views={{views}}&garden={{garden}}&fireplace={{fireplace}}&elevator={{elevator}}">
          <svg width="10" height="10" fill="White" class="mb-1 inline-block bi bi-caret-right-fill" viewBox="0 0 16 16">
             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
          </svg>

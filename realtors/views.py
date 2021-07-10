@@ -61,7 +61,7 @@ class OrganisationProperties(OrganisationAndLoginRequiredMixin, generic.ListView
         context['properties'] = properties
         context['featured'] = featured
         context['published'] = published
-        context['org'] = self.request.user.organisation
+        context['org'] = organisation
         context['charges'] = "15€"
         return context
 
