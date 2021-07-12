@@ -21,10 +21,11 @@ from .choices import (price_rent_choices,
                       order_list_date_choices, 
                       order_price_choices,
                       pagination_choices,
+                      features_choices,
+                      page_view_choices,
                       features_utilities_choices,
-                      features_extras_choices,
                       features_spaces_choices,
-                      page_view_choices)
+                      features_extras_choices)
 
 ### Offline view ###
 def offline(request):
@@ -34,7 +35,7 @@ def offline(request):
 ### Base view ###
 def base_layout(request):
     template='base.html'
-    return render(request,template)   
+    return render(request, template)   
 
 ### Landing view - Auto complete ###
 def landing_autocomplete(request):
@@ -136,7 +137,7 @@ class PropertiesRentListView(generic.ListView):
         context['paginate_by'] = pre('paginate_by', 15) or 15
         context['features'] = pre('features','')
         context['map'] = pre('map','')
-        print(context['map'])
+        print(context['features'])
         # Features list
         context['views'] = pre('views','')
         context['garden'] = pre('garden','')
@@ -146,6 +147,7 @@ class PropertiesRentListView(generic.ListView):
         context['price'] = price_rent_choices
         context['type_choices'] = type_rent_choices
         context['furniture_choices'] = furniture_choices
+        context['features_choices'] = features_choices
         context['order_list_date_choices'] = order_list_date_choices
         context['order_price_choices'] = order_price_choices
         context['pagination_choices'] = pagination_choices

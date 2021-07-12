@@ -4,23 +4,25 @@
 {% load humanize %}
 {% load thumbnail %}
 
-{% block title %}Genesis | Home{% endblock title %}
+{% block title %}Genesis.gr | {% trans 'Home' %}{% endblock title %}
 
 {% block content %}
  
-<section class="text-gray-600 body-font overflow-hidden">
+<section class="text-gray-600 body-font overflow-hidden bg-gray-100">
   <div class="wave-container sm:pt-0 pt-8 bg-blue-500">
-    <div class="container flex px-5 py-14 items-center justify-center flex-col mx-auto">
-      <div class="text-center lg:w-2/3 w-full bg-white sm:py-8 px-6 bg-opacity-100 pb-6 rounded-lg shadow-xl">
-        <h1 class="title-font sm:text-4xl text-3xl my-6 font-semibold text-gray-900 px-4 title">
-          {% trans 'There is more world than you imagine'%}
+    <div class="container flex px-5 pt-14 pb-10 items-center justify-center flex-col mx-auto">
+      <div class="text-center lg:w-2/3 w-full bg-gray-100 sm:py-8 px-6 bg-opacity-100 pb-6 rounded-lg">
+        <h1 class="title-font sm:text-5xl text-4xl my-6 font-semibold text-blue-800 px-4 title tracking-wider">
+        <strong>
+          {% trans 'GENESIS.'%}
+        </strong>
         </h1>
-        <h2 class="title-font sm:text-l text-base mb-6 font-semibold text-gray-700 px-4 title">
+        <h2 class="title-font sm:text-lg text-sm mb-6 font-semibold text-gray-700 px-4 title">
           {% trans 'Explore homes, properties and offices in Greece and the UK'%}
         </h2>
         <form method="get" autocomplete="off">
           <div class="flex flex-wrap w-full justify-center items-center">
-            <div class="autoComplete_wrapper flex sm:w-1/2 w-full">
+            <div class="autoComplete_wrapper flex xl:w-1/2 w-full">
               <input id="autoComplete" type="text" name="location" placeholder="{% trans "e.g. 'CH1 3DA', 'Chester' "%}" required>
             </div>
             <div class="mode flex w-full justify-center items-center mt-4 hidden">
@@ -30,11 +32,11 @@
             </div>
               <div class="selection hidden"></div>
           </div>
-          <div class="flex justify-center py-6 mt-4">
-            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="inline-flex text-white font-semibold bg-blue-600 border-0 py-3 px-6 hover:bg-blue-700 rounded text-lg">
+          <div class="flex justify-center py-6">
+            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="inline-flex text-white font-semibold bg-blue-600 border-0 py-2 px-6 hover:bg-blue-700 rounded text-lg">
               {% trans 'TO RENT' %}
             </button>
-            <button id="saleButton" type="submit" class="ml-4 inline-flex text-white font-semibold bg-gray-700 py-3 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
+            <button id="saleButton" type="submit" class="ml-4 inline-flex text-white font-semibold bg-gray-700 py-2 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
               {% trans 'FOR SALE' %}
             </button>
           </div>
@@ -42,7 +44,7 @@
       </div>
     </div>
   </div>
-  <svg class="-mt-4" height="100%" width="100%" id="svg" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,400 C 0,400 0,133 0,133 C 64.86410256410255,107.32307692307693 129.7282051282051,81.64615384615385 214,94 C 298.2717948717949,106.35384615384615 401.9512820512821,156.73846153846154 487,161 C 572.0487179487179,165.26153846153846 638.4666666666666,123.39999999999999 705,101 C 771.5333333333334,78.60000000000001 838.1820512820514,75.66153846153847 928,86 C 1017.8179487179486,96.33846153846153 1130.805128205128,119.95384615384614 1220,130 C 1309.194871794872,140.04615384615386 1374.5974358974358,136.52307692307693 1440,133 C 1440,133 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#3b82f688" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 200)"></path><path d="M 0,400 C 0,400 0,266 0,266 C 70.36923076923077,245.82051282051282 140.73846153846154,225.64102564102566 222,237 C 303.26153846153846,248.35897435897434 395.4153846153847,291.2564102564102 489,303 C 582.5846153846153,314.7435897435898 677.6,295.33333333333337 741,283 C 804.4,270.66666666666663 836.1846153846155,265.4102564102564 916,257 C 995.8153846153845,248.5897435897436 1123.6615384615384,237.025641025641 1219,238 C 1314.3384615384616,238.974358974359 1377.1692307692308,252.4871794871795 1440,266 C 1440,266 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#3b82f6ff" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 200)"></path></svg>
+  <svg class="-mt-6" height="100%" width="100%" id="svg" viewBox="0 0 1440 400" class="transition duration-300 ease-in-out delay-150"><path d="M 0,400 C 0,400 0,133 0,133 C 64.86410256410255,107.32307692307693 129.7282051282051,81.64615384615385 214,94 C 298.2717948717949,106.35384615384615 401.9512820512821,156.73846153846154 487,161 C 572.0487179487179,165.26153846153846 638.4666666666666,123.39999999999999 705,101 C 771.5333333333334,78.60000000000001 838.1820512820514,75.66153846153847 928,86 C 1017.8179487179486,96.33846153846153 1130.805128205128,119.95384615384614 1220,130 C 1309.194871794872,140.04615384615386 1374.5974358974358,136.52307692307693 1440,133 C 1440,133 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#3b82f688" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 200)"></path><path d="M 0,400 C 0,400 0,266 0,266 C 70.36923076923077,245.82051282051282 140.73846153846154,225.64102564102566 222,237 C 303.26153846153846,248.35897435897434 395.4153846153847,291.2564102564102 489,303 C 582.5846153846153,314.7435897435898 677.6,295.33333333333337 741,283 C 804.4,270.66666666666663 836.1846153846155,265.4102564102564 916,257 C 995.8153846153845,248.5897435897436 1123.6615384615384,237.025641025641 1219,238 C 1314.3384615384616,238.974358974359 1377.1692307692308,252.4871794871795 1440,266 C 1440,266 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#3b82f6ff" class="transition-all duration-300 ease-in-out delay-150" transform="rotate(-180 720 200)"></path></svg>
     <h1 id ="genslide" class= "tracking-wider font-bold text-center sm:px-10 sm:pt-2 pt-10 px-4 text-2xl">
       {% trans 'LATEST PUBLISHED PROPERTIES'%}
     </h1>
@@ -51,14 +53,14 @@
         <div class="xl:w-1/4 md:w-1/2 p-4">
           {% if property.advertised == "To_Rent" %}
           <a href="{% url 'properties:rent-detail' property.pk%}" target="_blank"> {% else %} <a href="#" target="_blank"> {% endif %}
-            <div class="bg-gray-100 p-6 rounded-lg shadow">
+            <div class="bg-gray-200 p-6 rounded-lg shadow">
               {% if property.photo_main  %}
               {% thumbnail property.photo_main "320x170" as im %}
               <img class="rounded mb-4 w-full" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
               {% endthumbnail %}
               {% endif %}
                 <div class="flex items-center flex-wrap w-full">
-                  <h2 class="tracking-wider text-blue-600 text-xs font-medium title-font inline-flex items-center">
+                  <h2 class="tracking-wider text-blue-700 text-xs font-medium title-font inline-flex items-center">
                     {{property.address}} | {{property.street_number}}
                   </h2>
                   <h3 class="tracking-wider text-gray-900 float-right ml-auto font-medium title-font font-bold inline-flex items-center">

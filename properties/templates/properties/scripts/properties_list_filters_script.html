@@ -9,12 +9,15 @@ function sortFilter(){
 	document.getElementById("search_bar").submit(); 
 }
 
-function featuresFilter(feature){
-	const featInput = document.getElementById(feature);
-	if(featInput.value == '1'){
-		featInput.value = '';
+function featuresFilter(featList, feature){
+	const features = document.getElementById(featList);
+	if(features.value.includes(feature)){
+		var featuresArray = features.value.split(',').map();
+		console.log(feature);
+		console.log(featuresArray[feature]);
+
 	}else{
-		featInput.value = '1';
+		features.value += feature+',';
 	}
 }
 

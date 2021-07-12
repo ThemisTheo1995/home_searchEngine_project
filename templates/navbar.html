@@ -3,9 +3,11 @@
     <div class="container mx-auto flex flex-wrap sm:px-5 px-2 py-2 flex-row sm:items-center items-start">
         <!--Logo, language-->
         <div class="inline-flex flex flex-wrap w-1/2 justify-start">
+            {% if request.path != '/'  %}
             <a href="{% url 'landing-page' %}" class="flex title-font font-medium items-center text-gray-900">
                 <span class="ml-3 text-xl pb-1 font-bold text-white sm:text-gray-900">Genesis</span>
             </a>
+            {% endif %}
             <div class="pl-4 pt-1 flex">
                 <div class="dropdown inline-block relative">
                     <form id="language" class="pt-1 text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
