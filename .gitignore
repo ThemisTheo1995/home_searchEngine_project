@@ -147,5 +147,3 @@ cython_debug/
 
 #Keys
 /estatecrm/keys.py
-
-/estatecrm/settings.py

@@ -5,14 +5,14 @@
         <div class="inline-flex flex flex-wrap w-1/2 justify-start">
             {% if request.path != '/'  %}
             <a href="{% url 'landing-page' %}" class="flex title-font font-medium items-center text-gray-900">
-                <span class="ml-3 text-xl pb-1 font-bold text-white sm:text-gray-900">Genesis</span>
+                <span class="ml-3 text-xl pb-1 font-bold text-white sm:text-gray-900 tracking-wider"><strong>GENESIS.</strong></span>
             </a>
             {% endif %}
             <div class="pl-4 pt-1 flex">
                 <div class="dropdown inline-block relative">
                     <form id="language" class="pt-1 text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select onchange="submitLanguage()" class="appearance-none outline none cursor-pointer text-gray-700 bg-gray-300 sm:hover:bg-gray-300 py-1 mb-2 px-1 rounded" name="language">
+                        <select onchange="submitLanguage()" class="appearance-none outline none cursor-pointer text-gray-700 bg-gray-50 sm:hover:bg-gray-300 py-1 mb-2 px-1 rounded" name="language">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
