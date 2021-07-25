@@ -230,3 +230,9 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'themistheodoratos@outlook.com'
 EMAIL_HOST_PASSWORD = mail['mail']
 EMAIL_USE_TLS = True
+
+# Production settings
+try:
+    from .local_settings import *
+except ImportError:
+    pass
