@@ -176,7 +176,7 @@ class AgentCreateView(RealtorAndLoginRequiredMixin, generic.CreateView):
         send_mail(
             subject = "Genesis Estate - Agent invitation.",
             message = "You are added as an agent on Genesis Estate. Please login and reset your password.",
-            from_email = "admin@test.com",
+            from_email = "themistheodoratos@outlook.com",
             recipient_list = [user.email] 
         )
         return super(AgentCreateView, self).form_valid(form)
