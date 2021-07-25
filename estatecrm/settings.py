@@ -92,13 +92,13 @@ WSGI_APPLICATION = 'estatecrm.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-# from estatecrm.keys import db
+from estatecrm.keys import db
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'estatecrmdb',
         'USER': 'postgres',
-        'PASSWORD': '', #db['db'],
+        'PASSWORD': db['db'],
         'HOST':'localhost'
     }
 }
@@ -222,13 +222,13 @@ PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-gb'
 
 # Email
-# from estatecrm.keys import mail
+from estatecrm.keys import mail
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'themistheodoratos@outlook.com'
-EMAIL_HOST_PASSWORD = '' #mail['mail']
+EMAIL_HOST_PASSWORD = mail['mail']
 EMAIL_USE_TLS = True
 
 # Production settings
