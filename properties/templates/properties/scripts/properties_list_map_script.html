@@ -284,7 +284,7 @@ $(document).scroll(function(e) {
           marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: genesisMarker}).
           //bindTooltip(markerSet[i][0]+"<br>"+markerSet[i][4]).
           on('click',markerClick).
-          bindPopup('<a href=http://127.0.0.1:8000/properties/'+markerSet[i][3]+'/><b>'+markerSet[i][0]+'</b></a>'+'<br>'+markerSet[i][4]).openPopup().
+          bindPopup('<a href=http://127.0.0.1:8000/properties/property/'+markerSet[i][3]+'/><b>'+markerSet[i][0]+'</b></a>'+'<br>'+markerSet[i][4]+markerSet[i][5]).openPopup().
           addTo(map);
           $(marker._icon).attr("data-pk",markerSet[i][3]);
       }

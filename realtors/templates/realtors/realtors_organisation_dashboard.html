@@ -16,7 +16,10 @@
                <div class="p-4 bg-blue-900 rounded-lg lg:mr-6">
                   <div class="flex items-center mb-3">
                      <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-white text-lg text-blue-700 flex-shrink-0">
-                        <i class="fa fa-address-card"></i>
+                        <svg width="16" height="16" fill="currentColor" class="inline-block bi bi-card-checklist" viewBox="0 0 16 16">
+                           <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                           <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                        </svg>
                      </div>
                      <h2 class="text-md tracking-widest font-bold title-font mb-1">
                         {% trans 'ORGANISATION INFO'%}
@@ -55,19 +58,16 @@
                   <a href="{% url 'organisation:organisation-properties'%}">
                      <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                         <div class="flex items-center mb-3">
-                           <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                              <i class="fa fa-home"></i>
-                           </div>
                            <h2 class="text-blue-600 text-lg title-font font-medium">
                               {% trans 'MY RENT PROPERTIES'%}
                            </h2>
                         </div>
                         <div class="flex-grow">
                            <ul class="pl-4">
-                              <li><i class="fa fa-caret-right"></i> See your advertised properties</li>
-                              <li><i class="fa fa-caret-right"></i> Render your properties</li>
-                              <li><i class="fa fa-caret-right"></i> Delete your properties</li>
-                              <li><i class="fa fa-caret-right"></i> Feature them</li>
+                              <li> - See your advertised properties</li>
+                              <li> - Render your properties</li>
+                              <li> - Delete your properties</li>
+                              <li> - Feature them</li>
                            </ul>
                            <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
                               This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.
@@ -80,19 +80,16 @@
                   <a href="{% url 'organisation:organisation-dashboard' organisation.pk%}">
                      <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                         <div class="flex items-center mb-3">
-                           <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                              <i class="fa fa-home"></i>
-                           </div>
                            <h2 class="text-blue-600 text-lg title-font font-medium">
                               {% trans 'MY SALE PROPERTIES'%}
                            </h2>
                         </div>
                         <div class="flex-grow">
                            <ul class="pl-4">
-                              <li><i class="fa fa-caret-right"></i> See your advertised properties</li>
-                              <li><i class="fa fa-caret-right"></i> Render your properties</li>
-                              <li><i class="fa fa-caret-right"></i> Delete your properties</li>
-                              <li><i class="fa fa-caret-right"></i> Feature them</li>
+                              <li> - See your advertised properties</li>
+                              <li> - Render your properties</li>
+                              <li> - Delete your properties</li>
+                              <li> - Feature them</li>
                            </ul>
                            <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
                               This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.
@@ -105,18 +102,15 @@
                   <a href="{% url 'organisation:agent-list'%}">
                      <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                         <div class="flex items-center mb-3">
-                           <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                              <i class="fa fa-users"></i>
-                           </div>
                            <h2 class="text-blue-600 text-lg title-font font-medium">
                               {% trans 'MY AGENTS'%}
                            </h2>
                         </div>
                         <div class="flex-grow">
                            <ul class="pl-4">
-                              <li><i class="fa fa-caret-right"></i> View your agents details</li>
-                              <li><i class="fa fa-caret-right"></i> Update agents details</li>
-                              <li><i class="fa fa-caret-right"></i> Create new agents.</li>
+                              <li> - View your agents details</li>
+                              <li> - Update agents details</li>
+                              <li> - Create new agents.</li>
                            </ul>
                            <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
                               This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.
@@ -129,18 +123,15 @@
                   <a href="{% url 'organisation:organisation-dashboard' organisation.pk%}">
                      <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                         <div class="flex items-center mb-3">
-                           <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-blue-500 text-white flex-shrink-0">
-                              <i class="fa fa-database"></i>
-                           </div>
                            <h2 class="text-blue-600 text-lg title-font font-medium">
                               {% trans 'ANALYTICS'%}
                            </h2>
                         </div>
                         <div class="flex-grow">
                            <ul class="pl-4">
-                              <li><i class="fa fa-caret-right"></i> Analytics overview</li>
-                              <li><i class="fa fa-caret-right"></i> Check your most performing properties</li>
-                              <li><i class="fa fa-caret-right"></i> Improve your properties ranking</li>
+                              <li> - Analytics overview</li>
+                              <li> - Check your most performing properties</li>
+                              <li> - Improve your properties ranking</li>
                            </ul>
                            <p class="leading-relaxed text-sm mt-4 bg-blue-100 p-2 rounded">
                               This setting will allow you to change your current published properties information or append more, in order to make them more appeal to the buyer.

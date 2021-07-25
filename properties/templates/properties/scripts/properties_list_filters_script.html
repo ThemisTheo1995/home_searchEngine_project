@@ -21,6 +21,21 @@ function featuresFilter(featList, feature){
 	}
 }
 
+function showHideFeatures(){
+	const feat_container = document.getElementById('features-container');
+	const feat_arrow_down = document.getElementById('features-arrow-down');
+	const feat_arrow_up = document.getElementById('features-arrow-up');
+	if (feat_container.classList.contains('hidden')){
+		feat_container.classList.remove('hidden');
+		feat_arrow_up.classList.remove('hidden');
+		feat_arrow_down.classList.add('hidden');
+	}else{
+		feat_container.classList.add('hidden');
+		feat_arrow_down.classList.remove('hidden');
+		feat_arrow_up.classList.add('hidden');
+	}
+}
+
 function searchBarClose(){
 	const searchBar = document.getElementById('search_bar');
 	const map = document.getElementById('rentMap');

@@ -6,389 +6,396 @@
 {% block title %}Genesis | Rent{% endblock title %}
 {% block content %}
 <section class="text-gray-600 body-font bg-gray-100">
-   <!--Search bar -->
-   {% include "properties/properties_mainFilters.html" %}
-   <!--end of search bar-->
-   <div class="container mx-auto max-w-full flex flex-wrap">
-   <div class="xl:w-2/3 lg:w-3/4 w-full bg-gray-200 shadow-inner p-4">
-   {% include "properties/properties_orderFilters.html" %}
-   {% if rentProperties %}
-   {% for rent in rentProperties %}
-   <div class="flex flex-wrap shadow mt-2 mb-10" id="property_container{{rent.pk}}">
-      <a href="#{{rent.pk}}" id="{{rent.pk}}" class="cardAnchor" aria-label="anchor"></a>
-      {% if rent.property_category == 'STANDARD' %}
-      <div class="w-full rounded-t float-left text-sm pl-2 font-bold tracking-widest bg-blue-600 py-1">
-         <span class="text-white">
-         {{rent.property_category}}
-         </span>
-         {% elif rent.property_category == 'FEATURED' %}
-         <div class="w-full rounded-t float-left text-sm pl-2 font-bold tracking-widest bg-purple-600 py-1">
-            <span class="text-white tracking-widest">
-               <svg width="20" height="20" fill="Plum" class="inline-block bi bi-star-fill" viewBox="0 0 16 16">
-                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-               </svg>
-               {{rent.property_category}} 
-            </span>
-            {% else %}
-            <div class="w-full rounded-t float-left text-sm pl-2 font-bold tracking-widest bg-green-700 py-1">
-               <span class="text-white tracking-widest">
-                  <svg width="20" height="20" fill="LawnGreen" class="inline-block bi bi-lightbulb-fill" viewBox="0 0 16 16">
-                     <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"/>
-                  </svg>
-                  {{rent.property_category}}
-               </span>
-               {% endif %}
-               <span>
-                  <a href="#/" onclick="hideProperty({{rent.pk}})" title="{% trans 'Hide this advertisment'%}" class="transition duration-150 ease-in-out transform hover:scale-125 float-right px-4 font-bold">
-                     <svg width="16" height="16" fill="White" class="inline-block bi bi-x-lg" viewBox="0 0 16 16">
-                        <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
-                     </svg>
-                  </a>
-                  <a href="#/" onclick="saveProperty({{rent.pk}})" title="{% trans 'Save the property'%}" class="float-right fa fa-heart text-base px-4 transition duration-150 ease-in-out transform hover:scale-125">
-                     <svg id="detailsSave{{rent.pk}}" width="18" height="18" fill="LightCoral" class="bi bi-heart-fill mb-1 inline-block" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                     </svg>
-                  </a>
-                  <a href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}" class="text-sm px-4 float-right text-white">
-                  {% trans 'Map'%}
-                  <img class="inline-block transition duration-150 ease-in-out transform hover:scale-125" width="20" height="20" src="{% static "images/rec.svg" %}"  alt="Click to see on map"/>
-                  </a>
-               </span>
-            </div>
-            {% if rent.property_category == 'STANDARD' %}
-            <div class="xl:w-7/12 w-full bg-white">
-               <div class="h-auto overflow-hidden">
-                  <div id="image-slider{{rent.pk}}" class="splide" data-pages="2" data-ratio="0.33">
-                     <div class="splide__track">
-                        <ul class="splide__list">
-                           {% if rent.photo_main  %}
-                           <li class="splide__slide mr-1">
-                              {% thumbnail rent.photo_main "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_1  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_1 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_1{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_2  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_2 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_2{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_3  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_3 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_3{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_4  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_4 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_4{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="xl:w-5/12 w-full bg-white overflow-hidden rounded-tr-none sm:rounded-tr text-sm">
-               <div class="h-full overflow-hidden px-4 flex flex-wrap">
-                  <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" class="w-full">
-                     <div class="flex items-center flex-wrap w-full pt-2">
-                        <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
-                           {{rent.admin_2}} | {{rent.postalcode}} | {{rent.admin_3}}
-                        </h2>
-                        <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
-                           {% ifequal rent.currency '€' %}
-                           {{rent.price | intcomma}}{{rent.currency}}
-                           {% else %}
-                           {{rent.currency}}{{rent.price | intcomma}}
-                           {% endifequal %}
-                        </h1>
-                     </div>
-                     <h1 class="title-font font-bold text-gray-700 pt-2">
-                        {{rent.address}} {{rent.street_number}} 
-                        {% if rent.admin_1 != '' %} 
-                        , {{rent.admin_1}}
+    <!--Search bar -->
+    {% include "properties/properties_mainFilters.html" %}
+    <!-- Container 3/3 -->
+    <div class="container mx-auto max-w-full flex flex-wrap">
+        <!-- Listing flexbox -->
+        <div class="xl:w-2/3 lg:w-3/4 w-full bg-gray-200 shadow-inner p-4">
+            <!-- Order filters -->
+            {% include "properties/properties_orderFilters.html" %}
+            <!-- Properties list -->
+            {% if rentProperties %}
+                {% for rent in rentProperties %}
+                    <div class="flex flex-wrap shadow-md mt-2 mb-10" id="property_container{{rent.pk}}">
+                        <a aria-label="anchor" class="cardAnchor" href="#{{rent.pk}}" id="{{rent.pk}}"></a>
+                        <div class="flex w-full rounded-t float-left text-sm pl-2 tracking-widest bg-blue-600 text-white items-center">
+                            <span class="flex justify-start w-1/3">
+                                {{rent.property_category}}
+                            </span>
+                            <span class="flex justify-end w-2/3">
+                                <a class="text-sm px-4 text-white" href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}">
+                                    {% trans 'Map'%}
+                                    <img alt="Click to see on map" class="inline-block transition duration-150 ease-in-out transform hover:scale-125" height="20" src="{% static "images/rec.svg" %}" width="20"/>
+                                </a>
+                                <a class="fa fa-heart text-base px-4 transition duration-150 ease-in-out transform hover:scale-125" href="#/" onclick="saveProperty({{rent.pk}})" title="{% trans 'Save the property'%}">
+                                    <svg class="bi bi-heart-fill mb-1 inline-block" fill="LightCoral" height="18" id="detailsSave{{rent.pk}}" viewbox="0 0 16 16" width="18">
+                                        <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" fill-rule="evenodd"/>
+                                    </svg>
+                                </a>
+                                <a class="transition duration-150 ease-in-out transform hover:scale-125 px-4 font-bold" href="#/" onclick="hideProperty({{rent.pk}})" title="{% trans 'Hide this advertisment'%}">
+                                    <svg class="inline-block bi bi-x-lg" fill="White" height="16" viewbox="0 0 16 16" width="16">
+                                        <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+                                    </svg>
+                                </a>
+                            </span>
+                        </div>
+                        {% if rent.property_category == 'STANDARD' %}
+                            <div class="xl:w-7/12 w-full bg-white">
+                                <div class="h-auto overflow-hidden">
+                                    <div class="splide" data-pages="2" data-ratio="0.33" id="image-slider{{rent.pk}}">
+                                        <div class="splide__track">
+                                            <ul class="splide__list">
+                                                {% if rent.photo_main %}
+                                                    <li class="splide__slide mr-1">
+                                                        {% thumbnail rent.photo_main "360x270" as im %}
+                                                        <img alt="main_photo{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_1 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_1 "360x270" as im %}
+                                                        <img alt="photo_1{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_2 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_2 "360x270" as im %}
+                                                        <img alt="photo_2{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_3 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_3 "360x270" as im %}
+                                                        <img alt="photo_3{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_4 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_4 "360x270" as im %}
+                                                        <img alt="photo_4{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="xl:w-5/12 w-full bg-white overflow-hidden rounded-tr-none sm:rounded-tr text-sm">
+                                <div class="h-full overflow-hidden px-4 flex flex-wrap">
+                                    <a class="w-full" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
+                                        <div class="flex items-center flex-wrap w-full pt-2">
+                                            <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
+                                                {{rent.admin_2}}
+                                                |
+                                                {{rent.postalcode}}
+                                                |
+                                                {{rent.admin_3}}
+                                            </h2>
+                                            <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
+                                                {% ifequal rent.currency '€' %}
+                                                {{rent.price | intcomma}}{{rent.currency}}
+                                            {% else %}
+                                                {{rent.currency}}{{rent.price | intcomma}}
+                                                {% endifequal %}
+                                            </h1>
+                                        </div>
+                                        <h1 class="title-font font-bold text-gray-700 pt-2">
+                                            {{rent.address}}
+                                            {{rent.street_number}}
+                                            {% if rent.admin_1 != '' %}
+                                                ,
+                                                {{rent.admin_1}}
+                                            {% endif %}
+                                        </h1>
+                                        <div class="flex flex-wrap pt-2 text-xs sm:text-sm xl:hidden w-full">
+                                            <p class="text-gray-900 lg:mb-2 overflow-hidden">
+                                                {{rent.short_description}}
+                                            </p>
+                                        </div>
+                                        <div class="flex flex-wrap text-sm text-gray-800 pt-4">
+                                            <div class="flex justify-between w-full mb-2 tracking-wider text-xs text-center font-bold sm:font-normal">
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-house-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                        <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" fill-rule="evenodd"/>
+                                                        <path d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" fill-rule="evenodd"/>
+                                                    </svg>
+                                                    {% trans 'Type'%}
+                                                    <div class="text-center font-bold">{% trans rent.property_type %}</div>
+                                                </div>
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-moon-stars-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                                                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+                                                    </svg>
+                                                    {% trans 'Bedrooms'%}
+                                                    <div class="text-center font-bold">{{rent.bedrooms}}</div>
+                                                </div>
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-badge-wc-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.666 1.89c.682 0 1.139.47 1.187 1.107H14v-.11c-.053-1.187-1.024-2-2.342-2-1.604 0-2.518 1.05-2.518 2.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.742c0-1.112.488-1.754 1.318-1.754zm-6.188.926h.044L6.542 11h1.006L9 5.001H7.818l-.82 4.355h-.056L5.97 5.001h-.94l-.972 4.355h-.053l-.827-4.355H2L3.452 11h1.005l1.02-4.184z"/>
+                                                    </svg>
+                                                    {% trans 'Bathrooms'%}
+                                                    <div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
+                                                </div>
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                        <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
+                                                    </svg>
+                                                    {% trans 'Space'%}
+                                                    <div class="text-center font-bold">{{rent.m2}}m²</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="flex items-center text-xs py-2 w-full">
+                                        <button class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" onclick="rentEmail({{rent.pk}})">
+                                            <svg class="inline-block bi bi-envelope-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
+                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                                            </svg>
+                                            EMAIL
+                                        </button>
+                                        <a class="p-2 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" href="tel:{{rent.organisation.phone}}">
+                                            <svg class="inline-block bi bi-telephone-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
+                                                <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" fill-rule="evenodd"/>
+                                            </svg>
+                                            {% trans 'CALL'%}
+                                        </a>
+                                        <a class="inline-flex items-center ml-auto leading-none text-xs" href="#/">
+                                            {% if rent.organisation.organisation_logo %}
+                                                <img alt="blog" class="w-12 h-8 flex-shrink-0 object-cover object-center hidden sm:flex rounded" height="8" src="{{rent.organisation.organisation_logo.url}}" width="12">
+                                            {% endif %}
+                                            <span class="flex-grow flex flex-col pl-2 text-xs">
+                                                <span class="title-font font-medium text-gray-900">{{rent.organisation.name}}</span>
+                                                <span class="text-gray-700 tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="w-full bg-white">
+                                <div class="h-auto overflow-hidden">
+                                    <div class="splide" data-pages="3" data-ratio="0.2" id="image-slider{{rent.pk}}">
+                                        <div class="splide__track">
+                                            <ul class="splide__list">
+                                                {% if rent.photo_main %}
+                                                    <li class="splide__slide mr-1">
+                                                        {% thumbnail rent.photo_main "360x270" as im %}
+                                                        <img alt="main_photo{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_1 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_1 "360x270" as im %}
+                                                        <img alt="photo_1{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_2 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_2 "360x270" as im %}
+                                                        <img alt="photo_2{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_3 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_3 "360x270" as im %}
+                                                        <img alt="photo_3{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                                {% if rent.photo_4 %}
+                                                    <li class="splide__slide">
+                                                        {% thumbnail rent.photo_4 "360x270" as im %}
+                                                        <img alt="photo_4{{rent.admin_2_en}}" data-splide-lazy="{{ im.url }}" height="{{ im.height }}" width="{{ im.width }}">
+                                                        {% endthumbnail %}
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full bg-white overflow-hidden rounded-tr-none sm:rounded-tr text-sm">
+                                <div class="h-full overflow-hidden px-4">
+                                    <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
+                                        <div class="flex items-center flex-wrap w-full pt-2">
+                                            <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
+                                                {{rent.admin_2}}
+                                                |
+                                                {{rent.postalcode}}
+                                                |
+                                                {{rent.admin_3}}
+                                            </h2>
+                                            <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
+                                                {% ifequal rent.currency '€' %}
+                                                {{rent.price | intcomma}}{{rent.currency}}
+                                            {% else %}
+                                                {{rent.currency}}{{rent.price | intcomma}}
+                                                {% endifequal %}
+                                            </h1>
+                                        </div>
+                                        <h1 class="title-font font-bold text-gray-700 pt-2">
+                                            {{rent.address}}
+                                            {{rent.street_number}}
+                                            {% if rent.admin_1 != '' %}
+                                                ,
+                                                {{rent.admin_1}}
+                                            {% endif %}
+                                        </h1>
+                                        <div class="flex flex-wrap my-2 text-xs sm:text-sm">
+                                            <div class="w-full lg:w-1/2 md:pr-4 pr-0">
+                                                <p class="text-gray-900 mb-4 lg:mb-2 overflow-hidden">
+                                                    {{rent.short_description}}
+                                                </p>
+                                            </div>
+                                            <div class="flex justify-between w-full lg:w-1/2 mb-2 tracking-wider text-xs text-center text-gray-800 font-bold">
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-house-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+                                                        <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" fill-rule="evenodd"/>
+                                                        <path d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" fill-rule="evenodd"/>
+                                                    </svg>
+                                                    {% trans 'Type'%}
+                                                    <div class="text-center font-bold">{% trans rent.property_type %}</div>
+                                                </div>
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-moon-stars-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+                                                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+                                                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+                                                    </svg>
+                                                    {% trans 'Bedrooms'%}
+                                                    <div class="text-center font-bold">{{rent.bedrooms}}</div>
+                                                </div>
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-badge-wc-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+                                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.666 1.89c.682 0 1.139.47 1.187 1.107H14v-.11c-.053-1.187-1.024-2-2.342-2-1.604 0-2.518 1.05-2.518 2.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.742c0-1.112.488-1.754 1.318-1.754zm-6.188.926h.044L6.542 11h1.006L9 5.001H7.818l-.82 4.355h-.056L5.97 5.001h-.94l-.972 4.355h-.053l-.827-4.355H2L3.452 11h1.005l1.02-4.184z"/>
+                                                    </svg>
+                                                    {% trans 'Bathrooms'%}
+                                                    <div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
+                                                </div>
+                                                <div>
+                                                    <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+                                                        <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
+                                                    </svg>
+                                                    {% trans 'Space'%}
+                                                    <div class="text-center font-bold">{{rent.m2}}m²</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <hr class="xl:my-2 lg:my-1">
+                                    <div class="flex items-center flex-wrap text-xs py-2">
+                                        <button class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" onclick="rentEmail({{rent.pk}})">
+                                            <svg class="inline-block bi bi-envelope-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
+                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                                            </svg>
+                                            EMAIL
+                                        </button>
+                                        <a class="p-2 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" href="tel:{{rent.organisation.phone}}">
+                                            <svg class="inline-block bi bi-telephone-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
+                                                <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" fill-rule="evenodd"/>
+                                            </svg>
+                                            {% trans 'CALL'%}
+                                        </a>
+                                        <div class="hidden xl:inline-flex ml-8 text-gray-700">
+                                            <p class="text-xs leading-none ml-auto">{% trans 'Published:'%}
+                                                {{rent.list_date|date:"d/m/Y"}}</p>
+                                        </div>
+                                        <a class="inline-flex items-center  ml-auto leading-none text-xs" href="#/">
+                                            {% if rent.organisation.organisation_logo %}
+                                                <img alt="blog" class="w-12 h-8 flex-shrink-0 object-cover object-center hidden sm:flex rounded" height="8" src="{{rent.organisation.organisation_logo.url}}" width="12">
+                                            {% endif %}
+                                            <span class="flex-grow flex flex-col pl-2 text-xs">
+                                                <span class="title-font font-medium text-gray-900">{{rent.organisation.name}}</span>
+                                                <span class="text-gray-700 tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
-                     </h1>
-                     <div class="flex flex-wrap pt-2 text-xs sm:text-sm xl:hidden w-full">
-                        <p class="text-gray-900 lg:mb-2 overflow-hidden">
-                           {{rent.short_description}}
-                        </p>
-                     </div>
-                     <div class="flex flex-wrap text-sm text-gray-800 pt-4">
-                        <div class="flex justify-between w-full mb-2 tracking-wider text-xs text-center font-bold sm:font-normal">
-                           <div>
-                              <svg width="14" height="14" fill="currentColor" class="inline-block mb-1 bi bi-house-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                 <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                              </svg>
-                              {% trans 'Type'%}
-                              <div class="text-center font-bold">{% trans rent.property_type %}</div>
-                           </div>
-                           <div>
-                              <svg width="14" height="14" fill="currentColor" class="inline-block mb-1 bi bi-moon-stars-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-                                 <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-                              </svg>
-                              {% trans 'Bedrooms'%}
-                              <div class="text-center font-bold">{{rent.bedrooms}}</div>
-                           </div>
-                           <div>
-                              <svg width="14" height="14" fill="currentColor" class="inline-block mb-1 bi bi-badge-wc-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.666 1.89c.682 0 1.139.47 1.187 1.107H14v-.11c-.053-1.187-1.024-2-2.342-2-1.604 0-2.518 1.05-2.518 2.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.742c0-1.112.488-1.754 1.318-1.754zm-6.188.926h.044L6.542 11h1.006L9 5.001H7.818l-.82 4.355h-.056L5.97 5.001h-.94l-.972 4.355h-.053l-.827-4.355H2L3.452 11h1.005l1.02-4.184z"/>
-                              </svg>
-                              {% trans 'Bathrooms'%}
-                              <div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
-                           </div>
-                           <div>
-                              <svg width="14" height="14" fill="currentColor" class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
-                              </svg>
-                              {% trans 'Space'%}
-                              <div class="text-center font-bold">{{rent.m2}}m²</div>
-                           </div>
+                        <div class="bg-gray-100">
+                        <form class="lg:w-2/3 md:w-full mx-auto my-6 hidden" id="emailForm{{rent.pk}}" method="POST">
+                            {% csrf_token %}
+                            <div class="flex flex-col text-center w-full my-4 p-2">
+                                <h1 class="sm:text-xl text-base font-medium title-font text-white shadow-inner p-2 rounded bg-blue-600">
+                                    <b>{% trans 'Contact:'%}</b>
+                                    {{rent.organisation.name}}
+                                    <b>{% trans 'For:'%}</b>
+                                    {{rent.address}}
+                                </h1>
+                            </div>
+                            <div id="output{{rent.pk}}" style="display:none;"></div>
+                            <div class="flex flex-wrap">
+                                <div class="p-2 sm:w-1/3 w-full">
+                                    <div class="relative">
+                                        <label class="leading-7 text-sm text-gray-600" for="name">{% trans '*Name'%}</label>
+                                        <input class="w-full text-sm bg-gray-50 bg-opacity-70 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" name="name" required="required" type="text" value="{{request.user.first_name}} {{request.user.last_name}}">
+                                    </div>
+                                </div>
+                                <div class="p-2 sm:w-1/3 w-full">
+                                    <div class="relative">
+                                        <label class="leading-7 text-sm text-gray-600" for="email">*Email</label>
+                                        <input class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" name="email" required="required" type="email" value="{{request.user.email}}">
+                                    </div>
+                                </div>
+                                <div class="p-2 sm:w-1/3 w-full">
+                                    <div class="relative">
+                                        <label class="leading-7 text-sm text-gray-600" for="phone">{% trans '*Phone'%}</label>
+                                        <input class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" name="phone" required="required" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="p-2 w-full">
+                                    <div class="relative">
+                                        <label class="leading-7 text-sm text-gray-600" for="rentText">{% trans '*Message'%}</label>
+                                        <textarea class="w-full bg-gray-50 text-sm bg-opacity-85 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" name="rentText" required="required"></textarea>
+                                    </div>
+                                </div>
+                                <input class="hidden" name="recipient" type="text" value="{{rent.organisation.email}}">
+                                <div class="p-2 w-full">
+                                    <button class="flex mx-auto text-white bg-blue-600 border-0 py-3 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg" onclick="sendRentEmail({{rent.pk}})" type="submit">
+                                        {% trans 'Send'%}
+                                        <svg width="19" height="19" fill="currentColor" class="ml-1 mt-1 inline-block bi bi-telegram" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                         </div>
-                     </div>
-                  </a>
-                  <div class="flex items-center text-xs py-2 w-full">
-                     <button onclick="rentEmail({{rent.pk}})"
-                        class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
-                        <svg width="12" height="12" fill="currentColor" class="inline-block bi bi-envelope-fill" viewBox="0 0 16 16">
-                           <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                        </svg>
-                        EMAIL
-                     </button>
-                     <a href="tel:{{rent.organisation.phone}}" class="p-2 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
-                        <svg width="12" height="12" fill="currentColor" class="inline-block bi bi-telephone-fill" viewBox="0 0 16 16">
-                           <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                        </svg>
-                        {% trans 'CALL'%}
-                     </a>
-                     <a href="#/" class="inline-flex items-center ml-auto leading-none text-xs">
-                     {% if rent.organisation.organisation_logo %}
-                     <img alt="blog" width="12" height="8" src="{{rent.organisation.organisation_logo.url}}" class="w-12 h-8 flex-shrink-0 object-cover object-center hidden sm:flex rounded">
-                     {% endif %}
-                     <span class="flex-grow flex flex-col pl-2 text-xs">
-                     <span class="title-font font-medium text-gray-900">{{rent.organisation.name}}</span>
-                     <span class="text-gray-700 tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
-                     </span>
-                     </a>
-                  </div>
-               </div>
-            </div>
+                    </div>
+                {% endfor %}
             {% else %}
-            <div class="w-full bg-white">
-               <div class="h-auto overflow-hidden">
-                  <div id="image-slider{{rent.pk}}" class="splide" data-pages="3" data-ratio="0.2">
-                     <div class="splide__track">
-                        <ul class="splide__list">
-                           {% if rent.photo_main  %}
-                           <li class="splide__slide mr-1">
-                              {% thumbnail rent.photo_main "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_1  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_1 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_1{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_2  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_2 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_2{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_3  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_3 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_3{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_4  %}
-                           <li class="splide__slide">
-                              {% thumbnail rent.photo_4 "360x270" as im %}
-                              <img data-splide-lazy="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="photo_4{{rent.admin_2_en}}">
-                              {% endthumbnail %}
-                           </li>
-                           {% endif %}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="w-full bg-white overflow-hidden rounded-tr-none sm:rounded-tr text-sm">
-               <div class="h-full overflow-hidden px-4">
-                  <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
-                     <div class="flex items-center flex-wrap w-full pt-2">
-                        <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
-                           {{rent.admin_2}} | {{rent.postalcode}} | {{rent.admin_3}}
-                        </h2>
-                        <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
-                           {% ifequal rent.currency '€' %}
-                           {{rent.price | intcomma}}{{rent.currency}}
-                           {% else %}
-                           {{rent.currency}}{{rent.price | intcomma}}
-                           {% endifequal %}
-                        </h1>
-                     </div>
-                     <h1 class="title-font font-bold text-gray-700 pt-2">
-                        {{rent.address}} {{rent.street_number}} 
-                        {% if rent.admin_1 != '' %} 
-                        , {{rent.admin_1}}
-                        {% endif %}
-                     </h1>
-                     <div class="flex flex-wrap my-2 text-xs sm:text-sm">
-                        <div class="w-full lg:w-1/2 md:pr-4 pr-0">
-                           <p class="text-gray-900 mb-4 lg:mb-2 overflow-hidden">
-                              {{rent.short_description}}
-                           </p>
-                        </div>
-                        <div class="flex justify-between w-full lg:w-1/2 mb-2 tracking-wider text-xs text-center text-gray-800 font-bold">
-                           <div>
-                              <svg width="16" height="16" fill="currentColor" class="inline-block mb-1 bi bi-house-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                 <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                              </svg>
-                              {% trans 'Type'%}
-                              <div class="text-center font-bold">{% trans rent.property_type %}</div>
-                           </div>
-                           <div>
-                              <svg width="16" height="16" fill="currentColor" class="inline-block mb-1 bi bi-moon-stars-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-                                 <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-                              </svg>
-                              {% trans 'Bedrooms'%}
-                              <div class="text-center font-bold">{{rent.bedrooms}}</div>
-                           </div>
-                           <div>
-                              <svg width="16" height="16" fill="currentColor" class="inline-block mb-1 bi bi-badge-wc-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.666 1.89c.682 0 1.139.47 1.187 1.107H14v-.11c-.053-1.187-1.024-2-2.342-2-1.604 0-2.518 1.05-2.518 2.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.742c0-1.112.488-1.754 1.318-1.754zm-6.188.926h.044L6.542 11h1.006L9 5.001H7.818l-.82 4.355h-.056L5.97 5.001h-.94l-.972 4.355h-.053l-.827-4.355H2L3.452 11h1.005l1.02-4.184z"/>
-                              </svg>
-                              {% trans 'Bathrooms'%}
-                              <div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
-                           </div>
-                           <div>
-                              <svg width="16" height="16" fill="currentColor" class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" viewBox="0 0 16 16">
-                                 <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
-                              </svg>
-                              {% trans 'Space'%}
-                              <div class="text-center font-bold">{{rent.m2}}m²</div>
-                           </div>
-                        </div>
-                     </div>
-                  </a>
-                  <hr class="xl:my-2 lg:my-1">
-                  <div class="flex items-center flex-wrap text-xs py-2">
-                     <button onclick="rentEmail({{rent.pk}})" 
-                        class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
-                        <svg width="12" height="12" fill="currentColor" class="inline-block bi bi-envelope-fill" viewBox="0 0 16 16">
-                           <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                        </svg>
-                        EMAIL
-                     </button>
-                     <a href="tel:{{rent.organisation.phone}}" class="p-2 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0">
-                        <svg width="12" height="12" fill="currentColor" class="inline-block bi bi-telephone-fill" viewBox="0 0 16 16">
-                           <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                        </svg>
-                        {% trans 'CALL'%}
-                     </a>
-                     <div class="hidden xl:inline-flex ml-8 text-gray-700">
-                        <p class="text-xs leading-none ml-auto">{% trans 'Published:'%} {{rent.list_date|date:"d/m/Y"}}</p>
-                     </div>
-                     <a href="#/" class="inline-flex items-center  ml-auto leading-none text-xs">
-                     {% if rent.organisation.organisation_logo %}
-                     <img alt="blog" width="12" height="8" src="{{rent.organisation.organisation_logo.url}}" class="w-12 h-8 flex-shrink-0 object-cover object-center hidden sm:flex rounded">
-                     {% endif %}
-                     <span class="flex-grow flex flex-col pl-2 text-xs">
-                     <span class="title-font font-medium text-gray-900">{{rent.organisation.name}}</span>
-                     <span class="text-gray-700 tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
-                     </span>
-                     </a>
-                  </div>
-               </div>
-            </div>
+                {% trans 'Seems there are no properties on the place you are looking on :('%}
             {% endif %}
-            <form id="emailForm{{rent.pk}}" method="POST" class="lg:w-2/3 md:w-full mx-auto my-6 hidden">
-            {% csrf_token %}
-               <div class="flex flex-col text-center w-full my-4">
-                  <h1 class="sm:text-xl text-lg font-medium title-font text-gray-700">{% trans 'Contact'%} {{rent.organisation.name}} {% trans 'for'%} {{rent.address}}</h1>
-               </div>
-               <div id="output{{rent.pk}}" style="display:none;"></div>
-               <div class="flex flex-wrap">
-                  <div class="p-2 sm:w-1/3 w-full">
-                     <div class="relative">
-                        <label for="name" class="leading-7 text-sm text-gray-600">{% trans '*Name'%}</label>
-                        <input required type="text" name="name" value="{{request.user.first_name}} {{request.user.last_name}}" class="w-full text-sm bg-gray-50 bg-opacity-70 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                     </div>
-                  </div>
-                  <div class="p-2 sm:w-1/3 w-full">
-                     <div class="relative">
-                        <label for="email" class="leading-7 text-sm text-gray-600">*Email</label>
-                        <input required type="email" name="email" value="{{request.user.email}}" class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                     </div>
-                  </div>
-                  <div class="p-2 sm:w-1/3 w-full">
-                     <div class="relative">
-                        <label for="phone" class="leading-7 text-sm text-gray-600">{% trans '*Phone'%}</label>
-                        <input required type="text" name="phone" value="" class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                     </div>
-                  </div>
-                  <div class="p-2 w-full">
-                     <div class="relative">
-                        <label for="rentText" class="leading-7 text-sm text-gray-600">{% trans '*Message'%}</label>
-                        <textarea required name="rentText" class="w-full bg-gray-50 text-sm bg-opacity-85 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-                     </div>
-                  </div>
-                  <input type="text" name="recipient" value="{{rent.organisation.email}}" class="hidden">
-                  <div class="p-2 w-full">
-                     <button type="submit" onclick="sendRentEmail({{rent.pk}})" class="flex mx-auto text-white bg-blue-600 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded text-lg">{% trans 'Send'%}</button>
-                  </div>
-               </div>
-            </form>
-         </div>
-         {% endfor %}
-         {% else %}
-         {% trans 'Seems there are no properties on the place you are looking on :('%}
-         {% endif %}
-         <!-- Pagination -->
-         {% include "properties/properties_pagination.html" %}
-         <!-- end of pagination -->
-      </div>
-      {% url 'properties:rent-list' as rentList %}
-      {% if map %}
-         <div class="xl:w-1/3 lg:w-1/4 w-full h-54 fixed lg:relative z-50 bottom-0">
-            <div class="lg:sticky rentMapTop lg:p-2 lg:pt-0" id="rentMap">
-               <div class="lg:rounded rent_map shadow border-blue-600 border-t-4 lg:border-0 relative h-full w-full" id="map"></div>
+            <!-- Pagination -->
+            {% include "properties/properties_pagination.html" %}
+            <!-- end of pagination -->
+        </div>
+        <!-- Map -->
+        {% if map %}
+            <div class="xl:w-1/3 lg:w-1/4 w-full h-54 fixed lg:relative z-50 bottom-0">
+                <div class="lg:sticky rentMapTop lg:p-2 lg:pt-0" id="rentMap">
+                    <div class="lg:rounded rent_map shadow border-blue-600 border-t-4 lg:border-0 relative h-full w-full" id="map"></div>
+                </div>
             </div>
-         </div>
-         {% include "properties/scripts/properties_list_map_script.html" %}
-      {% else %}
-         <div class="lg:w-1/3 lg:block p-4 hidden">
-            <div class="" id="">
-              Hello
+            {% include "properties/scripts/properties_list_map_script.html" %}
+        {% else %}
+            <div class="lg:w-1/3 lg:block p-4 hidden bg-gray-100">
+                <div class="" id="">
+                    Hello
+                </div>
             </div>
-         </div>
-      {% endif %}
-      
-   </div>
+        {% endif %}
+    </div>
 </section>
 {% include "properties/scripts/properties_list_splide_script.html" %}
 {% include "properties/scripts/properties_list_filters_script.html" %}

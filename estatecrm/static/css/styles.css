@@ -116,7 +116,7 @@
   outline: none;
 }
 table.dataTable.display tbody td {
-  border-top: 2px solid #4B5563;
+  border-top: 1px solid #b1b3b4;
 }
 
 table.dataTable.no-footer {
@@ -125,7 +125,7 @@ table.dataTable.no-footer {
 
 table.dataTable thead th, table.dataTable thead td {
   padding: 10px 10px;
-  border-bottom: 1px solid rgb(143, 143, 143);
+  border-bottom: 0px solid rgb(143, 143, 143);
 }
 
 .properties-table {
@@ -237,23 +237,23 @@ table.dataTable thead th, table.dataTable thead td {
 
 /* Rent list map */
 .rentMapBottom{
-  height:80vh;
+  height:100vh;
   transition: top 0.3s ease 0s;
   top: calc(20% - 100px);
 }
 
 .rentMapTop{
-  height:80vh;
+  height:100vh;
   transition: top 0.3s ease 0s;
   top: 115px;
 }
 
 @media(max-width:1024px){
   .rentMapTop{
-    height:30vh;
+    height:25vh;
   }
   .rentMapBottom{
-    height:30vh;
+    height:25vh;
   }
 }
 

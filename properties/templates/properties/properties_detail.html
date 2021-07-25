@@ -1,267 +1,227 @@
-{% extends "base.html" %}
-{% load static %}
-{% load i18n %}
-{% load humanize %}
-{% load thumbnail %}
-{% block title %}Genesis | Details{% endblock title %}
-{% block content %}
-<section class="text-gray-600 body-font">
-   <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto flex flex-col">
-      <div class="lg:w-11/12 w-full mx-auto">
-         <div class="bg-blue-600 rounded-t-lg text-white pl-2 text-xs font-bold py-1 border-b-2 border-white text-white">
-            {% if rent.property_category == 'STANDARD' %}
-            {{rent.property_category}}
-            {% elif rent.property_category == 'FEATURED' %}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-yellow-400 inline-block bi bi-star-fill" viewBox="0 0 16 16">
-               <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-            </svg>
-            {{rent.property_category}}
-            {% else %}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-red-600 inline-block bi bi-lightbulb-fill" viewBox="0 0 16 16">
-               <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"/>
-            </svg>
-            {{rent.property_category}}
-            {% endif %}
-         </div>
-         <div class="h-full overflow-hidden">
-            <div class="flex flex-col lg:flex-row">
-               <div class="lg:w-2/3 w-full lg:pr-2">
-                  <div id="image-slider" class="splide">
-                     <div class="splide__track rounded-b">
-                        <ul class="splide__list">
-                           {% if rent.photo_main  %}
-                           <li class="splide__slide">
-                              <img class="" data-splide-lazy="{{rent.photo_main.url}}">
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_1  %}
-                           <li class="splide__slide">
-                              <img class="" data-splide-lazy="{{rent.photo_1.url}}">
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_2  %}
-                           <li class="splide__slide">
-                              <img class="" data-splide-lazy="{{rent.photo_2.url}} ">
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_3  %}
-                           <li class="splide__slide">
-                              <img class="" data-splide-lazy="{{rent.photo_3.url}}">
-                           </li>
-                           {% endif %}
-                           {% if rent.photo_4  %}
-                           <li class="splide__slide">
-                              <img class="" data-splide-lazy="{{rent.photo_4.url}}">
-                           </li>
-                           {% endif %}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div class="lg:w-1/3 w-full lg:pl-2 h-full sidebar">
-                  <div id="secondary-slider" class="splide">
-                     <div class="splide__track">
-                        <ul class="splide__list">
-                           {% if rent.photo_main  %}
-                           {% thumbnail rent.photo_main "360x270" as im %}
-                           <li class="splide__slide">
-                              <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}">
-                           </li>
-                           {% endthumbnail %}
-                           {% endif %}
-                           {% if rent.photo_1  %}
-                           {% thumbnail rent.photo_1 "360x270" as im %}
-                           <li class="splide__slide">
-                              <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}">
-                           </li>
-                           {% endthumbnail %}
-                           {% endif %}
-                           {% if rent.photo_2  %}
-                           {% thumbnail rent.photo_2 "360x270" as im %}
-                           <li class="splide__slide">
-                              <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}">
-                           </li>
-                           {% endthumbnail %}
-                           {% endif %}
-                           {% if rent.photo_3  %}
-                           {% thumbnail rent.photo_3 "360x270" as im %}
-                           <li class="splide__slide">
-                              <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}">
-                           </li>
-                           {% endthumbnail %}
-                           {% endif %}
-                           {% if rent.photo_4  %}
-                           {% thumbnail rent.photo_4 "360x270" as im %}
-                           <li class="splide__slide">
-                              <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}">
-                           </li>
-                           {% endthumbnail %}
-                           {% endif %}
-                        </ul>
-                     </div>
-                  </div>
-               </div>
+{% extends "base.html" %} {% load static %} {% load i18n %} {% load humanize %} {% load thumbnail %} {% block title %}Genesis | Details{% endblock title %} {% block content %}
+<section class="text-gray-600 body-font mt-1">
+    <div class="container max-w-full px-4 lg:px-10 py-10 mx-auto flex flex-col">
+        <div class="lg:w-11/12 w-full mx-auto">
+            <div class="bg-blue-600 rounded-t-lg text-white pl-2 text-xs font-bold py-1 border-b-2 border-white text-white">
+                {% if rent.property_category == 'STANDARD' %} {{rent.property_category}} {% elif rent.property_category == 'FEATURED' %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-yellow-400 inline-block bi bi-star-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                    />
+                </svg>
+                {{rent.property_category}} {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-red-600 inline-block bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"
+                    />
+                </svg>
+                {{rent.property_category}} {% endif %}
             </div>
-         </div>
-         <div class="flex flex-col sm:flex-row mt-4 overflow-hidden">
-            <div class="lg:w-2/3 text-center px-6 bg-gray-100 pb-4 rounded-md">
-               <div class="flex items-center flex-wrap">
-                  <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
-                     {{rent.address}}
-                  </p>
-                  <p class="inline-flex md:text-base text-xs pt-1">{{rent.city}} | {{rent.postalcode}}</p>
-                  <div class="inline-flex items-center  ml-auto leading-none">
-                     <a href="{% url 'properties:rent-detail' rent.id %}#anchor" title="{% trans 'Calculate your home costs'%}" class="mr-2">
-                     <span class="text-xs text-gray-700 px-2 infline-flex ">
-                        <svg width="20" height="20" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
-                           <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
-                           <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
-                        </svg>
-                     </span>
-                     </a>
-                     <button onclick="fbSharer()" class="transition duration-150 ease-in-out transform hover:scale-125 mr-2" title="{% trans 'Share property in Facebook'%}">
-                        <svg width="20" height="20" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16">
-                           <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                        </svg>
-                     </button>
-                     <button onclick="twitterSharer()" class="transition duration-150 ease-in-out transform hover:scale-125 mr-2" title="{% trans 'Share property in Twitter'%}">
-                        <svg width="20" height="20" fill="DeepSkyBlue" class="bi bi-twitter" viewBox="0 0 16 16">
-                           <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                        </svg>
-                     </button>
-                     <button onclick="saveProperty()" class="transition duration-150 ease-in-out transform hover:scale-125" title="{% trans 'Save property in your account'%}">
-                        <svg id="detailsSave" width="20" height="20" fill="LightCoral" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                           <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                        </svg>
-                     </button>
-                  </div>
-               </div>
-               <div class="flex items-center flex-wrap py-2">
-                  <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
-                     {% ifequal rent.currency '€' %}
-                     {{rent.price | intcomma}}{{rent.currency}}
-                     {% else %}
-                     {{rent.currency}}{{rent.price | intcomma}}
-                     {% endifequal %}
-                  </p>
-                  <div class="inline-flex items-center  ml-auto leading-none">
-                     <p class="text-xs font-bold leading-none ml-auto">Published: {{rent.list_date|date:"d/m/Y"}}</p>
-                  </div>
-               </div>
-               <div class="flex flex-col text-left justify-center py-2">
-                  <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'LETTING DETAILS'%}</p>
-                  <div class="flex justify-between text-xs font-bold">
-                     <p>{% trans 'Available to let after:'%} {{rent.available_after}}</p>
-                     <p>{% trans 'Furnished Type:'%} {% trans rent.furniture%}</p>
-                  </div>
-               </div>
-               <div class="flex flex-col text-left justify-center py-2">
-                  <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'MAIN FEATURES'%}</p>
-                  <div class="flex flex-wrap justify-start sm:text-sm text-xs">
-                     {% if billsinc %}
-                     <div class="w-1/4 mb-3">{% trans 'Bills included'%}</div>
-                     {% endif %}
-                     {% if cleanserv %}
-                     <div class="w-1/4 mb-3">{% trans 'Cleaning services'%}</div>
-                     {% endif %}
-                     {% if refurb %}
-                     <div class="w-1/4 mb-3">{% trans 'Refurbished'%}</div>
-                     {% endif %}
-                     {% if gas %}
-                     <div class="w-1/4 mb-3">{% trans 'Gas'%}</div>
-                     {% endif %}
-                     {% if electr %}
-                     <div class="w-1/4 mb-3">{% trans 'Electricity'%}</div>
-                     {% endif %}
-                     {% if central %}
-                     <div class="w-1/4 mb-3">{% trans 'Central heating'%}</div>
-                     {% endif %}
-                     {% if launroom %}
-                     <div class="w-1/4 mb-3">{% trans 'Laundry room'%}</div>
-                     {% endif %}
-                     {% if ensuite %}
-                     <div class="w-1/4 mb-3">{% trans 'En-suite'%}</div>
-                     {% endif %}
-                     {% if playroom %}
-                     <div class="w-1/4 mb-3">{% trans 'Playroom'%}</div>
-                     {% endif %}
-                     {% if garden %}
-                     <div class="w-1/4 mb-3">{% trans 'Garden'%}</div>
-                     {% endif %}
-                     {% if sharedkit %}
-                     <div class="w-1/4 mb-3">{% trans 'Shared kitchen'%}</div>
-                     {% endif %}
-                     {% if pool %}
-                     <div class="w-1/4 mb-3">{% trans 'Swimming-pool'%}</div>
-                     {% endif %}
-                     {% if studaccom %}
-                     <div class="w-1/4 mb-3">{% trans 'Student-accommodation'%}</div>
-                     {% endif %}
-                     {% if nodepo %}
-                     <div class="w-1/4 mb-3">{% trans 'No deposit'%}</div>
-                     {% endif %}
-                     {% if fireplace %}
-                     <div class="w-1/4 mb-3">{% trans 'Fireplace'%}</div>
-                     {% endif %}
-                     {% if views %}
-                     <div class="w-1/4 mb-3">{% trans 'Scenery/View'%}</div>
-                     {% endif %}
-                     {% if elevator %}
-                     <div class="w-1/4 mb-3">{% trans 'Elevator'%}</div>
-                     {% endif %}
-                  </div>
-               </div>
-               <div class="flex flex-col text-left justify-center pt-1 pb-2 sm:text-sm text-xs">
-                  <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'SPECIFICATIONS'%}</p>
-                  <div class="flex justify-between divide-x-2 text-gray-600">
-                     <div>
-                        <i class="fa fa-home"></i> {% trans 'Type'%}
-                        <div class=" font-bold">
-                           {% trans rent.property_type%}
+            <div class="h-full overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="lg:w-2/3 w-full lg:pr-2">
+                        <div id="image-slider" class="splide">
+                            <div class="splide__track rounded-b">
+                                <ul class="splide__list">
+                                    {% if rent.photo_main %}
+                                    <li class="splide__slide">
+                                        <img class="" data-splide-lazy="{{rent.photo_main.url}}" />
+                                    </li>
+                                    {% endif %} {% if rent.photo_1 %}
+                                    <li class="splide__slide">
+                                        <img class="" data-splide-lazy="{{rent.photo_1.url}}" />
+                                    </li>
+                                    {% endif %} {% if rent.photo_2 %}
+                                    <li class="splide__slide">
+                                        <img class="" data-splide-lazy="{{rent.photo_2.url}} " />
+                                    </li>
+                                    {% endif %} {% if rent.photo_3 %}
+                                    <li class="splide__slide">
+                                        <img class="" data-splide-lazy="{{rent.photo_3.url}}" />
+                                    </li>
+                                    {% endif %} {% if rent.photo_4 %}
+                                    <li class="splide__slide">
+                                        <img class="" data-splide-lazy="{{rent.photo_4.url}}" />
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
                         </div>
-                     </div>
-                     <div class="pl-4 lg:pl-8">
-                        <i class="fa fa-bed"></i> {% trans 'Bedrooms'%}
-                        <div class=" font-bold">{{rent.bedrooms}}</div>
-                     </div>
-                     <div class="pl-4 lg:pl-8">
-                        <i class="fa fa-bath"></i> {% trans 'Bathrooms'%}
-                        <div class="font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
-                     </div>
-                     <div class="pl-4 lg:pl-8">
-                        <i class="fa fa-th-large"></i> {% trans 'Space'%}
-                        <div class="font-bold">{{rent.m2}}m²</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="flex flex-col text-left justify-center overflow-hidden py-2">
-                  <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'DESCRIPTION'%}</p>
-                  <p class="text-sm">{{rent.description|linebreaksbr}}</p>
-               </div>
+                    </div>
+                    <div class="lg:w-1/3 w-full lg:pl-2 h-full sidebar">
+                        <div id="secondary-slider" class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    {% if rent.photo_main %} {% thumbnail rent.photo_main "360x270" as im %}
+                                    <li class="splide__slide">
+                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                    </li>
+                                    {% endthumbnail %} {% endif %} {% if rent.photo_1 %} {% thumbnail rent.photo_1 "360x270" as im %}
+                                    <li class="splide__slide">
+                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                    </li>
+                                    {% endthumbnail %} {% endif %} {% if rent.photo_2 %} {% thumbnail rent.photo_2 "360x270" as im %}
+                                    <li class="splide__slide">
+                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                    </li>
+                                    {% endthumbnail %} {% endif %} {% if rent.photo_3 %} {% thumbnail rent.photo_3 "360x270" as im %}
+                                    <li class="splide__slide">
+                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                    </li>
+                                    {% endthumbnail %} {% endif %} {% if rent.photo_4 %} {% thumbnail rent.photo_4 "360x270" as im %}
+                                    <li class="splide__slide">
+                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                    </li>
+                                    {% endthumbnail %} {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="lg:w-1/3 px-4 sm:pl-4 sm:pr-0 text-center sm:text-left rounded">
-               <p class="text-base text-left tracking-widest text-blue-700 py-2">{% trans 'MAP'%}</p>
-               <div class="w-full sm:mb-8 lg:h-10 h-40 rent-detail-map rounded-md" id="map{{rent.id}}"></div>
-               <div class="p-4 shadow-xl sidebar bg-white">
-                  <p class="text-base text-left tracking-widest text-blue-700 py-2 font-semibold">{% trans 'AGENCY'%}</p>
-                  <div class="flex items-center flex-wrap my-4">
-                     <div class="inline-flex items-center">
-                        {% if rent.organisation.organisation_logo %}
-                        <img alt="blog" src="{{rent.organisation.organisation_logo.url}}" class="w-20 h-12 flex-shrink-0 object-cover object-center">
-                        {% endif %}
-                        <span class="flex-grow flex flex-col pl-4">
-                        <span class="title-font font-medium text-gray-900">{{rent.organisation}}</span>
-                        <span class="text-gray-600 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
-                        </span>
-                     </div>
-                  </div>
-                  <p class="leading-relaxed text-sm mb-4 overflow-hidden">{{rent.organisation.organisation_description}}</p>
-               </div>
+            <div class="flex flex-col sm:flex-row mt-4 overflow-hidden">
+                <div class="lg:w-2/3 text-center px-6 bg-gray-100 pb-4 rounded-md">
+                    <div class="flex items-center flex-wrap">
+                        <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
+                            {{rent.address}}
+                        </p>
+                        <p class="inline-flex md:text-base text-xs pt-1">{{rent.city}} | {{rent.postalcode}}</p>
+                        <div class="inline-flex items-center ml-auto leading-none">
+                            <a href="{% url 'properties:rent-detail' rent.id %}#anchor" title="{% trans 'Calculate your home costs'%}" class="mr-2">
+                                <span class="text-xs text-gray-700 px-2 infline-flex">
+                                    <svg width="20" height="20" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                                        <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                                        <path
+                                            d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"
+                                        />
+                                    </svg>
+                                </span>
+                            </a>
+                            <button onclick="fbSharer()" class="transition duration-150 ease-in-out transform hover:scale-125 mr-2" title="{% trans 'Share property in Facebook'%}">
+                                <svg width="20" height="20" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+                                    />
+                                </svg>
+                            </button>
+                            <button onclick="twitterSharer()" class="transition duration-150 ease-in-out transform hover:scale-125 mr-2" title="{% trans 'Share property in Twitter'%}">
+                                <svg width="20" height="20" fill="DeepSkyBlue" class="bi bi-twitter" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+                                    />
+                                </svg>
+                            </button>
+                            <button onclick="saveProperty()" class="transition duration-150 ease-in-out transform hover:scale-125" title="{% trans 'Save property in your account'%}">
+                                <svg id="detailsSave" width="20" height="20" fill="LightCoral" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center flex-wrap py-2">
+                        <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
+                            {% ifequal rent.currency '€' %} {{rent.price | intcomma}}{{rent.currency}} {% else %} {{rent.currency}}{{rent.price | intcomma}} {% endifequal %}
+                        </p>
+                        <div class="inline-flex items-center ml-auto leading-none">
+                            <p class="text-xs font-bold leading-none ml-auto">Published: {{rent.list_date|date:"d/m/Y"}}</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col text-left justify-center py-2">
+                        <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'LETTING DETAILS'%}</p>
+                        <div class="flex justify-between text-xs font-bold">
+                            <p>{% trans 'Available to let after:'%} {{rent.available_after}}</p>
+                            <p>{% trans 'Furnished Type:'%} {% trans rent.furniture%}</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col text-left justify-center py-2">
+                        <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'MAIN FEATURES'%}</p>
+                        <div class="flex flex-wrap justify-start sm:text-sm text-xs">
+                            {% if billsinc %}
+                            <div class="w-1/4 mb-3">{% trans 'Bills included'%}</div>
+                            {% endif %} {% if cleanserv %}
+                            <div class="w-1/4 mb-3">{% trans 'Cleaning services'%}</div>
+                            {% endif %} {% if refurb %}
+                            <div class="w-1/4 mb-3">{% trans 'Refurbished'%}</div>
+                            {% endif %} {% if gas %}
+                            <div class="w-1/4 mb-3">{% trans 'Gas'%}</div>
+                            {% endif %} {% if electr %}
+                            <div class="w-1/4 mb-3">{% trans 'Electricity'%}</div>
+                            {% endif %} {% if central %}
+                            <div class="w-1/4 mb-3">{% trans 'Central heating'%}</div>
+                            {% endif %} {% if launroom %}
+                            <div class="w-1/4 mb-3">{% trans 'Laundry room'%}</div>
+                            {% endif %} {% if ensuite %}
+                            <div class="w-1/4 mb-3">{% trans 'En-suite'%}</div>
+                            {% endif %} {% if playroom %}
+                            <div class="w-1/4 mb-3">{% trans 'Playroom'%}</div>
+                            {% endif %} {% if garden %}
+                            <div class="w-1/4 mb-3">{% trans 'Garden'%}</div>
+                            {% endif %} {% if sharedkit %}
+                            <div class="w-1/4 mb-3">{% trans 'Shared kitchen'%}</div>
+                            {% endif %} {% if pool %}
+                            <div class="w-1/4 mb-3">{% trans 'Swimming-pool'%}</div>
+                            {% endif %} {% if studaccom %}
+                            <div class="w-1/4 mb-3">{% trans 'Student-accommodation'%}</div>
+                            {% endif %} {% if nodepo %}
+                            <div class="w-1/4 mb-3">{% trans 'No deposit'%}</div>
+                            {% endif %} {% if fireplace %}
+                            <div class="w-1/4 mb-3">{% trans 'Fireplace'%}</div>
+                            {% endif %} {% if views %}
+                            <div class="w-1/4 mb-3">{% trans 'Scenery/View'%}</div>
+                            {% endif %} {% if elevator %}
+                            <div class="w-1/4 mb-3">{% trans 'Elevator'%}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="flex flex-col text-left justify-center pt-1 pb-2 sm:text-sm text-xs">
+                        <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'SPECIFICATIONS'%}</p>
+                        <div class="flex justify-between divide-x-2 text-gray-600">
+                            <div>
+                                <i class="fa fa-home"></i> {% trans 'Type'%}
+                                <div class="font-bold">
+                                    {% trans rent.property_type%}
+                                </div>
+                            </div>
+                            <div class="pl-4 lg:pl-8">
+                                <i class="fa fa-bed"></i> {% trans 'Bedrooms'%}
+                                <div class="font-bold">{{rent.bedrooms}}</div>
+                            </div>
+                            <div class="pl-4 lg:pl-8">
+                                <i class="fa fa-bath"></i> {% trans 'Bathrooms'%}
+                                <div class="font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
+                            </div>
+                            <div class="pl-4 lg:pl-8">
+                                <i class="fa fa-th-large"></i> {% trans 'Space'%}
+                                <div class="font-bold">{{rent.m2}}m²</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col text-left justify-center overflow-hidden py-2">
+                        <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'DESCRIPTION'%}</p>
+                        <p class="text-sm">{{rent.description|linebreaksbr}}</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/3 px-4 sm:pl-4 sm:pr-0 text-center sm:text-left rounded">
+                    <p class="text-base text-left tracking-widest text-blue-700 py-2">{% trans 'MAP'%}</p>
+                    <div class="w-full sm:mb-8 lg:h-10 h-40 rent-detail-map rounded-md" id="map{{rent.id}}"></div>
+                    <div class="p-4 shadow-xl sidebar bg-white">
+                        <p class="text-base text-left tracking-widest text-blue-700 py-2 font-semibold">{% trans 'AGENCY'%}</p>
+                        <div class="flex items-center flex-wrap my-4">
+                            <div class="inline-flex items-center">
+                                {% if rent.organisation.organisation_logo %}
+                                <img alt="blog" src="{{rent.organisation.organisation_logo.url}}" class="w-20 h-12 flex-shrink-0 object-cover object-center" />
+                                {% endif %}
+                                <span class="flex-grow flex flex-col pl-4">
+                                    <span class="title-font font-medium text-gray-900">{{rent.organisation}}</span>
+                                    <span class="text-gray-600 text-xs tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="leading-relaxed text-sm mb-4 overflow-hidden">{{rent.organisation.organisation_description}}</p>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </section>
-{% include "properties/scripts/properties_details_splide_script.html" %}
-{% include "properties/scripts/properties_details_map_script.html" %}
-{% endblock content %}
+{% include "properties/scripts/properties_details_splide_script.html" %} {% include "properties/scripts/properties_details_map_script.html" %} {% endblock content %}

@@ -156,7 +156,7 @@ class PropertiesRentListView(generic.ListView):
             if len(context['rentProperties'])>0:
                 markerSet = []
                 for M in context['rentProperties']:
-                    markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.organisation.name])
+                    markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.price, M.currency])
             context['markerSet'] = markerSet
         except:
             context['markerSet'] = "undefined"
@@ -187,7 +187,6 @@ class PropertiesRentListView(generic.ListView):
             furniture = pre('furniture','')
             orderlist = pre('orderlist','')
             orderprice = pre('orderprice','')
-            print()
             # Location filter
             if len(location)>0: 
                 # Check if the identifier exists
