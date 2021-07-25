@@ -231,6 +231,9 @@ EMAIL_HOST_USER = 'themistheodoratos@outlook.com'
 EMAIL_HOST_PASSWORD = mail['mail']
 EMAIL_USE_TLS = True
 
+# Primary key django > 3.2
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
 # Production settings
 try:
     from .local_settings import *
