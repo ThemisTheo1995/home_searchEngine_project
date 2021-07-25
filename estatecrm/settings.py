@@ -98,7 +98,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'estatecrmdb',
         'USER': 'postgres',
-        'PASSWORD': db['db'],
+        'PASSWORD': '', #db['db'],
         'HOST':'localhost'
     }
 }
@@ -228,7 +228,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'themistheodoratos@outlook.com'
-EMAIL_HOST_PASSWORD = mail['mail']
+EMAIL_HOST_PASSWORD = '' #mail['mail']
 EMAIL_USE_TLS = True
 
 # Production settings
