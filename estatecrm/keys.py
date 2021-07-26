@@ -1,5 +1,5 @@
 googleKey = {
-  "GOOGLE_API_KEY": "",
+  "GOOGLE_API_KEY": "AIzaSyA-h6gctL3ZEG7rJhSnZIvoCJzCCAGRGsc",
 }
 
 db = {
