@@ -342,6 +342,8 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
                 url_params = urlencode(params)
                 url = f"{endpoint}?{url_params}"
                 r = requests.get(url)
+                print(r)
+                print(url)
                 if r.status_code not in range(200, 299): 
                     messages.error(self.request, 'Address lookup has failed')
                     return redirect("properties:create")
