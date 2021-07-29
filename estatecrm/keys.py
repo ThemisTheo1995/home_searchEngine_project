@@ -3,9 +3,9 @@ googleKey = {
 }
 
 db = {
-  "db":''
+  "db":'*'
 }
 
 mail = {
-  'mail':''
+  'mail':'*'
 }

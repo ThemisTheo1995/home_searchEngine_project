@@ -32,12 +32,8 @@ class PropertiesCreationForm(forms.ModelForm):
         exclude = (
             'organisation',
             'property_category',
-            'street_number',
-            'geo_lat',
             'property_features',
-            'geo_lng',
             'list_date',
-            'address',
             'identifier',
             'country',
             'country_en',
@@ -52,7 +48,11 @@ class PropertiesCreationForm(forms.ModelForm):
             'agent',
         )
         labels = {
+            "address":_("Address"),
+            "number":_("Number"),
             "postalcode":_("Postcode"),
+            "geo_lat":_("Latitude"),
+            "geo_lng":_("Longitude"),
             "Property_type": _("Property Type"),
             "advertised": _("Advertised"),
             "description": _("Description"),
@@ -72,7 +72,7 @@ class PropertiesCreationForm(forms.ModelForm):
             "photo_4":_("Photo 4"),
             "is_published":_("Direct publish")
         }         
-    field_order = ['postalcode']
+    field_order = ['address','street_number','postalcode','geo_lat', 'geo_lng']
     
 
 # Properties update form  

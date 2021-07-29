@@ -137,7 +137,6 @@ class PropertiesRentListView(generic.ListView):
         context['paginate_by'] = pre('paginate_by', 15) or 15
         context['features'] = pre('features','')
         context['map'] = pre('map','')
-        print(context['features'])
         # Features list
         context['views'] = pre('views','')
         context['garden'] = pre('garden','')
@@ -318,6 +317,62 @@ def create_autocomplete(request):
         actual_data = [data['fields'] for data in raw_data]
         return JsonResponse(actual_data, safe=False)
 
+### Create view - Ajax autocomplete the address ###
+def properties_geoCreate(request):
+    if  request.is_ajax and request.method == 'GET':
+        
+        try:
+            address_search = request.GET.get('address', '')
+            ### Google Geo endpoint ###
+            endpoint = f"https://maps.googleapis.com/maps/api/geocode/json"
+            params = {"address": address_search, "key": googleKey['GOOGLE_API_KEY']}
+            
+            #Parameters
+            url_params = urlencode(params)
+            url = f"{endpoint}?{url_params}"
+            r = requests.get(url)
+            if r.status_code not in range(200, 299): 
+                messages.error(self.request, 'Address lookup has failed')
+                return redirect("properties:create")
+            
+            try:
+                #Location type of lat/long
+                if r.json()['results'][0]['geometry']['location']:
+                    latlng = r.json()['results'][0]['geometry']['location']
+                #Lat long
+                if round(latlng.get("lat"),10) and round(latlng.get("lng"),10):
+                    geo_lat = round(latlng.get("lat"),10)
+                    geo_lng = round(latlng.get("lng"),10)
+                    
+                results = r.json()['results'][0]["address_components"]
+                    
+                for address_component in results:
+                    #Postal code
+                    if address_component['types'][0] == 'postal_code':
+                        postalcode = address_component['long_name']
+                    #Address
+                    if address_component['types'][0] == 'route':
+                        address = address_component['long_name']
+                    #Number
+                    if address_component['types'][0] == 'street_number':
+                        street_number = address_component['long_name']
+                
+            except:
+                redirect('properties:create')
+            
+            response = {
+                "address": address,
+                "street_number": street_number,
+                "geo_lat": geo_lat,
+                "geo_lng": geo_lng,
+                "postalcode":postalcode
+                }
+        except:
+            response = {
+                "fullAddress": "notFound"
+            }
+        return JsonResponse(response, status=200)
+                
 ### Rent Create view ###
 class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.CreateView):
     template_name = "properties/properties_create.html"
@@ -328,67 +383,15 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
     
     def form_valid(self, form):
         properties = form.save(commit = False)
-        if 'location-create' and 'address' in self.request.POST:
+        if 'location-create' in self.request.POST:
             location = self.request.POST.get('location-create','')
-            address_search = self.request.POST.get('address', '')
             property_features = self.request.POST.getlist('property-features','')
-            if len(location)>0 and len(address_search)>0: 
-                
-                ### Google Geo endpoint ###
-                endpoint = f"https://maps.googleapis.com/maps/api/geocode/json"
-                params = {"address": address_search, "key": googleKey['GOOGLE_API_KEY']}
-                
-                #Parameters
-                url_params = urlencode(params)
-                url = f"{endpoint}?{url_params}"
-                r = requests.get(url)
-                print(r)
-                print(url)
-                if r.status_code not in range(200, 299): 
-                    messages.error(self.request, 'Address lookup has failed')
-                    return redirect("properties:create")
-                
+            if len(location)>0: 
                 try:
                     errors = False
-                    
-                    #Location
-                    if r.json()['results'][0]['geometry']['location']:
-                        latlng = r.json()['results'][0]['geometry']['location']
-                    else:
-                        errors = True
-                        messages.error(self.request, 'No location lat/lng instance has been found')
-                    
-                    #Lat long
-                    if round(latlng.get("lat"),10) and round(latlng.get("lng"),10):
-                        geo_lat = round(latlng.get("lat"),10)
-                        geo_lng = round(latlng.get("lng"),10)
-                    else:
-                        errors = True
-                        messages.error(self.request, 'No location lat/lng has been found')
-                        
-                    results = r.json()['results'][0]["address_components"]
-                    #Number
-                    if  results[0]['types'][0] == "street_number":
-                        street_number = results[0].get("long_name")
-                    else: 
-                        errors = True
-                        messages.error(self.request, 'No street number found')
-                    #Address
-                    if  results[1]['types'][0] == "route":
-                        address = results[1].get("long_name")
-                    else: 
-                        messages.error(self.request, 'No address found')
-                        errors = True
-                        
-                    if errors == True:
-                        return redirect('properties:create')
-                    #Main location query
-                    try:
-                        location_info = geoData.objects.get(Q(location=location) | Q(location_en = location))
-                    except:
-                        messages.error(self.request, 'Please select a location from the dropdown box')
-                        return redirect("properties:create")
+                    location_info = geoData.objects.get(Q(location=location) | Q(location_en = location))
                 except:
+                    messages.error(self.request, 'Please select a location from the dropdown box')
                     redirect('properties:create')
                 
                 #Country
@@ -417,10 +420,6 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
         # Excluded form fields, manually saved
         properties.organisation = self.request.user.organisation
         properties.property_features = property_features
-        properties.street_number = street_number
-        properties.geo_lat = geo_lat
-        properties.geo_lng = geo_lng
-        properties.address = address
         properties.country = country
         properties.country_en = country_en
         properties.admin_1 = admin_1
