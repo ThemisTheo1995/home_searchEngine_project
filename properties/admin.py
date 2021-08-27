@@ -1,6 +1,6 @@
 # properties/admin.py
 from django.contrib import admin
-from .models import Properties, geoData
+from .models import Properties, geoData, UserPropertyFavourite
 from .forms import PropertiesForm
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
@@ -28,3 +28,7 @@ class PropertiesAdmin(admin.ModelAdmin):
     list_editable = ['is_published',]
     search_fields = ['property_type', 'description', 'country', 'postalcode', 'price']
     list_per_page = 100
+
+@admin.register(UserPropertyFavourite)
+class UserPropertyFavouriteAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user','favourite']

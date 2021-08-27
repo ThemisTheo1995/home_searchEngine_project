@@ -39,6 +39,9 @@
       <a href="{% url 'accounts:settings' %}" class="text-center text-sm mt-4 py-1 px-2 mx-10 focus:outline-none bg-blue-500 hover:bg-blue-600 text-white rounded-full">
       {% trans 'Manage your account'%}
       </a>
+      <a href="{% url 'accounts:myaccount' %}" class="text-center text-blue-500 my-4 font-semibold text-sm border border-gray-300 py-3 px-2 mx-20 focus:outline-none hover:bg-blue-100 rounded">
+      {% trans 'My Account'%}
+      </a>
       <a href="{% url 'logout' %}" class="text-center font-semibold text-sm mt-auto border border-gray-300 py-3 px-2 mx-24 focus:outline-none hover:bg-gray-100 rounded">
       {% trans 'Logout'%}
       </a>

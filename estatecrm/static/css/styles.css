@@ -239,16 +239,16 @@ table.dataTable thead th, table.dataTable thead td {
 .rentMapBottom{
   height:100vh;
   transition: top 0.3s ease 0s;
-  top: calc(20% - 100px);
+  top: 0px;
 }
 
 .rentMapTop{
   height:100vh;
   transition: top 0.3s ease 0s;
-  top: 115px;
+  top: 0px;
 }
 
-@media(max-width:1024px){
+@media(max-width:1023px){
   .rentMapTop{
     height:25vh;
   }
@@ -342,5 +342,9 @@ table.dataTable thead th, table.dataTable thead td {
 .splide__slide img {
 	width : 100%;
 	height: auto;
+}
+
+#close_searchbar:hover {
+  opacity: 100;
 }
 

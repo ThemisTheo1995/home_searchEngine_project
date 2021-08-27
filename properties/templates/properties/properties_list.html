@@ -19,22 +19,21 @@
                 {% for rent in rentProperties %}
                     <div class="flex flex-wrap shadow-md mt-2 mb-10" id="property_container{{rent.pk}}">
                         <a aria-label="anchor" class="cardAnchor" href="#{{rent.pk}}" id="{{rent.pk}}"></a>
-                        <div class="flex w-full rounded-t float-left text-sm pl-2 tracking-widest bg-blue-600 text-white items-center">
+                        <div class="flex w-full rounded-t float-left text-sm pl-2 tracking-widest bg-blue-600 text-white items-center h-8">
                             <span class="flex justify-start w-1/3">
                                 {{rent.property_category}}
                             </span>
-                            <span class="flex justify-end w-2/3">
-                                <a class="text-sm px-4 text-white" href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}">
-                                    {% trans 'Map'%}
+                            <span class="flex justify-end w-2/3 items-center">
+                                <a class="text-xs px-4 text-white" href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}">
                                     <img alt="Click to see on map" class="inline-block transition duration-150 ease-in-out transform hover:scale-125" height="20" src="{% static "images/rec.svg" %}" width="20"/>
                                 </a>
                                 <a class="fa fa-heart text-base px-4 transition duration-150 ease-in-out transform hover:scale-125" href="#/" onclick="saveProperty({{rent.pk}})" title="{% trans 'Save the property'%}">
-                                    <svg class="bi bi-heart-fill mb-1 inline-block" fill="LightCoral" height="18" id="detailsSave{{rent.pk}}" viewbox="0 0 16 16" width="18">
+                                    <svg class="bi bi-heart-fill inline-block align-text-bottom" fill="LightCoral" height="20" id="detailsSave{{rent.pk}}" viewbox="0 0 16 16" width="20">
                                         <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" fill-rule="evenodd"/>
                                     </svg>
                                 </a>
                                 <a class="transition duration-150 ease-in-out transform hover:scale-125 px-4 font-bold" href="#/" onclick="hideProperty({{rent.pk}})" title="{% trans 'Hide this advertisment'%}">
-                                    <svg class="inline-block bi bi-x-lg" fill="White" height="16" viewbox="0 0 16 16" width="16">
+                                    <svg class="inline-block bi bi-x-lg align-text-bottom" fill="White" height="18" viewbox="0 0 16 16" width="18">
                                         <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                                     </svg>
                                 </a>
@@ -154,17 +153,15 @@
                                         </div>
                                     </a>
                                     <div class="flex items-center text-xs py-2 w-full">
-                                        <button class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" onclick="rentEmail({{rent.pk}})">
-                                            <svg class="inline-block bi bi-envelope-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
-                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                                            </svg>
-                                            EMAIL
-                                        </button>
-                                        <a class="p-2 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" href="tel:{{rent.organisation.phone}}">
-                                            <svg class="inline-block bi bi-telephone-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
+                                        <a class="p-2 text-center rounded mr-1 text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" href="tel:{{rent.organisation.phone}}">
+                                            <svg class="inline-block bi bi-telephone-fill" fill="currentColor" height="18" viewbox="0 0 16 16" width="18">
                                                 <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" fill-rule="evenodd"/>
                                             </svg>
-                                            {% trans 'CALL'%}
+                                        </a>
+                                        <a href="#/" class="p-2 rounded border-white text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" onclick="rentEmail({{rent.pk}})">
+                                            <svg class="inline-block bi bi-envelope-fill" fill="currentColor" height="18" viewbox="0 0 16 16" width="18">
+                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                                            </svg>
                                         </a>
                                         <a class="inline-flex items-center ml-auto leading-none text-xs" href="#/">
                                             {% if rent.organisation.organisation_logo %}
@@ -285,7 +282,7 @@
                                                     <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
                                                         <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
                                                     </svg>
-                                                    {% trans 'Space'%}
+                                                    {% trans 'Area'%}
                                                     <div class="text-center font-bold">{{rent.m2}}m²</div>
                                                 </div>
                                             </div>
@@ -293,17 +290,15 @@
                                     </a>
                                     <hr class="xl:my-2 lg:my-1">
                                     <div class="flex items-center flex-wrap text-xs py-2">
-                                        <button class="p-2 border-white mr-1 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" onclick="rentEmail({{rent.pk}})">
-                                            <svg class="inline-block bi bi-envelope-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
-                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-                                            </svg>
-                                            EMAIL
-                                        </button>
-                                        <a class="p-2 text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" href="tel:{{rent.organisation.phone}}">
-                                            <svg class="inline-block bi bi-telephone-fill" fill="currentColor" height="12" viewbox="0 0 16 16" width="12">
+                                        <a class="p-2 rounded text-center mr-1 text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" href="tel:{{rent.organisation.phone}}">
+                                            <svg class="inline-block bi bi-telephone-fill" fill="currentColor" height="18" viewbox="0 0 16 16" width="18">
                                                 <path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" fill-rule="evenodd"/>
                                             </svg>
-                                            {% trans 'CALL'%}
+                                        </a>
+                                        <a href="#/" class="p-2 rounded border-white text-center text-white transition duration-75 ease-in-out bg-blue-600 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0" onclick="rentEmail({{rent.pk}})">
+                                            <svg class="inline-block bi bi-envelope-fill" fill="currentColor" height="18" viewbox="0 0 16 16" width="18">
+                                                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                                            </svg>
                                         </a>
                                         <div class="hidden xl:inline-flex ml-8 text-gray-700">
                                             <p class="text-xs leading-none ml-auto">{% trans 'Published:'%}
@@ -326,11 +321,11 @@
                         <form class="lg:w-2/3 md:w-full mx-auto my-6 hidden" id="emailForm{{rent.pk}}" method="POST">
                             {% csrf_token %}
                             <div class="flex flex-col text-center w-full my-4 p-2">
-                                <h1 class="sm:text-xl text-base font-medium title-font text-white shadow-inner p-2 rounded bg-blue-600">
+                                <h1 class="sm:text-lg text-sm text-white shadow-inner p-2 rounded bg-blue-600">
                                     <b>{% trans 'Contact:'%}</b>
                                     {{rent.organisation.name}}
                                     <b>{% trans 'For:'%}</b>
-                                    {{rent.address}}
+                                    {{rent.address}} {{rent.street_number}}
                                 </h1>
                             </div>
                             <div id="output{{rent.pk}}" style="display:none;"></div>
@@ -382,9 +377,9 @@
         </div>
         <!-- Map -->
         {% if map %}
-            <div class="xl:w-1/3 lg:w-1/4 w-full h-54 fixed lg:relative z-50 bottom-0">
-                <div class="lg:sticky rentMapTop lg:p-2 lg:pt-0" id="rentMap">
-                    <div class="lg:rounded rent_map shadow border-blue-600 border-t-4 lg:border-0 relative h-full w-full" id="map"></div>
+            <div class="xl:w-1/3 lg:w-1/4 w-full fixed lg:relative z-50 bottom-0">
+                <div class="lg:sticky rentMapTop" id="rentMap">
+                    <div class="rent_map border-blue-600 border-t-4 lg:border-0 relative h-full w-full" id="map"></div>
                 </div>
             </div>
             {% include "properties/scripts/properties_list_map_script.html" %}

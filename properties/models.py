@@ -10,6 +10,7 @@ from PIL import Image, ImageOps
 from .validators import validate_file_size, validate_postcode
 from realtors.models import Organisation,Agent
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from sorl.thumbnail import ImageField
 
 
 #geoData model
@@ -172,4 +173,12 @@ class Properties(models.Model):
     
     def __str__(self):
         
-        return self.country
+        return self.address
+
+class UserPropertyFavourite(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    favourite = models.ForeignKey(Properties, on_delete = models.CASCADE)
+    notes = models.TextField(max_length=1500, blank=True)
+    
+    def __str__(self):
+        return self.favourite.address

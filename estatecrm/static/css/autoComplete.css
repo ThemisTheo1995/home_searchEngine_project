@@ -129,7 +129,6 @@ h1.title {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  font-size: 1rem;
   text-overflow: ellipsis;
   color: rgba(59, 130, 246, 1);
   outline: none;

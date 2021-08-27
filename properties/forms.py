@@ -1,7 +1,7 @@
 # properties/forms.py
 from django import forms
 from django.forms import CharField
-from .models import Properties
+from .models import Properties, UserPropertyFavourite
 from django.utils.translation import ugettext_lazy as _
 
 class FilterForm(forms.Form):
