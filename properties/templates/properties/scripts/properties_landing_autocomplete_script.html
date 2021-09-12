@@ -21,6 +21,7 @@ const autoCompleteJS = new autoComplete({
 			return data;
 		},
 		key: ["location", "location_en"],
+		cache: true,
 		results: (list) => {
 			// Filter duplicates
 			const filteredResults = Array.from(
