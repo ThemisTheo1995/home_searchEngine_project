@@ -5,7 +5,7 @@ $(function(){
   var lng = parseFloat({{rent.geo_lng}}).toFixed(10);
   var genesisMarker = L.icon({
       iconUrl: '/static/images/rec.svg',
-      iconSize: [20, 20],
+      iconSize: [25, 25],
 
   });
   var map= L.map('map{{rent.id}}').setView([lat, lng], 13);

@@ -17,7 +17,7 @@
          </div>
          <!--Property type/Furniture-->
          <div class="md:w-3/12 w-1/2 pb-4">
-            <div class="flex flex-inline justify-end">
+            <div class="flex justify-end">
                <label for="type" class="pr-2">{% trans 'Type' %}</label>
                <select name="type" class="w-full lg:w-1/2 font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
                   <option selected="true" value="">{% trans 'any'%}</option>
@@ -28,7 +28,7 @@
                   {% endfor %}
                </select>
             </div>
-            <div class="flex flex-inline mt-2 justify-end w-full">
+            <div class="flex mt-2 justify-end">
                <label for="furniture" class="pr-2">{% trans 'Furniture' %}</label>
                <select name="furniture" class="w-full lg:w-1/2 font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
                   <option selected="true" value="">{% trans 'any'%}</option>
@@ -42,34 +42,31 @@
          </div>
          <!--Bedrooms/Bathrooms-->
          <div class="md:w-3/12 w-1/2 pb-4">
-            <div class="flex flex-inline justify-end">
+            <div class="flex justify-end">
                <label class="pr-2">{% trans 'Bedrooms' %}</label>
-               <input type="number" min="0" max="99" id="minbeds" value="{{minbedrooms}}" name="minbeds" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
-               <input type="number" min="0" max="99" id="maxbeds" value="{{maxbedrooms}}" name="maxbeds" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
+               <input type="number" min="0" max="99" id="minbeds" value="{{minbedrooms}}" name="minbeds" class="form_group font-bold w-12 text-center bg-gray-50 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
+               <input type="number" min="0" max="99" id="maxbeds" value="{{maxbedrooms}}" name="maxbeds" class="form_group font-bold w-12 text-center bg-gray-50 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
             </div>
-            <div class="flex flex-inline mt-2 justify-end">
+            <div class="flex mt-2 justify-end">
                <label class="pr-2">{% trans 'Bathrooms' %}</label>
-               <input type="number" min="0" max="99" id="minbaths" value="{{minbathrooms}}" name="minbaths" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
-               <input type="number" min="0" max="99" id="maxbaths" value="{{maxbathrooms}}" name="maxbaths" class="form_group font-bold w-14 text-center bg-gray-50 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
+               <input type="number" min="0" max="99" id="minbaths" value="{{minbathrooms}}" name="minbaths" class="form_group font-bold w-12 text-center bg-gray-50 rounded outline-none py-1 px-1 mr-1 text-gray-600" placeholder="min">
+               <input type="number" min="0" max="99" id="maxbaths" value="{{maxbathrooms}}" name="maxbaths" class="form_group font-bold w-12 text-center bg-gray-50 rounded outline-none py-1 px-1 ml-1 text-gray-600" placeholder="max">
             </div>
          </div>
          <!--Price-->
-         <div class="md:w-3/12 w-1/2 pb-4">
-            <div class="flex flex-inline justify-end">
-               <label for="minprice" class="pr-2">{% trans 'Min price' %}</label>
-               <select name="minprice" class="font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
-                  <option selected="true" value="">{% trans 'any'%}</option>
+         <div class="md:w-3/12 w-full pb-4">
+            <div class="flex w-1/2 md:w-full justify-end">
+               <label for="minprice" class="pr-2">{% trans 'Price' %}</label>
+               <select name="minprice" class="font-bold bg-gray-50 rounded py-1 outline-none text-center text-gray-600 form_group">
+                  <option selected="true" value="">{% trans 'min'%}</option>
                   {% for key,value in price.items %}
                   <option value="{{ key }}" {% if key == minprice %} selected {% endif %}>
                   {{ value }}
                   </option>
                   {% endfor %}
                </select>
-            </div>
-            <div class="flex flex-inline mt-2 justify-end">
-               <label for="maxprice" class="pr-2">{% trans 'Max price' %}</label>
-               <select name="maxprice" class="font-bold bg-gray-50 rounded py-1 px-1 outline-none text-center text-gray-600 form_group">
-                  <option selected="true" value="">{% trans 'any'%}</option>
+               <select name="maxprice" class="font-bold bg-gray-50 rounded py-1 ml-2 outline-none text-center text-gray-600 form_group">
+                  <option selected="true" value="">{% trans 'max'%}</option>
                   {% for key,value in price.items %}
                   <option value="{{ key }}" {% if key == maxprice %} selected {% endif %}>
                   {{ value }}
@@ -80,12 +77,12 @@
          </div>
       </div>
       <!--Actions-->
-      <div class="w-full py-3">
+      <div class="w-full py-3 text-sm">
          <div class="flex justify-end md:justify-start lg:justify-end">
-            <button id="rent_clear_button" type="button" onclick="resetFilter()" id="rent_clear" class="w-1/2 inline-block p-2 mr-2 items-center text-gray-600 font-bold bg-gray-300 hover:bg-gray-400 rounded">
+            <button id="rent_clear_button" type="button" onclick="resetFilter()" id="rent_clear" class="w-1/3 inline-block p-2 mr-2 items-center text-gray-600 font-bold bg-gray-300 hover:bg-gray-400 rounded">
             {% trans 'CLEAR'%}
             </button>
-            <button id="rent_search_button" type="submit" class="inline-block p-2 ml-2 w-1/2 items-center text-blue-600 font-bold bg-white hover:bg-gray-200 rounded">
+            <button id="rent_search_button" type="submit" class="inline-block shadow p-2 ml-2 w-2/3 items-center text-blue-600 font-bold bg-white hover:bg-gray-200 rounded">
             {% trans 'SEARCH'%}
             </button>
          </div>
@@ -95,7 +92,8 @@
    </form>
    <!--Hide/Show arrow button-->
    <a id="close_searchbar" onclick="searchBarClose()" class="text-white absolute right-0" href="#/">
-      <div title="{% trans 'Filters' %}" class="text-center text-sm px-4 py-2 sm:bg-blue-800 bg-blue-500 cursor-pointer rounded-b-full">
+      <div title="{% trans 'Filters' %}" aria-label="{% trans 'Filters' %}" class="text-center text-sm px-4 py-2 sm:bg-blue-800 bg-blue-500 cursor-pointer rounded-b-full">
+         {% trans 'Filters' %}
          <svg width="22" height="22" fill="currentColor" class="inline-block bi bi-patch-plus-fill" viewBox="0 0 16 16">
             <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>
          </svg>

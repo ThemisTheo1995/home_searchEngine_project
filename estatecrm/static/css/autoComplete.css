@@ -135,8 +135,8 @@ h1.title {
   border-radius: 0.5rem;
   border: 0;
   border: 0.4rem solid rgba(59, 130, 246, 0.9);
-  background-image: url(../images/mapMarker.png);
-  background-size: 1.4rem;
+  background-image: url(../images/rec.svg);
+  background-size: 1.6rem;
   background-position: left 1.05rem top 0.8rem;
   background-repeat: no-repeat;
   background-origin: border-box;

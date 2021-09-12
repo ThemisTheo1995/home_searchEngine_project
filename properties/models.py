@@ -166,7 +166,7 @@ class Properties(models.Model):
             imageTemporaryResized = imageTemporaryResized.resize( (720,1000) )
         else:
             imageTemporaryResized = imageTemporaryResized.resize( (1200,720) )  
-        imageTemporaryResized.save(outputIoStream , format='JPEG', quality=80)
+        imageTemporaryResized.save(outputIoStream , format='JPEG', quality=60)
         outputIoStream.seek(0)
         photo = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % photo.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
         return photo

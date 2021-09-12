@@ -13,8 +13,6 @@ function featuresFilter(featList, feature){
 	const features = document.getElementById(featList);
 	if(features.value.includes(feature)){
 		var featuresArray = features.value.split(',').map();
-		console.log(feature);
-		console.log(featuresArray[feature]);
 
 	}else{
 		features.value += feature+',';

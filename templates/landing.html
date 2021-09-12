@@ -11,10 +11,12 @@
 <section class="text-gray-600 body-font overflow-hidden bg-gray-100">
   <div class="wave-container sm:pt-0 pt-8 bg-blue-500">
     <div class="container flex px-5 pt-14 pb-10 items-center justify-center flex-col mx-auto">
-      <div class="text-center lg:w-2/3 w-full bg-gray-50 sm:py-8 px-6 bg-opacity-100 pb-6 rounded-lg bg-gray-100">
+      <div class="text-center lg:w-2/3 w-full bg-gray-50 py-6 px-6 bg-opacity-100 rounded-lg bg-gray-100">
         <h1 class="title-font sm:text-5xl text-4xl my-6 font-semibold text-gray-900 px-4 title tracking-wider">
         <strong>
-          {% trans 'GENESIS.'%}
+          <a id="landing-title" href="{% url 'landing-page' %}" title="{% trans 'genesis.gr - Αρχική σελίδα'%}" aria-label="{% trans 'genesis.gr'%}">
+            {% trans 'Genesis.gr' %}
+          </a>
         </strong>
         </h1>
         <h2 class="title-font sm:text-lg text-sm mb-6 font-semibold text-gray-700 px-4 title">

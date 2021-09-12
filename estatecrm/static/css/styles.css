@@ -145,6 +145,17 @@ table.dataTable thead th, table.dataTable thead td {
     background-image: none;
   }
 }
+
+#landing-title{
+background: url() no-repeat 0 0/100%;
+display: block;
+width: 300px;
+height: 60px;
+margin: auto;
+text-indent:-9999px;
+overflow: hidden;
+}
+
 /* end Landing */
 
 

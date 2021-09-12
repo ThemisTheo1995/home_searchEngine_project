@@ -14,7 +14,9 @@
   {% endif %}
   {% progressive_web_app_meta %}
   <title>{% block title %}Genesis{% endblock %}</title>
-
+  
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
   <!-- List of urls with dynamic script loading -->
   {% url 'properties:rent-list' as URLrentList %}
   {% url 'organisation:organisation-properties' as URLorgRentList %}

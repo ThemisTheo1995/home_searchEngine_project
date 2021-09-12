@@ -1,5 +1,5 @@
 // Profile card
-$(document).ready( function () {
+document.addEventListener("DOMContentLoaded", function() {
     var modals = document.querySelectorAll("[data-modal]");
     modals.forEach(function (trigger) {
     trigger.addEventListener("click", function (event) {
