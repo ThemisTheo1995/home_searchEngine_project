@@ -7,10 +7,10 @@ const appShell = [
   '/base',
   '/static/css/styles.css',
   '/static/js/main.js',
-  '/static/js/fotorama.js',
   '/static/images/icons/genesis_splash.png',
   '/manifest.json',
   '/offline',
+  '/ajax/landing_autocomplete',
 ];
 
 const maxNumberItemsDynamicCache = 100;
