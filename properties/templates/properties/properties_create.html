@@ -14,7 +14,7 @@
       <div class="my-3">
          <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Region*'%}</label>
          <div class="autoComplete_wrapper w-full">
-            <input required type="text" name="location-create" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
+            <input required placeholder="{% trans "e.g. 'CH1 3DA', 'Chester' "%}" type="text" name="location-create" id="autoComplete" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700">
          </div>
          <div class="mode flex w-full justify-center items-center mt-4 hidden">
             <div class="toggle">
@@ -26,7 +26,7 @@
       <!-- Property Address -->
       <div class="mb-3">
          <label class="block text-gray-700 text-sm font-bold mb-2">{% trans 'Search for the full address*'%}</label>
-         <input onfocusout="geoCreate()" required type="text" name="address" id="address_search" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700" 
+         <input onfocusout="geoCreate()" required type="search" name="address" id="address_search" class="textinput appearance-none px-4 bg-white rounded-lg border-gray-300 w-full focus:outline-none border leading-normal py-2 block text-gray-700" 
             placeholder="{% trans 'e.g. Perikleous 4, Kolonaki, Athina'%}">
       </div>
       {{form|crispy}}
