@@ -17,22 +17,22 @@
             <!-- Properties list -->
             {% if rentProperties %}
                 {% for rent in rentProperties %}
-                    <div class="flex flex-wrap shadow-md mt-2 mb-10" id="property_container{{rent.pk}}">
+                    <div class="flex flex-wrap shadow mt-2 mb-10 rounded-b" id="property_container{{rent.pk}}">
                         <a aria-label="anchor" class="cardAnchor" href="#{{rent.pk}}" id="{{rent.pk}}"></a>
                         <div class="flex w-full rounded-t float-left text-sm pl-2 tracking-widest bg-blue-600 text-white items-center h-8">
                             <span class="flex justify-start w-1/3">
                                 {{rent.property_category}}
                             </span>
                             <span class="flex justify-end w-2/3 items-center">
-                                <a class="text-xs px-4 text-white" href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}">
+                                <a class="text-xs text-white mx-4" href="#/" onclick="markerOnMap({{rent.pk}})" title="{% trans 'Click to show on map'%}">
                                     <img alt="Click to see on map" class="inline-block transition duration-150 ease-in-out transform hover:scale-125" height="20" src="{% static "images/rec.svg" %}" width="20"/>
                                 </a>
-                                <a class="fa fa-heart text-base px-4 transition duration-150 ease-in-out transform hover:scale-125" href="#/" onclick="saveProperty({{rent.pk}})" title="{% trans 'Save the property'%}">
-                                    <svg class="bi bi-heart-fill inline-block align-text-bottom" fill="LightCoral" height="20" id="detailsSave{{rent.pk}}" viewbox="0 0 16 16" width="20">
+                                <a class="fa fa-heart mx-4 text-base transition duration-150 ease-in-out transform hover:scale-125" href="#/" onclick="saveProperty({{rent.pk}})" title="{% trans 'Save the property'%}">
+                                    <svg class="bi bi-heart-fill inline-block align-text-bottom " fill="LightCoral" height="20" id="detailsSave{{rent.pk}}" viewbox="0 0 16 16" width="20">
                                         <path d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" fill-rule="evenodd"/>
                                     </svg>
                                 </a>
-                                <a class="transition duration-150 ease-in-out transform hover:scale-125 px-4 font-bold" href="#/" onclick="hideProperty({{rent.pk}})" title="{% trans 'Hide this advertisment'%}">
+                                <a class="transition duration-150 ease-in-out transform hover:scale-125 mx-4 font-bold" href="#/" onclick="hideProperty({{rent.pk}})" title="{% trans 'Hide this advertisment'%}">
                                     <svg class="inline-block bi bi-x-lg align-text-bottom" fill="White" height="18" viewbox="0 0 16 16" width="18">
                                         <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                                     </svg>
@@ -40,7 +40,7 @@
                             </span>
                         </div>
                         {% if rent.property_category == 'STANDARD' %}
-                            <div class="xl:w-7/12 w-full bg-white">
+                            <div class="xl:w-7/12 w-full bg-white sm:rounded-bl">
                                 <div class="h-auto overflow-hidden">
                                     <div class="splide" data-pages="2" data-ratio="0.33" id="image-slider{{rent.pk}}">
                                         <div class="splide__track">
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="xl:w-5/12 w-full bg-white overflow-hidden rounded-tr-none sm:rounded-tr text-sm">
+                            <div class="xl:w-5/12 w-full bg-white overflow-hidden sm:rounded-br sm:rounded-bl-none rounded-b text-sm">
                                 <div class="h-full overflow-hidden px-4 flex flex-wrap">
                                     <a class="w-full" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
                                         <div class="flex items-center flex-wrap w-full pt-2">
@@ -221,7 +221,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full bg-white overflow-hidden rounded-tr-none sm:rounded-tr text-sm">
+                            <div class="w-full bg-white overflow-hidden rounded-b text-sm">
                                 <div class="h-full overflow-hidden px-4">
                                     <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
                                         <div class="flex items-center flex-wrap w-full pt-2">
