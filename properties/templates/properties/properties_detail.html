@@ -52,27 +52,28 @@
                         <div id="secondary-slider" class="splide">
                             <div class="splide__track">
                                 <ul class="splide__list">
-                                    {% if rent.photo_main %} {% thumbnail rent.photo_main "360x270" as im %}
+                                    {% if rent.photo_1 %}
                                     <li class="splide__slide">
-                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                        <img class="" data-splide-lazy="{{rent.photo_1.url}}" />
                                     </li>
-                                    {% endthumbnail %} {% endif %} {% if rent.photo_1 %} {% thumbnail rent.photo_1 "360x270" as im %}
+                                    {% endif %} {% if rent.photo_2 %}
                                     <li class="splide__slide">
-                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                        <img class="" data-splide-lazy="{{rent.photo_2.url}} " />
                                     </li>
-                                    {% endthumbnail %} {% endif %} {% if rent.photo_2 %} {% thumbnail rent.photo_2 "360x270" as im %}
+                                    {% endif %} {% if rent.photo_3 %}
                                     <li class="splide__slide">
-                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                        <img class="" data-splide-lazy="{{rent.photo_3.url}}" />
                                     </li>
-                                    {% endthumbnail %} {% endif %} {% if rent.photo_3 %} {% thumbnail rent.photo_3 "360x270" as im %}
+                                    {% endif %} {% if rent.photo_4 %}
                                     <li class="splide__slide">
-                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                        <img class="" data-splide-lazy="{{rent.photo_4.url}}" />
                                     </li>
-                                    {% endthumbnail %} {% endif %} {% if rent.photo_4 %} {% thumbnail rent.photo_4 "360x270" as im %}
+                                    {% endif %}
+                                    {% if rent.photo_main %}
                                     <li class="splide__slide">
-                                        <img width="{{ im.width }}" height="{{ im.height }}" data-splide-lazy="{{im.url}}" />
+                                        <img class="" data-splide-lazy="{{rent.photo_main.url}}" />
                                     </li>
-                                    {% endthumbnail %} {% endif %}
+                                    {% endif %} 
                                 </ul>
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                 </div>
             </div>
             <div class="flex flex-col sm:flex-row mt-4 overflow-hidden">
-                <div class="lg:w-2/3 text-center px-6 bg-gray-100 pb-4 rounded-md">
+                <div class="lg:w-2/3 shadow text-center px-6 bg-gray-100 pb-4 mb-4 rounded-md">
                     <div class="flex items-center flex-wrap">
                         <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
                             {{rent.address}}
@@ -133,43 +134,43 @@
                             <p>{% trans 'Furnished Type:'%} {% trans rent.furniture%}</p>
                         </div>
                     </div>
-                    <div class="flex flex-col text-left justify-center py-2">
+                    <div class="flex flex-col text-left py-2">
                         <p class="text-base tracking-widest text-blue-700 py-2 font-semibold">{% trans 'MAIN FEATURES'%}</p>
-                        <div class="flex flex-wrap justify-start sm:text-sm text-xs">
+                        <div class="flex flex-wrap sm:text-sm text-xs">
                             {% if billsinc %}
-                            <div class="w-1/4 mb-3">{% trans 'Bills included'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Bills included'%}</div>
                             {% endif %} {% if cleanserv %}
-                            <div class="w-1/4 mb-3">{% trans 'Cleaning services'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Cleaning services'%}</div>
                             {% endif %} {% if refurb %}
-                            <div class="w-1/4 mb-3">{% trans 'Refurbished'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Refurbished'%}</div>
                             {% endif %} {% if gas %}
-                            <div class="w-1/4 mb-3">{% trans 'Gas'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Gas'%}</div>
                             {% endif %} {% if electr %}
-                            <div class="w-1/4 mb-3">{% trans 'Electricity'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Electricity'%}</div>
                             {% endif %} {% if central %}
-                            <div class="w-1/4 mb-3">{% trans 'Central heating'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Central heating'%}</div>
                             {% endif %} {% if launroom %}
-                            <div class="w-1/4 mb-3">{% trans 'Laundry room'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Laundry room'%}</div>
                             {% endif %} {% if ensuite %}
-                            <div class="w-1/4 mb-3">{% trans 'En-suite'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'En-suite'%}</div>
                             {% endif %} {% if playroom %}
-                            <div class="w-1/4 mb-3">{% trans 'Playroom'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Playroom'%}</div>
                             {% endif %} {% if garden %}
-                            <div class="w-1/4 mb-3">{% trans 'Garden'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Garden'%}</div>
                             {% endif %} {% if sharedkit %}
-                            <div class="w-1/4 mb-3">{% trans 'Shared kitchen'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Shared kitchen'%}</div>
                             {% endif %} {% if pool %}
-                            <div class="w-1/4 mb-3">{% trans 'Swimming-pool'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Swimming-pool'%}</div>
                             {% endif %} {% if studaccom %}
-                            <div class="w-1/4 mb-3">{% trans 'Student-accommodation'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Student-accommodation'%}</div>
                             {% endif %} {% if nodepo %}
-                            <div class="w-1/4 mb-3">{% trans 'No deposit'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'No deposit'%}</div>
                             {% endif %} {% if fireplace %}
-                            <div class="w-1/4 mb-3">{% trans 'Fireplace'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Fireplace'%}</div>
                             {% endif %} {% if views %}
-                            <div class="w-1/4 mb-3">{% trans 'Scenery/View'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Scenery/View'%}</div>
                             {% endif %} {% if elevator %}
-                            <div class="w-1/4 mb-3">{% trans 'Elevator'%}</div>
+                            <div class="mb-3 py-1 px-2 bg-gray-800 text-white rounded mr-1">{% trans 'Elevator'%}</div>
                             {% endif %}
                         </div>
                     </div>
@@ -201,15 +202,14 @@
                         <p class="text-sm">{{rent.description|linebreaksbr}}</p>
                     </div>
                 </div>
-                <div class="lg:w-1/3 px-4 sm:pl-4 sm:pr-0 text-center sm:text-left rounded">
-                    <p class="text-base text-left tracking-widest text-blue-700 py-2">{% trans 'MAP'%}</p>
-                    <div class="w-full sm:mb-8 lg:h-10 h-40 rent-detail-map rounded-md" id="map{{rent.id}}"></div>
+                <div class="lg:w-1/3 sm:pl-4 sm:pr-0 text-center sm:text-left rounded mb-2">
+                    <div class="w-full sm:mb-8 lg:h-10 h-40 rent-detail-map rounded-md shadow" id="map{{rent.id}}"></div>
                     <div class="p-4 shadow sidebar bg-gray-100">
                         <p class="text-base text-left tracking-widest text-blue-700 py-2 font-semibold">{% trans 'AGENCY'%}</p>
                         <div class="flex items-center flex-wrap my-4">
                             <div class="inline-flex items-center">
                                 {% if rent.organisation.organisation_logo %}
-                                <img alt="blog" src="{{rent.organisation.organisation_logo.url}}" class="w-20 h-12 flex-shrink-0 object-cover object-center" />
+                                <img alt="blog" src="{{rent.organisation.organisation_logo.url}}" width="120" height="60" class="flex-shrink-0 object-cover object-center" />
                                 {% endif %}
                                 <span class="flex-grow flex flex-col pl-4">
                                     <span class="title-font font-medium text-gray-900">{{rent.organisation}}</span>

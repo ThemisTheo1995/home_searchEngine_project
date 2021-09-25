@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     });
 
-    setTimeout(function() {
-        $('#message').fadeOut('slow');
-      }, 10000);
+    // setTimeout(function() {
+    //     $('#message').fadeOut('slow');
+    //   }, 10000);
 });
 
 

@@ -10,6 +10,7 @@ function previewMode (pk, property_type){
             success: function (rent) {
                 // Populate the fields if response is valid
                 if(rent){
+                    $('.previewPk').attr("href", "/properties/property/"+rent.pk);
                     $('.photo_main').attr("src", rent.photo_main);
                     $('.property_type').html(property_type);
                     $('.bedrooms').html(rent.bedrooms);

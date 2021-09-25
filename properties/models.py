@@ -61,7 +61,6 @@ def update_identifier(sender, instance, **kwargs):
         
         if instance.admin_1 == '' and instance.admin_1_en == '' and parent_pk == str(instance.pk):
             new_identifier = instance.pk
-            print(new_identifier)
         elif parent_pk is not None and (instance.admin_1 or instance.admin_1_en):
             new_identifier = parent_pk+'-'+str(instance.pk)
         else:

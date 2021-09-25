@@ -90,6 +90,7 @@ def realtors_org_rent_preview(request):
         try:
             rent = Properties.objects.get(pk=request.GET.get('pk', ''))
             data = {
+                "pk": rent.pk,
                 "rent": rent.bathrooms,
                 "list_date": rent.list_date.strftime("%d/%m/%Y"),
                 "address": rent.address,
