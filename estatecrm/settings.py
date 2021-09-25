@@ -230,6 +230,7 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'themistheodoratos@outlook.com'
 EMAIL_HOST_PASSWORD = mail['mail']
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'themistheodoratos@outlook.com'
 
 # Primary key django > 3.2
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'

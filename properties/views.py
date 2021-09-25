@@ -332,7 +332,7 @@ def properties_geoCreate(request):
             url = f"{endpoint}?{url_params}"
             r = requests.get(url)
             if r.status_code not in range(200, 299): 
-                messages.error(self.request, 'Address lookup has failed')
+                messages.error(request, 'Address lookup has failed')
                 return redirect("properties:create")
             
             try:
