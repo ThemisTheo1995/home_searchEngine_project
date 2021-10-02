@@ -187,7 +187,7 @@ DATETIME_INPUT_FORMATS = ['%d-%m-%Y %H:%M:%S']
 PWA_APP_NAME = 'YENESIS'
 PWA_APP_DESCRIPTION = "Property search engine"
 PWA_APP_THEME_COLOR = '#3b82f6'
-PWA_APP_BACKGROUND_COLOR = '#3b82f6'
+PWA_APP_BACKGROUND_COLOR = '#fffff'
 PWA_APP_DISPLAY = 'fullscreen'
 PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
@@ -199,12 +199,12 @@ PWA_APP_ICONS = [
         'src': '/static/images/yeneses_fav_bg160.png',
         'sizes': '160x160',
         "purpose": "any maskable"
-    },
-    {
-        'src': '/static/images/yeneses_fav_bg160.png',
-        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
-        'sizes': '512x512'
     }
+    # {
+    #     'src': '/static/images/yeneses_fav_bg160.png',
+    #     'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
+    #     'sizes': '512x512'
+    # }
 ]
 PWA_APP_ICONS_APPLE = [
     {
@@ -214,7 +214,7 @@ PWA_APP_ICONS_APPLE = [
 ]
 PWA_APP_SPLASH_SCREEN = [
     {
-        'src': '/static/images/yeneses_fav_bg.png',
+        'src': '/static/images/yeneses_landing.png',
         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
     }
 ]
