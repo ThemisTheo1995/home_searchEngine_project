@@ -54,8 +54,8 @@
           <a href="{% url 'properties:rent-detail' property.pk%}" target="_blank"> {% else %} <a href="#" target="_blank"> {% endif %}
             <div class="bg-gray-200 p-6 rounded-lg shadow">
               {% if property.photo_main  %}
-              {% thumbnail property.photo_main "320x170" as im %}
-              <img class="rounded mb-4 w-full" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
+              {% thumbnail property.photo_main "320x180" as im %}
+              <img class="rounded mb-4 w-full object-cover h-44" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
               {% endthumbnail %}
               {% endif %}
                 <div class="flex items-center flex-wrap w-full">

@@ -184,11 +184,11 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 DATETIME_INPUT_FORMATS = ['%d-%m-%Y %H:%M:%S']
 
 # PWA
-PWA_APP_NAME = 'Genesis'
+PWA_APP_NAME = 'YENESIS'
 PWA_APP_DESCRIPTION = "Property search engine"
 PWA_APP_THEME_COLOR = '#3b82f6'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
-PWA_APP_DISPLAY = 'standalone'
+PWA_APP_BACKGROUND_COLOR = '#3b82f6'
+PWA_APP_DISPLAY = 'fullscreen'
 PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
 PWA_APP_START_URL = '/'
@@ -196,25 +196,25 @@ PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
 PWA_APP_ICONS = [
     {
-        'src': '/static/images/genesis.png',
+        'src': '/static/images/yeneses_fav_bg160.png',
         'sizes': '160x160',
         "purpose": "any maskable"
     },
     {
-        'src': '/static/images/icons/genesis_splash.png',
+        'src': '/static/images/yeneses_fav_bg160.png',
         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
         'sizes': '512x512'
     }
 ]
 PWA_APP_ICONS_APPLE = [
     {
-        'src': '/static/images/genesis.png',
+        'src': '/static/images/yeneses_fav_bg160.png',
         'sizes': '160x160'
     }
 ]
 PWA_APP_SPLASH_SCREEN = [
     {
-        'src': '/static/images/icons/splash-640x1136.png',
+        'src': '/static/images/yeneses_fav_bg.png',
         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
     }
 ]

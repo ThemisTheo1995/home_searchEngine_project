@@ -149,14 +149,21 @@ table.dataTable thead th, table.dataTable thead td {
 }
 
 #landing-title{
-background: url(/static/images/GENESIS.jpg) no-repeat 0 0/100%;
+background: url(/static/images/yeneses_landing.png) no-repeat 0 0/100%;
 background-position: center;
 display: block;
-width: 200px;
-height: 60px;
+width: 400px;
+height: 70px;
 margin: auto;
 text-indent:-9999px;
 overflow: hidden;
+}
+
+@media(max-width:640px){
+  #landing-title{
+    width: 250px;
+    height: 60px;
+  }
 }
 
 /* end Landing */
