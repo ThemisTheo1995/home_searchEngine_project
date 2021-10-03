@@ -1,4 +1,4 @@
-const VERSION = '{{version}}';
+const VERSION = '1';
 const staticCachePrefix = 'gen-static';
 const staticCacheName = `${staticCachePrefix}-${VERSION}`;
 const dynamicCacheName = 'gen-dynamic';
@@ -7,7 +7,6 @@ const appShell = [
   '/base',
   '/static/css/styles.css',
   '/static/js/main.js',
-  '/static/images/icons/genesis_splash.png',
   '/manifest.json',
   '/offline',
   '/ajax/landing_autocomplete',
