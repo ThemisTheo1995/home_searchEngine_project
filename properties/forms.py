@@ -1,11 +1,7 @@
 # properties/forms.py
 from django import forms
-from django.forms import CharField
-from .models import Properties, UserPropertyFavourite
+from .models import Properties
 from django.utils.translation import ugettext_lazy as _
-
-class FilterForm(forms.Form):
-    city = CharField(required=True, label=False, widget=forms.TextInput(attrs={'placeholder': 'Postcode, Address, City etc..'}))
     
 # Admin form
 class PropertiesForm(forms.ModelForm):

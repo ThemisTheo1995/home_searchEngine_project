@@ -9,7 +9,6 @@ const appShell = [
   '/static/js/main.js',
   '/manifest.json',
   '/offline',
-  '/ajax/landing_autocomplete',
 ];
 
 const maxNumberItemsDynamicCache = 100;

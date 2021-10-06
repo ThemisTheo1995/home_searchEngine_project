@@ -8,17 +8,33 @@ const autoCompleteJS = new autoComplete({
 			document
 				.querySelector("#autoComplete")
 				.setAttribute("placeholder", "Loading...");
-			// Fetch External Data Source
-			const source = await fetch(
-				"{% url 'ajax_landing_autocomplete' %}"
-			);
-			const data = await source.json();
-			// Post loading placeholder text
-			document
+			
+			if (localStorage['landing_data']){
+				const data = JSON.parse(localStorage.getItem('landing_data'))['data'];
+				// Post loading placeholder text
+				document
+				.querySelector("#autoComplete")
+				.setAttribute("placeholder", "Search for a location...");
+			return data
+			}
+			else{
+				// Fetch External Data Source
+				const source = await fetch(
+					"{% url 'ajax_landing_autocomplete' %}"
+				);
+				const data = await source.json();
+				// Save to local storage
+				//console.log(source.JSON.stringify);
+				localStorage.setItem('landing_data', JSON.stringify({
+					data:data
+				}));
+				// Post loading placeholder text
+				document
 				.querySelector("#autoComplete")
 				.setAttribute("placeholder", "Search for a location...");
 			// Returns Fetched data
 			return data;
+			}
 		},
 		key: ["location", "location_en"],
 		cache: true,

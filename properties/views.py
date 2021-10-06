@@ -2,7 +2,7 @@
 from django.views import generic
 from realtors import mixins
 from .models import Properties, geoData
-from django.http import JsonResponse
+from django.http import JsonResponse, response
 from estatecrm.keys import googleKey
 from django.urls import reverse_lazy
 from django.core.mail import send_mail, BadHeaderError
@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.contrib import messages
 from django.core import serializers
 from django.shortcuts import reverse, render, redirect
-from .forms import FilterForm, PropertiesCreationForm, PropertiesUpdateForm
+from .forms import PropertiesCreationForm, PropertiesUpdateForm
 from urllib.parse import urlencode
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -43,6 +43,10 @@ def landing_autocomplete(request):
         location_data = geoData.objects.all().order_by('identifier','-location')
         raw_data = serializers.serialize("python", location_data)
         actual_data = [data['fields'] for data in raw_data]
+        i = 0
+        for val in actual_data:
+            actual_data[i] = {key: value for key, value in val.items() if key == "location" or key=="location_en"}
+            i += 1        
         return JsonResponse(actual_data, safe=False)
         
 ### Landing view ###
