@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function() {
   // Map configuration
   var lat = parseFloat({{rent.geo_lat}}).toFixed(10);
   var lng = parseFloat({{rent.geo_lng}}).toFixed(10);
-  var genesisMarker = L.icon({
+  var yenesesMarker = L.icon({
       iconUrl: '/static/images/rec.svg',
       iconSize: [25, 25],
 
   });
   var map= L.map('map{{rent.id}}').setView([lat, lng], 13);
-      L.marker([lat, lng], {icon: genesisMarker})
+      L.marker([lat, lng], {icon: yenesesMarker})
           .addTo(map)
           .openPopup();
       var gl = L.mapboxGL({

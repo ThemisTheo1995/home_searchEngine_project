@@ -276,12 +276,12 @@ $(document).scroll(function(e) {
   // Markers
   for (var i = 0; i < markerSet.length; i++) {
           // Map configuration
-          var genesisMarker = L.icon({
+          var yenesesMarker = L.icon({
               iconUrl: '/static/images/rec.svg',
               iconSize: [25, 25],
 
           });
-          marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: genesisMarker}).
+          marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: yenesesMarker}).
           bindTooltip(markerSet[i][0]+"<br><b>"+markerSet[i][4]+markerSet[i][5]+"</b>").
           on('click',markerClick).
           //bindPopup('<a href=http://127.0.0.1:8000/properties/property/'+markerSet[i][3]+'/><b>'+markerSet[i][0]+'</b></a>'+'<br>'+markerSet[i][4]+markerSet[i][5]).openPopup().

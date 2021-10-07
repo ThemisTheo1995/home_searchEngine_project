@@ -187,9 +187,8 @@ h1.title {
   top: 100%;
   left: 0;
   right: 0;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   font-weight: 500;
-  padding: 0;
   margin-top: 0.1rem;
   border-radius: 0.6rem;
   background-color: #fff;
@@ -199,19 +198,25 @@ h1.title {
 }
 
 .autoComplete_result {
-  margin: 0.3rem;
-  padding: 0.5rem 0.5rem;
+  padding: 0.8rem 1rem;
   list-style: none;
   text-align: left;
   font-size: 1rem;
   color: #212121;
   transition: all 0.1s ease-in-out;
-  border-radius: 0.35rem;
   background-color: rgba(255, 255, 255, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all 0.2s ease;
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-color: rgb(179, 179, 179);
+  border-radius: 7px;
+}
+
+.autoComplete_result_keys{
+  font-size: 0.45rem!important;
 }
 
 .autoComplete_result::selection {
@@ -252,6 +257,14 @@ h1.title {
 
   #autoComplete_list {
     margin: 5px;
+  }
+
+  .autoComplete_result {
+    font-size: 0.8rem;
+  }
+
+  .autoComplete_result_keys{
+    font-size: 0rem!important;
   }
 }
 

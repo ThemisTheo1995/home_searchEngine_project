@@ -8,9 +8,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% if LANGUAGE_CODE == 'en'  %}
-      <meta name="description" content = "Fast, lightweight and multi-feature real-estate search platform for homes, offices and properties in Greece and the UK.">
+      <meta name="description" content = "Fast, lightweight and multi-feature real-estate search platform for homes, offices and properties in Greece.">
   {% else %}
-    <meta name="description" content = "Ιστοσελίδα αναζήτης ακινήτων προς πώληση ή ενοικίαση. Εξυπηρέτηση χρηστών για αναζήτηση ακινήτων αλλά και προσθήκη αυτών από μεσιτικά γραφεία και ανεξάρτητων ιδιοκτητών">
+    <meta name="description" content = "Πλατφόρμα αναζήτης ακινήτων προς πώληση ή ενοικίαση στην Ελλάδα - yeneses.com.">
   {% endif %}
   {% progressive_web_app_meta %}
   <title>{% block title %}Yeneses{% endblock %}</title>
@@ -38,8 +38,8 @@
   {% endif %}
 
   {% if request.path == URLrentList or '/properties/property/' in request.path %}
-  <!-- Sweet Alert pop-up addon-->
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  {% comment %} <!-- Sweet Alert pop-up addon-->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> {% endcomment %}
   <!-- Splide -->
   <link defer href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -51,10 +51,14 @@
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/autoComplete.css' %}"> 
 
-  <!-- jQuery 1.8 or later, 33 KB -->
+  <!-- jQuery 1.8 or later, 33 KB + fotorama -->
   {% if '/properties/property/' in request.path or request.path == landing %}
   {% else %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% if 'mode=cards' in request.get_full_path  %}
+      <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    {% endif %}
   {% endif %}
 
   {% if request.path == URLpropertiesCreate or '/properties/update/' in request.path %}

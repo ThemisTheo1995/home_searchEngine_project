@@ -14,7 +14,7 @@ const autoCompleteJS = new autoComplete({
 				// Post loading placeholder text
 				document
 				.querySelector("#autoComplete")
-				.setAttribute("placeholder", "Search for a location...");
+				.setAttribute("placeholder", "Αναζήτησε τοποθεσία...");
 			return data
 			}
 			else{
@@ -31,7 +31,7 @@ const autoCompleteJS = new autoComplete({
 				// Post loading placeholder text
 				document
 				.querySelector("#autoComplete")
-				.setAttribute("placeholder", "Search for a location...");
+				.setAttribute("placeholder", "Αναζήτησε τοποθεσία...");
 			// Returns Fetched data
 			return data;
 			}
@@ -75,7 +75,7 @@ const autoCompleteJS = new autoComplete({
 			// Modify Results Item Content
 			element.innerHTML = `<span style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
         ${data.match}</span>
-        <span style="display: flex; align-items: center; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);">
+        <span class="autoComplete_result_keys" style="display: flex; align-items: center; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);">
       ${data.key}</span>`;
 		}
 	},

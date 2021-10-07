@@ -14,7 +14,7 @@
             {% endfor %}
          </select>
          <!-- View mode -->
-         <select form="search_bar" onchange="sortFilter()" name="mode" class=" mb-2 mx-1 bg-gray-600 py-1 px-1 outline-none items-center text-gray-50">
+         <select form="search_bar" onchange="sortFilter()" name="mode" class="hidden md:inline-block mb-2 mx-1 bg-gray-600 py-1 px-1 outline-none items-center text-gray-50">
             {% for key,value in page_view_choices.items %}
             <option value="{{ key }}" {% if key == mode %} selected {% endif %}>
             {{ value }}
