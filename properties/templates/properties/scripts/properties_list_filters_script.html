@@ -1,7 +1,12 @@
 <script>
-
+/*
+* Filters module
+*/
 function resetFilter(){
-	$('.form_group').val("");
+	d = document.querySelectorAll('.form_group');
+    for (var i = 0, len = d.length; i < len; i++) {
+        d[i].value = '';
+    }
 	document.getElementById("search_bar").submit(); 
 }
 

@@ -62,21 +62,15 @@ class PropertiesLandingListView(generic.ListView):
 
 ### Rent List view - Send email ###
 def rent_email_listview(request):
-    if  request.method == 'POST' and request.is_ajax():
-        data = request.POST.get('formData', None)
-        
-        # deserialize
-        form_data_dict = {}
-        form_data_list = json.loads(data)
-        for field in form_data_list:
-            form_data_dict[field["name"]] = field["value"]
-    
+    if  request.method == 'POST' and request.is_ajax:
+        data = json.loads(request.body.decode("utf-8"))
+        print(data)
         # email fields
-        name = form_data_dict['name']
-        email = form_data_dict['email']
-        phone = form_data_dict['phone']
-        message = form_data_dict['rentText']
-        recipient = form_data_dict['recipient']
+        name = data[1].get("name")
+        email = data[2].get("email")
+        phone = data[3].get("phone")
+        message = data[4].get("rentText")
+        recipient = data[5].get("recipient")
         # email template
         html_message = render_to_string('properties/properties_list_email.html', 
                                         {'name': name,

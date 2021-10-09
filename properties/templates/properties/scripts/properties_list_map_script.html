@@ -241,14 +241,18 @@ L.Control.SleepMapControl = L.Control.extend({
   
   L.Map.addInitHook('addHandler', 'sleep', L.Map.Sleep);
 
-$(document).scroll(function(e) {
-  var map = $("#rentMap");
-    if($(this).scrollTop() > 100) {
-        map.removeClass( "rentMapTop" ).addClass( "rentMapBottom");
-    } else {
-        map.removeClass( "rentMapBottom" ).addClass("rentMapTop");
+/*
+window.addEventListener('scroll', function() {
+    var map = document.getElementById('rentMap');
+    if (this.scrollTop > 100){
+      map.classList.remove("rentMapTop");
+      map.classList.add("rentMapBottom");
+    }else {
+      map.classList.add("rentMapBottom");
+      map.classList.remove("rentMapTop");
     }
 });
+*/
 
   // Smooth transition on anchor click.
   function markerClick(e){
@@ -286,7 +290,7 @@ $(document).scroll(function(e) {
           on('click',markerClick).
           //bindPopup('<a href=http://127.0.0.1:8000/properties/property/'+markerSet[i][3]+'/><b>'+markerSet[i][0]+'</b></a>'+'<br>'+markerSet[i][4]+markerSet[i][5]).openPopup().
           addTo(map);
-          $(marker._icon).attr("data-pk",markerSet[i][3]);
+          marker._icon.setAttribute("data-pk",markerSet[i][3]);
       }
 }   
 });

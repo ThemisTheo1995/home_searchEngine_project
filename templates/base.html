@@ -28,7 +28,7 @@
   <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> 
   {% comment %} <script defer src="{% static 'js/leaflet.js' %}"></script>
   <link defer rel="stylesheet" href="{% static 'css/leaflet.css' %}"> {% endcomment %}
-  
+
   <!-- Mapbox tiles API integrated with Leaflet -->
   <link defer href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
   <script defer src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
@@ -37,9 +37,9 @@
   <script defer src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
   {% endif %}
 
+
+
   {% if request.path == URLrentList or '/properties/property/' in request.path %}
-  {% comment %} <!-- Sweet Alert pop-up addon-->
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> {% endcomment %}
   <!-- Splide -->
   <link defer href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" rel="stylesheet">
   <script defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
@@ -47,19 +47,27 @@
   <link defer rel="stylesheet" href="{% static 'css/splide.css' %}"> {% endcomment %}
   {% endif %}
 
+
+
   <!-- autoComplete Tarek Raafat-->
   <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@9.1.1/dist/js/autoComplete.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/autoComplete.css' %}"> 
 
+
+
   <!-- jQuery 1.8 or later, 33 KB + fotorama -->
-  {% if '/properties/property/' in request.path or request.path == landing %}
+  {% if '/properties/property/' in request.path or request.path == landing or request.path == URLrentList %}
   {% else %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {% if 'mode=cards' in request.get_full_path  %}
+  {% endif %}
+
+  {% if 'mode=cards' in request.get_full_path  %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     {% endif %}
-  {% endif %}
+
+
 
   {% if request.path == URLpropertiesCreate or '/properties/update/' in request.path %}
   <!-- Multiple select -->
@@ -67,14 +75,20 @@
   <script defer src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
   {% endif %}
 
+
+
   {% if request.path == URLorgRentList or request.path == URLagentRentList %}
   <!-- Data tables-->
   <link defer rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
   <script defer type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
   {% endif %}
 
+
+
   <!-- Tailwind -->
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+
 
   <!-- CSS -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">

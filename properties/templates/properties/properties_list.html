@@ -105,9 +105,9 @@
                                             </h2>
                                             <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
                                                 {% ifequal rent.currency '€' %}
-                                                {{rent.price | intcomma}}{{rent.currency}}
+                                                {{rent.price | intcomma}}{{rent.currency}}<span class="text-xs">/{% trans 'month' %}</span>
                                             {% else %}
-                                                {{rent.currency}}{{rent.price | intcomma}}
+                                                {{rent.currency}}{{rent.price | intcomma}}/{% trans 'month' %}<span class="text-xs">/{% trans 'month' %}</span>
                                                 {% endifequal %}
                                             </h1>
                                         </div>
@@ -124,37 +124,33 @@
                                                 {{rent.short_description}}
                                             </p>
                                         </div>
-                                        <div class="flex flex-wrap text-sm text-gray-800 pt-4">
-                                            <div class="flex justify-between w-full mb-2 tracking-wider text-xs text-center font-bold sm:font-normal">
+                                        <div class="flex flex-wrap text-sm text-gray-800 xl:pt-5 pt-4">
+                                            <div class="flex justify-between w-full mb-2 tracking-wider text-sm text-center font-bold sm:font-normal">
                                                 <div>
-                                                    <svg class="inline-block mb-1 bi bi-house-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                    <svg class="inline-block mb-1 bi bi-house-fill" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
                                                         <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" fill-rule="evenodd"/>
                                                         <path d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" fill-rule="evenodd"/>
                                                     </svg>
-                                                    {% trans 'Type'%}
-                                                    <div class="text-center font-bold">{% trans rent.property_type %}</div>
+                                                    <span class="ml-1 font-bold">{% trans rent.property_type %}</span>
                                                 </div>
                                                 <div>
-                                                    <svg class="inline-block mb-1 bi bi-moon-stars-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                    <svg class="inline-block mb-1 bi bi-moon-stars-fill" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
                                                         <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
                                                         <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
                                                     </svg>
-                                                    {% trans 'Bedrooms'%}
-                                                    <div class="text-center font-bold">{{rent.bedrooms}}</div>
+                                                    <span class="ml-1 font-bold">{{rent.bedrooms}}</span>
                                                 </div>
                                                 <div>
-                                                    <svg class="inline-block mb-1 bi bi-badge-wc-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                    <svg class="inline-block mb-1 bi bi-badge-wc-fill" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
                                                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.666 1.89c.682 0 1.139.47 1.187 1.107H14v-.11c-.053-1.187-1.024-2-2.342-2-1.604 0-2.518 1.05-2.518 2.751v.747c0 1.7.905 2.73 2.518 2.73 1.314 0 2.285-.792 2.342-1.939v-.114h-1.147c-.048.615-.497 1.05-1.187 1.05-.839 0-1.318-.62-1.318-1.727v-.742c0-1.112.488-1.754 1.318-1.754zm-6.188.926h.044L6.542 11h1.006L9 5.001H7.818l-.82 4.355h-.056L5.97 5.001h-.94l-.972 4.355h-.053l-.827-4.355H2L3.452 11h1.005l1.02-4.184z"/>
                                                     </svg>
-                                                    {% trans 'Bathrooms'%}
-                                                    <div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
+                                                    <span class="ml-1 font-bold">{{rent.bathrooms|floatformat:'0'}}</span>
                                                 </div>
                                                 <div>
-                                                    <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
+                                                    <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">
                                                         <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
                                                     </svg>
-                                                    {% trans 'Space'%}
-                                                    <div class="text-center font-bold">{{rent.m2}}m²</div>
+                                                    <span class="ml-1 font-bold">{{rent.m2}}m²</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -183,7 +179,7 @@
                                 </div>
                             </div>
                             <div class="bg-gray-100">
-                            <form class="lg:w-2/3 md:w-full mx-auto my-6 hidden" id="emailForm{{rent.pk}}" method="POST">
+                            <form class="lg:w-2/3 md:w-full mx-auto my-6 hidden emailForm{{rent.pk}}" id="eform{{rent.pk}}" method="POST">
                                 {% csrf_token %}
                                 <div class="flex flex-col text-center w-full my-4 p-2">
                                     <h1 class="sm:text-lg text-sm text-white shadow-inner p-2 rounded bg-blue-600">
@@ -292,9 +288,9 @@
                                             </h2>
                                             <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
                                                 {% ifequal rent.currency '€' %}
-                                                {{rent.price | intcomma}}{{rent.currency}}
+                                                {{rent.price | intcomma}}{{rent.currency}}<span class="text-xs">/{% trans 'month' %}</span>
                                             {% else %}
-                                                {{rent.currency}}{{rent.price | intcomma}}
+                                                {{rent.currency}}{{rent.price | intcomma}}<span class="text-xs">/{% trans 'month' %}</span>
                                                 {% endifequal %}
                                             </h1>
                                         </div>
@@ -374,57 +370,57 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-gray-100 border-4 border-green-600 -mt-2 border-t-0 hidden" id="emailForm{{rent.pk}}">
-                            <form class="lg:w-2/3 md:w-full mx-auto my-6" method="POST">
-                                {% csrf_token %}
-                                <div class="flex flex-col text-center w-full my-4 p-2">
-                                    <h1 class="sm:text-lg text-sm text-white shadow-inner p-2 rounded bg-green-600">
-                                        <b>{% trans 'Contact:'%}</b>
-                                        {{rent.organisation.name}}
-                                        <b>{% trans 'For:'%}</b>
-                                        {{rent.address}} {{rent.street_number}}
-                                    </h1>
-                                </div>
-                                <div id="output{{rent.pk}}" style="display:none;"></div>
-                                <div class="flex flex-wrap">
-                                    <div class="p-2 sm:w-1/3 w-full">
-                                        <div class="relative">
-                                            <label class="leading-7 text-sm text-gray-600" for="name">{% trans '*Name'%}</label>
-                                            <input class="w-full text-sm bg-gray-50 bg-opacity-70 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" 
-                                                name="name" required="required" type="text" value="{{request.user.first_name}} {{request.user.last_name}}">
+                            <div class="bg-gray-100 border-4 border-green-600 -mt-2 border-t-0 hidden emailForm{{rent.pk}}">
+                                <form class="lg:w-2/3 md:w-full mx-auto my-6" id="eform{{rent.pk}}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="flex flex-col text-center w-full my-4 p-2">
+                                        <h1 class="sm:text-lg text-sm text-white shadow-inner p-2 rounded bg-green-600">
+                                            <b>{% trans 'Contact:'%}</b>
+                                            {{rent.organisation.name}}
+                                            <b>{% trans 'For:'%}</b>
+                                            {{rent.address}} {{rent.street_number}}
+                                        </h1>
+                                    </div>
+                                    <div id="output{{rent.pk}}" style="display:none;"></div>
+                                    <div class="flex flex-wrap">
+                                        <div class="p-2 sm:w-1/3 w-full">
+                                            <div class="relative">
+                                                <label class="leading-7 text-sm text-gray-600" for="name">{% trans '*Name'%}</label>
+                                                <input class="w-full text-sm bg-gray-50 bg-opacity-70 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" 
+                                                    name="name" required="required" type="text" value="{{request.user.first_name}} {{request.user.last_name}}">
+                                            </div>
+                                        </div>
+                                        <div class="p-2 sm:w-1/3 w-full">
+                                            <div class="relative">
+                                                <label class="leading-7 text-sm text-gray-600" for="email">*Email</label>
+                                                <input class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" 
+                                                    name="email" required="required" type="email" value="{{request.user.email}}">
+                                            </div>
+                                        </div>
+                                        <div class="p-2 sm:w-1/3 w-full">
+                                            <div class="relative">
+                                                <label class="leading-7 text-sm text-gray-600" for="phone">{% trans '*Phone'%}</label>
+                                                <input class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" name="phone" required="required" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="p-2 w-full">
+                                            <div class="relative">
+                                                <label class="leading-7 text-sm text-gray-600" for="rentText">{% trans '*Message'%}</label>
+                                                <textarea class="w-full bg-gray-50 text-sm bg-opacity-85 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" name="rentText" required="required"></textarea>
+                                            </div>
+                                        </div>
+                                        <input class="hidden" name="recipient" type="text" value="{{rent.organisation.email}}">
+                                        <div class="p-2 w-full ">
+                                            <button class="flex mx-auto text-white bg-green-600 border-0 py-3 px-6 focus:outline-none hover:bg-green-700 rounded text-lg" onclick="sendRentEmail({{rent.pk}})" type="submit">
+                                                {% trans 'Send'%}
+                                                <svg width="22" height="22" fill="currentColor" class="ml-1 mt-1 inline-block bi bi-telegram" viewBox="0 0 16 16">
+                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+                                                </svg>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="p-2 sm:w-1/3 w-full">
-                                        <div class="relative">
-                                            <label class="leading-7 text-sm text-gray-600" for="email">*Email</label>
-                                            <input class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" 
-                                                name="email" required="required" type="email" value="{{request.user.email}}">
-                                        </div>
-                                    </div>
-                                    <div class="p-2 sm:w-1/3 w-full">
-                                        <div class="relative">
-                                            <label class="leading-7 text-sm text-gray-600" for="phone">{% trans '*Phone'%}</label>
-                                            <input class="w-full text-sm bg-gray-50 bg-opacity-85 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" name="phone" required="required" type="text" value="">
-                                        </div>
-                                    </div>
-                                    <div class="p-2 w-full">
-                                        <div class="relative">
-                                            <label class="leading-7 text-sm text-gray-600" for="rentText">{% trans '*Message'%}</label>
-                                            <textarea class="w-full bg-gray-50 text-sm bg-opacity-85 rounded border-2 border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" name="rentText" required="required"></textarea>
-                                        </div>
-                                    </div>
-                                    <input class="hidden" name="recipient" type="text" value="{{rent.organisation.email}}">
-                                    <div class="p-2 w-full ">
-                                        <button class="flex mx-auto text-white bg-green-600 border-0 py-3 px-6 focus:outline-none hover:bg-green-700 rounded text-lg" onclick="sendRentEmail({{rent.pk}})" type="submit">
-                                            {% trans 'Send'%}
-                                            <svg width="22" height="22" fill="currentColor" class="ml-1 mt-1 inline-block bi bi-telegram" viewBox="0 0 16 16">
-                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -453,7 +449,7 @@
     </div>
 </section>
 {% include "properties/scripts/properties_list_splide_script.html" %}
-{% include "properties/scripts/properties_list_filters_script.html" %}
 {% include "properties/scripts/properties_landing_autocomplete_script.html" %}
+{% include "properties/scripts/properties_list_filters_script.html" %}
 {% include "properties/scripts/properties_list_email_script.html" %}
 {% endblock content %}
