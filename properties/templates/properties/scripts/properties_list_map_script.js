@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", function() {
     
     /*
@@ -263,14 +262,11 @@ window.addEventListener('scroll', function() {
   }
 
   // Fetch the geo data.
-  var markerSet = {{markerSet|safe}};
-
+  var markerSet = JSON.parse(document.getElementById('markerSet').textContent);
   if (typeof markerSet != 'undefined'){
-
 
   // SetView
   var map = L.map('map').setView([markerSet[0][1], markerSet[0][2]], 13);
-
   // Map init
   var gl = L.mapboxGL({
       attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
@@ -283,7 +279,7 @@ window.addEventListener('scroll', function() {
           var yenesesMarker = L.icon({
               iconUrl: '/static/images/rec.svg',
               iconSize: [25, 25],
-
+              iconAnchor: [12.5,25]
           });
           marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: yenesesMarker}).
           bindTooltip(markerSet[i][0]+"<br><b>"+markerSet[i][4]+markerSet[i][5]+"</b>").
@@ -295,15 +291,14 @@ window.addEventListener('scroll', function() {
 }   
 });
 // Click on map icon
-  function markerOnMap(key){
-      const marker = document.querySelector('img[data-pk="'+key+'"]');
-      if (marker.classList.contains("markerActive")){
-        marker.classList.remove("markerActive");
-      }else{
-        marker.classList.add("markerActive");
-        setTimeout(function(){
-            marker.classList.remove('markerActive');
-        },5000);
-      }
-  }
-</script>
+function markerOnMap(key){
+    const marker = document.querySelector('img[data-pk="'+key+'"]');
+    if (marker.classList.contains("markerActive")){
+      marker.classList.remove("markerActive");
+    }else{
+      marker.classList.add("markerActive");
+      setTimeout(function(){
+          marker.classList.remove('markerActive');
+      },5000);
+    }
+}

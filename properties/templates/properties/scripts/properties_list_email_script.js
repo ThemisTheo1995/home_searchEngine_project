@@ -1,4 +1,3 @@
-<script>
 /*
 * Email module
 */
@@ -55,4 +54,3 @@ function rentEmail(pk) {
         map.classList.add('hidden');
     }
 }
-</script>

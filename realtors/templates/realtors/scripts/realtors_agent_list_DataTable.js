@@ -1,4 +1,3 @@
-<script>
 $(document).ready( function () {
     $('#agents_table').DataTable({
         paging: true,
@@ -7,4 +6,3 @@ $(document).ready( function () {
         stateSave: false,
     });
 } );
-</script>

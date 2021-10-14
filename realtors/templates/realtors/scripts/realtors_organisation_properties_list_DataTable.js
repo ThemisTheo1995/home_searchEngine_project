@@ -1,4 +1,3 @@
-<script>
 $(function(){
     $('#org_properties_table').DataTable({
         paging:true,
@@ -12,4 +11,3 @@ $(function(){
         stateSave: false,
     });
 });
-</script>

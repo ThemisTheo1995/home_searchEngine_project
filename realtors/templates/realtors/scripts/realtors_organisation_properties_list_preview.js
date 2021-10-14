@@ -1,4 +1,3 @@
-<script>
 function previewMode (pk, property_type){
     if (pk != ''){
         // GET AJAX request
@@ -42,4 +41,3 @@ function previewMode (pk, property_type){
         });
     }
 }
-</script>

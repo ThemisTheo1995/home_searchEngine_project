@@ -1,21 +1,19 @@
-<script>
 document.addEventListener("DOMContentLoaded", function() {
   // Map configuration
-  var lat = parseFloat({{rent.geo_lat}}).toFixed(10);
-  var lng = parseFloat({{rent.geo_lng}}).toFixed(10);
+  var lat = parseFloat("{{rent.geo_lat}}").toFixed(10);
+  var lng = parseFloat("{{rent.geo_lng}}").toFixed(10);
   var yenesesMarker = L.icon({
       iconUrl: '/static/images/rec.svg',
       iconSize: [25, 25],
+      iconAnchor: [12.5,25]
 
   });
-  var map= L.map('map{{rent.id}}').setView([lat, lng], 13);
-      L.marker([lat, lng], {icon: yenesesMarker})
-          .addTo(map)
-          .openPopup();
-      var gl = L.mapboxGL({
-          attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
-          style: 'https://api.maptiler.com/maps/77c1d067-7f6c-43c7-81ca-46de586f5de3/style.json?key=f8KNCaKJy3aq9zRp2tSn'
-  }).addTo(map); 
+    var map= L.map('map{{rent.id}}').setView([lat, lng], 13);
+    L.marker([lat, lng], {icon: yenesesMarker}).addTo(map).openPopup();
+    var gl = L.mapboxGL({
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+        style: 'https://api.maptiler.com/maps/77c1d067-7f6c-43c7-81ca-46de586f5de3/style.json?key=f8KNCaKJy3aq9zRp2tSn'
+    }).addTo(map); 
 });
 // Social
 function twitterSharer(){ 
@@ -33,4 +31,3 @@ function saveProperty(){
         detailsSave.setAttribute("fill", "LightCoral");
     }
 }
-</script>

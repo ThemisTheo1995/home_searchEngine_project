@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", function() {
     var secondarySlider = new Splide('#secondary-slider', {
         direction   : 'ttb',
@@ -38,4 +37,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
     primarySlider.sync(secondarySlider).mount();
 });
-</script>

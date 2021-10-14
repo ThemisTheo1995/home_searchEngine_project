@@ -2,7 +2,7 @@
 from django.views import generic
 from realtors import mixins
 from .models import Properties, geoData
-from django.http import JsonResponse, response
+from django.http import JsonResponse
 from estatecrm.keys import googleKey
 from django.urls import reverse_lazy
 from django.core.mail import send_mail, BadHeaderError

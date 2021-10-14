@@ -1,4 +1,3 @@
-<script>
 function showNotes(pk) {
     const notesSection = document.getElementById('notesSection'+pk);
     if (notesSection.classList.contains('hidden')) {
@@ -7,4 +6,3 @@ function showNotes(pk) {
         notesSection.classList.add('hidden');
     }
 }
-</script>

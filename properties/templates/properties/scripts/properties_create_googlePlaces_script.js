@@ -1,4 +1,3 @@
-<script>
 // Google auto complete
 function activatePlacesSearch(){
 	var input = document.getElementById('address_search');
@@ -28,5 +27,4 @@ function geoCreate (){
       }
   });
 }
-</script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMY-tbAfPkjg28XhERJ9kZqRplDk-fu1Q&libraries=places&callback=activatePlacesSearch"></script>

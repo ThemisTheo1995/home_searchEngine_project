@@ -1,4 +1,3 @@
-<script>
 /*
 * Filters module
 */
@@ -83,4 +82,3 @@ function saveProperty(pk){
         detailsSave.setAttribute("fill", "LightCoral");
     }
 }
-</script>

@@ -1,5 +1,3 @@
-<script>
-
 // The autoComplete.js Engine instance creator
 const autoCompleteJS = new autoComplete({
 	data: {
@@ -143,6 +141,3 @@ const action = (action) => {
 		}
 	});
 });
-
-
-</script>

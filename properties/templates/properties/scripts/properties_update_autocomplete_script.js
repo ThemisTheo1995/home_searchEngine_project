@@ -1,9 +1,8 @@
-<script>
-$(function(){
+document.addEventListener("DOMContentLoaded", function() {
 	// Multiple select
 	$('#property_features').multipleSelect();
 
-	// The autoComplete.js Engine instance creator
+	// The autoComplete.js Engine instance creator - same with create
 	const autoCompleteJS = new autoComplete({
 		data: {
 			src: async () => {
@@ -24,7 +23,6 @@ $(function(){
 				return data;
 			},
 			key: ["location", "location_en"],
-			cache: true,
 			results: (list) => {
 				// Filter duplicates
 				const filteredResults = Array.from(
@@ -39,8 +37,7 @@ $(function(){
 		trigger: {
 			event: ["input", "focus"]
 		},
-		//placeHolder: "Search for a location...",
-		threshold: 0,
+		placeHolder: "Search for a location...",
 
 		resultsList: {
 			noResults: (list, query) => {
@@ -132,4 +129,3 @@ $(function(){
 	});
 
 });
-</script>

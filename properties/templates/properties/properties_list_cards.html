@@ -130,7 +130,10 @@
       </div>
    </div>
 </section>
-{% include "properties/scripts/properties_list_map_script.html" %}
-{% include "properties/scripts/properties_landing_autocomplete_script.html" %}
-{% include "properties/scripts/properties_list_filters_script.html" %}
+{{markerSet|json_script:"markerSet"}}
+<script>
+{% include "properties/scripts/properties_list_map_script.js" %}
+{% include "properties/scripts/properties_landing_autocomplete_script.js" %}
+{% include "properties/scripts/properties_list_filters_script.js" %}
+</script>
 {% endblock content %}

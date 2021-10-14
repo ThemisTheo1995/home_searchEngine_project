@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded", function() {
     /*
     * Splide module
@@ -33,4 +32,3 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
-</script>
