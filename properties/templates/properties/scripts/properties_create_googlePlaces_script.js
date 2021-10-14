@@ -27,4 +27,3 @@ function geoCreate (){
       }
   });
 }
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMY-tbAfPkjg28XhERJ9kZqRplDk-fu1Q&libraries=places&callback=activatePlacesSearch"></script>
