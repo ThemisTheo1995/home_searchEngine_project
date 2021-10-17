@@ -35,10 +35,10 @@
               <div class="selection hidden"></div>
           </div>
           <div class="flex justify-center py-6">
-            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="inline-flex text-white font-semibold bg-blue-600 border-0 py-2 px-6 hover:bg-blue-700 rounded text-lg">
+            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="tracking-wider inline-flex text-white font-semibold bg-blue-600 border-0 py-2 px-6 hover:bg-blue-700 rounded text-lg">
               {% trans 'TO RENT' %}
             </button>
-            <button id="saleButton" type="submit" class="ml-4 inline-flex text-white font-semibold bg-gray-700 py-2 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
+            <button id="saleButton" type="submit" class="tracking-wider ml-4 inline-flex text-white font-semibold bg-gray-700 py-2 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
               {% trans 'FOR SALE' %}
             </button>
           </div>
@@ -47,7 +47,7 @@
     </div>
   </div>
   <svg class="-mt-6" height="100%" width="100%" id="svg" viewBox="0 0 1440 400" class=""><path d="M 0,400 C 0,400 0,133 0,133 C 64.86410256410255,107.32307692307693 129.7282051282051,81.64615384615385 214,94 C 298.2717948717949,106.35384615384615 401.9512820512821,156.73846153846154 487,161 C 572.0487179487179,165.26153846153846 638.4666666666666,123.39999999999999 705,101 C 771.5333333333334,78.60000000000001 838.1820512820514,75.66153846153847 928,86 C 1017.8179487179486,96.33846153846153 1130.805128205128,119.95384615384614 1220,130 C 1309.194871794872,140.04615384615386 1374.5974358974358,136.52307692307693 1440,133 C 1440,133 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#3b82f688" class="" transform="rotate(-180 720 200)"></path><path d="M 0,400 C 0,400 0,266 0,266 C 70.36923076923077,245.82051282051282 140.73846153846154,225.64102564102566 222,237 C 303.26153846153846,248.35897435897434 395.4153846153847,291.2564102564102 489,303 C 582.5846153846153,314.7435897435898 677.6,295.33333333333337 741,283 C 804.4,270.66666666666663 836.1846153846155,265.4102564102564 916,257 C 995.8153846153845,248.5897435897436 1123.6615384615384,237.025641025641 1219,238 C 1314.3384615384616,238.974358974359 1377.1692307692308,252.4871794871795 1440,266 C 1440,266 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#3b82f6ff" class="" transform="rotate(-180 720 200)"></path></svg>
-      <div class="flex flex-wrap xl:-mt-80 mt-6 container mx-auto ">
+      <div class="flex flex-wrap xl:-mt-80 mt-6 mb-10 container mx-auto ">
         {% for property in landingProperties %}
         <div class="xl:w-1/4 md:w-1/2 w-full p-4">
           {% if property.advertised == "To_Rent" %}
@@ -55,7 +55,7 @@
             <div class="bg-gray-200 p-6 rounded-lg shadow">
               {% if property.photo_main  %}
               {% thumbnail property.photo_main "320x180" as im %}
-              <img class="rounded mb-4 w-full object-cover h-44" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
+              <img class="rounded mb-4 w-full object-cover xl:h-44 h-60" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="main_photo{{rent.admin_2_en}}">
               {% endthumbnail %}
               {% endif %}
                 <div class="flex items-center flex-wrap w-full">
@@ -87,41 +87,6 @@
         </div>
           {% endfor %}
       </div>
-    <!-- Pagination -->
-    <div class="w-full flex flex-wrap sm:my-4 mb-6">
-      <div class="pagination w-full text-center">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a class="pr-1 pl-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-                  href="?page=1#genslide">
-                  <i class="fa fa-angle-double-left text-white text-lg"></i>  
-                </a>
-                <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-                  href="?page={{page_obj.previous_page_number}}#genslide">
-                  <i class="fa fa-angle-left text-white text-xl"></i>
-                </a>
-            {% endif %}
-
-            <span class="current text-gray rounded p-2 text-md align-center">
-                <span class="font-bold">{{ page_obj.number }}</span> 
-                <span class="text-xs">of {{ page_obj.paginator.num_pages }}</span>
-            </span>
-
-            {% if page_obj.has_next %}
-                <a class="pl-3 pr-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-400 hover:bg-blue-600" 
-                  href="?page={{page_obj.next_page_number}}#genslide">
-                  <i class="fa fa-angle-right text-white text-xl"></i>
-                </a>
-                <a class="px-2 py-1 rounded border-2 border-white transition duration-75 ease-in-out bg-blue-300 hover:bg-blue-600" 
-                  href="?page={{page_obj.paginator.num_pages}}#genslide">
-                  <i class="fa fa-angle-double-right text-white text-lg"></i>
-                </a>
-            {% endif %}
-        </span>
-      </div>
-      <div class="pagination w-3/12 sidebar">
-      </div>
-    </div>
     <script>{% include "properties/scripts/properties_landing_autocomplete_script.js" %}</script>
 </section>
 {% endblock content %}

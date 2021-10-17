@@ -56,8 +56,8 @@ order_list_date_choices = {
 }
 
 order_price_choices = {
-  'high':_('Highest price 🠗'),
-  'low':_('Lowest price 🠕'),
+  'high':_('Highest price 🡫'),
+  'low':_('Lowest price 🡩'),
 }
 
 pagination_choices = {

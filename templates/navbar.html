@@ -9,17 +9,17 @@
             </a>
             {% endif %}
             {% if request.path == '/' or request.path == '/en/' %}
-            <div class="pl-4 pt-1 flex">
+            <div class="flex">
                 <div class="dropdown inline-block relative">
-                    <form id="language" class="pt-1 text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <form id="language" class="text-sm items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select onchange="submitLanguage()" class="appearance-none outline-none cursor-pointer sm:text-gray-700 text-white sm:bg-gray-50 bg-blue-500 sm:hover:bg-gray-300 p-1 mb-2 rounded" name="language">
+                        <select onchange="submitLanguage()" class="justify-center px-4 appearance-none outline-none cursor-pointer sm:text-gray-700 text-white sm:bg-gray-50 bg-blue-500 sm:hover:bg-gray-300 py-1 rounded font-semibold" name="language">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                        <option class="text-center text-white bg-blue-600" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                        {{ language.name_local }} ({{ language.code }})
+                        <option class="text-white bg-blue-600 font-semibold justify-center" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {% if language.code == 'el' %}🇬🇷{% else %}🇬🇧{% endif%}
                         </option>
                         {% endfor %}
                         </select>
@@ -72,7 +72,7 @@
         {% include "accounts/accounts_profileCard.html" %}
         <!-- User no account -->
         {% else %}
-        <a href="{% url 'login' %}" class="shadow inline-flex sm:text-white font-semibold sm:bg-gray-700 bg-white border-0 py-1 px-2 focus:outline-none sm:hover:bg-gray-800 hover:bg-gray-200 rounded text-base">
+        <a href="{% url 'login' %}" class="shadow tracking-wide inline-flex sm:text-white sm:bg-gray-700 bg-white border-0 p-2 focus:outline-none sm:hover:bg-gray-800 hover:bg-gray-200 rounded text-sm">
             {% trans 'Login'%}
         </a>
         </nav>
