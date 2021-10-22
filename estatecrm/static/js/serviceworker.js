@@ -6,10 +6,10 @@ const appShell = [
   '/',
   '/base',
   '/static/css/styles.css',
-  '/static/css/tailwind.css',
   '/static/js/main.js',
   '/manifest.json',
-  '/static/images/yeneses_pwa_192px.png'
+  '/static/images/yeneses_pwa_192px.png',
+  'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
 ];
 
 const maxNumberItemsDynamicCache = 100;
