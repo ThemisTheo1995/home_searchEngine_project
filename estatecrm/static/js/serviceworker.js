@@ -6,9 +6,10 @@ const appShell = [
   '/',
   '/base',
   '/static/css/styles.css',
+  '/static/css/tailwind.css',
   '/static/js/main.js',
   '/manifest.json',
-  '/offline',
+  '/static/images/yeneses_pwa_192px.png'
 ];
 
 const maxNumberItemsDynamicCache = 100;

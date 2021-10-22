@@ -19,7 +19,7 @@ django-cleanup==5.1.0
 django-crispy-forms==1.11.1
 django-import-export==2.5.0
 django-pwa==1.0.10
-django-tailwind==2.0.1
+django-tailwind==2.2.2
 et-xmlfile==1.1.0
 html5lib==1.0.1
 idna==2.8
