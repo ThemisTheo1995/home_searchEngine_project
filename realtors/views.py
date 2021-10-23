@@ -1,7 +1,9 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import reverse, redirect
 from django.views import generic
 from django.http import JsonResponse
 from django.core.mail import send_mail
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
 from .mixins import RealtorAndLoginRequiredMixin, OrganisationAndLoginRequiredMixin
 from .models import Organisation, Agent
 from properties.models import Properties
@@ -174,12 +176,20 @@ class AgentCreateView(RealtorAndLoginRequiredMixin, generic.CreateView):
             user = user,
             organisation = self.request.user.organisation 
         )
-        # send_mail(
-        #     subject = "Genesis Estate - Agent invitation.",
-        #     message = "You are added as an agent on Genesis Estate. Please login and reset your password.",
-        #     from_email = "themistheodoratos@outlook.com",
-        #     recipient_list = [user.email] 
-        # )
+        
+        try:
+            send_mail(
+                subject = "Yeneses - Agent invitation.",
+                message = "You are added as an agent on Yeneses Estate. Please login and reset your password.",
+                from_email = "themistheodoratos@outlook.com",
+                recipient_list = [user.email, 'themistheodoratos@outlook.com'] 
+            )
+        except:
+                messages.error(self.request, _('Agent has been created succesfully but email has not been delivered due to an error.'))
+                redirect('organisation:agent-create')
+        
+        messages.success(self.request, _('Agent has been created succesfully'))
+        
         return super(AgentCreateView, self).form_valid(form)
 
 

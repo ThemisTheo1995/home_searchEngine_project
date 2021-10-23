@@ -1,8 +1,8 @@
 {% load i18n %}
 <!-- Profile card pop-up -->
-<div class="modal" id="modal-one">
+<div class="modal opacity-0 absolute" id="modal-one">
    <div class="modal-bg modal-exit"></div>
-   <div class="modal-container flex flex-col justify-end overflow-hidden shadow-xl bg-gray-50 rounded-lg p-4 sm:mr-8 sm:mt-20 mt-20 mx-auto border border-gray-300">
+   <div class="modal-container modal-card flex flex-col justify-end overflow-hidden shadow-xl bg-gray-50 rounded-lg py-4 sm:mr-8 sm:mt-20 mt-20 mx-auto border border-gray-300">
       <span class="bg-blue-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
       {{request.user.username|title}}
       </span>
@@ -39,7 +39,7 @@
       <a href="{% url 'accounts:settings' %}" class="text-center text-sm mt-4 py-1 px-2 mx-10 focus:outline-none bg-blue-500 hover:bg-blue-600 text-white rounded-full">
       {% trans 'Manage your account'%}
       </a>
-      <a href="{% url 'accounts:myaccount' %}" class="text-center text-blue-500 my-4 font-semibold text-sm border border-gray-300 py-3 px-2 mx-20 focus:outline-none hover:bg-blue-100 rounded">
+      <a href="{% url 'accounts:myaccount' %}" class="text-center text-blue-500 my-4 font-semibold text-sm border-t border-b border-gray-300 py-3 focus:outline-none hover:bg-blue-100">
       {% trans 'My Account'%}
       </a>
       <a href="{% url 'logout' %}" class="text-center font-semibold text-sm mt-auto border border-gray-300 py-3 px-2 mx-24 focus:outline-none hover:bg-gray-100 rounded">

@@ -206,7 +206,7 @@ overflow: hidden;
   position: absolute;
   width: 100%;
   opacity: 0;
-  visibility: hidden;
+  visibility:hidden;
   transition: all 0.3s ease;
   top: 0;
   left: 0;
@@ -229,6 +229,13 @@ overflow: hidden;
   position: relative;
   width: 350px;
   height: 400px;
+}
+
+.modal-card{
+  background-image: url(/static/images/blob-scene-haikei.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
 }
 /* End of profile-card */
 

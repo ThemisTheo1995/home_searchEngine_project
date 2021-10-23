@@ -9,6 +9,9 @@ const appShell = [
   '/static/js/main.js',
   '/manifest.json',
   '/static/images/yeneses_pwa_192px.png',
+  '/static/images/yeneses_pwa_160px.png',
+  '/static/images/yeneses_pwa_512px.png',
+  '/static/images/yeneses_landing.png',
   'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
 ];
 
@@ -173,7 +176,7 @@ function provideOfflineFallback(event) {
           if (event.request.headers.get('accept').includes('text/html')) {
               console.log(event.request.headers)
               console.log('!!!')
-              return cache.match('/offline');
+              return cache.match('/');
           }
 
           return Promise.reject();

@@ -1,6 +1,6 @@
 # realtors/forms
 from django import forms
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from accounts.models import CustomUser
 from .models import Organisation
 
