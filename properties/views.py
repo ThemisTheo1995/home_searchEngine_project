@@ -80,7 +80,6 @@ def rent_email_listview(request):
                                         })
         # email plain text
         plain_message = strip_tags(html_message)
-        
         if name and email and phone and message:
             try:
                 send_mail(
@@ -405,18 +404,17 @@ class PropertiesCreateView(mixins.OrganisationAndLoginRequiredMixin, generic.Cre
                 admin_3_en = location_info.admin_3_en
                 admin_4 = location_info.admin_4
                 admin_4_en = location_info.admin_4_en
-                #Identifier
-                if location_info.identifier:
-                    identifier = location_info.identifier
-                else:
-                    identifier =''
                 
                 #Property features
                 if property_features:
                     property_features = json.dumps(property_features)
                     
         # Excluded form fields, manually saved
-        properties.organisation = self.request.user.organisation
+        if self.request.user.is_realtor:
+            organisation = self.request.user.organisation
+        else:
+           organisation = self.request.user.agent.organisation
+        properties.organisation = organisation
         properties.property_features = property_features
         properties.country = country
         properties.country_en = country_en
@@ -444,8 +442,12 @@ class PropertiesUpdateView(mixins.OrganisationAndLoginRequiredMixin, generic.Upd
     def get_success_url(self):
         return reverse("organisation:organisation-properties")
     
-    def get_queryset(self): 
-        organisation = self.request.user.organisation
+    def get_queryset(self):
+        if self.request.user.is_realtor:
+            organisation = self.request.user.organisation
+        else:
+           organisation = self.request.user.agent.organisation
+            
         return Properties.objects.filter(organisation=organisation)
 
     def get_context_data(self, **kwargs):
@@ -495,18 +497,17 @@ class PropertiesUpdateView(mixins.OrganisationAndLoginRequiredMixin, generic.Upd
                 admin_4 = location_info.admin_4
                 admin_4_en = location_info.admin_4_en
                 
-                #Identifier
-                if location_info.identifier:
-                    identifier = location_info.identifier
-                else:
-                    identifier =''
-                
                 #Property features
                 if property_features:
                     property_features = json.dumps(property_features)
+                
+                if self.request.user.is_realtor:
+                    organisation = self.request.user.organisation
+                else:
+                    organisation = self.request.user.agent.organisation
 
         # Excluded form fields => manually saved
-        properties.organisation = self.request.user.organisation
+        properties.organisation = organisation
         properties.property_features = property_features
         properties.country = country
         properties.country_en = country_en

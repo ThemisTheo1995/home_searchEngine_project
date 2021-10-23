@@ -1,6 +1,6 @@
 {% load i18n %}
 <header class="text-gray-600 body-font px-2 lg:px-5 sm:bg-white bg-blue-500 shadow">
-    <div class="container mx-auto flex flex-wrap sm:px-5 px-2 py-2 flex-row items-center items-start">
+    <div class="container mx-auto flex flex-wrap sm:px-5 p-4 flex-row items-center items-start">
         <!--Logo, language-->
         <div class="inline-flex flex flex-wrap w-1/2 justify-start">
             {% if request.path != '/' and request.path != '/en/'  %}
@@ -11,15 +11,15 @@
             {% if request.path == '/' or request.path == '/en/' %}
             <div class="flex">
                 <div class="dropdown inline-block relative">
-                    <form id="language" class="text-sm items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <form id="language" class="text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select onchange="submitLanguage()" class="justify-center px-4 appearance-none outline-none cursor-pointer sm:text-gray-700 text-white sm:bg-gray-200 bg-blue-500 sm:hover:bg-gray-300 pb-1 rounded font-semibold" name="language">
+                        <select onchange="submitLanguage()" class="justify-center px-4 appearance-none outline-none cursor-pointer text-white sm:text-gray-700 bg-blue-700 hover:bg-blue-600 sm:bg-gray-200 bg-blue-500 py-1 sm:hover:bg-gray-300 rounded font-semibold" name="language">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
-                        <option class="text-white bg-blue-600 font-semibold justify-center" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                        {% if language.code == 'el' %}🇬🇷{% else %}🇬🇧{% endif%}
+                        <option class="sm:text-gray-700 text-white font-semibold justify-center" value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {% if language.code == 'el' %}GR{% else %}GB{% endif%}
                         </option>
                         {% endfor %}
                         </select>
@@ -30,29 +30,124 @@
         </div>
         <!--Menu buttons-->
         <nav class="w-1/2 inline-flex flex items-center font-semibold text-base justify-end">
+            <!-- Dropdown nav button -->
+            <div class="text-left dropdown flex items-center z-50">
+                <button class="shadow inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800" 
+                type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
+                    {% if request.user.is_authenticated %}
+                    <span>Menu</span>
+                    {% else %}
+                    <svg width="20" height="20" fill="currentColor" class="bi bi-person-circle mr-2" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    <span>{% trans 'Login'%}</span>
+                    {% endif %}
+                    <svg class="w-5 h-5 ml-2 -mr-1 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+                <!-- Menu popup -->
+                <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
+                    <div class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-200 rounded shadow outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                        <!-- User authenticated -->
+                        {% if request.user.is_authenticated%}
+                            <div class="px-4 py-3">
+                                <p class="text-sm leading-5">{% trans 'Signed in as'%}</p>
+                                <p class="text-sm font-medium leading-5 text-gray-900 truncate">{{request.user.email}}</p>
+                            </div>
+
+                            <!-- User authenticated and realtor -->
+                            {% if request.user.is_authenticated and request.user.is_realtor %}
+                            <div class="py-1">
+                                <a href="{% url 'accounts:settings' %}" title="{% trans 'Settings' %}" tabindex="0" class="text-gray-700 flex justify-start items-center w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mr-2 bi bi-gear-wide mt-0.5" viewBox="0 0 16 16">
+                                        <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
+                                    </svg> {% trans 'Account settings'%}
+                                </a>
+                                <a href="{% url 'organisation:organisation-dashboard' user.organisation.pk %}" title="{% trans 'Board'%}"  tabindex="0" class="items-center text-gray-700 flex justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mr-2 mt-0.5 bi bi-house-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                                    </svg>
+                                    {% trans 'My Yeneses(Realtor)'%}
+                                </a>
+                                <a href="{% url 'accounts:myaccount' %}" title="{% trans 'favourites' %}" tabindex="0" class="items-center text-gray-700 flex justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mt-1 mr-2 bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                    </svg>
+                                    {% trans 'Favourites'%}
+                                </a>
+                                <span role="menuitem" tabindex="-1" class="flex justify-start w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">
+                                    {% trans 'Analytics (soon)' %}
+                                </span>
+                            </div>
+                            <!-- User authenticated and agent -->
+                            {% elif request.user.is_authenticated and request.user.is_agent %}
+                            <div class="py-1">
+                                <a href="{% url 'accounts:settings' %}" title="{% trans 'Settings' %}" tabindex="0" class="text-gray-700 flex justify-start items-center w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mr-2 bi bi-gear-wide mt-0.5" viewBox="0 0 16 16">
+                                        <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
+                                    </svg> {% trans 'Account settings'%}
+                                </a>
+                                <a href="{% url 'organisation:organisation-properties' %}" title="{% trans 'Board'%}"  tabindex="0" class="items-center text-gray-700 flex justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mr-2 mt-0.5 bi bi-house-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                                    </svg>
+                                    {% trans 'My Yeneses(Agent)'%}
+                                </a>
+                                <a href="{% url 'accounts:myaccount' %}" title="{% trans 'favourites' %}" tabindex="0" class="items-center text-gray-700 flex justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mt-1 mr-2 bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                    </svg>
+                                    {% trans 'Favourites'%}
+                                </a>
+                                <span role="menuitem" tabindex="-1" class="flex justify-start w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 cursor-not-allowed opacity-50" aria-disabled="true">
+                                    {% trans 'Analytics (soon)' %}
+                                </span>
+                            </div>
+                            <!-- User authenticated -->
+                            {% else %}
+                            <div class="py-1">
+                                <a href="{% url 'accounts:settings' %}" title="{% trans 'Settings' %}" tabindex="0" class="text-gray-700 flex justify-start items-center w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mr-2 bi bi-gear-wide mt-0.5" viewBox="0 0 16 16">
+                                        <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
+                                    </svg> {% trans 'Account settings'%}
+                                </a>
+                                <a href="{% url 'accounts:myaccount' %}" title="{% trans 'favourites' %}" tabindex="0" class="items-center text-gray-700 flex justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mt-1 mr-2 bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                    </svg>
+                                    {% trans 'Favourites'%}
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            <div class="py-1">
+                                <a href="{% url 'logout' %}" tabindex="0" class="items-center text-gray-700 flex justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100"  role="menuitem" >
+                                    <svg width="16" height="16" fill="DodgerBlue" class="inline-block mr-2 mt-0.5 bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                                        <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+                                    </svg>
+                                    {% trans 'Sign out'%}
+                                </a>
+                            </div>
+                        <!-- User not authenticated-->
+                        {% else %}
+                            <div class="py-1">
+                                <a href="{% url 'login' %}" title="{% trans 'Login' %}" tabindex="0" class="text-gray-700 flex justify-start w-full text-sm leading-5 text-left px-4 py-2 hover:bg-gray-100"  role="menuitem" >
+                                    {% trans 'Account login'%}
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="py-1">
+                            <a href="javascript:void(0)" tabindex="0" class="text-gray-700 flex justify-start w-full px-4 py-2 text-xs leading-5 text-left  hover:bg-gray-100" role="menuitem" >
+                                {% trans 'License'%}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--User has account+ -->
             {% if request.user.is_authenticated %}
-            <!-- +user is realtor -->
-            {% if request.user.is_authenticated and request.user.is_realtor %}
-            <a href="{% url 'organisation:organisation-dashboard' user.organisation.pk %}" title="{% trans 'Board'%}" class="py-1 px-2 rounded text-center sm:text-white mx-2 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="mb-1 inline-block bi bi-house-door-fill" viewBox="0 0 16 16">
-                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
-            </svg>
-            </a>
-            {% endif %}
-            <!-- +user is agent -->
-            {% if request.user.is_authenticated and request.user.is_agent %}
-            <a href="{% url 'organisation:organisation-properties' %}" class="py-1 px-2 rounded text-center sm:text-white mx-2 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="mb-1 inline-block bi bi-house-door-fill" viewBox="0 0 16 16">
-                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
-            </svg>
-            </a>
-            {% endif %}
-            <a href="{% url 'accounts:settings' %}" title="{% trans 'Settings' %}" class="py-1 px-2 rounded text-center sm:text-white mx-2 transition duration-75 ease-in-out sm:bg-blue-600 sm:hover:bg-blue-700 bg-gray-100 hover:bg-gray-300 text-blue-600">
-                <svg width="15" height="15" fill="currentColor" class="mb-1 inline-block bi bi-gear-fill" viewBox="0 0 16 16">
-                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-                </svg>
-            </a>
             <!-- User icon -->
             <a data-modal="modal-one" id="profile-button" class="inline-flex items-center focus:outline-none text-sm font-bold cursor-pointer mx-2">
             {% if request.user.profile_picture %}
@@ -70,11 +165,6 @@
         </nav>
         <!-- User profile card -->
         {% include "accounts/accounts_profileCard.html" %}
-        <!-- User no account -->
-        {% else %}
-        <a href="{% url 'login' %}" class="shadow tracking-wide inline-flex sm:text-white sm:bg-gray-700 bg-white border-0 p-2 focus:outline-none sm:hover:bg-gray-800 hover:bg-gray-200 rounded text-sm">
-            {% trans 'Login'%}
-        </a>
         </nav>
         {% endif %}
     </div>

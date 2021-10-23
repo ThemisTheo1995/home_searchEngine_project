@@ -9,7 +9,7 @@ class RealtorAndLoginRequiredMixin(AccessMixin):
         return super().dispatch(request, *args, **kwargs)
 
 class OrganisationAndLoginRequiredMixin(AccessMixin):
-    """Verify that the current user is authenticated and is realtor."""
+    """Verify that the current user is authenticated and is agent or realtor."""
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_realtor:
             if not request.user.is_authenticated or not request.user.is_realtor:

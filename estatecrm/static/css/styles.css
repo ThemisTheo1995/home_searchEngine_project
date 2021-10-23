@@ -1,3 +1,10 @@
+/* Dropdown */
+.dropdown:focus-within .dropdown-menu {
+  opacity:1;
+  transform: translate(0) scale(1);
+  visibility: visible;
+}
+
 /* custom scrolling bar */
 
 ::-webkit-scrollbar {
@@ -257,7 +264,7 @@ overflow: hidden;
 }
 
 #filterModal{
-  z-index: 999;
+  z-index: 40;
   top: -1px;
 }
 
