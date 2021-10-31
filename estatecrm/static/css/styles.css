@@ -301,8 +301,8 @@ overflow: hidden;
 
 .markerActive{
   overflow: hidden;
-  width: 25px!important;
-  height: 25px!important;
+  width: 30px!important;
+  height: 30px!important;
   transition: width 0.2s ease-out, height 0.2s ease-out;
   opacity: 1!important;
   animation: bounce 0.5s infinite alternate;
@@ -310,18 +310,18 @@ overflow: hidden;
 }
 @keyframes bounce {
   from {
-    margin-top: -10px;
+    margin-top: -30px;
   }
   to {
-    margin-top: -20px;
+    margin-top: -60px;
   }
 }
 @-webkit-keyframes bounce {
   from {
-    margin-top: -10px;
+    margin-top: -30px;
   }
   to {
-    margin-top: -20px;
+    margin-top: -60px;
   }
 }
 

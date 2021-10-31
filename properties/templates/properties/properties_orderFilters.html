@@ -23,7 +23,7 @@
          </select>
          <!-- Date order -->
          <select form="search_bar" onchange="sortFilter()" name="orderlist" class="rounded  mb-2 mr-2 bg-gray-600 p-2 outline-none items-center text-gray-50">
-            <option selected="true" value="">{% trans '📅 Random date'%}</option>
+            <option selected="true" value="">{% trans '📅 Registration Date'%}</option>
             {% for key,value in order_list_date_choices.items %}
             <option value="{{ key }}" {% if key == orderlist %} selected {% endif %}>
             {{ value }}

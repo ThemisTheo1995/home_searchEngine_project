@@ -51,8 +51,8 @@ furniture_choices = {
 }
 
 order_list_date_choices = {
-  'old':_('Oldest listed'),
-  'new':_('Newest listed'),
+  'old':_('Older to recent'),
+  'new':_('Recent to older'),
 }
 
 order_price_choices = {

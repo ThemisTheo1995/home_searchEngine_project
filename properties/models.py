@@ -102,10 +102,22 @@ class Properties(models.Model):
         ('For_Sale', _('For Sale')), 
         ('To_Rent', _('To Rent')),
         ]
+    FEATURE = [
+        ('', ''),
+        ('Energy Efficient', _('Energy Efficient')),
+        ('Garage', _('Garage')),
+        ('Open Plan', _('Open Plan')),
+        ('New Construction', _('New Construction')),
+        ('Modern', _('Modern')),
+        ('Classic', _('Classic')),
+        ('Fireplace', _('Fireplace')),
+        ('Garden', _('Garden')),
+    ]
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     agent = models.ForeignKey(Agent, null=True, blank=True, on_delete=models.SET_NULL)
     property_category = models.CharField(max_length=25,choices=PROPERTY_CATEGORY_CHOICES, default='STANDARD')
     property_type = models.CharField(max_length=100, choices=TYPE_CHOICES, default='Flat/Apartment')
+    property_feature = models.CharField(max_length=100, choices=FEATURE, default = '')
     property_features = models.CharField(max_length=300, blank=True, default='')
     advertised = models.CharField(max_length=10, choices=ADVERTISMENT_CHOICES, default='To_Rent')
     description = models.TextField(max_length=2000)

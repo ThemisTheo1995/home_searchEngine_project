@@ -278,8 +278,8 @@ window.addEventListener('scroll', function() {
           // Map configuration
           var yenesesMarker = L.icon({
               iconUrl: '/static/images/rec.svg',
-              iconSize: [25, 25],
-              iconAnchor: [12.5,25]
+              iconSize: [30, 30],
+              iconAnchor: [15,30]
           });
           marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: yenesesMarker}).
           bindTooltip(markerSet[i][0]+"<br><b>"+markerSet[i][4]+markerSet[i][5]+"</b>").
