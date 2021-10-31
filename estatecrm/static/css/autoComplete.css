@@ -193,15 +193,17 @@ h1.title {
   border-radius: 0.6rem;
   background-color: #fff;
   box-shadow: 0 5px 6px rgba(149, 157, 165, 0.459);
-  z-index: 1000;
+  z-index: 900;
   outline: none;
+  overflow-y: auto;
+  height: 500px;
 }
 
 .autoComplete_result {
   padding: 0.8rem 1rem;
   list-style: none;
   text-align: left;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #212121;
   transition: all 0.1s ease-in-out;
   background-color: rgba(255, 255, 255, 1);
@@ -211,8 +213,7 @@ h1.title {
   transition: all 0.2s ease;
   border-bottom-width: 1px;
   border-bottom-style: dashed;
-  border-color: rgb(179, 179, 179);
-  border-radius: 7px;
+  border-color: rgba(179, 179, 179, 0.589);
 }
 
 .autoComplete_result_keys{

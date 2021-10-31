@@ -141,7 +141,7 @@ class Properties(models.Model):
     country_en = models.CharField(max_length=100)
     geo_lat = models.CharField(max_length=15)
     geo_lng = models.CharField(max_length=15)
-    identifier = models.ForeignKey(geoData, models.DO_NOTHING)
+    identifier = models.ForeignKey(geoData, models.CASCADE)
     
     def save(self, *args, **kwargs):
         if self.photo_main:
@@ -180,4 +180,4 @@ class UserPropertyFavourite(models.Model):
     notes = models.TextField(max_length=1500, blank=True)
     
     def __str__(self):
-        return self.favourite.address
+        return self.favourite

@@ -187,7 +187,7 @@ overflow: hidden;
 
 .cont {
   display: flex;
-  align-items: center;
+  align-items: center!;
   justify-content: center;
   height: 10vh;
 }

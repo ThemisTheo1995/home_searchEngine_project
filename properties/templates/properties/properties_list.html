@@ -49,7 +49,7 @@
                         {% if rent.property_category == 'STANDARD' %}
                             <div class="xl:w-7/12 w-full bg-white sm:rounded-bl">
                                 <div class="h-auto overflow-hidden">
-                                    <div class="splide" data-pages="2" data-ratio="0.33" id="image-slider{{rent.pk}}">
+                                    <div class="splide" data-pages="2" data-ratio="0.36" id="image-slider{{rent.pk}}">
                                         <div class="splide__track">
                                             <ul class="splide__list">
                                                 {% if rent.photo_main %}
@@ -119,12 +119,12 @@
                                                 {{rent.admin_1}}
                                             {% endif %}
                                         </h1>
-                                        <div class="flex flex-wrap pt-2 text-xs sm:text-sm xl:hidden w-full">
-                                            <p class="text-gray-900 lg:mb-2 overflow-hidden">
+                                        <div class="flex flex-wrap pt-2 text-xs sm:text-sm w-full">
+                                            <p class="text-gray-900 lg:mb-2 overflow-hidden xl:truncate">
                                                 {{rent.short_description}}
                                             </p>
                                         </div>
-                                        <div class="flex flex-wrap text-sm text-gray-800 xl:pt-5 pt-4">
+                                        <div class="flex flex-wrap text-sm text-gray-800 xl:pt-1 pt-4">
                                             <div class="flex justify-between w-full mb-2 tracking-wider text-sm text-center font-bold sm:font-normal">
                                                 <div>
                                                     <svg class="inline-block mb-1 bi bi-house-fill" fill="currentColor" height="14" viewbox="0 0 16 16" width="14">

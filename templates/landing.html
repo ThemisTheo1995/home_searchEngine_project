@@ -25,20 +25,20 @@
         <form method="get" autocomplete="off">
           <div class="flex flex-wrap w-full justify-center items-center">
             <div class="autoComplete_wrapper flex xl:w-1/2 w-full">
-              <input class="sm:text-lg text-base shadow" id="autoComplete" type="text" name="location" placeholder="{% trans "e.g. 'CH1 3DA', 'Chester' "%}" required>
+              <input class="sm:text-lg text-base shadow" id="autoComplete" type="text" name="location" placeholder="{% trans "e.g. 'London', 'Chester', 'Merseyside' "%}" required>
             </div>
-            <div class="mode flex w-full justify-center items-center mt-4 hidden">
+            <div class="mode flex w-full justify-center items-center mt-4">
                 <div class="toggle">
                   <div class="toggler text-sm">{% trans 'Strict'%}</div>
                 </div>
             </div>
               <div class="selection hidden"></div>
           </div>
-          <div class="flex justify-center py-6">
-            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="tracking-wider inline-flex text-white font-semibold bg-blue-600 border-0 py-2 px-6 hover:bg-blue-700 rounded text-lg">
+          <div class="flex flex-wrap justify-center py-6 w-full">
+            <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}"  class="tracking-wider transition duration-150 ease-in-out shadow hover:shadow-md mr-2 w-32 lg:w-40 text-bg-gray-700 border border-gray-300 font-bold bg-gray-100 py-2 px-1 rounded text-lg">
               {% trans 'TO RENT' %}
             </button>
-            <button id="saleButton" type="submit" class="tracking-wider ml-4 inline-flex text-white font-semibold bg-gray-700 py-2 px-6 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
+            <button id="saleButton" type="submit" class="tracking-wider ml-2 w-32 lg:w-40 text-white font-bold bg-gray-700 py-2 px-1 hover:bg-gray-800 rounded text-lg border-1 border-gray-400">
               {% trans 'FOR SALE' %}
             </button>
           </div>

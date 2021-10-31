@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-17 19:26+0000\n"
+"POT-Creation-Date: 2021-10-29 13:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <themistheodoratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -329,7 +329,6 @@ msgid "Region*"
 msgstr "Περιοχή*"
 
 #: properties/templates/properties/properties_create.html:17
-#: templates/landing.html:28
 msgid "e.g. 'CH1 3DA', 'Chester' "
 msgstr "π.χ. 'Περιστέρι', 'Θεσσαλονίκη', '121 36'"
 
@@ -437,7 +436,7 @@ msgid "Scenery/View"
 msgstr "Θέα"
 
 #: properties/templates/properties/properties_create.html:63
-#: realtors/templates/realtors/realtors_agent_create.html:14
+#: realtors/templates/realtors/realtors_agent_create.html:15
 #: templates/registration/password_change_form.html:16
 msgid "Submit"
 msgstr "Μετάβαση"
@@ -560,12 +559,6 @@ msgstr "Δεν υπάρχουν ακίνητα σε αυτή την περιοχ
 msgid "Hover to show on map"
 msgstr "Προβολή στον χάρτη"
 
-#: properties/templates/properties/properties_list_email.html:10
-msgid ""
-"New interest for your property by {{name}}.<br>Message: {{message}}."
-"<br>Phone: {{phone}}<br>Email: {{email}}"
-msgstr ""
-
 #: properties/templates/properties/properties_mainFilters.html:9
 msgid "Search for a location..."
 msgstr "Ψάξε για περιοχή..."
@@ -645,35 +638,35 @@ msgstr "Καταχώρηση νέου υπαλλήλου"
 msgid "AGENTS"
 msgstr "ΥΠΑΛΛΗΛΟΙ"
 
-#: realtors/templates/realtors/realtors_agent_list.html:20
+#: realtors/templates/realtors/realtors_agent_list.html:21
 msgid "Total Agents"
 msgstr "Σύνολο Υπαλλήλων"
 
-#: realtors/templates/realtors/realtors_agent_list.html:33
+#: realtors/templates/realtors/realtors_agent_list.html:34
 msgid "Add an agent"
 msgstr "Καταχώρηση Υπαλλήλου"
 
-#: realtors/templates/realtors/realtors_agent_list.html:46
+#: realtors/templates/realtors/realtors_agent_list.html:47
 msgid "IMAGE"
 msgstr "ΕΙΚΟΝΑ"
 
-#: realtors/templates/realtors/realtors_agent_list.html:47
+#: realtors/templates/realtors/realtors_agent_list.html:48
 msgid "USERNAME"
 msgstr ""
 
-#: realtors/templates/realtors/realtors_agent_list.html:48
+#: realtors/templates/realtors/realtors_agent_list.html:49
 msgid "NAME"
 msgstr "ΟΝΟΜΑ"
 
-#: realtors/templates/realtors/realtors_agent_list.html:49
+#: realtors/templates/realtors/realtors_agent_list.html:50
 msgid "EMAIL"
 msgstr ""
 
-#: realtors/templates/realtors/realtors_agent_list.html:50
+#: realtors/templates/realtors/realtors_agent_list.html:51
 msgid "ACTIVE"
 msgstr "ΕΝΕΡΓΟΣ"
 
-#: realtors/templates/realtors/realtors_agent_list.html:51
+#: realtors/templates/realtors/realtors_agent_list.html:52
 msgid "LISTED DATE"
 msgstr "ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΗΣΗΣ"
 
@@ -820,6 +813,16 @@ msgstr "Λεπτομέρειες"
 msgid "Organisation details"
 msgstr "Πληροφορίες Εταιρείας"
 
+#: realtors/views.py:188
+msgid ""
+"Agent has been created succesfully but email has not been delivered due to "
+"an error."
+msgstr ""
+
+#: realtors/views.py:191
+msgid "Agent has been created succesfully"
+msgstr ""
+
 #: templates/landing.html:7
 msgid "Home"
 msgstr "Αρχική"
@@ -835,7 +838,12 @@ msgstr "Yeneses.com"
 #: templates/landing.html:23
 msgid "Explore homes, properties and offices in Greece and the UK"
 msgstr ""
-"Βρες το δικό σου σπίτι, οικία και γραφείο στην Ελλάδα και το Ηνωμένο Βασίλειο"
+"Ένα κλικ μακριά από την αγορά ή την ενοικίαση σπιτιού και επαγγελματικού "
+"χώρου."
+
+#: templates/landing.html:28
+msgid "e.g. 'London', 'Chester', 'Merseyside' "
+msgstr " 'Γλυφάδα', 'Αττική', 'Θεσσαλονίκη' "
 
 #: templates/landing.html:39
 msgid "TO RENT"
@@ -845,17 +853,58 @@ msgstr "ΕΝΟΙΚΙΑΣΗ"
 msgid "FOR SALE"
 msgstr "ΑΓΟΡΑ"
 
-#: templates/navbar.html:37
-msgid "Board"
-msgstr "Πίνακας"
+#: templates/navbar.html:44 templates/navbar.html:136
+#: templates/registration/signup.html:14
+msgid "Login"
+msgstr "Είσοδος"
 
-#: templates/navbar.html:51
+#: templates/navbar.html:54
+msgid "Signed in as"
+msgstr ""
+
+#: templates/navbar.html:61 templates/navbar.html:86 templates/navbar.html:111
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: templates/navbar.html:76 templates/registration/signup.html:14
-msgid "Login"
-msgstr "Είσοδος"
+#: templates/navbar.html:64 templates/navbar.html:89 templates/navbar.html:114
+msgid "Account settings"
+msgstr "Ρυθμίσεις λογιαριασμού"
+
+#: templates/navbar.html:66 templates/navbar.html:91
+msgid "Board"
+msgstr "Πίνακας"
+
+#: templates/navbar.html:71
+msgid "My Yeneses(Realtor)"
+msgstr ""
+
+#: templates/navbar.html:73 templates/navbar.html:98 templates/navbar.html:116
+msgid "favourites"
+msgstr ""
+
+#: templates/navbar.html:77 templates/navbar.html:102 templates/navbar.html:120
+msgid "Favourites"
+msgstr ""
+
+#: templates/navbar.html:80 templates/navbar.html:105
+msgid "Analytics (soon)"
+msgstr ""
+
+#: templates/navbar.html:96
+msgid "My Yeneses(Agent)"
+msgstr ""
+
+#: templates/navbar.html:130
+msgid "Sign out"
+msgstr ""
+
+#: templates/navbar.html:137
+msgid "Account login"
+msgstr "Σύνδεση στο λογιαριασμό"
+
+#: templates/navbar.html:143
+msgid "License"
+msgstr ""
 
 #: templates/registration/login.html:12 templates/registration/login.html:22
 msgid "Log In"

@@ -13,6 +13,7 @@ class PropertiesForm(forms.ModelForm):
         model = Properties
         fields = "__all__"
 
+# Property creation form
 class PropertiesCreationForm(forms.ModelForm):
     available_after = forms.DateField(
         widget=forms.DateInput(format=('%d-%m-%Y'), 
@@ -69,7 +70,11 @@ class PropertiesCreationForm(forms.ModelForm):
             "is_published":_("Direct publish")
         }         
     field_order = ['address','street_number','postalcode','geo_lat', 'geo_lng']
-    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for n in self.fields:
+            if n == 'photo_main' or n =='photo_1' or n == 'photo_2' or n == 'photo_3' or n == 'photo_4':
+                self.fields[n].widget.attrs.update({'class': 'bg-blue-600 rounded-lg text-white shadow'})
 
 # Properties update form  
 class PropertiesUpdateForm(forms.ModelForm):
@@ -92,3 +97,8 @@ class PropertiesUpdateForm(forms.ModelForm):
             'identifier',
             'property_features',
         )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for n in self.fields:
+            if n == 'photo_main' or n =='photo_1' or n == 'photo_2' or n == 'photo_3' or n == 'photo_4':
+                self.fields[n].widget.attrs.update({'class': 'bg-blue-600 rounded-lg text-white shadow'})
