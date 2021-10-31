@@ -48,7 +48,7 @@
                         </div>
                         {% if rent.property_category == 'STANDARD' %}
                             <div class="xl:w-7/12 w-full bg-white sm:rounded-bl relative">
-                            {% if property_feature != '' %}
+                            {% if rent.property_feature != '' %}
                             <span class="rounded-full text-blue-800 border-blue-400 bg-blue-200 border px-2 py-1 sm:text-sm text-xs shadow-md absolute z-10 bottom-5 right-5">
                                 {% trans rent.property_feature %}
                             </span>
@@ -236,7 +236,7 @@
                         </div>
                         {% else %}
                             <div class="w-full bg-white relative">
-                            {% if property.feature != '' %}
+                            {% if rent.property_feature != '' %}
                             <span class="rounded-full text-green-800 border-green-400 bg-green-200 border px-2 py-1 sm:text-sm text-xs shadow-md absolute z-10 bottom-5 right-5">
                                 {% trans rent.property_feature %}
                             </span>

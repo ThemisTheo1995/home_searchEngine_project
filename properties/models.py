@@ -117,7 +117,7 @@ class Properties(models.Model):
     agent = models.ForeignKey(Agent, null=True, blank=True, on_delete=models.SET_NULL)
     property_category = models.CharField(max_length=25,choices=PROPERTY_CATEGORY_CHOICES, default='STANDARD')
     property_type = models.CharField(max_length=100, choices=TYPE_CHOICES, default='Flat/Apartment')
-    property_feature = models.CharField(max_length=100, choices=FEATURE, default = '')
+    property_feature = models.CharField(max_length=100, choices=FEATURE, default = '', blank=True)
     property_features = models.CharField(max_length=300, blank=True, default='')
     advertised = models.CharField(max_length=10, choices=ADVERTISMENT_CHOICES, default='To_Rent')
     description = models.TextField(max_length=2000)
