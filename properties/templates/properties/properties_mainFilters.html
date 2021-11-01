@@ -16,7 +16,7 @@
             <div class="selection hidden"></div>
          </div>
          <!--Property type/Furniture-->
-         <div class="md:w-3/12 w-1/2 pb-4">
+         <div class="md:w-3/12 w-1/2 pb-4 sm:text-sm text-xs">
             <div class="flex justify-end items-center">
                <label for="type" class="pr-2 font-semibold">{% trans 'Type' %}</label>
                <select name="type" class="w-full lg:w-1/2 font-bold bg-gray-50 rounded py-2 px-1 outline-none text-center text-gray-600 form_group shadow">
@@ -28,7 +28,7 @@
                   {% endfor %}
                </select>
             </div>
-            <div class="flex mt-2 justify-end items-center">
+            <div class="flex mt-2 justify-end items-center sm:text-sm text-xs">
                <label for="furniture" class="pr-2 font-semibold">{% trans 'Furniture' %}</label>
                <select name="furniture" class="w-full lg:w-1/2 font-bold bg-gray-50 rounded py-2 px-1 outline-none text-center text-gray-600 form_group shadow">
                   <option selected="true" value="">{% trans 'any'%}</option>
@@ -41,23 +41,23 @@
             </div>
          </div>
          <!--Bedrooms/Bathrooms-->
-         <div class="md:w-3/12 w-1/2 pb-4">
+         <div class="md:w-3/12 w-1/2 pb-4 sm:text-sm text-xs">
             <div class="flex justify-end items-center">
                <label class="pr-2 font-semibold">{% trans 'Bedrooms' %}</label>
-               <input type="number" min="0" max="99" id="minbeds" value="{{minbedrooms}}" name="minbeds" class="form_group w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 mr-1 text-gray-600 shadow" placeholder="min">
-               <input type="number" min="0" max="99" id="maxbeds" value="{{maxbedrooms}}" name="maxbeds" class="form_group w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 ml-1 text-gray-600 shadow" placeholder="max">
+               <input type="number" min="0" max="99" id="minbeds" value="{{minbedrooms}}" name="minbeds" class="form_group sm:w-14 w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 mr-1 text-gray-600 shadow" placeholder="min">
+               <input type="number" min="0" max="99" id="maxbeds" value="{{maxbedrooms}}" name="maxbeds" class="form_group sm:w-14 w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 ml-1 text-gray-600 shadow" placeholder="max">
             </div>
             <div class="flex mt-2 justify-end items-center">
                <label class="pr-2 font-semibold">{% trans 'Bathrooms' %}</label>
-               <input type="number" min="0" max="99" id="minbaths" value="{{minbathrooms}}" name="minbaths" class="form_group w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 mr-1 text-gray-600 shadow" placeholder="min">
-               <input type="number" min="0" max="99" id="maxbaths" value="{{maxbathrooms}}" name="maxbaths" class="form_group w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 ml-1 text-gray-600 shadow" placeholder="max">
+               <input type="number" min="0" max="99" id="minbaths" value="{{minbathrooms}}" name="minbaths" class="form_group sm:w-14 w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 mr-1 text-gray-600 shadow" placeholder="min">
+               <input type="number" min="0" max="99" id="maxbaths" value="{{maxbathrooms}}" name="maxbaths" class="form_group sm:w-14 w-12 text-center bg-gray-50 rounded outline-none py-2 px-1 ml-1 text-gray-600 shadow" placeholder="max">
             </div>
          </div>
          <!--Price-->
-         <div class="md:w-3/12 w-full">
+         <div class="md:w-3/12 w-full sm:text-sm text-xs">
             <div class="flex w-1/2 md:w-full justify-end items-center">
-               <label for="minprice font-semibold" class="pr-2">{% trans 'Price' %}</label>
-               <select name="minprice" class="bg-gray-50 rounded p-2 outline-none text-center text-gray-600 form_group shadow">
+               <label class="pr-2 font-semibold">{% trans 'Price' %}</label>
+               <select name="minprice" class="bg-gray-50 rounded py-2 outline-none text-center text-gray-600 form_group shadow">
                   <option selected="true" value="">{% trans 'min'%}</option>
                   {% for key,value in price.items %}
                   <option value="{{ key }}" {% if key == minprice %} selected {% endif %}>
@@ -65,7 +65,7 @@
                   </option>
                   {% endfor %}
                </select>
-               <select name="maxprice" class="bg-gray-50 rounded p-2 ml-2 outline-none text-center text-gray-600 form_group shadow">
+               <select name="maxprice" class="bg-gray-50 rounded py-2 ml-2 outline-none text-center text-gray-600 form_group shadow">
                   <option selected="true" value="">{% trans 'max'%}</option>
                   {% for key,value in price.items %}
                   <option value="{{ key }}" {% if key == maxprice %} selected {% endif %}>
@@ -76,17 +76,15 @@
             </div>
          </div>
       </div>
+      <hr class="h-0.5 mt-4 bg-white sm:bg-blue-500">
       <!--Actions-->
-      <div class="flex flex-wrap w-full py-3 text-sm">
-         <div class="w-1/2"></div>
-         <div class="flex flex-wrap w-1/2 justify-end">
-            <button id="rent_clear_button" type="button" onclick="resetFilter()" id="rent_clear" class="p-2 justify-enditems-center mr-1 text-xs text-gray-600 font-bold bg-gray-200 hover:bg-gray-300 rounded shadow">
+      <div class="flex flex-wrap w-full py-3 text-sm justify-end">
+            <button id="rent_clear_button" type="button" onclick="resetFilter()" id="rent_clear" class="p-2 items-center mr-1 text-xs text-gray-600 font-bold bg-gray-300 hover:bg-gray-400 rounded shadow">
             {% trans 'CLEAR'%}
             </button>
             <button id="rent_search_button" type="submit" class="shadow p-2 items-center text-blue-600 font-bold bg-white ml-1 hover:shadow-md border border-gray-300 rounded">
             {% trans 'SEARCH'%}
             </button>
-         </div>
       </div>
       <input type="text" class="hidden features" name="features" id="features" value="{{features}}">
       <input type="text" class="hidden" name="map" id="mapFilter" value="{{map}}">
