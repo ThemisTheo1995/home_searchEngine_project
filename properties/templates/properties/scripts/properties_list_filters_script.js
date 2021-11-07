@@ -52,7 +52,7 @@ function searchBarClose(){
 function showMap(mapFilter){
 	var mapInput = document.getElementById(mapFilter);
 	if (mapInput.value == '1'){
-		mapInput.value = '';
+		mapInput.value = 'off';
 	}else{
 		mapInput.value='1';
 	}

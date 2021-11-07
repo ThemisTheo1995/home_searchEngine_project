@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
+    // Initiate the map
+  var markerSet = JSON.parse(document.getElementById('markerSet').textContent);
+  if (markerSet != 'off'){
     /*
     * Leaflet.Sleep
     */
@@ -8,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     * Default Button (touch devices only)
     */
 
-L.Control.SleepMapControl = L.Control.extend({
+  L.Control.SleepMapControl = L.Control.extend({
 
     initialize: function(opts){
       L.setOptions(this,opts);
@@ -261,10 +263,7 @@ window.addEventListener('scroll', function() {
       });
   }
 
-  // Fetch the geo data.
-  var markerSet = JSON.parse(document.getElementById('markerSet').textContent);
-  if (typeof markerSet != 'undefined'){
-
+    console.log(markerSet);
   // SetView
   var map = L.map('map').setView([markerSet[0][1], markerSet[0][2]], 13);
   // Map init
@@ -282,7 +281,7 @@ window.addEventListener('scroll', function() {
               iconAnchor: [15,30]
           });
           marker = new L.marker([markerSet[i][1],markerSet[i][2]], {icon: yenesesMarker}).
-          bindTooltip(markerSet[i][0]+"<br><b>"+markerSet[i][4]+markerSet[i][5]+"</b>").
+          bindTooltip(markerSet[i][0]+" "+markerSet[i][6]+"<br><b>"+markerSet[i][4]+markerSet[i][5]+"</b>").
           on('click',markerClick).
           //bindPopup('<a href=http://127.0.0.1:8000/properties/property/'+markerSet[i][3]+'/><b>'+markerSet[i][0]+'</b></a>'+'<br>'+markerSet[i][4]+markerSet[i][5]).openPopup().
           addTo(map);

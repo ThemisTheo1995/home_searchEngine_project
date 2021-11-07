@@ -61,7 +61,7 @@
             {% endif %}
          {% endfor %}
          </div>
-            {% if map == '1' %}
+            {% if map != 'off' %}
             <button type="submit" onclick="showMap('mapFilter')" form="search_bar" class="focus:outline-none rounded font-semibold p-2 border border-gray-600 text-center text-white transition duration-75 ease-in-out bg-gray-600">
             {% trans 'Map'%}
             <img class="inline-block transition duration-150 ease-in-out transform hover:scale-125" width="20" height="20" src="{% static "images/rec.svg" %}"  alt="Click to show map"/>

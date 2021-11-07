@@ -622,7 +622,7 @@ msgstr "Προβολή:"
 
 #: properties/templates/properties/properties_orderFilters.html:26
 msgid "📅 Registration Date"
-msgstr "Ημερομηνία Καταχώρησης"
+msgstr "📅 Ημερομηνία Καταχώρησης"
 
 #: properties/templates/properties/properties_orderFilters.html:34
 msgid "Random price"

@@ -133,7 +133,7 @@ class PropertiesRentListView(generic.ListView):
         context['orderprice'] = pre('orderprice','')
         context['paginate_by'] = pre('paginate_by', 15) or 15
         context['features'] = pre('features','')
-        context['map'] = pre('map','')
+        context['map'] = pre('map','') or 1
         # Features list
         context['views'] = pre('views','')
         context['garden'] = pre('garden','')
@@ -149,13 +149,13 @@ class PropertiesRentListView(generic.ListView):
         context['pagination_choices'] = pagination_choices
         context['page_view_choices'] = page_view_choices
         try:
-            if len(context['rentProperties'])>0:
+            if len(context['rentProperties'])>0 and context['map'] != 'off':
                 markerSet = []
                 for M in context['rentProperties']:
-                    markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.price, M.currency])
+                    markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.price, M.currency, M.street_number])
             context['markerSet'] = markerSet
         except:
-            context['markerSet'] = "undefined"
+            context['markerSet'] = "off"
         
         return context
 

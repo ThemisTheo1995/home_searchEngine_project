@@ -22,7 +22,7 @@
   {% url 'landing-page' as landing %}
   {% url 'properties:create' as URLpropertiesCreate %}
 
-  {% if request.path == URLrentList and map or '/properties/property/' in request.path %}
+  {% if request.path == URLrentList and map != 'off' or '/properties/property/' in request.path %}
   <!-- Leaflet library --> 
   <link defer rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> 
