@@ -6,7 +6,7 @@ function submitLanguage(){
 
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 document.getElementById("dropdown").addEventListener("click", function() {
-  if (!isSafari){
+  if (isSafari){
     const dropdownMenu = document.getElementById('headlessui-menu-items-117');
     if (dropdownMenu.classList.contains("visible")){
         dropdownMenu.classList.add("invisible");
