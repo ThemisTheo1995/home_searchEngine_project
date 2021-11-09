@@ -10,8 +10,8 @@
  
 <section class="text-gray-600 body-font overflow-hidden bg-gray-100">
   <div class="wave-container bg-blue-500">
-    <div class="container flex px-5 pt-14 pb-10 items-center justify-center flex-col mx-auto">
-      <div class="text-center shadow splash-container lg:w-2/3 w-full bg-gray-50 sm:py-10 py-6 px-6 bg-opacity-100 rounded-lg">
+    <div class="container flex px-5 xl:px-20 pt-14 pb-10 items-center justify-center flex-col mx-auto">
+      <div class="text-center shadow splash-container w-full bg-gray-50 sm:py-10 py-6 px-6 bg-opacity-100 rounded-lg">
         <h1 class="title-font sm:text-5xl text-4xl my-6 font-semibold text-gray-900 px-4 title tracking-wider">
         <strong>
           <a id="landing-title" href="{% url 'landing-page' %}" title="{% trans 'Yeneses.com - Αρχική σελίδα'%}" aria-label="{% trans 'Yeneses.com'%}">
@@ -24,7 +24,7 @@
         </h2>
         <form method="get" autocomplete="off">
           <div class="flex flex-wrap w-full justify-center items-center">
-            <div class="autoComplete_wrapper flex xl:w-1/2 w-full">
+            <div class="autoComplete_wrapper flex xl:w-1/2 w-full py-1">
               <input class="sm:text-lg text-base shadow" id="autoComplete" type="search" name="location" aria-label="{% trans 'Search for properties' %}" placeholder="{% trans "e.g. 'London', 'Chester', 'Merseyside' "%}" required>
             </div>
             <div class="mode flex w-full justify-center items-center mt-4">
