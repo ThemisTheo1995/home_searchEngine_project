@@ -13,7 +13,7 @@
                 <div class="dropdown inline-block relative">
                     <form id="language" class="text-xs items-center" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select onchange="submitLanguage()" class="justify-center px-4 shadow appearance-none outline-none cursor-pointer text-white sm:text-gray-700 bg-blue-700 hover:bg-blue-600 sm:bg-white bg-blue-500 py-1 sm:hover:bg-gray-50 rounded font-semibold" name="language">
+                        <select onchange="submitLanguage()" class="justify-center px-4 shadow appearance-none outline-none text-white sm:text-gray-700 bg-blue-700 hover:bg-blue-600 sm:bg-white bg-blue-500 py-1 sm:hover:bg-gray-50 rounded font-semibold" name="language">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
