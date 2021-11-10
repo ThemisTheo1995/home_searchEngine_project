@@ -99,7 +99,7 @@
                             </div>
                             <div class="xl:w-5/12 w-full bg-white overflow-hidden sm:rounded-br sm:rounded-bl-none rounded-b text-sm">
                                 <div class="h-full overflow-hidden px-4 flex flex-wrap">
-                                    <a class="w-full" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
+                                    <a class="w-full cursor-default" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
                                         <div class="flex items-center flex-wrap w-full pt-2">
                                             <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                                                 {{rent.admin_2}}
@@ -282,7 +282,7 @@
                             </div>
                             <div class="w-full bg-white overflow-hidden rounded-b text-sm border-r-2 border-l-2 border-green-600 border-b-2">
                                 <div class="h-full overflow-hidden px-4">
-                                    <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
+                                    <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" class="cursor-default">
                                         <div class="flex items-center flex-wrap w-full pt-2">
                                             <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                                                 {{rent.admin_2}}

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var secondarySlider = new Splide('#secondary-slider', {
         direction   : 'ttb',
         type        : 'loop',
-        perPage     : 2,
+        perPage     : 3,
         perMove     : 1,
         heightRatio : 1.11,
         gap         : 10,

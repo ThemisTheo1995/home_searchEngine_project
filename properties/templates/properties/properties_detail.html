@@ -52,6 +52,11 @@
                         <div id="secondary-slider" class="splide">
                             <div class="splide__track">
                                 <ul class="splide__list">
+                                    {% if rent.photo_main %}
+                                    <li class="splide__slide">
+                                        <img class="" data-splide-lazy="{{rent.photo_main.url}}" />
+                                    </li>
+                                    {% endif %} 
                                     {% if rent.photo_1 %}
                                     <li class="splide__slide">
                                         <img class="" data-splide-lazy="{{rent.photo_1.url}}" />
@@ -69,11 +74,6 @@
                                         <img class="" data-splide-lazy="{{rent.photo_4.url}}" />
                                     </li>
                                     {% endif %}
-                                    {% if rent.photo_main %}
-                                    <li class="splide__slide">
-                                        <img class="" data-splide-lazy="{{rent.photo_main.url}}" />
-                                    </li>
-                                    {% endif %} 
                                 </ul>
                             </div>
                         </div>
