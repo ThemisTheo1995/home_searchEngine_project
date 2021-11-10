@@ -82,8 +82,7 @@
 
 .splide__slide {
   border-width: 0px!important;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-radius: 5px;
 }
 
 #div_id_is_realtor {  
