@@ -150,8 +150,7 @@ input[type="search"]:focus::-webkit-search-cancel-button {
   color: rgba(59, 130, 246, 1);
   outline: none;
   border-radius: 0.5rem;
-  border: 0;
-  border: 0.4rem solid rgba(59, 130, 246, 0.9);
+  /* border: 0.1rem solid rgba(59, 130, 246, 0.9); */
   background-image: url(../images/rec.svg);
   background-size: 1.8rem;
   background-position: left 1.05rem top 0.9rem;
@@ -194,10 +193,10 @@ input[type="search"]:focus::-webkit-search-cancel-button {
   -webkit-transition: all -webkit-transform 0.3s ease;
 }
 
-#autoComplete:focus {
+/* #autoComplete:focus {
   color: rgba(59, 130, 246, 1);
   border: 0.1rem solid rgba(59, 130, 246, 0.8);
-}
+} */
 
 #autoComplete_list {
   position: absolute;
@@ -206,7 +205,7 @@ input[type="search"]:focus::-webkit-search-cancel-button {
   right: 0;
   letter-spacing: 0.4px;
   font-weight: 500;
-  margin-top: 0.1rem;
+  margin-top: 0rem;
   border-radius: 0.6rem;
   background-color: #fff;
   box-shadow: 0 5px 6px rgba(149, 157, 165, 0.459);
@@ -234,7 +233,7 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 }
 
 .autoComplete_result_keys{
-  font-size: 0.45rem!important;
+  font-size: 0rem!important;
 }
 
 .autoComplete_result::selection {
@@ -282,11 +281,11 @@ input[type="search"]:focus::-webkit-search-cancel-button {
   }
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
+/* @media screen and (-webkit-min-device-pixel-ratio: 0) {
   #autoComplete {
     border-width: 0.1rem;
   }
-}
+} */
 
 @-moz-document url-prefix() {
   #autoComplete {

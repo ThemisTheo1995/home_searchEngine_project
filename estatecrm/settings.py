@@ -187,7 +187,7 @@ DATETIME_INPUT_FORMATS = ['%d-%m-%Y %H:%M:%S']
 PWA_APP_NAME = 'Yeneses'
 PWA_APP_DESCRIPTION = "Yeneses - Property search engine"
 PWA_APP_THEME_COLOR = '#3b82f6'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_BACKGROUND_COLOR = '#3b82f6'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
@@ -204,11 +204,6 @@ PWA_APP_ICONS = [
     {
         'src': '/static/images/yeneses_pwa_160px.png',
         'sizes': '160x160',
-        "type": "image/png"
-    },
-    {
-        'src': '/static/images/yeneses_pwa_192px.png',
-        'sizes': '192x192',
         "type": "image/png"
     }
 ]

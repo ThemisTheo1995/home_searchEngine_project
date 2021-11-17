@@ -19,15 +19,15 @@
           </a>
         </strong>
         </h1>
-        <h2 class="title-font sm:text-lg text-sm mb-6 font-semibold text-gray-700 px-4 title">
-          {% trans 'Explore homes, properties and offices in Greece and the UK'%}
+        <h2 class="antialiased font-bold sm:text-3xl text-xl mb-6 font-semibold text-gray-700 px-4 title">
+          {% trans 'Find your peace in Greece'%}
         </h2>
         <form method="get" autocomplete="off">
           <div class="flex flex-wrap w-full justify-center items-center">
             <div class="autoComplete_wrapper flex xl:w-1/2 w-full py-1">
-              <input class="sm:text-lg text-base shadow" id="autoComplete" type="search" name="location" aria-label="{% trans 'Search for properties' %}" placeholder="{% trans "e.g. 'London', 'Chester', 'Merseyside' "%}" required>
+              <input class="border border-gray-200 sm:text-lg text-base shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="autoComplete" type="search" name="location" aria-label="{% trans 'Search for properties' %}" placeholder="{% trans "e.g. 'London', 'Chester', 'Merseyside' "%}" required>
             </div>
-            <div class="mode flex w-full justify-center items-center mt-4">
+            <div class="mode flex w-full justify-center items-center mt-4 hidden">
                 <div class="toggle">
                   <div class="toggler text-sm">{% trans 'Strict'%}</div>
                 </div>
