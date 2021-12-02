@@ -2,24 +2,9 @@
 <section class="text-gray-600 body-font mt-1">
     <div class="container max-w-full px-2 lg:px-10 py-10 mx-auto flex flex-col">
         <div class="lg:w-11/12 w-full mx-auto">
-            <div class="bg-blue-600 rounded-t-lg text-white pl-2 text-xs font-bold py-1 border-b-2 border-white text-white">
-                {% if rent.property_category == 'STANDARD' %} {{rent.property_category}} {% elif rent.property_category == 'FEATURED' %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-yellow-400 inline-block bi bi-star-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                    />
-                </svg>
-                {{rent.property_category}} {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-red-600 inline-block bi bi-lightbulb-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"
-                    />
-                </svg>
-                {{rent.property_category}} {% endif %}
-            </div>
             <div class="h-full overflow-hidden">
                 <div class="flex flex-col lg:flex-row">
-                    <div class="lg:w-2/3 w-full lg:pr-2">
+                    <div class="lg:w-2/3 w-full">
                         <div id="image-slider" class="splide">
                             <div class="splide__track rounded-b">
                                 <ul class="splide__list">
@@ -48,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lg:w-1/3 w-full lg:pl-2 h-full pt-4 lg:pt-0">
+                    <div class="lg:w-1/3 w-full lg:pl-2 h-full pt-1 lg:pt-0">
                         <div id="secondary-slider" class="splide">
                             <div class="splide__track">
                                 <ul class="splide__list">
@@ -202,7 +187,7 @@
                         <p class="text-sm">{{rent.description|linebreaksbr}}</p>
                     </div>
                 </div>
-                <div class="lg:w-1/3 sm:pl-4 sm:pr-0 text-center sm:text-left rounded mb-2">
+                <div class="lg:w-1/3 sm:pl-2 sm:pr-0 text-center sm:text-left rounded mb-2">
                     <div class="w-full sm:mb-8 lg:h-10 h-40 rent-detail-map rounded-md shadow" id="map{{rent.id}}"></div>
                     <div class="p-4 shadow sidebar bg-gray-100">
                         <p class="text-base text-left tracking-widest text-blue-700 py-2 font-semibold">{% trans 'AGENCY'%}</p>

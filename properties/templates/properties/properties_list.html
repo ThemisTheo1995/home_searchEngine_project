@@ -17,17 +17,17 @@
             <!-- Properties list -->
             {% if rentProperties %}
                 {% for rent in rentProperties %}
-                    <div class="flex flex-wrap shadow mt-2 mb-10 rounded-b" id="property_container{{rent.pk}}">
+                    <div class="flex flex-wrap mt-2 mb-10 rounded-b shadow-md" id="property_container{{rent.pk}}">
                         <a aria-label="anchor" class="cardAnchor" href="#{{rent.pk}}" id="{{rent.pk}}"></a>
                         {% if rent.property_category == 'STANDARD'%}
-                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 tracking-widest bg-blue-600 text-white items-center h-8">
-                            <span class="flex justify-start w-3/5">
-                                {% trans rent.property_type %} - {{rent.list_date|date:"d/m/Y"}}
+                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 pt-1 tracking-widest text-white items-center h-8 rounded-t">
+                            <span class="flex justify-start w-3/5 font-semibold text-blue-600 text-xs">
+                                {% trans 'Added' %}: {{rent.list_date|date:"d/m/Y"}}
                             </span>
                         {% else %}
-                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 tracking-widest bg-green-600 text-white items-center h-8">
-                            <span class="flex justify-start w-3/5 font-semibold">
-                                {% trans rent.property_type %} - {{rent.list_date|date:"d/m/Y"}}
+                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 pt-1 tracking-widest text-white items-center h-8">
+                            <span class="flex justify-start w-3/5 font-semibold text-green-600 text-xs">
+                                {% trans 'Added' %}: {{rent.list_date|date:"d/m/Y"}}
                             </span>
                         {% endif %}
                             <span class="flex justify-end w-2/5 items-center">
@@ -40,14 +40,14 @@
                                     </svg>
                                 </a>
                                 <a class="transition duration-150 ease-in-out transform hover:scale-125 mx-2 font-bold" href="#/" onclick="hideProperty({{rent.pk}})" title="{% trans 'Hide this advertisment'%}">
-                                    <svg class="inline-block bi bi-x-lg align-text-bottom" fill="White" height="18" viewbox="0 0 16 16" width="18">
+                                    <svg class="inline-block bi bi-x-lg align-text-bottom" fill="Gray" height="18" viewbox="0 0 16 16" width="18">
                                         <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                                     </svg>
                                 </a>
                             </span>
                         </div>
                         {% if rent.property_category == 'STANDARD' %}
-                            <div class="xl:w-7/12 w-full bg-white sm:rounded-bl relative">
+                            <div class="xl:w-7/12 w-full bg-white rounded relative">
                             {% if rent.property_feature != '' %}
                             <span class="rounded-full text-blue-800 border-blue-400 bg-blue-200 border px-2 py-1 sm:text-sm text-xs shadow-md absolute z-10 bottom-5 right-5">
                                 {% trans rent.property_feature %}
@@ -97,9 +97,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="xl:w-5/12 w-full bg-white overflow-hidden sm:rounded-br sm:rounded-bl-none rounded-b text-sm">
+                            <div class="xl:w-5/12 w-full bg-white overflow-hidden rounded text-sm">
                                 <div class="h-full overflow-hidden px-4 flex flex-wrap">
-                                    <a class="w-full cursor-default" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
+                                    <a class="w-full" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
                                         <div class="flex items-center flex-wrap w-full pt-2">
                                             <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                                                 {{rent.admin_2}}
@@ -166,7 +166,12 @@
                                                 <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
                                             </svg>
                                         </a>
-                                        <a class="inline-flex items-center ml-auto leading-none text-xs" href="#/">
+                                        <div class="inline-flex items-center ml-auto leading-none text-xs">
+                                            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" title="Look inside the property" class="rounded-full bg-blue-600 mr-6 p-1 shadow-md transition duration-200 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:scale-110">
+                                                <svg width="22" height="22" fill="white" class="inline-block bi bi-door-open-fill p-0.5" viewBox="0 0 16 16">
+                                                    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                                </svg>
+                                            </a>
                                             {% if rent.organisation.organisation_logo %}
                                                 <img alt="blog" class="w-12 h-8 flex-shrink-0 object-cover object-center hidden sm:flex rounded" height="8" src="{{rent.organisation.organisation_logo.url}}" width="12">
                                             {% endif %}
@@ -174,7 +179,7 @@
                                                 <span class="title-font font-medium text-gray-900">{{rent.organisation.name}}</span>
                                                 <span class="text-gray-700 tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
                                             </span>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -230,13 +235,13 @@
                             </form>
                         </div>
                         {% else %}
-                            <div class="w-full bg-white relative">
+                            <div class="w-full relative">
                             {% if rent.property_feature != '' %}
                             <span class="rounded-full text-green-800 border-green-400 bg-green-200 border px-2 py-1 sm:text-sm text-xs shadow-md absolute z-10 bottom-5 right-5">
                                 {% trans rent.property_feature %}
                             </span>
                             {% endif %}    
-                                <div class="h-auto overflow-hidden border-r-2 border-l-2 border-green-600">
+                                <div class="h-auto overflow-hidden rounded">
                                     <div class="splide" data-pages="3" data-ratio="0.2" id="image-slider{{rent.pk}}">
                                         <div class="splide__track">
                                             <ul class="splide__list">
@@ -280,9 +285,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full bg-white overflow-hidden rounded-b text-sm border-r-2 border-l-2 border-green-600 border-b-2">
+                            <div class="w-full bg-white overflow-hidden rounded text-sm rounded">
                                 <div class="h-full overflow-hidden px-4">
-                                    <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" class="cursor-default">
+                                    <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" class="">
                                         <div class="flex items-center flex-wrap w-full pt-2">
                                             <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                                                 {{rent.admin_2}}
@@ -315,7 +320,7 @@
                                             </div>
                                             <div class="flex justify-between w-full lg:w-1/2 mb-2 tracking-wider text-xs text-center text-gray-800 font-bold">
                                                 <div>
-                                                    <svg class="inline-block mb-1 bi bi-house-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+                                                    <svg class="inline-block mb-1 bi bi-house-fill sm:inline-block" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
                                                         <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" fill-rule="evenodd"/>
                                                         <path d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" fill-rule="evenodd"/>
                                                     </svg>
@@ -333,7 +338,7 @@
                                                     <div class="text-center font-bold">{{rent.bathrooms|floatformat:'0'}}</div>
                                                 </div>
                                                 <div>
-                                                    <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block hidden" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
+                                                    <svg class="inline-block mb-1 bi bi-grid-3x3-gap-fill sm:inline-block" fill="currentColor" height="16" viewbox="0 0 16 16" width="16">
                                                         <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
                                                     </svg>
                                                     {% trans 'Area'%}
@@ -358,7 +363,12 @@
                                             <p class="text-xs leading-none ml-auto">{% trans 'Published:'%}
                                                 {{rent.list_date|date:"d/m/Y"}}</p>
                                         </div>
-                                        <a class="inline-flex items-center  ml-auto leading-none text-xs" href="#/">
+                                        <div class="inline-flex items-center  ml-auto leading-none text-xs">
+                                            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" title="Look inside the property" class="rounded-full bg-green-600 mr-6 p-1 shadow-md transition duration-200 ease-in-out hover:bg-green-700 transform hover:-translate-y-1 hover:scale-110">
+                                                <svg width="22" height="22" fill="white" class="inline-block bi bi-door-open-fill p-0.5" viewBox="0 0 16 16">
+                                                    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                                </svg>
+                                            </a>
                                             {% if rent.organisation.organisation_logo %}
                                                 <img alt="blog" class="w-12 h-8 flex-shrink-0 object-cover object-center hidden sm:flex rounded" height="8" src="{{rent.organisation.organisation_logo.url}}" width="12">
                                             {% endif %}
@@ -366,11 +376,11 @@
                                                 <span class="title-font font-medium text-gray-900">{{rent.organisation.name}}</span>
                                                 <span class="text-gray-700 tracking-widest mt-0.5">{% trans 'AGENCY'%}</span>
                                             </span>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-gray-100 border-2 border-green-600 -mt-2 border-t-0 hidden emailForm{{rent.pk}}">
+                            <div class="bg-gray-100 hidden emailForm{{rent.pk}}">
                                 <form class="lg:w-2/3 md:w-full mx-auto my-6" id="eform{{rent.pk}}" method="POST">
                                     {% csrf_token %}
                                     <div class="flex flex-col text-center w-full my-4 p-2">

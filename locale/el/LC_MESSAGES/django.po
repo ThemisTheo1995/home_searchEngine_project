@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-17 20:24+0000\n"
+"POT-Creation-Date: 2021-12-02 13:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <themistheodoratos@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,8 +52,8 @@ msgid "Notes"
 msgstr "Σημειώσεις"
 
 #: accounts/templates/accounts/accounts_myAccount.html:39
-#: properties/templates/properties/properties_detail.html:181
-#: properties/templates/properties/properties_list.html:322
+#: properties/templates/properties/properties_detail.html:166
+#: properties/templates/properties/properties_list.html:327
 #: properties/templates/properties/properties_mainFilters.html:21
 #: realtors/templates/realtors/realtors_organisation_list_properties.html:204
 msgid "Type"
@@ -61,22 +61,22 @@ msgstr "Τύπος"
 
 #: accounts/templates/accounts/accounts_myAccount.html:40
 #: properties/forms.py:60
-#: properties/templates/properties/properties_detail.html:187
-#: properties/templates/properties/properties_list.html:327
+#: properties/templates/properties/properties_detail.html:172
+#: properties/templates/properties/properties_list.html:332
 #: properties/templates/properties/properties_mainFilters.html:46
 msgid "Bedrooms"
 msgstr "Δωμάτια"
 
 #: accounts/templates/accounts/accounts_myAccount.html:41
 #: properties/forms.py:61
-#: properties/templates/properties/properties_detail.html:191
-#: properties/templates/properties/properties_list.html:332
+#: properties/templates/properties/properties_detail.html:176
+#: properties/templates/properties/properties_list.html:337
 #: properties/templates/properties/properties_mainFilters.html:51
 msgid "Bathrooms"
 msgstr "Μπάνια"
 
 #: accounts/templates/accounts/accounts_myAccount.html:42
-#: properties/templates/properties/properties_list.html:339
+#: properties/templates/properties/properties_list.html:344
 msgid "Area"
 msgstr "Τετραγωνικά"
 
@@ -354,13 +354,13 @@ msgstr "Νεοκλασικό"
 
 #: properties/models.py:113
 #: properties/templates/properties/properties_create.html:57
-#: properties/templates/properties/properties_detail.html:169
+#: properties/templates/properties/properties_detail.html:154
 msgid "Fireplace"
 msgstr "Τζάκι"
 
 #: properties/models.py:114
 #: properties/templates/properties/properties_create.html:50
-#: properties/templates/properties/properties_detail.html:159
+#: properties/templates/properties/properties_detail.html:144
 msgid "Garden"
 msgstr "Κήπος"
 
@@ -395,77 +395,77 @@ msgid "Select property's features..."
 msgstr "Επιλέξτε διάφορα χαρακτηριστικά"
 
 #: properties/templates/properties/properties_create.html:38
-#: properties/templates/properties/properties_detail.html:141
+#: properties/templates/properties/properties_detail.html:126
 msgid "Bills included"
 msgstr "Τιμή με λογαριασμούς"
 
 #: properties/templates/properties/properties_create.html:39
-#: properties/templates/properties/properties_detail.html:143
+#: properties/templates/properties/properties_detail.html:128
 msgid "Cleaning services"
 msgstr "Παροχές καθαρισμού"
 
 #: properties/templates/properties/properties_create.html:40
-#: properties/templates/properties/properties_detail.html:145
+#: properties/templates/properties/properties_detail.html:130
 msgid "Refurbished"
 msgstr "Ανακαινισμένο"
 
 #: properties/templates/properties/properties_create.html:41
-#: properties/templates/properties/properties_detail.html:147
+#: properties/templates/properties/properties_detail.html:132
 msgid "Gas"
 msgstr "Αέριο"
 
 #: properties/templates/properties/properties_create.html:42
-#: properties/templates/properties/properties_detail.html:149
+#: properties/templates/properties/properties_detail.html:134
 msgid "Electricity"
 msgstr "Ηλεκτρική θέρμανση"
 
 #: properties/templates/properties/properties_create.html:43
-#: properties/templates/properties/properties_detail.html:151
+#: properties/templates/properties/properties_detail.html:136
 msgid "Central heating"
 msgstr "Κεντρική θέρμανση"
 
 #: properties/templates/properties/properties_create.html:46
-#: properties/templates/properties/properties_detail.html:153
+#: properties/templates/properties/properties_detail.html:138
 msgid "Laundry room"
 msgstr "Κοινόχρηστα πλυντήρια"
 
 #: properties/templates/properties/properties_create.html:47
-#: properties/templates/properties/properties_detail.html:155
+#: properties/templates/properties/properties_detail.html:140
 msgid "En-suite"
 msgstr "Ενσωματομένο μπάνιο"
 
 #: properties/templates/properties/properties_create.html:48
-#: properties/templates/properties/properties_detail.html:157
+#: properties/templates/properties/properties_detail.html:142
 msgid "Playroom"
 msgstr ""
 
 #: properties/templates/properties/properties_create.html:49
-#: properties/templates/properties/properties_detail.html:173
+#: properties/templates/properties/properties_detail.html:158
 msgid "Elevator"
 msgstr "Ασανσέρ"
 
 #: properties/templates/properties/properties_create.html:51
-#: properties/templates/properties/properties_detail.html:161
+#: properties/templates/properties/properties_detail.html:146
 msgid "Shared kitchen"
 msgstr "Κοινόχρηστη κουζίνα"
 
 #: properties/templates/properties/properties_create.html:54
-#: properties/templates/properties/properties_detail.html:163
+#: properties/templates/properties/properties_detail.html:148
 msgid "Swimming-pool"
 msgstr "Πισίνα"
 
 #: properties/templates/properties/properties_create.html:55
-#: properties/templates/properties/properties_detail.html:165
+#: properties/templates/properties/properties_detail.html:150
 msgid "Student-accommodation"
 msgstr "Για φοιτητές"
 
 #: properties/templates/properties/properties_create.html:56
-#: properties/templates/properties/properties_detail.html:167
+#: properties/templates/properties/properties_detail.html:152
 msgid "No deposit"
 msgstr "Προκαταβολή"
 
 #: properties/templates/properties/properties_create.html:58
-#: properties/templates/properties/properties_detail.html:171
+#: properties/templates/properties/properties_detail.html:156
 msgid "Scenery/View"
 msgstr "Θέα"
 
@@ -475,58 +475,63 @@ msgstr "Θέα"
 msgid "Submit"
 msgstr "Μετάβαση"
 
-#: properties/templates/properties/properties_detail.html:91
+#: properties/templates/properties/properties_detail.html:76
 msgid "Calculate your home costs"
 msgstr "Υπολογισμός εξόδων"
 
-#: properties/templates/properties/properties_detail.html:101
+#: properties/templates/properties/properties_detail.html:86
 msgid "Share property in Facebook"
 msgstr "Κοινοποιήστε στο Facebook"
 
-#: properties/templates/properties/properties_detail.html:108
+#: properties/templates/properties/properties_detail.html:93
 msgid "Share property in Twitter"
 msgstr "Κοινοποιήστε στο Twitter"
 
-#: properties/templates/properties/properties_detail.html:115
+#: properties/templates/properties/properties_detail.html:100
 msgid "Save property in your account"
 msgstr "Αποθήκευση στον λογαριασμό"
 
-#: properties/templates/properties/properties_detail.html:131
+#: properties/templates/properties/properties_detail.html:116
 msgid "LETTING DETAILS"
 msgstr "ΠΛΗΡΟΦΟΡΙΕΣ ΕΝΟΙΚΙΑΣΗΣ"
 
-#: properties/templates/properties/properties_detail.html:133
+#: properties/templates/properties/properties_detail.html:118
 msgid "Available to let after:"
 msgstr "Διαθέσιμο μετά από:"
 
-#: properties/templates/properties/properties_detail.html:134
+#: properties/templates/properties/properties_detail.html:119
 msgid "Furnished Type:"
 msgstr "Έπιπλα:"
 
-#: properties/templates/properties/properties_detail.html:138
+#: properties/templates/properties/properties_detail.html:123
 msgid "MAIN FEATURES"
 msgstr "ΣΤΟΙΧΕΙΑ"
 
-#: properties/templates/properties/properties_detail.html:178
+#: properties/templates/properties/properties_detail.html:163
 msgid "SPECIFICATIONS"
 msgstr "ΚΥΡΙΑ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ"
 
-#: properties/templates/properties/properties_detail.html:195
+#: properties/templates/properties/properties_detail.html:180
 msgid "Space"
 msgstr "Τετραγωνικά"
 
-#: properties/templates/properties/properties_detail.html:201
+#: properties/templates/properties/properties_detail.html:186
 msgid "DESCRIPTION"
 msgstr "ΠΕΡΙΓΡΑΦΗ"
 
-#: properties/templates/properties/properties_detail.html:208
-#: properties/templates/properties/properties_detail.html:216
-#: properties/templates/properties/properties_list.html:175
-#: properties/templates/properties/properties_list.html:367
+#: properties/templates/properties/properties_detail.html:193
+#: properties/templates/properties/properties_detail.html:201
+#: properties/templates/properties/properties_list.html:180
+#: properties/templates/properties/properties_list.html:377
 #: properties/templates/properties/properties_list_cards.html:103
 #: realtors/templates/realtors/realtors_organisation_list_properties.html:183
 msgid "AGENCY"
 msgstr "ΜΕΣΙΤΙΚΟ"
+
+#: properties/templates/properties/properties_list.html:25
+#: properties/templates/properties/properties_list.html:30
+msgid "Added"
+msgstr "Καταχωρήθηκε"
 
 #: properties/templates/properties/properties_list.html:34
 msgid "Click to show on map"
@@ -544,47 +549,47 @@ msgstr "Κρύψε αυτή την καρτέλα"
 
 #: properties/templates/properties/properties_list.html:113
 #: properties/templates/properties/properties_list.html:115
-#: properties/templates/properties/properties_list.html:296
-#: properties/templates/properties/properties_list.html:298
+#: properties/templates/properties/properties_list.html:301
+#: properties/templates/properties/properties_list.html:303
 msgid "month"
 msgstr "μήνα"
 
-#: properties/templates/properties/properties_list.html:186
-#: properties/templates/properties/properties_list.html:378
+#: properties/templates/properties/properties_list.html:191
+#: properties/templates/properties/properties_list.html:388
 msgid "Contact:"
 msgstr "Επικοινωνία με:"
 
-#: properties/templates/properties/properties_list.html:188
-#: properties/templates/properties/properties_list.html:380
+#: properties/templates/properties/properties_list.html:193
+#: properties/templates/properties/properties_list.html:390
 msgid "For:"
 msgstr "Για το ακίνητο:"
 
-#: properties/templates/properties/properties_list.html:196
-#: properties/templates/properties/properties_list.html:388
+#: properties/templates/properties/properties_list.html:201
+#: properties/templates/properties/properties_list.html:398
 msgid "*Name"
 msgstr "*Όνομα"
 
-#: properties/templates/properties/properties_list.html:210
-#: properties/templates/properties/properties_list.html:402
+#: properties/templates/properties/properties_list.html:215
+#: properties/templates/properties/properties_list.html:412
 msgid "*Phone"
 msgstr "*Τηλέφωνο"
 
-#: properties/templates/properties/properties_list.html:216
-#: properties/templates/properties/properties_list.html:408
+#: properties/templates/properties/properties_list.html:221
+#: properties/templates/properties/properties_list.html:418
 msgid "*Message"
 msgstr "*Μύνημα"
 
-#: properties/templates/properties/properties_list.html:223
-#: properties/templates/properties/properties_list.html:415
+#: properties/templates/properties/properties_list.html:228
+#: properties/templates/properties/properties_list.html:425
 msgid "Send"
 msgstr "Αποστολή"
 
-#: properties/templates/properties/properties_list.html:358
+#: properties/templates/properties/properties_list.html:363
 #: realtors/templates/realtors/realtors_organisation_list_properties.html:163
 msgid "Published:"
 msgstr "Δημοσιεύτηκε:"
 
-#: properties/templates/properties/properties_list.html:428
+#: properties/templates/properties/properties_list.html:438
 #: properties/templates/properties/properties_list_cards.html:114
 msgid "Seems there are no properties on the place you are looking on :("
 msgstr "Δεν υπάρχουν ακίνητα σε αυτή την περιοχή :("
@@ -851,15 +856,11 @@ msgstr "Πληροφορίες Εταιρείας"
 msgid ""
 "Agent has been created succesfully but email has not been delivered due to "
 "an error."
-msgstr ""
+msgstr "Ο υπάλληλος προστέθηκε με επιτυχία αλλά δεν έλαβε email. Παρακαλώ επικοινωνήστε με τον υπάλληλο."
 
 #: realtors/views.py:191
 msgid "Agent has been created succesfully"
-msgstr ""
-
-#: templates/landing.html:7
-msgid "Home"
-msgstr "Αρχική"
+msgstr "Ο υπάλληλος προστέθηκε με επιτυχία"
 
 #: templates/landing.html:17
 msgid "Yeneses.com - Αρχική σελίδα"
@@ -878,8 +879,8 @@ msgid "Search for properties"
 msgstr "Ανακάλυψε περιοχές..."
 
 #: templates/landing.html:28
-msgid "e.g. 'London', 'Chester', 'Merseyside' "
-msgstr " π.χ. 'Γλυφάδα', 'Λακωνία', 'Αττική' "
+msgid "Location of your next dream home..?"
+msgstr "Πού θα είναι το νέο σου σπίτι..? "
 
 #: templates/landing.html:39
 msgid "TO RENT"
@@ -889,66 +890,74 @@ msgstr "ΕΝΟΙΚΙΑΣΗ"
 msgid "FOR SALE"
 msgstr "ΑΓΟΡΑ"
 
-#: templates/navbar.html:44 templates/navbar.html:136
+#: templates/navbar.html:30
+msgid "Places to Rent"
+msgstr "Ενοικίαση Ακινήτων"
+
+#: templates/navbar.html:33
+msgid "Places to Buy"
+msgstr "Αγορά Ακινήτων"
+
+#: templates/navbar.html:50 templates/navbar.html:142
 #: templates/registration/signup.html:14
 msgid "Login"
 msgstr "Είσοδος"
 
-#: templates/navbar.html:54
+#: templates/navbar.html:60
 msgid "Signed in as"
 msgstr ""
 
-#: templates/navbar.html:61 templates/navbar.html:86 templates/navbar.html:111
+#: templates/navbar.html:67 templates/navbar.html:92 templates/navbar.html:117
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: templates/navbar.html:64 templates/navbar.html:89 templates/navbar.html:114
+#: templates/navbar.html:70 templates/navbar.html:95 templates/navbar.html:120
 msgid "Account settings"
 msgstr "Ρυθμίσεις λογιαριασμού"
 
-#: templates/navbar.html:66 templates/navbar.html:91
+#: templates/navbar.html:72 templates/navbar.html:97
 msgid "Board"
 msgstr "Πίνακας"
 
-#: templates/navbar.html:71
+#: templates/navbar.html:77
 msgid "My Yeneses(Realtor)"
 msgstr ""
 
-#: templates/navbar.html:73 templates/navbar.html:98 templates/navbar.html:116
+#: templates/navbar.html:79 templates/navbar.html:104 templates/navbar.html:122
 msgid "favourites"
 msgstr ""
 
-#: templates/navbar.html:77 templates/navbar.html:102 templates/navbar.html:120
+#: templates/navbar.html:83 templates/navbar.html:108 templates/navbar.html:126
 msgid "Favourites"
 msgstr ""
 
-#: templates/navbar.html:80 templates/navbar.html:105
+#: templates/navbar.html:86 templates/navbar.html:111
 msgid "Analytics (soon)"
 msgstr ""
 
-#: templates/navbar.html:96
+#: templates/navbar.html:102
 msgid "My Yeneses(Agent)"
 msgstr ""
 
-#: templates/navbar.html:130
+#: templates/navbar.html:136
 msgid "Sign out"
 msgstr ""
 
-#: templates/navbar.html:140
+#: templates/navbar.html:146
 msgid "Account login"
 msgstr "Σύνδεση στο λογιαριασμό"
 
-#: templates/navbar.html:142
+#: templates/navbar.html:148
 msgid "Sign up"
 msgstr ""
 
-#: templates/navbar.html:146 templates/registration/login.html:15
+#: templates/navbar.html:152 templates/registration/login.html:15
 #: templates/registration/login.html:30 templates/registration/signup.html:11
 #: templates/registration/signup.html:21
 msgid "Create an account"
 msgstr "Δημιουργία λογαριασμού"
 
-#: templates/navbar.html:152
+#: templates/navbar.html:158
 msgid "License"
 msgstr ""
 
@@ -1024,6 +1033,12 @@ msgstr "Έχετε ήδη λογιαριασμό;"
 #: templates/registration/updateUser.html:13
 msgid "Do you want to change your password?"
 msgstr "Θέλετε να αλλάξετε τον κωδικό σας;"
+
+#~ msgid "Home"
+#~ msgstr "Αρχική"
+
+#~ msgid "e.g. 'London', 'Chester', 'Merseyside' "
+#~ msgstr " π.χ. 'Γλυφάδα', 'Λακωνία', 'Αττική' "
 
 #~ msgid "Explore homes, properties and offices in Greece and the UK"
 #~ msgstr ""

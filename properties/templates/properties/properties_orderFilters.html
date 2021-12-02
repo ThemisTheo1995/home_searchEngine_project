@@ -51,25 +51,25 @@
          <div id="features-container" class="hidden">
          {% for feature, value in features_choices.items %}
             {% if feature in features %}
-               <button type="submit" onclick="featuresFilter('features','{{feature}}')" form="search_bar" class="views focus:outline-none font-semibold mb-2 mr-2 sm:py-1 py-2 px-2  border-2 border-gray-700 text-center text-white transition duration-75 ease-in-out bg-gray-700">
+               <button type="submit" onclick="featuresFilter('features','{{feature}}')" form="search_bar" class="views focus:outline-none font-semibold mb-2 mr-2 sm:py-1 p-2 border-2 border-gray-700 text-center text-white transition duration-75 ease-in-out bg-gray-700">
                   {% trans value %}
                </button>
             {% else %}
-               <button type="submit" onclick="featuresFilter('features','{{feature}}')" form="search_bar" class="views focus:outline-none font-semibold mb-2 sm:py-1 py-2 px-2  border-2 border-gray-700 text-center text-gray-700 hover:text-white transition duration-75 ease-in-out hover:bg-gray-700">
+               <button type="submit" onclick="featuresFilter('features','{{feature}}')" form="search_bar" class="views focus:outline-none font-semibold mb-2 sm:py-1 p-2 border-2 border-gray-700 text-center text-gray-700 hover:text-white transition duration-75 ease-in-out hover:bg-gray-700">
                {% trans value %}
                </button>
             {% endif %}
          {% endfor %}
          </div>
             {% if map != 'off' %}
-            <button type="submit" onclick="showMap('mapFilter')" form="search_bar" class="focus:outline-none rounded font-semibold p-2 border border-gray-600 text-center text-white transition duration-75 ease-in-out bg-gray-600">
+            <button type="submit" onclick="showMap('mapFilter')" form="search_bar" class="focus:outline-none rounded font-semibold p-2 text-center text-white transition duration-75 ease-in-out bg-gray-600">
             {% trans 'Map'%}
-            <img class="inline-block transition duration-150 ease-in-out transform hover:scale-125" width="20" height="20" src="{% static "images/rec.svg" %}"  alt="Click to show map"/>
+            <img class="inline-block transition duration-150 ease-in-out transform hover:scale-125" width="15" height="15" src="{% static "images/rec.svg" %}"  alt="Click to show map"/>
             </button>
             {% else %}
             <button type="submit" onclick="showMap('mapFilter')" form="search_bar" class="focus:outline-none rounded font-semibold p-2 border border-gray-600 text-center text-gray-700 hover:text-white transition duration-75 ease-in-out hover:bg-gray-600">
             {% trans 'Map'%}
-            <img class="inline-block transition duration-150 ease-in-out transform hover:scale-125" width="20" height="20" src="{% static "images/rec.svg" %}"  alt="Click to show map"/>
+            <img class="inline-block transition duration-150 ease-in-out transform hover:scale-125" width="15" height="15" src="{% static "images/rec.svg" %}"  alt="Click to show map"/>
             </button>
             {% endif %}
       </div>

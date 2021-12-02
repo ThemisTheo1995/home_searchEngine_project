@@ -16,5 +16,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     });
 });
+function pingEffect(button_id){
+    const button = document.getElementById(button_id)
+    button.classList.add("animate-ping");
+    setTimeout(function(){ button.classList.remove("animate-ping"); }, 1000);
+
+}
 
 

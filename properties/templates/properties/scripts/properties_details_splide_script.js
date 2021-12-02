@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
         type        : 'loop',
         perPage     : 3,
         perMove     : 1,
-        heightRatio : 1.11,
+        heightRatio : 1.12,
         gap         : 10,
         cover       : true,
         lazyLoad    : 'nearby',
