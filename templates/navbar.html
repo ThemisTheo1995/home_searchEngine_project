@@ -26,10 +26,10 @@
                     </form>
                 </div>
             </div>
-            <a href="/#" class="xl:flex hidden italic ml-16 flex text-white items-center text-base font-bold transform transition duration-350 ease-in-out hover:translate-x-4">
+            <a href="/#" class="bg-white rounded xl:flex hidden ml-16 flex text-gray-700 items-center text-sm shadow-md font-bold transform transition duration-350 ease-in-out hover:translate-x-4 px-4">
                 {% trans 'Places to Rent'%}
             </a>
-            <a href="/#" class="xl:flex hidden italic mx-12 flex text-white items-center text-base font-bold transform transition duration-150 ease-in-out hover:translate-x-4 ">
+            <a href="/#" class="bg-white rounded xl:flex hidden mx-12 flex text-gray-700 items-center text-sm shadow-md font-bold transform transition duration-150 ease-in-out hover:translate-x-4 px-4">
                 {% trans 'Places to Buy'%}
             </a>
             {% endif %}
@@ -38,7 +38,7 @@
         <nav class="w-1/2 inline-flex flex items-center font-semibold text-base justify-end">
             <!-- Dropdown nav button -->
             <div class="text-left dropdown flex items-center z-50 bg-white rounded" id="dropdown">
-                <button class="shadow inline-flex justify-start w:2/3 px-4 py-3 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white rounded hover:shadow-xl focus:outline-none focus:shadow-outline-white" 
+                <button class="shadow-md inline-flex justify-start w:2/3 px-4 py-3 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white rounded hover:shadow-xl focus:outline-none focus:shadow-outline-white" 
                 type="button" aria-haspopup="true" aria-expanded="true" aria-controls="headlessui-menu-items-117">
                     {% if request.user.is_authenticated %}
                     <span>Menu</span>

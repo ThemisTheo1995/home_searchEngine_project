@@ -38,7 +38,7 @@
             <button id="rentButton" type="submit" formaction="{% url 'properties:rent-list'%}" onclick="pingEffect('rentButton')"  class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent tracking-wider transition duration-150 ease-in-out shadow hover:shadow-md mr-2 w-32 lg:w-40 text-bg-gray-700 border border-gray-300 font-bold bg-gray-100 py-2 px-1 rounded text-lg">
               {% trans 'TO RENT' %}
             </button>
-            <button id="saleButton" type="submit" onclick="pingEffect('saleButton')" class="tracking-wider ml-2 w-32 lg:w-40 text-white font-bold bg-gray-700 py-2 px-1 hover:bg-gray-800 rounded text-lg border-1 border-gray-400 transition duration-250 ease-in-out hover:shadow-lg">
+            <button id="saleButton" type="submit" formaction="{% url 'properties:sale-list'%}" onclick="pingEffect('saleButton')" class="tracking-wider ml-2 w-32 lg:w-40 text-white font-bold bg-gray-700 py-2 px-1 hover:bg-gray-800 rounded text-lg border-1 border-gray-400 transition duration-250 ease-in-out hover:shadow-lg">
               {% trans 'FOR SALE' %}
             </button>
           </div>
@@ -51,7 +51,7 @@
         {% for property in landingProperties %}
         <div class="xl:w-1/4 md:w-1/2 w-full p-4">
           {% if property.advertised == "To_Rent" %}
-          <a href="{% url 'properties:rent-detail' property.pk%}" target="_blank"> {% else %} <a href="#" target="_blank"> {% endif %}
+          <a href="{% url 'properties:detail' property.pk%}"> {% else %} <a href="#"> {% endif %}
             <div class="bg-gray-200 p-6 rounded-lg shadow">
               {% if property.photo_main  %}
               {% thumbnail property.photo_main "320x180" as im %}

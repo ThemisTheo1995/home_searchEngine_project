@@ -26,7 +26,7 @@
               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
             </svg>
           </a>
-          <a href="{% url 'properties:rent-detail' prop.favourite.pk %}">
+          <a href="{% url 'properties:detail' prop.favourite.pk %}">
           <img class="h-50 rounded w-full object-cover object-center mb-6" src="{{prop.favourite.photo_main.url}}" alt="content">
           <h3 class="tracking-widest text-blue-600 text-xs font-medium title-font">
             {{prop.favourite.admin_2}} | {{prop.favourite.postalcode}} | {{prop.favourite.admin_3}}

@@ -22,8 +22,8 @@ class PropertiesAdmin(admin.ModelAdmin):
     
     form = PropertiesForm
     model = Properties
-    list_display = ['id', 'organisation', 'property_type','is_published', 'price', 'list_date', 'country']
-    list_filter = ['advertised', 'organisation', 'country', 'property_type', 'price', 'list_date']
+    list_display = ['id', 'organisation', 'property_type','is_published', 'price', 'list_date', 'country', 'advertised']
+    list_filter = ['advertised', 'organisation', 'country', 'property_type', 'price', 'list_date', 'advertised']
     list_display_links = ['id']
     list_editable = ['is_published',]
     search_fields = ['property_type', 'description', 'country', 'postalcode', 'price']

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 type        : 'loop',
                 cover       : true,
                 perPage     : spliders[i].dataset.pages,
-                perMove     : 2,
+                perMove     : 1,
                 heightRatio : spliders[i].dataset.ratio,
                 gap         : '0.2rem',
                 rewind      : true,
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     '1024'  : {
                         heightRatio : 0.30,
                         perPage     : 2,
-                        perMove     : 2,
+                        perMove     : 1,
                     },
                     '640'  : {
                         heightRatio : 0.60,

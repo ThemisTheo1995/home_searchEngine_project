@@ -46,7 +46,7 @@ def landing_autocomplete(request):
         i = 0
         for val in actual_data:
             actual_data[i] = {key: value for key, value in val.items() if key == "location" or key=="location_en"}
-            i += 1        
+            i += 1       
         return JsonResponse(actual_data, safe=False)
         
 ### Landing view ###
@@ -108,7 +108,7 @@ def rent_email_listview(request):
 ### Rent List view ###
 class PropertiesRentListView(generic.ListView):
     paginate_by = 15
-    context_object_name = "rentProperties"
+    context_object_name = "properties"
     
     def get_template_names(self):
         if self.request.GET.get('mode','') == 'cards':
@@ -119,6 +119,7 @@ class PropertiesRentListView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pre = self.request.GET.get
+        context['prop'] = 'rent'
         context['location'] = pre('location', '')
         context['mode'] = pre('mode', '')
         context['minbathrooms'] = pre('minbaths','')
@@ -149,9 +150,9 @@ class PropertiesRentListView(generic.ListView):
         context['pagination_choices'] = pagination_choices
         context['page_view_choices'] = page_view_choices
         try:
-            if len(context['rentProperties'])>0 and context['map'] != 'off':
+            if len(context['properties'])>0 and context['map'] != 'off':
                 markerSet = []
-                for M in context['rentProperties']:
+                for M in context['properties']:
                     markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.price, M.currency, M.street_number])
             context['markerSet'] = markerSet
         except:
@@ -282,11 +283,10 @@ class PropertiesRentListView(generic.ListView):
         return queryset
 
 ### Rent Detail view ###
-class PropertiesRentDetailView(generic.DetailView):
+class PropertiesDetailView(generic.DetailView):
     template_name = "properties/properties_detail.html"
     context_object_name = "rent"
     queryset = Properties.objects.filter(
-            advertised = 'To_Rent',
             is_published=True,
             )
     
@@ -524,4 +524,179 @@ class PropertiesUpdateView(mixins.OrganisationAndLoginRequiredMixin, generic.Upd
         
         return super(PropertiesUpdateView, self).form_valid(form)
    
+### Sale List view ###
+class PropertiesSaleListView(generic.ListView):
+    paginate_by = 15
+    context_object_name = "properties"
     
+    def get_template_names(self):
+        if self.request.GET.get('mode','') == 'cards':
+            return ["properties/properties_list_cards.html"]
+        else:
+            return ["properties/properties_list.html"]
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pre = self.request.GET.get
+        context['prop'] = 'sale'
+        context['location'] = pre('location', '')
+        context['mode'] = pre('mode', '')
+        context['minbathrooms'] = pre('minbaths','')
+        context['minbedrooms'] = pre('minbeds','')
+        context['maxbathrooms'] = pre('maxbaths','')
+        context['maxbedrooms'] = pre('maxbeds','')
+        context['minprice'] = pre('minprice','')
+        context['maxprice'] = pre('maxprice','')
+        context['type'] = pre('type','')
+        context['furniture'] = pre('furniture','')
+        context['orderlist'] = pre('orderlist','')
+        context['orderprice'] = pre('orderprice','')
+        context['paginate_by'] = pre('paginate_by', 15) or 15
+        context['features'] = pre('features','')
+        context['map'] = pre('map','') or 1
+        # Features list
+        context['views'] = pre('views','')
+        context['garden'] = pre('garden','')
+        context['fireplace'] = pre('fireplace','')
+        context['elevator'] = pre('elevator','')
+        # Choices
+        context['price'] = price_rent_choices
+        context['type_choices'] = type_rent_choices
+        context['furniture_choices'] = furniture_choices
+        context['features_choices'] = features_choices
+        context['order_list_date_choices'] = order_list_date_choices
+        context['order_price_choices'] = order_price_choices
+        context['pagination_choices'] = pagination_choices
+        context['page_view_choices'] = page_view_choices
+        try:
+            if len(context['properties'])>0 and context['map'] != 'off':
+                markerSet = []
+                for M in context['properties']:
+                    markerSet.append([M.address,float(M.geo_lat), float(M.geo_lng), M.pk, M.price, M.currency, M.street_number])
+            context['markerSet'] = markerSet
+        except:
+            context['markerSet'] = "off"
+        
+        return context
+
+    def get_paginate_by(self, queryset):
+        """
+        Paginate by specified value in querystring, or use default class property value.
+        """
+        paginate_by = self.request.GET.get('paginate_by', self.paginate_by)
+        cardsPerPage = '30' if int(paginate_by) > 30 else paginate_by
+        return cardsPerPage
+
+    def get_queryset(self):
+        if 'location' in self.request.GET:
+            pre = self.request.GET.get
+            # Parameters
+            location = pre('location','')
+            mode = pre('mode', '')
+            minbeds = pre('minbeds','')
+            minbaths = pre('minbaths','')
+            maxbeds = pre('maxbeds','')
+            maxbaths = pre('maxbaths','')
+            maxprice = pre('maxprice','')
+            minprice = pre('minprice','')
+            prop_type = pre('type','')
+            furniture = pre('furniture','')
+            orderlist = pre('orderlist','')
+            orderprice = pre('orderprice','')
+            # Location filter
+            if len(location)>0: 
+                # Check if the identifier exists
+                try:
+                    identifier = geoData.objects.get(Q(location=location) | Q(location_en = location)).identifier
+                    if identifier:
+                        identifier = identifier.split("-")
+                        try: 
+                            identifier = identifier[0]+'-'+identifier[1]
+                            queryset = Properties.objects.filter(identifier__identifier = identifier, is_published=True, advertised='For_Sale')
+                        except:
+                            identifier = identifier[0]
+                            queryset = Properties.objects.filter(identifier__identifier__startswith=identifier, is_published=True, advertised='For_Sale')
+                    else:
+                        queryset = Properties.objects.none()
+                except geoData.DoesNotExist:
+                    identifier = None
+                    queryset = Properties.objects.none()
+            else: queryset = Properties.objects.none()
+            # Template mode filter
+            
+            # Bathrooms filter
+            minbaths = int(minbaths) if minbaths != '' else ''
+            maxbaths = int(maxbaths) if maxbaths != '' else ''
+            if minbaths != '' and maxbaths != '' and (minbaths > -1 and minbaths < 99) and (maxbaths > -1 and maxbaths < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbaths, bathrooms__lte = maxbaths)
+                except:pass
+            elif minbaths != '' and (minbaths > -1 and minbaths < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbaths)
+                except:pass
+            elif maxbaths != '' and (maxbaths > -1 and maxbaths < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__lte = maxbaths)
+                except:pass
+            # Bedrooms filter
+            minbeds = int(minbeds) if minbeds != '' else ''
+            maxbeds = int(maxbeds) if maxbeds != '' else ''
+            if minbeds != '' and maxbeds != '' and (minbeds > -1 and minbeds < 99) and (maxbeds > -1 and maxbeds < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbeds, bathrooms__lte = maxbeds)
+                except:pass
+            elif minbeds != '' and (minbeds > -1 and minbeds < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__gte = minbeds)
+                except:pass
+            elif maxbeds !='' and (maxbeds > -1 and maxbeds < 99):
+                try:
+                    queryset = queryset.filter(bathrooms__lte = maxbeds)
+                except:pass
+            # Price filter
+            minprice = int(minprice) if minprice != '' else ''
+            maxprice = int(maxprice) if maxprice != '' else ''
+            if minprice != '' and maxprice != '' and (minprice > 49 and minprice < 10001) and (maxprice > 49 and maxprice < 10001):
+                try:
+                    queryset = queryset.filter(price__gte = minprice, price__lte = maxprice)
+                except:pass
+            elif minprice != '' and (minprice > 49 and minprice < 10001):
+                try:
+                    queryset = queryset.filter(price__gte = minprice)
+                except:pass
+            elif maxprice !='' and (maxprice > 49 and maxprice < 10001):
+                try:
+                    queryset = queryset.filter(price__lte = maxprice)
+                except:pass
+            # Property type filter
+            if prop_type != '' and type(prop_type)==str:
+                try:
+                    queryset = queryset.filter(property_type = prop_type)
+                except:pass
+            # Furniture
+            if furniture:
+                try:
+                    queryset = queryset.filter(furniture = furniture)
+                except:pass
+            # Order date
+            if orderlist:
+                if orderlist == 'new':
+                    try:
+                        queryset = queryset.order_by('-list_date')
+                    except:pass
+                elif orderlist == 'old':
+                    try:
+                        queryset = queryset.order_by('list_date')
+                    except:pass
+            # Order price
+            if orderprice:
+                if orderprice == 'high':
+                    try:
+                        queryset = queryset.order_by('-price')
+                    except:pass
+                elif orderprice == 'low':
+                    try:
+                        queryset = queryset.order_by('price')
+                    except:pass
+        return queryset

@@ -15,17 +15,17 @@
             <!-- Order filters -->
             {% include "properties/properties_orderFilters.html" %}
             <!-- Properties list -->
-            {% if rentProperties %}
-                {% for rent in rentProperties %}
+            {% if properties %}
+                {% for rent in properties %}
                     <div class="flex flex-wrap mt-2 mb-10 rounded-b shadow-md" id="property_container{{rent.pk}}">
                         <a aria-label="anchor" class="cardAnchor" href="#{{rent.pk}}" id="{{rent.pk}}"></a>
                         {% if rent.property_category == 'STANDARD'%}
-                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 pt-1 tracking-widest text-white items-center h-8 rounded-t">
+                        <div class="border-white border-t border-l border-r flex w-full rounded-t float-left sm:text-sm text-xs pl-2 text-white items-center h-8 rounded-t">
                             <span class="flex justify-start w-3/5 font-semibold text-blue-600 text-xs">
                                 {% trans 'Added' %}: {{rent.list_date|date:"d/m/Y"}}
                             </span>
                         {% else %}
-                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 pt-1 tracking-widest text-white items-center h-8">
+                        <div class="flex w-full rounded-t float-left sm:text-sm text-xs pl-2 text-white items-center h-8 border-t border-l border-r border-white">
                             <span class="flex justify-start w-3/5 font-semibold text-green-600 text-xs">
                                 {% trans 'Added' %}: {{rent.list_date|date:"d/m/Y"}}
                             </span>
@@ -97,9 +97,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="xl:w-5/12 w-full bg-white overflow-hidden rounded text-sm">
+                            <div class="xl:w-5/12 w-full bg-white overflow-hidden rounded-b text-sm">
                                 <div class="h-full overflow-hidden px-4 flex flex-wrap">
-                                    <a class="w-full" href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener">
+                                    <a class="w-full" href="{% url 'properties:detail' rent.pk %}" rel="noopener">
                                         <div class="flex items-center flex-wrap w-full pt-2">
                                             <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                                                 {{rent.admin_2}}
@@ -110,7 +110,7 @@
                                             </h2>
                                             <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
                                                 {% ifequal rent.currency '€' %}
-                                                {{rent.price | intcomma}}{{rent.currency}}<span class="text-xs">/{% trans 'month' %}</span>
+                                                {{rent.price | intcomma}}{{rent.currency}}<span class="text-xs">{% if rent.advertised == 'To_Rent' %}/{% trans 'month' %}{% endif %}</span>
                                             {% else %}
                                                 {{rent.currency}}{{rent.price | intcomma}}/{% trans 'month' %}<span class="text-xs">/{% trans 'month' %}</span>
                                                 {% endifequal %}
@@ -167,7 +167,7 @@
                                             </svg>
                                         </a>
                                         <div class="inline-flex items-center ml-auto leading-none text-xs">
-                                            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" title="Look inside the property" class="rounded-full bg-blue-600 mr-6 p-1 shadow-md transition duration-200 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:scale-110">
+                                            <a href="{% url 'properties:detail' rent.pk %}" rel="noopener" title="Look inside the property" class="rounded-full bg-blue-600 mr-6 p-1 shadow-md transition duration-200 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:scale-110">
                                                 <svg width="22" height="22" fill="white" class="inline-block bi bi-door-open-fill p-0.5" viewBox="0 0 16 16">
                                                     <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                                                 </svg>
@@ -285,9 +285,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full bg-white overflow-hidden rounded text-sm rounded">
+                            <div class="w-full bg-white overflow-hidden rounded-b text-sm">
                                 <div class="h-full overflow-hidden px-4">
-                                    <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" class="">
+                                    <a href="{% url 'properties:detail' rent.pk %}" rel="noopener" class="">
                                         <div class="flex items-center flex-wrap w-full pt-2">
                                             <h2 class="inline-flex items-center tracking-widest text-xs title-font font-medium text-blue-600">
                                                 {{rent.admin_2}}
@@ -364,7 +364,7 @@
                                                 {{rent.list_date|date:"d/m/Y"}}</p>
                                         </div>
                                         <div class="inline-flex items-center  ml-auto leading-none text-xs">
-                                            <a href="{% url 'properties:rent-detail' rent.pk %}" rel="noopener" title="Look inside the property" class="rounded-full bg-green-600 mr-6 p-1 shadow-md transition duration-200 ease-in-out hover:bg-green-700 transform hover:-translate-y-1 hover:scale-110">
+                                            <a href="{% url 'properties:detail' rent.pk %}" rel="noopener" title="Look inside the property" class="rounded-full bg-green-600 mr-6 p-1 shadow-md transition duration-200 ease-in-out hover:bg-green-700 transform hover:-translate-y-1 hover:scale-110">
                                                 <svg width="22" height="22" fill="white" class="inline-block bi bi-door-open-fill p-0.5" viewBox="0 0 16 16">
                                                     <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                                                 </svg>
