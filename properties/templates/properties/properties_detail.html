@@ -106,7 +106,7 @@
                     </div>
                     <div class="flex items-center flex-wrap py-2">
                         <p class="inline-flex font-bold md:text-2xl text-l text-gray-800 pr-2">
-                            {% ifequal rent.currency '€' %} {{rent.price | intcomma}}{{rent.currency}} {% else %} {{rent.currency}}{{rent.price | intcomma}} {% endifequal %}
+                            {% if rent.currency == '€' %} {{rent.price | intcomma}}{{rent.currency}} {% else %} {{rent.currency}}{{rent.price | intcomma}} {% endif %}
                         </p>
                         <div class="inline-flex items-center ml-auto leading-none">
                             <p class="text-xs font-bold leading-none ml-auto">Published: {{rent.list_date|date:"d/m/Y"}}</p>

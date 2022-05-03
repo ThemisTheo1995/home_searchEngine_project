@@ -2,7 +2,7 @@ from django.shortcuts import reverse, redirect
 from django.views import generic
 from django.http import JsonResponse
 from django.core.mail import send_mail
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from .mixins import RealtorAndLoginRequiredMixin, OrganisationAndLoginRequiredMixin
 from .models import Organisation, Agent

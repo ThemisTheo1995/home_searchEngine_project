@@ -109,11 +109,11 @@
                                                 {{rent.admin_3}}
                                             </h2>
                                             <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
-                                                {% ifequal rent.currency '€' %}
+                                                {% if rent.currency == '€' %}
                                                 {{rent.price | intcomma}}{{rent.currency}}<span class="text-xs">{% if rent.advertised == 'To_Rent' %}/{% trans 'month' %}{% endif %}</span>
                                             {% else %}
                                                 {{rent.currency}}{{rent.price | intcomma}}/{% trans 'month' %}<span class="text-xs">/{% trans 'month' %}</span>
-                                                {% endifequal %}
+                                                {% endif %}
                                             </h1>
                                         </div>
                                         <h1 class="title-font font-bold text-gray-700 pt-2">
@@ -297,11 +297,11 @@
                                                 {{rent.admin_3}}
                                             </h2>
                                             <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
-                                                {% ifequal rent.currency '€' %}
+                                                {% if rent.currency == '€' %}
                                                 {{rent.price | intcomma}}{{rent.currency}}<span class="text-xs">/{% trans 'month' %}</span>
                                             {% else %}
                                                 {{rent.currency}}{{rent.price | intcomma}}<span class="text-xs">/{% trans 'month' %}</span>
-                                                {% endifequal %}
+                                                {% endif %}
                                             </h1>
                                         </div>
                                         <h1 class="title-font font-bold text-gray-700 pt-2">

@@ -71,11 +71,11 @@
                                  {{rent.admin_2}}{% if rent.admin_1 != '' %}, {{rent.admin_1}}{% endif %}
                               </h2>
                               <h1 class="inline-flex items-center title-font font-bold text-lg ml-auto leading-none text-gray-900">
-                                 {% ifequal rent.currency '€' %}
+                                 {% if rent.currency == '€' %}
                                  {{rent.price | intcomma}}{{rent.currency}}
                                  {% else %}
                                  {{rent.currency}}{{rent.price | intcomma}}
-                                 {% endifequal %}
+                                 {% endif %}
                               </h1>
                            </div>
                         </a>

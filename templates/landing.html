@@ -63,11 +63,11 @@
                     {{property.address}} | {{property.street_number}}
                   </h2>
                   <h3 class="tracking-wider text-gray-900 float-right ml-auto font-medium title-font font-bold inline-flex items-center">
-                    {% ifequal property.currency '€' %}
+                    {% if property.currency == "€" %}
                       {{property.price | intcomma}}{{property.currency}}
                     {% else %}
                       {{property.currency}}{{property.price | intcomma}}
-                    {% endifequal %}
+                    {% endif %}
                   </h3>
                 </div>
                 <h4 class="text-gray-900 font-medium title-font text-sm mb-4">
@@ -85,7 +85,7 @@
             </div>
           </a>
         </div>
-          {% endfor %}
+      {% endfor %}
       </div>
     <script>{% include "properties/scripts/properties_landing_autocomplete_script.js" %}</script>
 </section>

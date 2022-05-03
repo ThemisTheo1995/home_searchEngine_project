@@ -2,7 +2,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from properties.validators import validate_file_size
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)

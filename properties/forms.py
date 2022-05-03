@@ -1,7 +1,7 @@
 # properties/forms.py
 from django import forms
 from .models import Properties
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
     
 # Admin form
 class PropertiesForm(forms.ModelForm):
